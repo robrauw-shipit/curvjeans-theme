@@ -1,0 +1,333 @@
+<style>
+/* --- CORE STYLES (unchanged layout, spacing, and ratios) --- */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.prelander-container {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  line-height: 1.65;
+  color: #1a1a1a;
+  background: #ffffff;
+}
+
+.prelander-wrapper {
+  max-width: 100%;
+  margin: 0 auto;
+  background: white;
+}
+
+/* HERO */
+.prelander-header {
+  padding: 24px 8px 12px;
+  text-align: center;
+}
+
+.prelander-header h1 {
+  font-size: 26px;
+  line-height: 1.15;
+  margin-bottom: 12px;
+  color: #1a1a1a;
+  font-weight: 700;
+}
+
+.prelander-header p {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* SOCIAL PROOF */
+.prelander-hero-social-proof {
+  padding: 16px 8px 20px;
+  background: white;
+}
+
+.prelander-social-proof-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.prelander-social-proof-avatars {
+  display: flex;
+  align-items: center;
+}
+
+.prelander-social-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid white;
+  margin-left: -8px;
+  object-fit: cover;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+}
+.prelander-social-avatar:first-child { margin-left: 0; }
+
+.prelander-social-proof-text {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  color: #1a1a1a;
+  margin: 0;
+  white-space: nowrap;
+}
+.prelander-social-proof-text strong { font-weight: 700; }
+
+.prelander-social-verified {
+  width: 15px;
+  height: 15px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* HERO IMAGE */
+.prelander-hero-image {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  background: #f5f5f5;
+}
+.prelander-hero-image::before {
+  content: "";
+  display: block;
+  padding-top: 125%;
+}
+.prelander-hero-img {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+
+/* INTRO */
+.prelander-intro {
+  padding: 20px 16px;
+  background: #f8f8f8;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #1a1a1a;
+}
+.prelander-intro p { margin: 0; }
+
+/* SECTIONS */
+.prelander-section {
+  padding: 28px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+.prelander-section:last-of-type { border-bottom: none; }
+
+.prelander-section-content {
+  padding: 0 16px;
+}
+.prelander-section h2 {
+  font-size: 20px;
+  margin-bottom: 12px;
+  color: #1a1a1a;
+  font-weight: 700;
+}
+.prelander-section p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 0;
+}
+.prelander-inline-cta {
+  display: inline-block;
+  color: #1a1a1a;
+  font-weight: 600;
+  text-decoration: none;
+  margin-top: 12px;
+  font-size: 16px;
+  border-bottom: 2px solid #1a1a1a;
+  padding-bottom: 2px;
+  transition: opacity .2s;
+}
+.prelander-inline-cta:hover { opacity: .7; }
+
+/* IMAGE CONTAINERS */
+.prelander-image-container {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  background: #f5f5f5;
+  margin: 16px 0 0 0;
+}
+.prelander-image-container::before {
+  content: "";
+  display: block;
+  padding-top: 125%;
+}
+.prelander-section-image {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* TESTIMONIALS */
+.prelander-testimonial {
+  background: #fafafa;
+  padding: 16px;
+  margin-top: 16px;
+  border-radius: 6px;
+  font-style: italic;
+  color: #555;
+  font-size: 15px;
+  line-height: 1.6;
+  border-left: 3px solid #e0e0e0;
+}
+.prelander-testimonial-author {
+  font-style: normal;
+  color: #1a1a1a;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.prelander-verified-badge {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+}
+
+/* DESKTOP */
+@media (min-width:768px){
+  .prelander-wrapper { max-width:1200px; }
+  .prelander-hero-wrapper {
+    display:flex; gap:40px; align-items:center; padding:40px 32px;
+  }
+  .prelander-hero-content { flex:1; text-align:left; }
+  .prelander-header { padding:0; text-align:left; }
+  .prelander-header h1 { font-size:34px; line-height:1.2; margin-bottom:14px; }
+  .prelander-header p { font-size:18px; margin-bottom:24px; }
+  .prelander-hero-social-proof { padding:0; background:transparent; }
+  .prelander-intro { display:none; }
+  .prelander-hero-content::after {
+    content:"You're standing in line. Walking past coworkers. Sitting down at lunch. And suddenly, you're hyper-aware of your jeans. The waistband gaping, the fabric sliding down, the fit that felt perfect now sagging and shapeless. It's not you — jeans were made for a body that doesn’t exist.";
+    display:block; padding:24px 0 0; font-size:17px; line-height:1.6; color:#1a1a1a;
+  }
+  .prelander-hero-image { flex:0 0 45%; }
+  .prelander-social-proof-row { justify-content:flex-start; }
+  .prelander-section { padding:36px 32px; }
+  .prelander-section-wrapper { display:flex; gap:32px; align-items:flex-start; }
+  .prelander-section-content { flex:1; padding:0; }
+  .prelander-image-container { flex:0 0 45%; margin:0; order:2; }
+  .prelander-section h2 { font-size:24px; margin-bottom:14px; }
+  .prelander-section p { font-size:17px; }
+}
+</style>
+
+<div class="prelander-container">
+  <div class="prelander-wrapper">
+    <!-- HERO -->
+    <div class="prelander-hero-wrapper">
+      <div class="prelander-hero-content">
+        <div class="prelander-header">
+          <h1>3 Reasons Your Jeans Never Fit — And Why 10,000+ Women With Curves Stopped Settling</h1>
+          <p>It’s not you. Jeans were made for a body that doesn’t exist.</p>
+        </div>
+        <div class="prelander-hero-social-proof">
+          <div class="prelander-social-proof-row">
+            <div class="prelander-social-proof-avatars">
+              <img src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/customer_3.jpg?v=1761889231" class="prelander-social-avatar">
+              <img src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/customer_5.jpg?v=1761889230" class="prelander-social-avatar">
+              <img src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/customer_4.jpg?v=1761889230" class="prelander-social-avatar">
+              <img src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/customer_2.jpg?v=1761889230" class="prelander-social-avatar">
+              <img src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/customer_1.jpg?v=1761889230" class="prelander-social-avatar">
+            </div>
+            <p class="prelander-social-proof-text">
+              <strong>10,000+ found their perfect fit</strong>
+              <img src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/verified.webp?v=1726649878" class="prelander-social-verified"/>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="prelander-hero-image">
+        <img src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/pre_lander_natsza.jpg?v=1761892950" class="prelander-hero-img" alt="Women in CURVJEANS showing perfect fit">
+      </div>
+    </div>
+
+    <div class="prelander-intro">
+      <p>You're standing in line. Walking past coworkers. Sitting down at lunch.
+And suddenly, you're hyper-aware of your jeans.
+You pull your shirt down. You adjust. You wonder if anyone notices.
+After years of this, you start to think: "Maybe jeans just aren't for my body."
+<b>But it's not you.</b>
+<br><br>Regular jeans were made for a body that doesn't exist — and until now, no one bothered to fix it.</p>
+    </div>
+
+    <!-- SECTION 1 -->
+    <div class="prelander-section">
+      <div class="prelander-section-wrapper">
+        <div class="prelander-section-content">
+          <h2>1. The Waist Gap (And The Constant Awareness That Comes With It)</h2>
+          <p>If jeans fit your hips and thighs, there's a gaping hole at the waist. You can fit your whole fist back there. And if you size down to fix it? Your thighs suffocate. The seams dig in when you sit. You feel like a stuffed sausage. After years of this, you start to believe it's your fault. That your proportions are "off." That you're "hard to fit." But it's not you. <u>CurveFlex™ Denim</u> hugs softly at the waist without digging in. No gap. No squeeze. No constant adjusting.</p>
+          <a href="/collections/all-products" class="prelander-inline-cta">Shop CurveFlex™ Denim →</a>
+          <div class="prelander-testimonial">
+            “I genuinely didn’t think jeans could fit like this. I’ve been pulling my shirt down to cover the gap since I was 14. These are the first pair I can just… wear. And forget about.”
+            <div class="prelander-testimonial-author">
+              Sarah M., verified buyer
+              <img src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/verified.webp?v=1726649878" class="prelander-verified-badge"/>
+            </div>
+          </div>
+        </div>
+        <div class="prelander-image-container">
+          <img src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/7_dc86b1fb-69d2-4f96-ba42-d2d92cdccfe7.jpg?v=1761897851" class="prelander-section-image" alt="Waist gap comparison — regular jeans vs CURVJEANS">
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 2 -->
+    <div class="prelander-section">
+      <div class="prelander-section-wrapper">
+        <div class="prelander-section-content">
+          <h2>2. They Feel Great in the Morning — Then Betray You by 4PM</h2>
+          <p>You know this story. You put them on in the morning and they feel perfect — snug, supportive, flattering. By noon, they start to slide. By 4PM, they’re sagging at the butt and bagging at the knees. By 5PM, you look sloppy — and feel it. Most “stretchy” jeans use cheap elastic that breaks down fast. <strong>CurveFlex™ Denim</strong> is woven with high-recovery fibers that snap back after every move. Sit, bend, walk — the fit stays. No sagging. No bagging. Just jeans that hold their shape from coffee to cocktails.</p>
+          <a href="/collections/all-products" class="prelander-inline-cta">Find Your Perfect Fit →</a>
+          <div class="prelander-testimonial">
+            “I was SO skeptical because every pair of stretchy jeans I’ve tried let me down by midday. These actually hold their shape. I’m not pulling them up every 20 minutes anymore.”
+            <div class="prelander-testimonial-author">
+              Jenna L., verified buyer
+              <img src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/verified.webp?v=1726649878" class="prelander-verified-badge"/>
+            </div>
+          </div>
+        </div>
+        <div class="prelander-image-container">
+          <img src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/2_7e327f70-d579-44b8-9560-b79f5eefe767.jpg?v=1761896867" class="prelander-section-image" alt="Side-by-side: jeans holding shape all day">
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 3 -->
+    <div class="prelander-section">
+      <div class="prelander-section-wrapper">
+        <div class="prelander-section-content">
+          <h2>3. Every “Curvy Fit” Brand Still Gaps at the Waist</h2>
+          <p>You’ve tried them all — Levi’s Curve, Abercrombie Curve Love, American Eagle Curvy, Good American. They all promise the perfect fit, but they still gap, squeeze, or sag. Most “curvy” jeans just tighten the waistband and call it a day. <strong>CurveFlex™ 360° Denim</strong> is a full redesign — from the soft contoured waistband to the hip and thigh pattern. It follows your shape, not fights it. No gap. No squeeze. No false promises.</p>
+          <a href="/collections/all-products" class="prelander-inline-cta">See All Styles →</a>
+          <div class="prelander-testimonial">
+            “I’ve tried every ‘curvy fit’ out there. Every single one disappointed me. These are the only jeans that actually do what they say. They hug my curves without feeling tight. It’s not even close.”
+            <div class="prelander-testimonial-author">
+              Alicia P., verified buyer
+              <img src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/verified.webp?v=1726649878" class="prelander-verified-badge"/>
+            </div>
+          </div>
+        </div>
+        <div class="prelander-image-container">
+          <img src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/8.jpg?v=1761897853" class="prelander-section-image" alt="Woman showing waistband gap vs CURVJEANS">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

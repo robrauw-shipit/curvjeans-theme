@@ -1,0 +1,129 @@
+{% if product %}
+<div id="pdp-header-desktop"><!-- DESKTOP ONLY -->
+
+  <!-- Title -->
+  <h1 class="pdp-title">{{ product.title }}</h1>
+
+  <!-- Mechanism (left) + Reviews (right) -->
+  <div class="pdp-meta">
+    {%- assign stretch_mo = product.metafields.custom.stretch_level -%}
+    {%- assign stretch_val = stretch_mo.value | default: stretch_mo -%}
+    {%- assign stretch_label = stretch_val.label | default: stretch_val.title | default: stretch_val.name | default: stretch_val.handle | default: stretch_val | strip -%}
+    {%- assign sl = stretch_label | downcase -%}
+
+    {%- if sl contains '360' or sl contains '4-way' or sl contains 'four-way' or sl contains 'omni' or sl contains 'all-way' -%}
+      {%- assign mech_out = 'CURVEFLEX™ 360°' -%}
+    {%- else -%}
+      {%- assign mech_out = 'CURVEFLEX™ COMFORT' -%}
+    {%- endif -%}
+
+    <span class="pdp-mech">{{ mech_out }}</span>
+
+    <!-- Clickable Loox rating -->
+    <a href="#looxReviews"
+       class="pdp-rating-link"
+       aria-label="Read {{ product.metafields.loox.num_reviews | default: 0 }} reviews">
+      <div class="pdp-rating loox-rating"
+           data-id="{{ product.id }}"
+           data-rating="{{ product.metafields.loox.avg_rating }}"
+           data-raters="{{ product.metafields.loox.num_reviews }}">
+      </div>
+    </a>
+  </div>
+
+  <!-- Subheadline -->
+  {% assign sub = product.metafields.descriptors.subtitle | default: "Jeans that snatch your waist & show your curves." %}
+  <div class="pdp-sub">{{ sub }}</div>
+
+  <!-- Price -->
+  <div class="pdp-pricing pill">
+    {% assign variant = product.selected_or_first_available_variant %}
+    {% assign compare_price = variant.compare_at_price %}
+    {% assign actual_price = variant.price %}
+
+    {%- assign _lc = request.locale.iso_code | default: localization.language.iso_code | default: shop.locale | downcase -%}
+    {% case _lc %}
+      {% when 'nl' %}
+        {% assign _save_text = 'Bespaar' %}
+        {% assign _today_text = 'vandaag' %}
+        {% assign _fast_text = 'Gaat snel' %}
+      {% when 'de' %}
+        {% assign _save_text = 'Spare' %}
+        {% assign _today_text = 'heute' %}
+        {% assign _fast_text = 'Verkauft sich schnell' %}
+      {% else %}
+        {% assign _save_text = 'Save' %}
+        {% assign _today_text = 'today' %}
+        {% assign _fast_text = 'Selling Fast' %}
+    {% endcase %}
+
+    {% if compare_price and compare_price > actual_price %}
+      {% assign savings = compare_price | minus: actual_price %}
+      {% assign savings_rounded = savings | divided_by: 100 | round: 0 | times: 100 %}
+      <span class="pdp-price-compare">{{ compare_price | money }}</span>
+      <span class="pdp-price">{{ actual_price | money }}</span>
+      <span class="pdp-price-save">{{ _save_text }} {{ savings_rounded | money_without_trailing_zeros }} {{ _today_text }}</span>
+    {% else %}
+      <span class="pdp-price">{{ actual_price | money }}</span>
+      <span class="pdp-price-save">{{ _fast_text }}</span>
+    {% endif %}
+  </div>
+
+</div>
+{% endif %}
+
+<style>
+  /* Visibility: desktop only */
+  @media (max-width: 989px){
+    #pdp-header-desktop{ display:none !important; }
+  }
+
+  /* Match mobile spacing */
+  #pdp-header-desktop{ margin:16px 0 16px; }
+
+  /* Title (same as mobile) */
+  #pdp-header-desktop .pdp-title{
+    font-size:20px; font-weight:700; line-height:1.3; color:#111; margin:0 0 8px;
+  }
+  @media(min-width:1200px){ #pdp-header-desktop .pdp-title{ font-size:26px; } }
+
+  /* Mechanism + reviews (identical to mobile) */
+  #pdp-header-desktop .pdp-meta{
+    display:flex; align-items:center; justify-content:space-between;
+    column-gap:12px; font-size:13px; font-weight:500; color:#666; margin-bottom:4px;
+  }
+  #pdp-header-desktop .pdp-mech{ flex:1; min-width:0; letter-spacing:.03em; }
+
+  #pdp-header-desktop .pdp-rating-link{ display:inline-flex; margin-left:auto; text-decoration:none; }
+  #pdp-header-desktop .pdp-rating-link:focus-visible{
+    outline:2px solid #111; outline-offset:2px; border-radius:4px;
+  }
+
+  #pdp-header-desktop .pdp-rating{
+    display:flex !important; align-items:center !important;
+    white-space:nowrap; text-align:right;
+  }
+  #pdp-header-desktop .pdp-rating .loox-rating-label{
+    font-size:13px !important; color:#666 !important; margin-left:4px;
+  }
+
+  /* Subheadline */
+  #pdp-header-desktop .pdp-sub{
+    font-size:15px; line-height:1.4; color:#111; margin-bottom:10px;
+  }
+
+  /* Pricing (same visual as mobile) */
+  #pdp-header-desktop .pdp-pricing{
+    display:flex; align-items:center; flex-wrap:wrap; gap:8px 12px;
+  }
+  #pdp-header-desktop .pdp-price-compare{ text-decoration:line-through; font-size:15px; color:#9aa0a6; }
+  #pdp-header-desktop .pdp-price{ font-size:18px; font-weight:700; color:#000; }
+
+  #pdp-header-desktop .pdp-price-save{
+    background:rgba(0,163,65,.12);
+    color:#00A341;
+    padding:4px 10px;
+    border-radius:999px;
+    font-size:12px; font-weight:600; line-height:1; white-space:nowrap;
+  }
+</style>

@@ -1,0 +1,287 @@
+{% stylesheet %}
+/* ROOT */
+:root{--navy:#1a1a2e;--text:#333;--muted:#666;--border:#e0e0e0;--bg:#f5f5f5}
+*{box-sizing:border-box}
+.adv-wrap{background:#fff}
+
+/* ------------------------------------------------------------ */
+/* EDITORIAL HEADER                                             */
+/* ------------------------------------------------------------ */
+.adv-editorial-header-wrap{width:100%;border-bottom:1px solid var(--border);background:#fff}
+.adv-editorial-header{max-width:1100px;margin:0 auto;padding:14px 24px 10px}
+.adv-top{display:flex;align-items:center;gap:14px}
+.adv-burger{width:24px;display:flex;flex-direction:column;gap:4px;cursor:pointer}
+.adv-burger span{height:2px;width:100%;background:#111}
+.adv-logo-img{height:26px;display:block;object-fit:contain}
+.adv-logo-text{font-weight:700;font-size:20px;letter-spacing:1px;line-height:1;display:inline-block;color:#111}
+.adv-menu{display:flex;gap:28px;margin-top:10px;text-transform:uppercase;font-size:13px;color:#444}
+
+/* ------------------------------------------------------------ */
+/* CONTENT CONTAINER                                            */
+/* ------------------------------------------------------------ */
+.adv-container{max-width:720px;margin:0 auto;padding:24px}
+.adv-breadcrumb{font-size:12px;color:var(--muted);margin-bottom:10px}
+
+/* TITLE + META */
+.adv-title{font-size:34px;line-height:1.25;font-weight:700;color:var(--navy);margin:14px 0}
+@media(max-width:768px){.adv-title{font-size:28px}}
+.adv-subtitle{font-size:18px;color:var(--muted);line-height:1.45;margin-bottom:16px}
+.adv-author-row{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+.adv-author-img{width:44px;height:44px;border-radius:50%;object-fit:cover}
+.adv-author-name{font-size:14px;font-weight:600;color:var(--navy)}
+.adv-date{font-size:12px;color:#999;margin-bottom:20px}
+
+/* HERO */
+.adv-hero img{width:100%;height:auto;border-radius:6px;margin:18px 0}
+
+/* BODY */
+.adv-body{font-size:17px;line-height:1.65;color:var(--text);margin-bottom:22px}
+.adv-body p{margin:0 0 1.1em}
+.adv-body em{font-style:italic}
+.adv-body strong{font-weight:700}
+@media(max-width:768px){.adv-body{font-size:16px}}
+
+/* H2 */
+.adv-h2{font-size:24px;font-weight:700;color:var(--navy);margin:34px 0 14px}
+@media(max-width:768px){.adv-h2{font-size:22px}}
+
+/* IMAGE */
+.adv-image img{width:100%;height:auto;margin:18px 0;border-radius:4px}
+
+/* QUOTE */
+.adv-quote{background:#f9f9f9;border-left:4px solid var(--navy);padding:18px;margin:22px 0;font-style:italic;font-size:16px}
+
+/* CTA */
+.adv-cta a{display:block;background:var(--navy);color:#fff;text-align:center;padding:16px;font-size:18px;border-radius:4px;margin:28px 0;font-weight:700;text-decoration:none}
+.adv-cta a:hover{background:#0d0d1a}
+
+/* DIVIDER */
+.adv-divider{border-top:1px solid var(--border);margin:34px 0}
+
+/* TABLE */
+.adv-table{width:100%;border:1px solid #ddd;border-collapse:collapse;margin:22px 0}
+.adv-table th{background:#f5f5f5;padding:12px;font-weight:600;border-bottom:1px solid #ddd}
+.adv-table td{padding:12px;border-bottom:1px solid #eee}
+@media(max-width:768px){
+  .adv-table thead{display:none}
+  .adv-table tr{display:block;margin-bottom:16px;border:1px solid #ddd;border-radius:4px;padding:8px 12px}
+  .adv-table td{display:flex;justify-content:space-between;padding:8px 0}
+  .adv-table td:before{content:attr(data-label);font-weight:700;color:var(--navy);margin-right:14px}
+}
+
+
+
+/* FOOTER */
+.adv-footer{margin-top:46px;padding:28px 0;background:var(--bg);font-size:12px;color:#666;text-align:center}
+{% endstylesheet %}
+
+<div class="adv-wrap">
+
+{% comment %}
+===========================================
+FAKE EDITORIAL HEADER — FIXED STRUCTURE
+===========================================
+{% endcomment %}
+{% for block in section.blocks %}
+  {% if block.type == 'editorial_header' %}
+    <div class="adv-editorial-header-wrap">
+      <div class="adv-editorial-header">
+
+        <div class="adv-top">
+
+          <div class="adv-burger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
+          {% if block.settings.logo_image != blank %}
+            <img class="adv-logo-img" src="{{ block.settings.logo_image | image_url }}" alt="Logo">
+          {% else %}
+            <div class="adv-logo-text">{{ block.settings.logo_text }}</div>
+          {% endif %}
+
+        </div>
+
+        <div class="adv-menu">
+          {% if block.settings.menu_1 != blank %}<span>{{ block.settings.menu_1 }}</span>{% endif %}
+          {% if block.settings.menu_2 != blank %}<span>{{ block.settings.menu_2 }}</span>{% endif %}
+          {% if block.settings.menu_3 != blank %}<span>{{ block.settings.menu_3 }}</span>{% endif %}
+          {% if block.settings.menu_4 != blank %}<span>{{ block.settings.menu_4 }}</span>{% endif %}
+        </div>
+
+      </div>
+    </div>
+  {% endif %}
+{% endfor %}
+
+
+  <div class="adv-container">
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+
+        {%- when 'breadcrumb' -%}
+          <div class="adv-breadcrumb">{{ block.settings.text }}</div>
+
+        {%- when 'title' -%}
+          <h1 class="adv-title">{{ block.settings.text }}</h1>
+
+        {%- when 'subheadline' -%}
+          <div class="adv-subtitle">{{ block.settings.text }}</div>
+
+        {%- when 'author' -%}
+          <div class="adv-author-row">
+            {%- if block.settings.image != blank -%}
+              <img class="adv-author-img" src="{{ block.settings.image | image_url }}" alt="{{ block.settings.name }}">
+            {%- endif -%}
+            <div class="adv-author-name">By {{ block.settings.name }}</div>
+          </div>
+          <div class="adv-date">{{ block.settings.date }}</div>
+
+        {%- when 'hero' -%}
+          <div class="adv-hero">
+            {%- if block.settings.image != blank -%}
+              <img src="{{ block.settings.image | image_url }}" alt="">
+            {%- endif -%}
+          </div>
+
+        {%- when 'h2' -%}
+          <h2 class="adv-h2">{{ block.settings.text }}</h2>
+
+        {%- when 'body_advertorial' -%}
+          <div class="adv-body">{{ block.settings.text }}</div>
+
+        {%- when 'image' -%}
+          <div class="adv-image">
+            {%- if block.settings.image != blank -%}
+              <img src="{{ block.settings.image | image_url }}" alt="">
+            {%- endif -%}
+          </div>
+
+        {%- when 'quote' -%}
+          <div class="adv-quote">“{{ block.settings.text }}”</div>
+
+        {%- when 'cta' -%}
+          <div class="adv-cta"><a href="{{ block.settings.link }}">{{ block.settings.label }}</a></div>
+
+        {%- when 'divider' -%}
+          <div class="adv-divider"></div>
+
+        {%- when 'table' -%}
+          <table class="adv-table">
+            <thead>
+              <tr>
+                <th>{{ block.settings.header_col1 }}</th>
+                <th>{{ block.settings.header_col2 }}</th>
+                <th>{{ block.settings.header_col3 }}</th>
+                <th>{{ block.settings.header_col4 }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {%- for r in section.blocks -%}
+                {%- if r.type == 'table_row' and r.settings.group_key == block.settings.group_key -%}
+                  <tr>
+                    <td data-label="{{ block.settings.header_col1 }}">{{ r.settings.col1 }}</td>
+                    <td data-label="{{ block.settings.header_col2 }}">{{ r.settings.col2 }}</td>
+                    <td data-label="{{ block.settings.header_col3 }}">{{ r.settings.col3 }}</td>
+                    <td data-label="{{ block.settings.header_col4 }}">{{ r.settings.col4 }}</td>
+                  </tr>
+                {%- endif -%}
+              {%- endfor -%}
+            </tbody>
+          </table>
+
+        {%- when 'footer' -%}
+          <div class="adv-footer">© {{ "now" | date: "%Y" }} {{ block.settings.text }}</div>
+
+      {%- endcase -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Universal Advertorial",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "editorial_header",
+      "name": "Editorial Header",
+      "settings": [
+        { "type": "text", "id": "logo_text", "label": "Logo Text", "default": "WellHealth" },
+        { "type": "image_picker", "id": "logo_image", "label": "Logo Image (optional)" },
+        { "type": "text", "id": "menu_1", "label": "Menu 1", "default": "Health" },
+        { "type": "text", "id": "menu_2", "label": "Menu 2", "default": "Fitness" },
+        { "type": "text", "id": "menu_3", "label": "Menu 3", "default": "Beauty" },
+        { "type": "text", "id": "menu_4", "label": "Menu 4", "default": "Life" }
+      ]
+    },
+
+    { "type": "breadcrumb", "name": "Breadcrumb", "settings": [
+      { "type": "text", "id": "text", "label": "Breadcrumb Text" }
+    ]},
+
+    { "type": "title", "name": "Title", "settings": [
+      { "type": "text", "id": "text", "label": "Headline" }
+    ]},
+
+    { "type": "subheadline", "name": "Subheadline", "settings": [
+      { "type": "text", "id": "text", "label": "Subheadline" }
+    ]},
+
+    { "type": "author", "name": "Author", "settings": [
+      { "type": "image_picker", "id": "image", "label": "Author Image" },
+      { "type": "text", "id": "name", "label": "Author Name" },
+      { "type": "text", "id": "date", "label": "Published Date" }
+    ]},
+
+    { "type": "hero", "name": "Hero Image", "settings": [
+      { "type": "image_picker", "id": "image", "label": "Hero Image" }
+    ]},
+
+    { "type": "h2", "name": "Section Header", "settings": [
+      { "type": "text", "id": "text", "label": "Heading" }
+    ]},
+
+    { "type": "body_advertorial", "name": "Body Text (Advertorial)", "settings": [
+      { "type": "richtext", "id": "text", "label": "Body Text" }
+    ]},
+
+    { "type": "image", "name": "Image", "settings": [
+      { "type": "image_picker", "id": "image", "label": "Image" }
+    ]},
+
+    { "type": "quote", "name": "Quote", "settings": [
+      { "type": "textarea", "id": "text", "label": "Quote Text" }
+    ]},
+
+    { "type": "cta", "name": "CTA Button", "settings": [
+      { "type": "text", "id": "label", "label": "Button Label" },
+      { "type": "url", "id": "link", "label": "Button Link" }
+    ]},
+
+    { "type": "divider", "name": "Divider", "settings": [] },
+
+    { "type": "table", "name": "Comparison Table", "settings": [
+      { "type": "text", "id": "group_key", "label": "Group Key (e.g. A)", "default": "A" },
+      { "type": "text", "id": "header_col1", "label": "Column 1 Header", "default": "Brand Type" },
+      { "type": "text", "id": "header_col2", "label": "Column 2 Header", "default": "Waist Gap?" },
+      { "type": "text", "id": "header_col3", "label": "Column 3 Header", "default": "Stretched?" },
+      { "type": "text", "id": "header_col4", "label": "Column 4 Header", "default": "Buy Again?" }
+    ]},
+
+    { "type": "table_row", "name": "Table Row", "settings": [
+      { "type": "text", "id": "group_key", "label": "Group Key (match the table’s key)", "default": "A" },
+      { "type": "text", "id": "col1", "label": "Column 1" },
+      { "type": "text", "id": "col2", "label": "Column 2" },
+      { "type": "text", "id": "col3", "label": "Column 3" },
+      { "type": "text", "id": "col4", "label": "Column 4" }
+    ]},
+
+    { "type": "footer", "name": "Footer", "settings": [
+      { "type": "text", "id": "text", "label": "Footer Text", "default": "FitStyle Journal" }
+    ]}
+  ],
+  "presets": [{ "name": "Universal Advertorial" }]
+}
+{% endschema %}

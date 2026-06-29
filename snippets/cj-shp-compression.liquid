@@ -1,0 +1,264 @@
+{%- comment -%}
+CURVJEANS — Shapewear Compression Level
+Uses product metafield: custom.support_level
+Accepted values: low / medium / strong
+Default: medium
+{%- endcomment -%}
+
+{%- assign _lc = localization.language.iso_code | default: shop.locale | default: 'EN' | upcase -%}
+
+{%- if _lc == 'NL' -%}
+  {%- assign t_head = 'Compressieniveau' -%}
+  {%- assign t_light = 'Licht' -%}
+  {%- assign t_medium = 'Medium' -%}
+  {%- assign t_strong = 'Sterk' -%}
+
+  {%- assign d_light = 'Lichte shaping die zacht meebeweegt met je lichaam.' -%}
+  {%- assign d_medium = 'Zachte, comfortabele shaping die je curves mooi gladstrijkt zonder strak of beperkend te voelen.' -%}
+  {%- assign d_strong = 'Stevige ondersteuning voor extra shaping, met genoeg stretch om comfortabel te blijven zitten.' -%}
+
+  {%- assign t_fit_up = 'Twijfel je? Neem 1 maatje groter.' -%}
+
+{%- elsif _lc == 'DE' -%}
+  {%- assign t_head = 'Kompressionsstärke' -%}
+  {%- assign t_light = 'Leicht' -%}
+  {%- assign t_medium = 'Mittel' -%}
+  {%- assign t_strong = 'Stark' -%}
+
+  {%- assign d_light = 'Leichte Formung, die sich weich mit deinem Körper bewegt.' -%}
+  {%- assign d_medium = 'Sanfte, bequeme Formung, die deine Kurven glättet, ohne eng oder einengend zu wirken.' -%}
+  {%- assign d_strong = 'Fester Halt für mehr Formung, mit genug Stretch für ein angenehmes Tragegefühl.' -%}
+
+  {%- assign t_fit_up = 'Wenn du zwischen zwei Größen liegst, nimm eine größer.' -%}
+
+{%- else -%}
+  {%- assign t_head = 'Compression Level' -%}
+  {%- assign t_light = 'Light' -%}
+  {%- assign t_medium = 'Medium' -%}
+  {%- assign t_strong = 'Strong' -%}
+
+  {%- assign d_light = 'Light shaping that softly moves with your body.' -%}
+  {%- assign d_medium = 'Soft, comfortable shaping that smooths your curves without feeling tight or restrictive.' -%}
+  {%- assign d_strong = 'Firm support for extra shaping, with enough stretch to stay comfortable.' -%}
+
+  {%- assign t_fit_up = 'Size up if in between.' -%}
+{%- endif -%}
+
+{%- assign support_level = product.metafields.custom.support_level.value | default: 'medium' | downcase -%}
+
+{%- assign bars = 3 -%}
+{%- assign line = t_medium -%}
+{%- assign desc = d_medium -%}
+
+{%- if support_level == 'low' or support_level == 'light' -%}
+  {%- assign bars = 2 -%}
+  {%- assign line = t_light -%}
+  {%- assign desc = d_light -%}
+
+{%- elsif support_level == 'strong' -%}
+  {%- assign bars = 5 -%}
+  {%- assign line = t_strong -%}
+  {%- assign desc = d_strong -%}
+{%- endif -%}
+
+{%- assign fit_val = product.metafields.shopify.fit.value -%}
+{%- assign fit_json = fit_val | json -%}
+{%- assign fit_entry = fit_val -%}
+
+{%- if fit_val and fit_json contains '[' -%}
+  {%- assign fit_entry = fit_val | first -%}
+{%- endif -%}
+
+{%- assign f_handle = fit_entry.handle | default: '' | downcase -%}
+{%- assign f_label = fit_entry.label | default: fit_entry.title | default: fit_entry.name | default: fit_entry | downcase -%}
+{%- assign fit_tip = '' -%}
+
+{%- if f_handle contains 'slim' or f_handle contains 'snug' or f_handle contains 'straight'
+   or f_label contains 'slim' or f_label contains 'snug' or f_label contains 'straight' -%}
+  {%- assign fit_tip = t_fit_up -%}
+{%- endif -%}
+
+{%- assign start_open = open | default: true -%}
+
+<section class="cj-shp-acc{% if start_open %} is-open{% endif %}" id="cj-shp-acc-{{ product.id }}" data-open="{{ start_open }}" role="group" aria-label="{{ t_head }}">
+  <div class="cj-shp-acc__head" role="button" tabindex="0" aria-controls="cj-shp-panel-{{ product.id }}" aria-expanded="{{ start_open }}">
+    <span class="cj-shp-acc__title">{{ t_head }}</span>
+
+    <span class="cj-shp-acc__chevbtn" aria-hidden="true">
+      <svg class="cj-shp-acc__chev" viewBox="0 0 20 20">
+        <path d="M5 8l5 5 5-5"/>
+      </svg>
+    </span>
+  </div>
+
+  <div class="cj-shp-acc__panel" id="cj-shp-panel-{{ product.id }}">
+    <div class="cj-line">
+      <span class="cj-bars" role="img" aria-label="{{ line }}">
+        {%- for i in (1..5) -%}
+          <span class="cj-bar{% if i <= bars %} is-on{% endif %}"></span>
+        {%- endfor -%}
+      </span>
+
+      <span class="cj-level">{{ line }}</span>
+    </div>
+
+    <p class="cj-desc">{{ desc }}</p>
+
+    {%- if fit_tip != '' -%}
+      <p class="cj-tip">{{ fit_tip }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+<style>
+  .cj-shp-acc {
+    --curv-border: rgba(17, 17, 17, .08);
+    --row-pad-y: 16px;
+    --chev-size: 24px;
+    --chev-icon: 10px;
+
+    color: #000;
+    margin: 18px 0 0 !important;
+    border-top: 1px solid var(--curv-border);
+  }
+
+  .cj-shp-acc__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--row-pad-y) 0;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .cj-shp-acc__title {
+    font-weight: 700;
+    color: #000;
+  }
+
+  .cj-shp-acc__chevbtn {
+    width: var(--chev-size);
+    height: var(--chev-size);
+    border-radius: 999px;
+    background: #EDEDED;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+  }
+
+  .cj-shp-acc__chev {
+    width: var(--chev-icon);
+    height: var(--chev-icon);
+    stroke: #000;
+    stroke-width: 2.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+    transition: transform .2s ease;
+  }
+
+  .cj-shp-acc.is-open .cj-shp-acc__chev {
+    transform: rotate(180deg);
+  }
+
+  .cj-shp-acc__panel[hidden] {
+    display: none !important;
+  }
+
+  .cj-shp-acc__panel {
+    padding: 2px 0 16px;
+  }
+
+  .cj-line {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    margin: 0 0 8px;
+  }
+
+  .cj-bars {
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 14px;
+    margin-right: .25rem;
+  }
+
+  .cj-bar {
+    width: 3px;
+    background: #e5e7eb;
+    border-radius: 2px;
+  }
+
+  .cj-bar:nth-child(1) { height: 5px; }
+  .cj-bar:nth-child(2) { height: 7px; }
+  .cj-bar:nth-child(3) { height: 9px; }
+  .cj-bar:nth-child(4) { height: 11px; }
+  .cj-bar:nth-child(5) { height: 13px; }
+
+  .cj-bar.is-on {
+    background: #000;
+  }
+
+  .cj-level {
+    font-weight: 600;
+    color: #000;
+  }
+
+  .cj-desc,
+  .cj-tip {
+    color: #000;
+    margin: .25rem 0 0;
+    line-height: 1.45;
+  }
+
+  .cj-tip {
+    opacity: .72;
+  }
+
+  @media (max-width: 600px) {
+    .cj-shp-acc {
+      margin-top: 16px !important;
+    }
+
+    .cj-shp-acc__panel {
+      padding-bottom: 14px;
+    }
+  }
+</style>
+
+<script>
+(function(){
+  var root = document.getElementById('cj-shp-acc-{{ product.id }}');
+  if(!root) return;
+
+  var head = root.querySelector('.cj-shp-acc__head');
+  var panel = root.querySelector('.cj-shp-acc__panel');
+  var startOpen = (root.getAttribute('data-open') || 'true') === 'true';
+
+  function setOpen(open){
+    root.classList.toggle('is-open', open);
+    head.setAttribute('aria-expanded', open ? 'true' : 'false');
+
+    if(open){
+      panel.removeAttribute('hidden');
+    } else {
+      panel.setAttribute('hidden', '');
+    }
+  }
+
+  setOpen(startOpen);
+
+  head.addEventListener('click', function(){
+    setOpen(!root.classList.contains('is-open'));
+  });
+
+  head.addEventListener('keydown', function(e){
+    if(e.key === 'Enter' || e.key === ' '){
+      e.preventDefault();
+      head.click();
+    }
+  });
+})();
+</script>

@@ -1,0 +1,66 @@
+{%- comment -%}
+CURVJEANS — Cart Save Pill (compare_at + cart-level aware)
+• Baseline = sum over items of (compare_at_price if > price, else price) × qty
+• Actual    = cart.total_price (includes line- & cart-level discounts)
+• Pill shows: "You save €X" (localized, no decimals)
+{%- endcomment -%}
+
+{%- assign baseline_total = 0 -%}
+
+{%- for item in cart.items -%}
+  {%- assign unit_price   = item.original_price -%}
+  {%- assign cmp_price    = item.variant.compare_at_price -%}
+  {%- if cmp_price and cmp_price > unit_price -%}
+    {%- assign base_unit = cmp_price -%}
+  {%- else -%}
+    {%- assign base_unit = unit_price -%}
+  {%- endif -%}
+
+  {%- assign base_line = base_unit | times: item.quantity -%}
+  {%- assign baseline_total = baseline_total | plus: base_line -%}
+{%- endfor -%}
+
+{%- assign actual_total  = cart.total_price -%}
+{%- assign total_savings = baseline_total | minus: actual_total -%}
+{%- assign total_savings_rounded = total_savings | divided_by: 100.0 | round | times: 100 -%}
+
+{%- if total_savings > 0 -%}
+  {%- case request.locale.iso_code | downcase -%}
+    {%- when 'nl' -%}{%- assign l_text = 'Je bespaart' -%}
+    {%- when 'de' -%}{%- assign l_text = 'Du sparst' -%}
+    {%- else -%}{%- assign l_text = 'Save' -%}
+  {%- endcase -%}
+  <span class="cj-save-pill">{{ l_text }} {{ total_savings_rounded | money_without_trailing_zeros }}</span>
+{%- endif -%}
+
+<style>
+  .cj-save-pill {
+    background: rgba(22, 163, 74, 0.15); /* softer money green for subtlety */
+    color: #16A34A; /* primary green text */
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 12px;
+    line-height: 1.2;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    margin-left: 8px;
+    transition: background 0.2s ease;
+  }
+
+  .cj-save-pill:hover {
+    background: rgba(22, 163, 74, 0.22); /* slightly stronger hover for clarity */
+  }
+
+  @media (max-width: 600px) {
+    .cj-save-pill {
+      font-size: 11px;
+      padding: 3px 8px;
+      margin-left: 6px; /* tighter on mobile */
+    }
+  }
+</style>
+
+

@@ -1,0 +1,950 @@
+{
+  "sections": {
+    "ss_product_videos_4_abcqpa": {
+      "type": "ss-product-videos-4",
+      "blocks": {
+        "video_KzG4Ug": {
+          "type": "video",
+          "settings": {
+            "video": "shopify:\/\/files\/videos\/Big glute, small waist girlies know the struggles 😔Code- CAMMY15 -----fitness fitgirls fitspo gym gymgirls gymspo instagram insta instadaily jeans gifted curvy bodybuilding powerlifting strongwomen.mp4",
+            "preload_video": "shopify:\/\/files\/videos\/1_d3659953-d638-4f2a-be2d-9a052edbb2ab.mp4",
+            "title": ""
+          }
+        },
+        "video_XmfTUB": {
+          "type": "video",
+          "settings": {
+            "video": "shopify:\/\/files\/videos\/ssstik.io_@santana.byk_1749629403674.mp4",
+            "preload_video": "shopify:\/\/files\/videos\/3_1ee7417e-7ffe-4223-b7ca-f75088d73923.mp4",
+            "title": ""
+          }
+        },
+        "video_YEFFGW": {
+          "type": "video",
+          "settings": {
+            "video": "shopify:\/\/files\/videos\/ssstik.io_@yentlvanbreugel_1750145447929.mp4",
+            "preload_video": "shopify:\/\/files\/videos\/Untitled design (27).mp4",
+            "title": ""
+          }
+        },
+        "video_wkyNdm": {
+          "type": "video",
+          "settings": {
+            "video": "shopify:\/\/files\/videos\/ssstik.io_@desywhey_1749629503080 (1).mp4",
+            "preload_video": "shopify:\/\/files\/videos\/8.mp4",
+            "title": ""
+          }
+        },
+        "video_GRid6P": {
+          "type": "video",
+          "settings": {
+            "video": "shopify:\/\/files\/videos\/ssstik.io_@abigail_sives_1749711854487.mp4",
+            "preload_video": "shopify:\/\/files\/videos\/2_254c3908-705e-4627-bc70-3c132afb0584.mp4",
+            "title": ""
+          }
+        },
+        "video_jFniTf": {
+          "type": "video",
+          "settings": {
+            "video": "shopify:\/\/files\/videos\/ssstik.io_@fabienne.enklaar_1750145283728.mp4",
+            "preload_video": "shopify:\/\/files\/videos\/6_e79608e4-60fc-4e97-9103-c075c1dcb75b.mp4",
+            "title": ""
+          }
+        },
+        "video_XVQtAr": {
+          "type": "video",
+          "settings": {
+            "video": "shopify:\/\/files\/videos\/ssstik.io_@lisanneed_1749711759465.mp4",
+            "title": ""
+          }
+        }
+      },
+      "block_order": [
+        "video_KzG4Ug",
+        "video_XmfTUB",
+        "video_YEFFGW",
+        "video_wkyNdm",
+        "video_GRid6P",
+        "video_jFniTf",
+        "video_XVQtAr"
+      ],
+      "disabled": true,
+      "custom_css": [],
+      "name": "SS - Product videos #4",
+      "settings": {
+        "videos_position": "below_buy",
+        "heading": "",
+        "heading_custom": false,
+        "heading_font": "avenir_next_n4",
+        "heading_size": 15,
+        "heading_size_mobile": 11,
+        "heading_height": 130,
+        "heading_align": "left",
+        "heading_align_mobile": "left",
+        "slider_view": 5,
+        "slider_view_mobile": 4,
+        "slider_gap": 4,
+        "slider_gap_mobile": 12,
+        "slider_mt": 4,
+        "slider_mt_mobile": 4,
+        "card_padding": 3,
+        "card_radius": 300,
+        "card_border_thickness": 3,
+        "card_hover": true,
+        "card_first_animation": true,
+        "video_ratio": "square",
+        "video_ratio_mobile": "square",
+        "video_overlay": 0.2,
+        "title_custom": false,
+        "title_font": "avenir_next_n4",
+        "title_size": 14,
+        "title_size_mobile": 10,
+        "title_height": 100,
+        "title_mt": 10,
+        "title_mt_mobile": 10,
+        "title_align": "center",
+        "title_align_mobile": "center",
+        "arrow_size": 32,
+        "arrow_size_mobile": 28,
+        "arrow_border_thickness": 0,
+        "arrow_show_desktop": true,
+        "arrow_show_mobile": false,
+        "dots_size": 10,
+        "dots_size_mobile": 10,
+        "dots_mt": 0,
+        "dots_mt_mobile": 8,
+        "dots_show_desktop": false,
+        "dots_show_mobile": false,
+        "modal_width": 300,
+        "modal_width_mobile": 260,
+        "modal_padding_vertical": 0,
+        "modal_padding_vertical_mobile": 0,
+        "modal_padding_horizontal": 0,
+        "modal_padding_horizontal_mobile": 0,
+        "modal_radius": 16,
+        "modal_border_thickness": 0,
+        "modal_overlay": 0.3,
+        "modal_video_radius": 0,
+        "modal_video_border_thickness": 0,
+        "modal_video_ratio": "portrait",
+        "modal_video_ratio_mobile": "portrait",
+        "use_progress": true,
+        "action_size": 28,
+        "action_size_mobile": 36,
+        "action_border_thickness": 0,
+        "buttons_size": 32,
+        "buttons_size_mobile": 36,
+        "buttons_border_thickness": 0,
+        "card_bg_color": "#ffffff",
+        "card_bg_gradient": "",
+        "card_border_color": "#fd772c",
+        "video_overlay_color": "#000000",
+        "card_animation_color": "#a75299",
+        "play_button_color": "#ffffff",
+        "title_color": "#000000",
+        "arrow_color": "#ffffff",
+        "arrow_hover_color": "#ffffff",
+        "arrow_bg_color": "#000000",
+        "arrow_bg_hover_color": "#555555",
+        "arrow_border_color": "#000000",
+        "arrow_border_hover_color": "#555555",
+        "dots_color": "#000000",
+        "modal_overlay_color": "#242424",
+        "modal_bg_color": "#ffffff",
+        "modal_border_color": "#000000",
+        "modal_video_border_color": "#000000",
+        "action_icon_color": "#ffffff",
+        "action_bg_color": "#000000",
+        "action_border_color": "#000000",
+        "buttons_icon_color": "#000000",
+        "buttons_bg_color": "#ffffff",
+        "buttons_border_color": "#000000",
+        "heading_color": "#000000",
+        "background_color": "#ffffff",
+        "border_color": "#000000",
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_horizontal": 0,
+        "padding_horizontal_mobile": 0,
+        "border_thickness": 0,
+        "lazy": true
+      }
+    },
+    "slideshow_XWDYWy": {
+      "type": "slideshow",
+      "blocks": {
+        "image_R8LJKF": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/eN_discounted_summer_sale_desktop.jpg",
+            "mobile_image": "shopify:\/\/shop_images\/discounted_summer_sale_mobile.jpg",
+            "content_max_width": 780,
+            "mobile_text_position": "place-self-center text-center",
+            "desktop_text_position": "sm:place-self-center sm:text-center",
+            "subheading": "",
+            "title": "",
+            "heading_tag": "h0",
+            "button_text": "",
+            "button_link": "",
+            "text_color": "#ffffff",
+            "button_background": "#ffffff",
+            "button_text_color": "#000000",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0,
+            "background": "",
+            "background_gradient": ""
+          }
+        }
+      },
+      "block_order": [
+        "image_R8LJKF"
+      ],
+      "settings": {
+        "full_width": true,
+        "allow_transparent_header": false,
+        "show_initial_transition": false,
+        "image_size": "auto",
+        "controls_type": "dots",
+        "transition_type": "fade",
+        "autoplay": true,
+        "cycle_speed": 4,
+        "background": "#f2f2f2",
+        "background_gradient": ""
+      }
+    },
+    "custom_liquid_DcJ3bY": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "name": "Custom Liquid",
+      "settings": {
+        "full_width": true,
+        "remove_vertical_spacing": true,
+        "remove_horizontal_spacing": true,
+        "liquid": "<div id='ss-product-video-4'><\/div>",
+        "background": "",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
+    "custom_liquid_X39rVD": {
+      "type": "custom-liquid",
+      "settings": {
+        "full_width": true,
+        "remove_vertical_spacing": true,
+        "remove_horizontal_spacing": true,
+        "liquid": "<div class=\"social-proof-wrapper\">\n  <div class=\"social-proof\">\n    <div class=\"social-proof-images\">\n      <img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0864\/5165\/0895\/files\/488167940_645529638333261_8577394906245230255_n_1.jpg?v=1745295938\" alt=\"Profile 1\" class=\"profile-image\">\n      <img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0864\/5165\/0895\/files\/482449966_1709516659776039_2956674113585282466_n_1.jpg?v=1745295938\" alt=\"Profile 2\" class=\"profile-image\">\n      <img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0864\/5165\/0895\/files\/474474013_633097669170307_5994573843549457098_n_1.jpg?v=1745295937\" alt=\"Profile 3\" class=\"profile-image\">\n    <\/div>\n    <div class=\"social-proof-text-wrapper\">\n      <span class=\"social-proof-text-line\" id=\"fit-text\">\n        <strong>5,000+ girls<\/strong> are obsessed\n        <img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0864\/5165\/0895\/files\/verified.webp?v=1726649878\" alt=\"Verified\" class=\"verified-icon\">\n      <\/span>\n    <\/div>\n  <\/div>\n<\/div>\n\n<script>\n  if (window.location.pathname.startsWith('\/nl')) {\n    document.getElementById('fit-text').innerHTML = '<strong>5.000+ girls<\/strong> zijn obsessed.<img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0864\/5165\/0895\/files\/verified.webp?v=1726649878\" alt=\"Verified\" class=\"verified-icon\">';\n  }\n<\/script>\n\n<style>\n.social-proof-wrapper {\n  display: flex;\n  justify-content: center;\n  width: 100%;\n}\n\n.social-proof {\n  display: flex;\n  align-items: center;\n  gap: 12px;\n  font-size: 13px;\n  color: #333;\n  margin: 10px 0;\n  flex-wrap: wrap;\n}\n\n.social-proof-images {\n  display: flex;\n  align-items: center;\n  position: relative;\n}\n\n.profile-image {\n  width: 30px;\n  height: 30px;\n  border-radius: 50%;\n  border: 2px solid #fff;\n  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);\n  margin-right: -10px;\n}\n\n.profile-image:last-child {\n  margin-right: 0;\n}\n\n.verified-icon {\n  width: 16px;\n  height: 16px;\n  margin-left: 4px;\n  vertical-align: middle;\n  display: inline-block;\n}\n\n.social-proof-text-wrapper {\n  display: flex;\n  flex-direction: column;\n  line-height: 1.4;\n  margin: 0;\n}\n\n<\/style>",
+        "background": "",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
+    "banner": {
+      "type": "collection-banner",
+      "disabled": true,
+      "custom_css": [
+        ".collection-header {margin-top: 10px !important; margin-bottom: 20px !important;}"
+      ],
+      "settings": {
+        "full_width": true,
+        "allow_transparent_header": false,
+        "enable_parallax": false,
+        "show_collection_title": false,
+        "show_collection_description": false,
+        "show_collection_image": true,
+        "collection_title_size": "h4",
+        "image_size": "auto",
+        "image": "shopify:\/\/shop_images\/SUMMER_SALE_EN_DESKTOP.jpg",
+        "mobile_image": "shopify:\/\/shop_images\/buy_2_save_20_v1.jpg",
+        "mobile_text_position": "place-self-center-end text-end",
+        "desktop_text_position": "sm:place-self-center sm:text-center",
+        "featured_product": "",
+        "featured_product_heading": "Featured product",
+        "text_color": "#ffffff",
+        "overlay_color": "#000000",
+        "overlay_opacity": 0
+      }
+    },
+    "custom_liquid_LUXdCk": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "settings": {
+        "full_width": true,
+        "remove_vertical_spacing": true,
+        "remove_horizontal_spacing": true,
+        "liquid": "<!-- USP Row -->\n<div class=\"usp-row\" id=\"usp-row\">\n  <!-- Item 1 -->\n  <div class=\"usp-item\">\n    <img    src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0864\/5165\/0895\/files\/small_waist_fit.svg?v=1736502738\"\n      alt=\"Free Shipping\"\n      class=\"usp-icon\"\n    >\n    <p class=\"usp-title\" data-en=\"Free Shipping\" data-nl=\"Geen Waist Gap. Geen Drama.\">No Waist Gap. No Drama.<\/p>\n  <\/div>\n\n  <!-- Item 2 -->\n  <div class=\"usp-item\">\n    <img \n      src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0864\/5165\/0895\/files\/stretchy_moves_with_you.svg?v=1736502738\"\n      alt=\"14 Day Returns\"\n      class=\"usp-icon\"\n    >\n    <p class=\"usp-title\" data-en=\"Made for Curves\" data-nl=\"Super Stretchy\">Super Stretchy<\/p>\n  <\/div>\n\n  <!-- Item 3 -->\n  <div class=\"usp-item\">\n    <img \n      src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/0864\/5165\/0895\/files\/love_it_money_bac.svg?v=1736502738\"\n      alt=\"Perfect Fit\"\n      class=\"usp-icon\"\n    >\n    <p class=\"usp-title\" data-en=\"Perfect Fit\" data-nl=\"Makkelijk Retour\">Easy Returns<\/p>\n  <\/div>\n<\/div>\n\n<style>\n.usp-row {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  width: 100%;\n  margin: 16px 0;\n  gap: 4px;\n  text-align: center;\n}\n\n.usp-item {\n  flex: 1;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n}\n\n.usp-icon {\n  width: 25px;\n  height: 25px;\n  margin-bottom: 6px;\n}\n\n.usp-title {\n  font-size: 12px;\n  font-weight: normal;\n  margin: 0;\n  line-height: 1.3;\n  color: #111;\n}\n\n\/* Adjust for larger screens *\/\n@media (min-width: 768px) {\n  .usp-icon {\n    width: 35px;\n    height: 35px;\n  }\n\n  .usp-title {\n    font-size: 14px;\n  }\n}\n<\/style>\n\n<script>\n  document.addEventListener(\"DOMContentLoaded\", function () {\n    const isDutch = window.location.pathname.includes(\"\/nl\");\n    if (isDutch) {\n      document.querySelectorAll(\"#usp-row .usp-title\").forEach(el => {\n        const nl = el.getAttribute(\"data-nl\");\n        if (nl) el.textContent = nl;\n      });\n    }\n  });\n<\/script>",
+        "background": "",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
+    "custom_liquid_MkAY7b": {
+      "type": "custom-liquid",
+      "settings": {
+        "full_width": true,
+        "remove_vertical_spacing": true,
+        "remove_horizontal_spacing": true,
+        "liquid": "<!-- Native collection title below the banner -->\n<div class=\"section-header page-width collection-title-centered\">\n  <h1 class=\"section-header__title h4\">{{ collection.title }}<\/h1>\n<\/div>\n\n<style>\n  \/* Force center alignment *\/\n  .collection-title-centered {\n    display: flex;\n    justify-content: center;\n    text-align: center;\n    margin-top: 0px;\n    margin-bottom: 10px;\n  }\n\n  .collection-title-centered .section-header__title {\n    margin: 0;\n  }\n\n  \/* Optional: hide overlapping banner title *\/\n  .collection-hero__title {\n    display: none;\n  }\n<\/style>",
+        "background": "",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
+    "product_reviews_2_hxJf34": {
+      "type": "product-reviews-2",
+      "blocks": {
+        "item_w8Dtht": {
+          "type": "item",
+          "settings": {
+            "stars_count": 5,
+            "verified_text": "Verified",
+            "title": "just feels right",
+            "text": "<p>I’m always in between sizes so was a bit nervous… but the size I picked was perfect. No belt needed and it doesn’t slide down either.<\/p>",
+            "author": "Lara",
+            "time": "24 hours ago"
+          }
+        },
+        "item_keGGEw": {
+          "type": "item",
+          "settings": {
+            "stars_count": 5,
+            "verified_text": "Verified",
+            "title": "lovely jeans",
+            "text": "<p>Makes my bum look great and still comfy to wear all day. I wore them on a city trip and didn’t want to take them off lol.<\/p>",
+            "author": "Sara",
+            "time": "15 hours ago"
+          }
+        },
+        "item_RRBUMK": {
+          "type": "item",
+          "settings": {
+            "stars_count": 5,
+            "verified_text": "Verified",
+            "title": "they feel so nice",
+            "text": "<p>Thought it wouldn’t really work for my body type but I was wrong. It hugs in the right places and has great stretch<\/p>",
+            "author": "Emma",
+            "time": "4 days ago"
+          }
+        },
+        "item_x6XHyC": {
+          "type": "item",
+          "settings": {
+            "stars_count": 5,
+            "verified_text": "Verified",
+            "title": "Great jeans",
+            "text": "<p>Great jeans, great fit. The jeans have perfect length. It also hugs my curves very well.<\/p>",
+            "author": "Wereldreiziger84",
+            "time": "24 hours ago"
+          }
+        },
+        "item_YNeyjD": {
+          "type": "item",
+          "settings": {
+            "stars_count": 5,
+            "verified_text": "Verified",
+            "title": "Perfect fit!!!",
+            "text": "<p>This is the first jeans that fits so well! It does not gape on the back and it goed all the way up. I will order again!!<\/p>",
+            "author": "Glennys Sloote",
+            "time": "15 hours ago"
+          }
+        },
+        "item_nUB6iQ": {
+          "type": "item",
+          "settings": {
+            "stars_count": 5,
+            "verified_text": "Verified",
+            "title": "happy customer",
+            "text": "<p>Normally I hate wearing jeans because they never fit my shape. But these? I felt confident for once. Like they’re were made for me<\/p>",
+            "author": "Isabelle",
+            "time": "2 days ago"
+          }
+        }
+      },
+      "block_order": [
+        "item_w8Dtht",
+        "item_keGGEw",
+        "item_RRBUMK",
+        "item_x6XHyC",
+        "item_YNeyjD",
+        "item_nUB6iQ"
+      ],
+      "custom_css": [],
+      "settings": {
+        "reviews_position": "below_buy",
+        "use_metafield": false,
+        "slider_view": 2,
+        "slider_view_mobile": 1.3,
+        "slider_gap": 16,
+        "slider_gap_mobile": 16,
+        "item_padding_horizontal": 20,
+        "item_padding_horizontal_mobile": 20,
+        "item_padding_vertical": 20,
+        "item_padding_vertical_mobile": 20,
+        "item_radius": 4,
+        "item_border_thickness": 0,
+        "item_shadow": true,
+        "stars_size": 14,
+        "stars_size_mobile": 14,
+        "use_verified_tag": true,
+        "verified_icon_size": 14,
+        "verified_icon_size_mobile": 14,
+        "verified_custom": false,
+        "verified_font": "josefin_sans_n4",
+        "verified_size": 10,
+        "verified_size_mobile": 10,
+        "verified_height": 100,
+        "title_custom": false,
+        "title_font": "josefin_sans_n4",
+        "title_size": 12,
+        "title_size_mobile": 12,
+        "title_height": 150,
+        "title_mt": 16,
+        "title_mt_mobile": 12,
+        "text_custom": false,
+        "text_font": "josefin_sans_n4",
+        "text_size": 12,
+        "text_size_mobile": 12,
+        "text_height": 150,
+        "text_mt": 12,
+        "text_mt_mobile": 8,
+        "author_custom": false,
+        "author_font": "josefin_sans_n4",
+        "author_size": 12,
+        "author_size_mobile": 12,
+        "author_height": 130,
+        "publication_mt": 12,
+        "publication_mt_mobile": 12,
+        "time_custom": false,
+        "time_font": "josefin_sans_n4",
+        "time_size": 12,
+        "time_size_mobile": 12,
+        "time_height": 130,
+        "arrow_size": 32,
+        "arrow_size_mobile": 32,
+        "arrow_icon_size": 7,
+        "arrow_icon_size_mobile": 7,
+        "arrow_border_thickness": 0,
+        "arrow_radius": 100,
+        "arrow_hover_effect": "color",
+        "arrow_show_desktop": true,
+        "arrow_show_mobile": true,
+        "bottom_text": "",
+        "bottom_text_custom": false,
+        "bottom_text_font": "josefin_sans_n4",
+        "bottom_text_size": 13,
+        "bottom_text_size_mobile": 13,
+        "bottom_text_height": 150,
+        "bottom_text_mt": 16,
+        "bottom_text_mt_mobile": 16,
+        "bottom_text_align": "center",
+        "bottom_text_align_mobile": "center",
+        "title_color": "#1f2936",
+        "text_color": "#191919",
+        "author_color": "#636464",
+        "time_color": "#636464",
+        "item_bg_color": "#f8f9fa",
+        "item_border_color": "#e2e7ec",
+        "stars_color": "#ffffff",
+        "stars_bg_color": "#00b67a",
+        "verified_color": "#6c6c85",
+        "verified_text_color": "#6c6c85",
+        "arrow_color": "#000000",
+        "arrow_hover_color": "#7b7b7b",
+        "arrow_bg_color": "#ededed",
+        "arrow_bg_hover_color": "#f5f5f5",
+        "arrow_border_color": "#c7c7c7",
+        "arrow_border_hover_color": "#c7c7c7",
+        "bottom_text_color": "#000000",
+        "background_color": "#ffffff",
+        "background_gradient": "",
+        "border_color": "#000000",
+        "margin_top": -4,
+        "margin_bottom": 32,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_horizontal": 0,
+        "padding_horizontal_mobile": 0,
+        "border_thickness": 0,
+        "lazy": true
+      }
+    },
+    "multi_column_NPmp4x": {
+      "type": "multi-column",
+      "blocks": {
+        "item_byrxGB": {
+          "type": "item",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/small_waist_fit.svg",
+            "column_size": "4",
+            "title": "No Waist Gap. No Drama.",
+            "heading_tag": "h6",
+            "content": "<p>No more pulling, gaping or adjusting every five minutes.<\/p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        },
+        "item_idFQ8R": {
+          "type": "item",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Untitled_design_8.png",
+            "column_size": "4",
+            "title": "A Sculpted Fit That Lifts, Not Flattens.",
+            "heading_tag": "h6",
+            "content": "<p>Your booty deserves jeans that actually show it off.<\/p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        },
+        "item_Fkpa8G": {
+          "type": "item",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Untitled_design_9.png",
+            "column_size": "4",
+            "title": "Hugs Your Waist. Loves Your Hips.",
+            "heading_tag": "h6",
+            "content": "<p>Finally — jeans that just <em>get<\/em> your body.<\/p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        },
+        "item_B4ahrz": {
+          "type": "item",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/love_it_money_bac.svg",
+            "column_size": "4",
+            "title": "Confidence You Can Feel.",
+            "heading_tag": "h6",
+            "content": "<p>From mirror selfies to nights out — comfort never looked this good.<\/p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        }
+      },
+      "block_order": [
+        "item_byrxGB",
+        "item_idFQ8R",
+        "item_Fkpa8G",
+        "item_B4ahrz"
+      ],
+      "disabled": true,
+      "custom_css": [
+        "@media (max-width: 767px) {.h6 {font-size: 14px; } .prose {font-size: 12px; }}",
+        ".multi-column__item img {max-width: 40px; height: auto; margin-bottom: -20px;}",
+        "@media (min-width: 768px) {.section-stack {margin-top: 20px; margin-bottom: 20px; }}",
+        "@media (max-width: 767px) {.section-stack {margin-top: -20px; margin-bottom: -20px; }}"
+      ],
+      "settings": {
+        "full_width": true,
+        "stack_on_mobile": false,
+        "gap": "small",
+        "text_alignment": "start",
+        "subheading": "",
+        "title": "",
+        "content": "",
+        "background": "",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
+    "main": {
+      "type": "main-collection",
+      "custom_css": [
+        "{margin-top: -10px !important;}",
+        ".v-stack.gap-4.md\\:hidden {display: none !important;"
+      ],
+      "settings": {
+        "products_per_page": 24,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 4,
+        "filter_layout": "horizontal",
+        "show_sort_by": true,
+        "show_filters": false,
+        "show_filter_group_name": false,
+        "show_filter_values_count": false,
+        "open_first_filter_group": false
+      }
+    },
+    "custom_liquid_JDXxAx": {
+      "type": "custom-liquid",
+      "custom_css": [],
+      "settings": {
+        "full_width": true,
+        "remove_vertical_spacing": true,
+        "remove_horizontal_spacing": false,
+        "liquid": "<div id='ss-product-reviews-2'><\/div>",
+        "background": "",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
+    "scrolling_text_NWmND8": {
+      "type": "scrolling-text",
+      "name": "Scrolling text",
+      "settings": {
+        "full_width": true,
+        "text": "JEANS THAT GET YOU",
+        "text_size": "medium",
+        "text_style": "outline",
+        "scrolling_mode": "auto",
+        "scrolling_speed": 6,
+        "background": "",
+        "background_gradient": "",
+        "text_color": "#e6a199",
+        "text_gradient": ""
+      }
+    },
+    "image_link_blocks_Tde4Ln": {
+      "type": "image-link-blocks",
+      "blocks": {
+        "item_73cHcG": {
+          "type": "item",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/UGC_Wide_leg_0001_Anoa_de_Rijk_-_IMG_1673_1.jpg",
+            "stretch_image": true,
+            "link_text": "Relax Jeans",
+            "link_url": "shopify:\/\/collections\/relax",
+            "background": "",
+            "text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "item_3VAAPf": {
+          "type": "item",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/girls__0006_IMG_9076_suzanne.jpg",
+            "stretch_image": true,
+            "link_text": "Straight Jeans",
+            "link_url": "shopify:\/\/products\/straight-sky-blue",
+            "background": "",
+            "text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "item_axCa7r": {
+          "type": "item",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Straight_grey_fabienne.jpg",
+            "stretch_image": true,
+            "link_text": "Straight Jeans",
+            "link_url": "shopify:\/\/collections\/straight",
+            "background": "",
+            "text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "item_meDVad": {
+          "type": "item",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/girls__0005_IMG_3405_Denise_Hoezen_2.jpg",
+            "stretch_image": true,
+            "link_text": "Relax Jeans",
+            "link_url": "shopify:\/\/products\/relax-sky-blue",
+            "background": "",
+            "text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "item_q8mxzg": {
+          "type": "item",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/girls__0007_Nikitacontent.jpg",
+            "stretch_image": true,
+            "link_text": "Straight - Sky Blue",
+            "link_url": "shopify:\/\/products\/straight-sky-blue",
+            "background": "",
+            "text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        },
+        "item_AhtfiB": {
+          "type": "item",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/girls__0002_IMG_6862_Maxime_1.jpg",
+            "stretch_image": true,
+            "link_text": "Straight - Grey",
+            "link_url": "shopify:\/\/products\/straight-grey-jeans",
+            "background": "",
+            "text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 0
+          }
+        }
+      },
+      "block_order": [
+        "item_73cHcG",
+        "item_3VAAPf",
+        "item_axCa7r",
+        "item_meDVad",
+        "item_q8mxzg",
+        "item_AhtfiB"
+      ],
+      "settings": {
+        "full_width": false,
+        "block_size": "large",
+        "subheading": "",
+        "title": "What the perfect fit looks like",
+        "content": "<p>Worn by girls with small waists & curvy hips—just like you.<\/p>",
+        "link_url": "",
+        "link_text": "",
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "heading_color": "",
+        "heading_gradient": ""
+      }
+    },
+    "rich_text_PtqK3D": {
+      "type": "rich-text",
+      "blocks": {
+        "image_R6ietw": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/made_to_fit_your_body.jpg",
+            "width_mode": "custom",
+            "max_width": 520,
+            "mobile_max_width": 360
+          }
+        },
+        "divider_mbyDbN": {
+          "type": "divider",
+          "settings": {}
+        },
+        "heading_XrBPJm": {
+          "type": "heading",
+          "settings": {
+            "text": "Why You’ll Love Them",
+            "heading_tag": "h3",
+            "text_color": "",
+            "gradient": ""
+          }
+        },
+        "richtext_xjLQDN": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>You’ve tried every kind of jeans. Too tight on your thighs. Too loose at the waist.<br\/><br\/>And somehow… still not flattering? Yeah, we’ve been there too.<\/p><p>That’s why we made CURVJEANS — jeans that actually <em>get<\/em> your body.<br\/><br\/>They hug your waist, give you room where you need it, and make you feel good when you look in the mirror.<\/p><p>No waist gap. No belt. No more compromises. Just jeans that fit <em>you<\/em> — finally.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "image_R6ietw",
+        "divider_mbyDbN",
+        "heading_XrBPJm",
+        "richtext_xjLQDN"
+      ],
+      "settings": {
+        "full_width": false,
+        "content_width": "small",
+        "text_position": "start",
+        "background": "",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
+    "multi_column_MKTerC": {
+      "type": "multi-column",
+      "blocks": {
+        "item_gJK6qB": {
+          "type": "item",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Jeans_made_for_your_body.jpg",
+            "video": "shopify:\/\/files\/videos\/84145fc1395647ad9b9fb9f10962fe21NikaTilborghs-ezgif.com-resize-video.mp4",
+            "column_size": "3",
+            "title": "Moves with you—all day",
+            "heading_tag": "h4",
+            "content": "<p>Super-stretchy denim that keeps up with your life (and never loses shape).<\/p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        },
+        "item_n87thD": {
+          "type": "item",
+          "settings": {
+            "video": "shopify:\/\/files\/videos\/Untitleddesign15-ezgif.com-resize-video.mp4",
+            "column_size": "3",
+            "title": "Zero Waist Gap. Seriously.",
+            "heading_tag": "h4",
+            "content": "<p>A waistband that actually fits your smaller waist and curvy hips.<\/p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        },
+        "item_U6rfgB": {
+          "type": "item",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Denise_effortless_confidence.jpg",
+            "column_size": "3",
+            "title": "Confidence that lasts all day",
+            "heading_tag": "h4",
+            "content": "<p>No sliding, no pulling—just jeans that stay flattering from early mornings to late nights.<\/p>",
+            "link_url": "",
+            "link_text": "",
+            "link_style": "link"
+          }
+        }
+      },
+      "block_order": [
+        "item_gJK6qB",
+        "item_n87thD",
+        "item_U6rfgB"
+      ],
+      "disabled": true,
+      "settings": {
+        "full_width": true,
+        "stack_on_mobile": false,
+        "gap": "large",
+        "text_alignment": "start",
+        "subheading": "",
+        "title": "How are CURVJEANS different?",
+        "content": "<p>Because jeans should fit <em>you<\/em>, not the other way around.<\/p>",
+        "background": "",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
+    "faq_EfT76h": {
+      "type": "faq",
+      "blocks": {
+        "item_YhyjJt": {
+          "type": "item",
+          "settings": {
+            "title": "How do I know if CURVJEANS will fit me?",
+            "content": "<p>We get it—finding jeans that <em>actually <\/em>fit is a struggle. That’s why CURVJEANS are designed specifically for smaller waists and wider hips.<br\/><br\/>Check our <a href=\"https:\/\/curvjeans.com\/pages\/size-guide\" target=\"_blank\" title=\"Size Guide\">size guide <\/a>with real measurements and do our fit quiz or simply DM us! Still unsure? Our returns are super easy.<\/p>"
+          }
+        },
+        "item_THfNfg": {
+          "type": "item",
+          "settings": {
+            "title": "What if I order the wrong size?",
+            "content": "<p>No worries! You have 14 days to exchange or return—completely hassle-free. Just try them on at home and if it’s not love at first fit, you'll easy start your return via our <a href=\"https:\/\/curvjeans.returnless.com\/\" target=\"_blank\" title=\"https:\/\/curvjeans.returnless.com\/\">return page<\/a>.<\/p>"
+          }
+        },
+        "item_7egfLh": {
+          "type": "item",
+          "settings": {
+            "title": "What if they're not the one?",
+            "content": "<p>No stress! Not head over heels? Send them back within 14 days - it's that easy! Our returns means zero drama 💕<\/p>"
+          }
+        },
+        "item_kJGmng": {
+          "type": "item",
+          "settings": {
+            "title": "What makes CURVJEANS different from regular jeans?",
+            "content": "<p>We’re made different. CURVJEANS are designed for women with curves—especially if you’ve got stronger legs, glutes, and a small waist. No awkward fits, no compromises—just jeans that move with you instead of against you.<\/p>"
+          }
+        },
+        "item_M7ecB8": {
+          "type": "item",
+          "settings": {
+            "title": "Are CURVJEANS stretchy?",
+            "content": "<p>YES! Our stretch is like magic! They hold their shape (no baggy knees!) but move with you all day. Dance, sit, run - these babies won't let you down.<br\/><br\/>Plus, they're actually comfy enough to wear all day!<\/p>"
+          }
+        },
+        "item_btxATh": {
+          "type": "item",
+          "settings": {
+            "title": "Will they stay up without a belt?",
+            "content": "<p>Yes! CURVJEANS are made with a special waistband that fits snug at the waist—no more sliding down or constant adjusting. You can finally ditch the belt.<\/p>"
+          }
+        },
+        "item_Ckt4Wt": {
+          "type": "item",
+          "settings": {
+            "title": "When will I receive my order?",
+            "content": "<p>Can't wait to get your perfect jeans? We get it! Your CURVJEANS will arrive in 5-6 working days. We'll keep you updated every step of the way! 📦✨<\/p>"
+          }
+        },
+        "item_XkAAKm": {
+          "type": "item",
+          "settings": {
+            "title": "Can I pay later?",
+            "content": "<p>Yep! Just select Klarna at checkout and you can try now, pay later—no extra fees. Super easy, super safe.<\/p>"
+          }
+        },
+        "item_yrACzw": {
+          "type": "item",
+          "settings": {
+            "title": "Do you ship internationally?",
+            "content": "<p>Yes we do!<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "item_YhyjJt",
+        "item_THfNfg",
+        "item_7egfLh",
+        "item_kJGmng",
+        "item_M7ecB8",
+        "item_btxATh",
+        "item_Ckt4Wt",
+        "item_XkAAKm",
+        "item_yrACzw"
+      ],
+      "disabled": true,
+      "settings": {
+        "full_width": true,
+        "subheading": "",
+        "title": "FAQ",
+        "content": "<p>Your perfect-fit questions answered!<\/p>",
+        "team_avatar_width": 160,
+        "support_hours": "Our customer support is available Monday to Friday: 8am-8:30pm.",
+        "answer_time": "Average answer time: 24h",
+        "button_text": "",
+        "button_url": "",
+        "text_position": "center",
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "heading_color": "",
+        "heading_gradient": "",
+        "button_background": "",
+        "button_text_color": "",
+        "accordion_background": "",
+        "accordion_text_color": ""
+      }
+    },
+    "custom_liquid_ahfUHi": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "settings": {
+        "full_width": true,
+        "remove_vertical_spacing": false,
+        "remove_horizontal_spacing": false,
+        "liquid": "<div class=\"text-center mb-6\">\n  <h3 class=\"h3 mb-2\">Real Women. Real Curves. Real Confidence.<\/h3><br>\n  <p class=\"text-base text-subdued\">\n    Join thousands of women who've finally found jeans that actually fit their curves. 💕\n  <\/p>\n<\/div>\n\n<div id=\"loox-default-carousel\">\n  <div class=\"loox-v2-carousel-container loox-custom-carousel\" id=\"LOOX-V2_CAROUSEL-card\" data-slide-type=\"card\"><\/div>\n<\/div>\n\n<style>\n  \/* Make sure the cards shrink properly on mobile *\/\n  @media (max-width: 767px) {\n    #loox-default-carousel .loox-v2-card,\n    #LOOX-V2_CAROUSEL-card .loox-v2-card {\n      max-width: 220px !important;\n      min-width: 220px !important;\n      flex: 0 0 220px !important;\n    }\n\n    \/* Optional: make carousel tighter *\/\n    .loox-v2-carousel-container {\n      gap: 8px !important;\n      padding: 0 10px;\n    }\n  }\n<\/style>",
+        "background": "",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    }
+  },
+  "order": [
+    "ss_product_videos_4_abcqpa",
+    "slideshow_XWDYWy",
+    "custom_liquid_DcJ3bY",
+    "custom_liquid_X39rVD",
+    "banner",
+    "custom_liquid_LUXdCk",
+    "custom_liquid_MkAY7b",
+    "product_reviews_2_hxJf34",
+    "multi_column_NPmp4x",
+    "main",
+    "custom_liquid_JDXxAx",
+    "scrolling_text_NWmND8",
+    "image_link_blocks_Tde4Ln",
+    "rich_text_PtqK3D",
+    "multi_column_MKTerC",
+    "faq_EfT76h",
+    "custom_liquid_ahfUHi"
+  ]
+}

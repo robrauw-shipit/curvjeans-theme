@@ -1,0 +1,128 @@
+{%- comment -%}
+CURVJEANS — Pre-Black Friday Sale (Minimal Version)
+• PDP-aligned bundle savings message
+• Localized (NL / DE / EN)
+• Animated pulse dot
+• Minimal layout — no "Ends" label or "Best deal" badge
+{%- endcomment -%}
+
+{%- case request.locale.iso_code | downcase -%}
+  {%- when 'nl' -%}
+    {%- assign l_pre = 'Pre-Black Friday Sale' -%}
+    {%- assign l_two  = '2 jeans' -%}
+    {%- assign l_three= '3 jeans' -%}
+    {%- assign l_save = 'Bespaar' -%}
+    {%- assign l_sub  = 'Mix & match — automatische korting' -%}
+  {%- when 'de' -%}
+    {%- assign l_pre = 'Pre-Black Friday Sale' -%}
+    {%- assign l_two  = '2 Jeans' -%}
+    {%- assign l_three= '3 Jeans' -%}
+    {%- assign l_save = 'Spare' -%}
+    {%- assign l_sub  = 'Mix & Match — automatische Ermäßigung' -%}
+  {%- else -%}
+    {%- assign l_pre = 'Pre-Black Friday Sale' -%}
+    {%- assign l_two  = '2 jeans' -%}
+    {%- assign l_three= '3 jeans' -%}
+    {%- assign l_save = 'Save' -%}
+    {%- assign l_sub  = 'Mix & match — automatic discount' -%}
+{%- endcase -%}
+
+{%- assign SAVE2 = 1500 -%}
+{%- assign SAVE3 = 4000 -%}
+
+<div class="cj-prebf-block">
+  <div class="cj-prebf-head">
+    <span class="cj-bf-pulse-dot" aria-hidden="true"></span>
+    <span class="cj-prebf-title">{{ l_pre }}</span>
+  </div>
+
+  <ul class="cj-prebf-list">
+    <li>
+      {{ l_two }} → <strong>{{ l_save }} {{ SAVE2 | money_without_trailing_zeros }}</strong>
+    </li>
+    <li>
+      {{ l_three }} → <strong>{{ l_save }} {{ SAVE3 | money_without_trailing_zeros }}</strong>
+    </li>
+  </ul>
+
+  <div class="cj-prebf-subtext">{{ l_sub }}</div>
+</div>
+
+<style>
+  /* Container */
+  .cj-prebf-block {
+    background: #F5F5F5;
+    border: 1px dashed #D9D9D9;
+    border-radius: 12px;
+    padding: 8px 14px;
+  }
+
+  /* Header */
+  .cj-prebf-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+    font-weight: 800;
+    flex-wrap: wrap;
+  }
+  .cj-prebf-title {
+    font-size: 15px;
+    font-weight: 800;
+  }
+
+  /* Pulse Dot */
+  .cj-bf-pulse-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #B75A4B;
+    position: relative;
+  }
+  .cj-bf-pulse-dot::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: #B75A4B;
+    opacity: .4;
+    animation: bf_slow_pulse 1.8s ease-out infinite;
+  }
+  @keyframes bf_slow_pulse {
+    0% { transform: scale(1); opacity: .4; }
+    70% { transform: scale(2); opacity: 0; }
+    100% { transform: scale(2); opacity: 0; }
+  }
+
+  /* Offer List */
+  .cj-prebf-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 2px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .cj-prebf-list strong { font-weight: 800; }
+  .cj-prebf-list li {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    line-height: 1.25;
+  }
+
+  /* Subtext */
+  .cj-prebf-subtext {
+    font-size: 12px;
+    color: #888;
+    margin-top: 6px;
+  }
+
+  /* Mobile tweaks */
+  @media (max-width: 600px) {
+    .cj-prebf-title { font-size: 14px; }
+    .cj-prebf-list  { font-size: 13px; }
+    .cj-prebf-subtext { font-size: 11px; }
+  }
+</style>

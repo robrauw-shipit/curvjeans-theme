@@ -1,0 +1,45 @@
+{%- comment -%}
+CURVJEANS — Price-line badge (inline after price)
+Metafield: product.metafields.custom.marketing_price_badge
+Renders nothing if empty.
+{%- endcomment -%}
+
+{%- assign p    = p | default: product -%}
+{%- assign text = label | default: p.metafields.custom.marketing_price_badge | strip -%}
+
+{%- if text != blank -%}
+  <span class="curv-rec-badge {{ wrapper_class }}">{{ text }}</span>
+
+  <style>
+    /* Force price + badge onto one row ONLY where you added the wrapper */
+    .curv-price-line{
+      display:inline-flex !important;
+      align-items:baseline;
+      column-gap:8px;
+      flex-wrap:nowrap;
+      width:auto !important;
+    }
+    /* Make sure the theme’s price block doesn’t take the full row */
+    .curv-price-line .price-list,
+    .curv-price-line .price{
+      display:inline-flex !important;
+      align-items:baseline;
+      column-gap:6px;
+      width:auto !important;
+      margin:0;
+      flex:0 1 auto;
+    }
+
+    /* Green pill – content width only */
+    .curv-rec-badge{
+      display:inline-flex; align-items:center;
+      padding:4px 10px; border-radius:999px;
+      font-size:12px; font-weight:600; line-height:1; white-space:nowrap;
+      background:rgba(0,163,65,.12); color:#00A341;
+      flex:0 0 auto; width:auto; margin:0;
+    }
+
+    /* If this card uses a grid “v-stack” that forces full width, override just our row */
+    .horizontal-product__info .v-stack > .curv-price-line{ width:auto !important; }
+  </style>
+{%- endif -%}

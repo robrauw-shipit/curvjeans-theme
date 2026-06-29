@@ -1,0 +1,115 @@
+{%- comment -%}
+CURVJEANS — Clearance PDP Notice
+Premium compact PDP info strip
+{%- endcomment -%}
+
+{%- liquid
+  assign _path = request.path | downcase
+
+  if _path contains '/nl'
+    assign ccp_title = "Laatste kans item"
+    assign ccp_sub = "Dit item kan niet worden geretourneerd of geruild. Check de maattabel of doe de fit quiz voor extra zekerheid."
+  elsif _path contains '/de'
+    assign ccp_title = "Letzter Artikel"
+    assign ccp_sub = "Dieser Artikel kann nicht zurückgegeben oder umgetauscht werden. Nutze die Größentabelle oder den Fit-Quiz für mehr Sicherheit."
+  else
+    assign ccp_title = "Last chance item"
+    assign ccp_sub = "This item cannot be returned or exchanged. Check the size guide or take the fit quiz for extra confidence."
+  endif
+-%}
+
+<div class="cj-clearance-pdp-box">
+  <div class="cj-clearance-pdp-title-row">
+    <svg class="cj-clearance-pdp-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M10 2.75L17.25 16.25H2.75L10 2.75Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+      <path d="M10 7.25V11.1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M10 14.15H10.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+
+    <div class="cj-clearance-pdp-title">{{ ccp_title }}</div>
+  </div>
+
+  <div class="cj-clearance-pdp-body">
+    {{ ccp_sub }}
+  </div>
+</div>
+
+<style>
+  .cj-clearance-pdp-box,
+  .cj-clearance-pdp-box * {
+    box-sizing: border-box;
+  }
+
+  .cj-clearance-pdp-box {
+    width: 100%;
+    margin: 12px 0 16px;
+    padding: 13px 16px;
+    background: #FFF8F4;
+    border: 1px solid #E6D2C7;
+    border-radius: 14px;
+  }
+
+  .cj-clearance-pdp-title-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 5px;
+  }
+
+  .cj-clearance-pdp-icon {
+    width: 16px;
+    height: 16px;
+    flex: 0 0 16px;
+    color: #B5483E;
+  }
+
+  .cj-clearance-pdp-title {
+    margin: 0;
+    padding: 0;
+    color: #161616;
+    font-size: 15.5px;
+    line-height: 1.2;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .cj-clearance-pdp-body {
+    margin: 0;
+    padding: 0;
+    color: #6F665F;
+    font-size: 12.5px;
+    line-height: 1.35;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
+  @media (max-width: 768px) {
+    .cj-clearance-pdp-box {
+      margin: 11px 0 15px;
+      padding: 12px 14px;
+      border-radius: 13px;
+    }
+
+    .cj-clearance-pdp-title {
+      font-size: 15px;
+    }
+
+    .cj-clearance-pdp-body {
+      font-size: 12px;
+    }
+  }
+
+  @media (max-width: 380px) {
+    .cj-clearance-pdp-box {
+      padding: 11px 12px;
+    }
+
+    .cj-clearance-pdp-title {
+      font-size: 14.5px;
+    }
+
+    .cj-clearance-pdp-body {
+      font-size: 11.8px;
+    }
+  }
+</style>

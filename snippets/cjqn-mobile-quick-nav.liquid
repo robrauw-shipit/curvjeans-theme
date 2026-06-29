@@ -1,0 +1,96 @@
+{%- assign nav = linklists['mobile-quick-links'] | default: linklists.mobile-quick-links -%}
+{%- if nav and nav.links.size > 0 -%}
+<nav id="cjqn" class="cjqn" role="navigation" aria-label="Quick categories">
+  <div class="cjqn__scroll">
+    {%- for l in nav.links -%}
+      <a class="cjqn__link" href="{{ l.url | escape }}">{{ l.title }}</a>
+    {%- endfor -%}
+  </div>
+</nav>
+
+<style>
+  /* ✅ Hide by default (prevents any desktop flash) */
+  #cjqn{ display:none; }
+
+  @media (max-width:768px){
+    :root{
+      --cjqn-bg:#eceff1;
+      --cjqn-text:#9aa0a6;
+      --cjqn-text-active:#202124;
+      --cjqn-gap:22px;
+      --cjqn-size:12px;
+      --cjqn-ls:.06em;
+      --cjqn-pad-y:10px;
+      --cjqn-pad-x:12px;
+    }
+
+    /* ✅ Only display on mobile */
+    #cjqn.cjqn{
+      display:flex;
+      background:var(--cjqn-bg);
+      border-bottom:1px solid rgba(0,0,0,.06);
+      padding:var(--cjqn-pad-y) var(--cjqn-pad-x);
+    }
+
+    #cjqn .cjqn__scroll{
+      display:flex; align-items:center; gap:var(--cjqn-gap);
+      overflow-x:auto; -webkit-overflow-scrolling:touch;
+      scrollbar-width:none;
+      -webkit-mask-image: linear-gradient(to right, black calc(100% - 24px), transparent 100%);
+        mask-image: linear-gradient(to right, black calc(100% - 24px), transparent 100%);
+    }
+    #cjqn .cjqn__scroll::-webkit-scrollbar{ display:none; }
+
+    #cjqn .cjqn__link{
+      flex:0 0 auto; white-space:nowrap; text-decoration:none;
+      color:var(--cjqn-text);
+      font-size:var(--cjqn-size); font-weight:700; letter-spacing:var(--cjqn-ls);
+      text-transform:uppercase; line-height:1; padding:2px 0 3px; position:relative;
+    }
+    #cjqn .cjqn__link.is-active{ color:var(--cjqn-text-active); }
+    #cjqn .cjqn__link.is-active::after{
+      content:""; position:absolute; left:0; right:0; bottom:-8px; height:2px;
+      background:var(--cjqn-text-active); border-radius:2px;
+    }
+  }
+</style>
+
+
+<script>
+(function(){
+  if(!window.matchMedia('(max-width:768px)').matches) return;
+  var wrap=document.getElementById('cjqn'); if(!wrap) return;
+  var sc = wrap.querySelector('.cjqn__scroll');
+
+  // mark active
+  var loc=location.pathname.replace(/\/+$/,'').toLowerCase();
+  var links=wrap.querySelectorAll('.cjqn__link'); var active=null;
+  links.forEach(function(a){
+    var href=(a.getAttribute('href')||'').split('?')[0].replace(/\/+$/,'').toLowerCase();
+    if(href && (loc===href || loc.indexOf(href)===0)){ a.classList.add('is-active'); active=a; }
+  });
+
+  // center when content fits; else keep left and allow scroll
+  function centerCheck(){
+    if(!sc) return;
+    if(sc.scrollWidth <= sc.clientWidth + 1){
+      wrap.classList.add('is-centered');
+    }else{
+      wrap.classList.remove('is-centered');
+    }
+  }
+  centerCheck(); window.addEventListener('resize', centerCheck);
+
+  // auto-center active on first paint if overflow
+  if(active && sc.scrollWidth > sc.clientWidth){
+    var a = active.getBoundingClientRect(), b = sc.getBoundingClientRect();
+    sc.scrollLeft += (a.left + a.width/2) - (b.left + b.width/2);
+  }
+
+  // smooth horizontal with vertical wheel (handy in dev tools)
+  sc.addEventListener('wheel', function(e){
+    if(Math.abs(e.deltaY) > Math.abs(e.deltaX)) sc.scrollLeft += e.deltaY * 0.6;
+  }, {passive:true});
+})();
+</script>
+{%- endif -%}

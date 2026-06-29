@@ -1,0 +1,51 @@
+{%- comment -%}
+CJ Announcement Bar Snippet (Sticky Version)
+- Auto language: EN / NL / DE
+- Auto currency: €100 or $100
+- Full styling included
+- Sticky positioning so it sits ABOVE sticky header
+{%- endcomment -%}
+
+{%- assign lang = localization.language.iso_code | downcase -%}
+{%- assign cur = localization.country.currency.iso_code | upcase -%}
+
+{%- if cur == 'USD' -%}
+  {%- assign threshold = '$100' -%}
+{%- else -%}
+  {%- assign threshold = '€100' -%}
+{%- endif -%}
+
+<style>
+  .cj-announcement-bar {
+    width: 100%;
+    text-align: center;
+    background: #000000;
+    color: #FFFFFF;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 6px 0;
+    text-transform: uppercase;
+
+    position: sticky;
+    top: 0;
+    z-index: 9999; /* above header */
+  }
+
+  @media (max-width: 600px) {
+    .cj-announcement-bar {
+      font-size: 12px;
+      padding: 5px 0;
+    }
+  }
+</style>
+
+<div class="cj-announcement-bar">
+  {%- if lang == 'nl' -%}
+    GRATIS VERZENDING BOVEN {{ threshold }} & GRATIS RUILEN
+  {%- elsif lang == 'de' -%}
+    KOSTENLOSER VERSAND ÜBER {{ threshold }} & KOSTENLOSE UMTAUSCHE
+  {%- else -%}
+    FREE SHIPPING ABOVE {{ threshold }} & FREE EXCHANGES
+  {%- endif -%}
+</div>

@@ -1,0 +1,99 @@
+{%- comment -%}
+CURVJEANS — Review Section Only (EN/NL/DE)
+Social proof badge removed entirely
+{%- endcomment -%}
+
+{%- liquid
+assign _lc = request.locale.iso_code | downcase
+
+case _lc
+  when "nl"
+    assign r1 = "Eindelijk een jeans die goed aansluit en ook goed blijft zitten zonder riem"
+    assign r2 = "Heel fijne broeken, sluit heel mooi aan en hoef ze niet steeds omhoog te trekken"
+    assign r3 = "Oké dus ik heb elk 'curvy fit' merk geprobeerd en ze zijn allemaal waardeloos. Dit is de eerste spijkerbroek die echt mijn taille en heupen past zonder waist gaps. Ik draag ze non stop"
+  when "de"
+    assign r1 = "Endlich eine Jeans, die gut sitzt und auch ohne Gürtel an Ort und Stelle bleibt"
+    assign r2 = "Sehr angenehme Jeans, sitzt super und ich muss sie nicht ständig hochziehen"
+    assign r3 = "Also ich habe jede 'Curvy Fit' Marke ausprobiert und die sind alle Mist. Das ist die erste Jeans, die wirklich an Taille und Hüfte passt ohne Waist Gap. Ich trage sie non stop"
+  else
+    assign r1 = "They actually fit my waist and hips. First pair that stays up without a belt"
+    assign r2 = "They fit my waist without gaping and I don't have to pull them up every 5 minutes"
+    assign r3 = "Okay so I've tried every 'curvy fit' brand and they all suck. These are the first jeans that actually fit my waist and hips without gaping. I've been wearing these nonstop"
+endcase
+-%}
+
+<style>
+  /* ============================
+     REVIEW SECTION
+  ============================= */
+  .cj-review-wrapper {
+    width: 100%;
+    background: #ffffff;
+    padding: 60px 20px 60px;
+  }
+
+  .cj-review-grid {
+    max-width: 1200px;
+    margin: 0 auto 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 50px;
+    text-align: center;
+    align-items: center;
+  }
+
+  .cj-review {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #2e2e2e;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-weight: 500;
+    padding: 0 10px;
+  }
+
+  .cj-review strong {
+    display: block;
+    margin-top: 16px;
+    font-size: 14px;
+    color: #8d8d8d;
+    font-weight: 400;
+  }
+
+  /* ============================
+     MOBILE
+  ============================= */
+  @media (max-width: 768px) {
+    .cj-review-wrapper {
+      padding: 50px 16px 50px;
+    }
+
+    .cj-review-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      margin-bottom: 0px;
+    }
+  }
+</style>
+
+<div class="cj-review-wrapper">
+  <div class="cj-review-grid">
+
+    <div class="cj-review">
+      “{{ r1 }}”
+      <strong>— Sarah M.</strong>
+    </div>
+
+    <div class="cj-review">
+      “{{ r2 }}”
+      <strong>— Jessica L.</strong>
+    </div>
+
+    <div class="cj-review">
+      “{{ r3 }}”
+      <strong>— Maria R.</strong>
+    </div>
+
+  </div>
+</div>

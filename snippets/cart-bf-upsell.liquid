@@ -1,0 +1,125 @@
+{%- comment -%}
+CURVJEANS — Black Friday Cart Upsell (Color Tier Version)
+• SAME COPY as original
+• Tier 1 = 25% → amber pill
+• Tier 2 = 35% → green pill
+• Tier 3 = max unlocked → dark green pill
+• All classes isolated (bf-upsell-…)
+{%- endcomment -%}
+
+{%- assign bf_count = cart.item_count | default: 0 -%}
+{%- assign bf_show = false -%}
+{%- assign bf_is_max = false -%}
+{%- assign bf_percent = 0 -%}
+
+{%- if bf_count == 1 -%}
+  {%- assign bf_percent = 25 -%}
+  {%- assign bf_show = true -%}
+{%- elsif bf_count == 2 -%}
+  {%- assign bf_percent = 35 -%}
+  {%- assign bf_show = true -%}
+{%- elsif bf_count >= 3 -%}
+  {%- assign bf_percent = 35 -%}
+  {%- assign bf_show = true -%}
+  {%- assign bf_is_max = true -%}
+{%- endif -%}
+
+{%- assign bf_locale = request.locale.iso_code | downcase -%}
+
+{%- capture bf_pill_text -%}
+  {%- if bf_is_max -%}
+    {%- if bf_locale == 'nl' -%}
+      Je hebt de maximale korting behaald
+    {%- elsif bf_locale == 'de' -%}
+      Maximale Ersparnis freigeschaltet
+    {%- else -%}
+      You’ve unlocked maximum savings
+    {%- endif -%}
+  {%- else -%}
+    {%- if bf_locale == 'nl' -%}
+      Voeg 1 toe, bespaar {{ bf_percent }}%
+    {%- elsif bf_locale == 'de' -%}
+      Füge 1 hinzu, spare {{ bf_percent }}%
+    {%- else -%}
+      Add 1 more, save {{ bf_percent }}%
+    {%- endif -%}
+  {%- endif -%}
+{%- endcapture -%}
+
+{%- if bf_show -%}
+  <div class="bf-upsell-wrapper">
+    <div class="bf-upsell-header">
+      <div class="bf-upsell-line"></div>
+      <div class="bf-upsell-title">
+        Black Friday Deal
+      </div>
+      <div class="bf-upsell-line"></div>
+    </div>
+
+    <div class="
+      bf-upsell-pill
+      {% if bf_is_max %} bf-upsell-pill--max {% elsif bf_percent == 35 %} bf-upsell-pill--tier2 {% else %} bf-upsell-pill--tier1 {% endif %}
+    ">
+      {{ bf_pill_text }}
+    </div>
+  </div>
+
+  <style>
+    .bf-upsell-wrapper {
+      margin-top: 14px;
+      text-align: center;
+    }
+    .bf-upsell-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+    .bf-upsell-line {
+      flex: 1;
+      height: 1px;
+      background-color: #E5E5E5;
+    }
+    .bf-upsell-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #111;
+      letter-spacing: .01em;
+      white-space: nowrap;
+    }
+
+    /* Base pill */
+    .bf-upsell-pill {
+      display: inline-block;
+      font-weight: 600;
+      font-size: 12.5px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      letter-spacing: .01em;
+    }
+
+    /* Tier 1 – 25% (amber) */
+    .bf-upsell-pill--tier1 {
+      background: rgba(217, 119, 6, 0.12);
+      color: #D97706;
+    }
+
+    /* Tier 2 – 35% (green) */
+    .bf-upsell-pill--tier2 {
+      background: rgba(22, 163, 74, 0.12);
+      color: #16A34A;
+    }
+
+    /* Max Unlocked – darker green */
+    .bf-upsell-pill--max {
+      background: rgba(21, 128, 61, 0.12);
+      color: #15803D;
+    }
+
+    @media (max-width: 600px){
+      .bf-upsell-title { font-size: 15px; }
+      .bf-upsell-pill { font-size: 12px; padding: 3px 9px; }
+    }
+  </style>
+{%- endif -%}

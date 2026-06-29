@@ -1,0 +1,216 @@
+{%- comment -%}
+CURVJEANS — Cart Offer Nudge
+Dynamic offer settings at top
+{%- endcomment -%}
+
+{%- assign _discount_2_items = 40 -%}
+{%- assign _discount_3_items = 50 -%}
+
+{%- assign _count = 0 -%}
+{%- assign _show = false -%}
+{%- assign _lc = request.locale.iso_code | downcase -%}
+{%- assign _country = localization.country.iso_code | default: '' | upcase -%}
+
+{%- assign _jeans_collection_1 = 'mid-rise' -%}
+{%- assign _jeans_collection_2 = 'high-waist' -%}
+
+{%- for item in cart.items -%}
+  {%- assign _is_jeans = false -%}
+
+  {%- for collection in item.product.collections -%}
+    {%- if collection.handle == _jeans_collection_1 or collection.handle == _jeans_collection_2 -%}
+      {%- assign _is_jeans = true -%}
+      {%- break -%}
+    {%- endif -%}
+  {%- endfor -%}
+
+  {%- if _is_jeans -%}
+    {%- assign _count = _count | plus: item.quantity -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- if _count >= 1 -%}
+  {%- assign _show = true -%}
+{%- endif -%}
+
+{%- capture _main_text -%}
+  {%- if _count == 1 -%}
+    {%- if _lc == 'nl' -%}
+      Krijg {{ _discount_2_items }}% korting
+    {%- elsif _lc == 'de' -%}
+      {{ _discount_2_items }}% Rabatt erhalten
+    {%- else -%}
+      Get {{ _discount_2_items }}% off
+    {%- endif -%}
+
+  {%- elsif _count == 2 -%}
+    {%- if _lc == 'nl' -%}
+      {{ _discount_2_items }}% korting toegepast
+    {%- elsif _lc == 'de' -%}
+      {{ _discount_2_items }}% Rabatt angewendet
+    {%- else -%}
+      {{ _discount_2_items }}% off applied
+    {%- endif -%}
+
+  {%- else -%}
+    {%- if _lc == 'nl' -%}
+      {{ _discount_3_items }}% korting toegepast
+    {%- elsif _lc == 'de' -%}
+      {{ _discount_3_items }}% Rabatt angewendet
+    {%- else -%}
+      {{ _discount_3_items }}% off applied
+    {%- endif -%}
+  {%- endif -%}
+{%- endcapture -%}
+
+{%- capture _sub_text -%}
+  {%- if _count == 1 -%}
+    {%- if _lc == 'nl' -%}
+      Voeg nog één jeans toe
+    {%- elsif _lc == 'de' -%}
+      Eine weitere Jeans hinzufügen
+    {%- else -%}
+      Add one more jeans
+    {%- endif -%}
+
+  {%- elsif _count == 2 -%}
+    {%- if _lc == 'nl' -%}
+      Voeg 1 toe voor {{ _discount_3_items }}% korting
+    {%- elsif _lc == 'de' -%}
+      Noch 1 Jeans für {{ _discount_3_items }}% Rabatt
+    {%- else -%}
+      Add one more jeans for {{ _discount_3_items }}% off
+    {%- endif -%}
+
+  {%- else -%}
+    {%- if _lc == 'nl' -%}
+      Beste korting actief
+    {%- elsif _lc == 'de' -%}
+      Bester Rabatt aktiv
+    {%- else -%}
+      Best discount active
+    {%- endif -%}
+  {%- endif -%}
+{%- endcapture -%}
+
+{%- if _show and _country != 'US' -%}
+  <div class="cj-bundle-nudge-wrapper">
+    <div class="cj-bundle-header">
+      <div class="cj-bundle-line"></div>
+
+      {%- if _count >= 2 -%}
+        <div class="cj-bundle-reward">
+          <img
+            class="cj-bundle-check"
+            src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/checkmark.svg?v=1726653017"
+            alt=""
+            aria-hidden="true"
+            loading="lazy"
+          >
+          <span>{{ _main_text | strip }}</span>
+        </div>
+      {%- else -%}
+        <div class="cj-bundle-reward cj-bundle-reward--locked">
+          <span>{{ _main_text | strip }}</span>
+        </div>
+      {%- endif -%}
+
+      <div class="cj-bundle-line"></div>
+    </div>
+
+    <div class="{% if _count >= 3 %}cj-bundle-complete{% else %}cj-bundle-next{% endif %}">
+      {{ _sub_text | strip }}
+    </div>
+  </div>
+
+  <style>
+    .cj-bundle-nudge-wrapper {
+      margin-top: 14px;
+      text-align: center;
+    }
+
+    .cj-bundle-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 7px;
+    }
+
+    .cj-bundle-line {
+      flex: 1;
+      height: 1px;
+      background-color: #E5E0DB;
+    }
+
+    .cj-bundle-reward {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: rgba(44, 143, 85, 0.12);
+      color: #2C8F55;
+      font-weight: 800;
+      font-size: 12.5px;
+      line-height: 1;
+      padding: 6px 12px;
+      border-radius: 999px;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+    }
+
+    .cj-bundle-reward--locked {
+      background: rgba(181, 72, 62, 0.10);
+      color: #B5483E;
+    }
+
+    .cj-bundle-next,
+    .cj-bundle-complete {
+      margin-top: 0;
+      font-size: 12.5px;
+      line-height: 1.3;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: rgba(22, 22, 22, 0.62);
+    }
+
+    .cj-bundle-complete {
+      color: rgba(44, 143, 85, 0.85);
+    }
+
+    .cj-bundle-check {
+      width: 13px;
+      height: 13px;
+      display: block;
+      flex: 0 0 13px;
+      filter: brightness(0) saturate(100%) invert(42%) sepia(38%) saturate(789%) hue-rotate(95deg) brightness(90%) contrast(88%);
+    }
+
+    @media (max-width: 600px) {
+      .cj-bundle-nudge-wrapper {
+        margin-top: 12px;
+      }
+
+      .cj-bundle-header {
+        gap: 9px;
+        margin-bottom: 6px;
+      }
+
+      .cj-bundle-reward {
+        font-size: 12px;
+        padding: 5px 11px;
+      }
+
+      .cj-bundle-next,
+      .cj-bundle-complete {
+        font-size: 12px;
+      }
+
+      .cj-bundle-check {
+        width: 12.5px;
+        height: 12.5px;
+        flex-basis: 12.5px;
+      }
+    }
+  </style>
+{%- endif -%}

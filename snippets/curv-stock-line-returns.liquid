@@ -1,0 +1,250 @@
+{%- comment -%}
+CURVJEANS — Stock line + returns line
+Usage in Custom Liquid: {% render 'curv-stock-line' %}
+{%- endcomment -%}
+
+{%- assign p  = p | default: product -%}
+{%- assign v  = v | default: p.selected_or_first_available_variant -%}
+{%- assign lc = request.locale.iso_code | downcase -%}
+
+{%- comment %} Read ship date (variant → product → theme setting) {% endcomment -%}
+{%- assign ship_raw = v.metafields.custom.pre_order_date
+  | default: p.metafields.custom.pre_order_date
+  | default: settings.preorder_ship_date -%}
+
+{%- assign day = ship_raw | date: "%-d" -%}
+{%- assign m   = ship_raw | date: "%-m" | plus: 0 -%}
+
+{%- capture ship_fmt -%}
+  {%- if ship_raw == blank -%}
+    {%- if lc == 'nl' -%}binnenkort{%- elsif lc == 'de' -%}in Kürze{%- else -%}soon{%- endif -%}
+  {%- elsif lc == 'nl' -%}
+    {%- case m -%}
+      {%- when 1 -%}{{ day }} jan.{%- when 2 -%}{{ day }} feb.{%- when 3 -%}{{ day }} mrt.{%- when 4 -%}{{ day }} apr.
+      {%- when 5 -%}{{ day }} mei{%- when 6 -%}{{ day }} jun.{%- when 7 -%}{{ day }} jul.{%- when 8 -%}{{ day }} aug.
+      {%- when 9 -%}{{ day }} sep.{%- when 10 -%}{{ day }} okt.{%- when 11 -%}{{ day }} nov.{%- when 12 -%}{{ day }} dec.
+    {%- endcase -%}
+  {%- elsif lc == 'de' -%}
+    {%- case m -%}
+      {%- when 1 -%}{{ day }}. Jan.{%- when 2 -%}{{ day }}. Feb.{%- when 3 -%}{{ day }}. März{%- when 4 -%}{{ day }}. Apr.
+      {%- when 5 -%}{{ day }}. Mai{%- when 6 -%}{{ day }}. Juni{%- when 7 -%}{{ day }}. Juli{%- when 8 -%}{{ day }}. Aug.
+      {%- when 9 -%}{{ day }}. Sept.{%- when 10 -%}{{ day }}. Okt.{%- when 11 -%}{{ day }}. Nov.{%- when 12 -%}{{ day }}. Dez.
+    {%- endcase -%}
+  {%- else -%}
+    {{ day }} {{ ship_raw | date: "%B" }}
+  {%- endif -%}
+{%- endcapture -%}
+
+{%- comment %} is_preorder: must allow-oversell AND qty <= 0 {% endcomment -%}
+{%- assign is_preorder = false -%}
+{%- if v and v.inventory_policy == 'continue' -%}
+  {%- assign qty = v.inventory_quantity | default: 0 | plus: 0 -%}
+  {%- if qty <= 0 -%}
+    {%- assign is_preorder = true -%}
+  {%- endif -%}
+{%- endif -%}
+
+<div class="cj-pdp-signals">
+  <div class="cj-signal cj-stock">
+    {% if is_preorder %}
+      <span class="cj-dot blue pulse"></span>
+      <span class="cj-text blue-text">
+        {%- if lc == 'nl' -%}
+          Nieuwe voorraad vanaf {{ ship_fmt }}
+        {%- elsif lc == 'de' -%}
+          Ab dem {{ ship_fmt }} wieder verfügbar
+        {%- else -%}
+          Restock arriving {{ ship_fmt }}
+        {%- endif -%}
+      </span>
+
+    {% elsif v.inventory_quantity > 50 %}
+      <span class="cj-dot green pulse"></span>
+      <span class="cj-text green-text">
+        {%- if lc == 'nl' -%}
+          Op voorraad
+        {%- elsif lc == 'de' -%}
+          Auf Lager
+        {%- else -%}
+          In stock
+        {%- endif -%}
+      </span>
+
+    {% elsif v.inventory_quantity > 0 %}
+      <span class="cj-dot orange pulse"></span>
+      <span class="cj-text orange-text">
+        {%- if lc == 'nl' -%}
+          Bijna uitverkocht
+        {%- elsif lc == 'de' -%}
+          Fast ausverkauft
+        {%- else -%}
+          Almost sold out
+        {%- endif -%}
+      </span>
+
+    {% else %}
+      <span class="cj-dot red pulse"></span>
+      <span class="cj-text red-text">
+        {%- if lc == 'nl' -%}
+          Uitverkocht
+        {%- elsif lc == 'de' -%}
+          Ausverkauft
+        {%- else -%}
+          Sold out
+        {%- endif -%}
+      </span>
+    {% endif %}
+  </div>
+
+  <div class="cj-signal cj-returns">
+    <span class="cj-return-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M3 7h13c3.3 0 6 2.7 6 6s-2.7 6-6 6H8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M7 3L3 7l4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </span>
+
+<span class="cj-text cj-return-text">
+  {%- if localization.country.iso_code == 'US' -%}
+    Easy 30-Day Returns
+  {%- elsif lc == 'nl' -%}
+    14 dagen makkelijk retourneren
+  {%- elsif lc == 'de' -%}
+    Einfache Rücksendung innerhalb 14 Tage
+  {%- else -%}
+    Easy 14-Day Returns
+  {%- endif -%}
+</span>
+  </div>
+</div>
+
+<style>
+.cj-pdp-signals {
+  --cj-signal-font-size: 15px;
+  --cj-signal-line-height: 1.35;
+  --cj-marker-size: 18px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 18px 0 18px;
+  padding: 0;
+}
+
+.cj-signal {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 2px 0;
+  margin: 0;
+}
+
+.cj-text {
+  font-size: var(--cj-signal-font-size);
+  line-height: var(--cj-signal-line-height);
+  color: #000;
+  font-weight: 400;
+}
+
+.cj-dot {
+  width: 10px;
+  height: 10px;
+  min-width: 10px;
+  border-radius: 50%;
+  margin: 0 4px;
+}
+
+.pulse {
+  animation: pulse-cj 2.5s infinite ease-in-out;
+}
+
+@keyframes pulse-cj {
+  0% {
+    transform: scale(.9);
+    opacity: .7;
+  }
+
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(.9);
+    opacity: .7;
+  }
+}
+
+.green {
+  background: #00A341;
+  box-shadow: 0 0 8px rgba(0, 163, 65, .5);
+}
+
+.orange {
+  background: #FFA500;
+  box-shadow: 0 0 8px rgba(255, 165, 0, .5);
+}
+
+.red {
+  background: #D52C2C;
+  box-shadow: 0 0 8px rgba(213, 44, 44, .5);
+}
+
+.blue {
+  background: #1E90FF;
+  box-shadow: 0 0 8px rgba(30, 144, 255, .5);
+}
+
+.green-text {
+  color: #00A341;
+}
+
+.orange-text {
+  color: #FFA500;
+}
+
+.red-text {
+  color: #D52C2C;
+}
+
+.blue-text {
+  color: #1E90FF;
+}
+
+.cj-return-icon {
+  width: var(--cj-marker-size);
+  min-width: var(--cj-marker-size);
+  height: var(--cj-marker-size);
+  color: #000;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cj-return-icon svg {
+  width: var(--cj-marker-size);
+  height: var(--cj-marker-size);
+  display: block;
+}
+
+.cj-return-text {
+  color: #000;
+  font-size: var(--cj-signal-font-size);
+  line-height: var(--cj-signal-line-height);
+  font-weight: 400;
+}
+
+@media (max-width: 768px) {
+  .cj-pdp-signals {
+    --cj-signal-font-size: 15px;
+    gap: 10px;
+
+    /* doubled mobile spacing */
+    margin: 18px 0 18px;
+  }
+
+  .cj-signal {
+    padding: 3px 0;
+  }
+}
+</style>

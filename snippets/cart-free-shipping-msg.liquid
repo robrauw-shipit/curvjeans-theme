@@ -1,0 +1,54 @@
+{% liquid
+  assign is_nl = false
+  assign is_de = false
+
+  if request.path contains '/nl' or localization.language.iso_code == 'nl'
+    assign is_nl = true
+  elsif request.path contains '/de' or localization.language.iso_code == 'de'
+    assign is_de = true
+  endif
+%}
+
+<style>
+  .cj-shipping-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0px;
+    padding-top: 0px;
+  }
+
+  .cj-shipping-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #000000;
+  }
+
+  .cj-shipping-free {
+    font-size: 14px;
+    font-weight: 700;
+    color: #000000;
+  }
+</style>
+
+<div class="cj-shipping-row">
+  <div class="cj-shipping-label">
+    {% if is_nl %}
+      Verzending
+    {% elsif is_de %}
+      Versand
+    {% else %}
+      Shipping
+    {% endif %}
+  </div>
+
+  <div class="cj-shipping-free">
+    {% if is_nl %}
+      GRATIS
+    {% elsif is_de %}
+      KOSTENLOS
+    {% else %}
+      FREE
+    {% endif %}
+  </div>
+</div>

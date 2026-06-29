@@ -1,0 +1,205 @@
+{% if product %}
+{%- comment -%}
+CURVJEANS — Fit & Stretch row
+Keeps original Impact accordion logic
+{%- endcomment -%}
+
+{%- assign _lc = localization.language.iso_code | default: shop.locale | default: 'EN' | upcase -%}
+
+{%- assign stretch_obj   = product.metafields.custom.stretch_level.value -%}
+{%- assign stretch_label = stretch_obj.label | default: stretch_obj.title | default: stretch_obj.name | default: stretch_obj.handle | default: stretch_obj | strip -%}
+
+{%- assign rise_val   = product.metafields.shopify['waist-rise'].value -%}
+{%- assign rise_json  = rise_val | json -%}
+{%- assign rise_entry = rise_val -%}{% if rise_val and rise_json contains '[' %}{%- assign rise_entry = rise_val | first -%}{% endif %}
+{%- assign r_handle   = rise_entry.handle | default: '' | downcase -%}
+{%- assign r_label    = rise_entry.label  | default: rise_entry.title | default: rise_entry.name | default: rise_entry | downcase -%}
+
+{%- assign fit_val   = product.metafields.shopify.fit.value -%}
+{%- assign fit_json  = fit_val | json -%}
+{%- assign fit_entry = fit_val -%}{% if fit_val and fit_json contains '[' %}{%- assign fit_entry = fit_val | first -%}{% endif %}
+{%- assign f_handle  = fit_entry.handle | default: '' | downcase -%}
+{%- assign f_label   = fit_entry.label  | default: fit_entry.title | default: fit_entry.name | default: fit_entry | downcase -%}
+
+{%- assign length_val   = product.metafields.shopify['pants-length-type'].value -%}
+{%- assign length_json  = length_val | json -%}
+{%- assign length_entry = length_val -%}{% if length_val and length_json contains '[' %}{%- assign length_entry = length_val | first -%}{% endif %}
+{%- assign l_label      = length_entry.label | default: length_entry.title | default: length_entry.name | default: length_entry | strip -%}
+
+{%- assign length_override = product.metafields.custom.length_text | default: '' -%}
+
+{%- comment -%} Stretch mapping {%- endcomment -%}
+{%- assign stretch_text = 'High' -%}
+{%- assign stretch_bars = 4 -%}
+{%- assign sl = stretch_label | downcase | strip | replace: '–','-' | replace: '—','-' -%}
+
+{%- if sl contains '360' or sl contains 'all-way' or sl contains 'omni' or sl contains 'mega' or sl contains '4-way' or sl contains 'four-way' -%}
+  {%- assign stretch_text = 'Ultra' -%}
+  {%- assign stretch_bars = 5 -%}
+{%- else -%}
+  {%- assign stretch_text = 'High' -%}
+  {%- assign stretch_bars = 4 -%}
+{%- endif -%}
+
+{%- comment -%} Holds shape translation {%- endcomment -%}
+{%- case _lc -%}
+  {%- when 'NL' -%}
+    {%- assign holds_shape_text = 'Behoudt hele dag vorm' -%}
+  {%- when 'DE' -%}
+    {%- assign holds_shape_text = 'Stretcht mit. Leiert nicht aus.' -%}
+  {%- else -%}
+    {%- assign holds_shape_text = 'Holds shape' -%}
+{%- endcase -%}
+
+{%- comment -%} Rise {%- endcomment -%}
+{%- assign t_rise_low  = 'Low Rise' -%}
+{%- assign t_rise_mid  = 'Mid Rise' -%}
+{%- assign t_rise_high = 'High Waist' -%}
+{%- assign rise_text = t_rise_mid -%}
+{%- if r_handle contains 'high' or r_label contains 'high' or r_label contains 'hoog' -%}
+  {%- assign rise_text = t_rise_high -%}
+{%- elsif r_handle contains 'low' or r_label contains 'low' or r_label contains 'laag' -%}
+  {%- assign rise_text = t_rise_low -%}
+{%- endif -%}
+
+{%- if product.handle == 'curve-hugging-relax-fit-mid-rise-sky-blue' -%}
+  {%- assign rise_text = 'High Waist & Mid Rise' -%}
+{%- endif -%}
+
+{%- comment -%} Fit text {%- endcomment -%}
+{%- assign fit_text = '' -%}
+{%- if f_handle contains 'slim' or f_handle contains 'straight' -%}
+  {%- case _lc -%}
+    {%- when 'NL' -%}{%- assign fit_text = 'Snatched fit (bij twijfel groter)' -%}
+    {%- when 'DE' -%}{%- assign fit_text = 'Snatched Fit (bei Zweifel größer)' -%}
+    {%- else -%}{%- assign fit_text = 'Snatched fit (size up if between sizes)' -%}
+  {%- endcase -%}
+{%- elsif f_handle contains 'relax' or f_handle contains 'wide' or f_handle contains 'easy' -%}
+  {%- case _lc -%}
+    {%- when 'NL' -%}{%- assign fit_text = 'Relaxte pasvorm' -%}
+    {%- when 'DE' -%}{%- assign fit_text = 'Lockere Passform' -%}
+    {%- else -%}{%- assign fit_text = 'Relaxed fit' -%}
+  {%- endcase -%}
+{%- else -%}
+  {%- case _lc -%}
+    {%- when 'NL' -%}{%- assign fit_text = 'Valt op maat' -%}
+    {%- when 'DE' -%}{%- assign fit_text = 'fällt größengetreu aus' -%}
+    {%- else -%}{%- assign fit_text = 'True to size' -%}
+  {%- endcase -%}
+{%- endif -%}
+
+{%- comment -%} Length {%- endcomment -%}
+{%- assign length_text = length_override | strip | default: l_label -%}
+{%- if _lc == 'NL' -%}
+  {%- assign length_text = length_text | replace: 'Up to', 'Tot' | replace: 'up to', 'tot' -%}
+{%- elsif _lc == 'DE' -%}
+  {%- assign length_text = length_text | replace: 'Up to', 'Bis' | replace: 'up to', 'bis' -%}
+{%- endif -%}
+
+<style>
+  :root{ --curv-border: rgba(17,17,17,.08); --row-pad-y:14px; --chev-size:24px; --chev-icon:10px; }
+  .cj-jeans-acc{ color:#000; margin:16px 0 0; border-top:1px solid var(--curv-border); }
+  .cj-jeans-acc__head{ display:flex; align-items:center; justify-content:space-between; padding:var(--row-pad-y) 0; line-height:1; }
+  .cj-jeans-acc__title{ font-weight:700; color:#000; }
+  .cj-jeans-acc__chevbtn{ width:var(--chev-size); height:var(--chev-size); border-radius:999px; background:#EDEDED; display:inline-flex; align-items:center; justify-content:center; flex:0 0 auto; }
+  .cj-jeans-acc__chev{ width:var(--chev-icon); height:var(--chev-icon); stroke:#000; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; fill:none; transition:transform .2s ease; }
+  .cj-jeans-acc.is-open .cj-jeans-acc__chev{ transform:rotate(180deg); }
+  .cj-jeans-acc__panel[hidden]{ display:none !important; }
+  .cj-jeans-acc__panel{ padding:0 0 0; }
+
+  .cj-bars{ display:inline-flex; align-items:flex-end; gap:3px; height:14px; margin-right:.5rem; }
+  .cj-bar{ width:3px; background:#e5e7eb; border-radius:2px; }
+  .cj-bar:nth-child(1){ height:5px } 
+  .cj-bar:nth-child(2){ height:7px } 
+  .cj-bar:nth-child(3){ height:9px } 
+  .cj-bar:nth-child(4){ height:11px } 
+  .cj-bar:nth-child(5){ height:13px }
+  .cj-bar.is-on{ background:#000; }
+
+  .cj-section-title{ font-weight:600; font-size:15px; margin-bottom:4px; }
+
+  .cj-meta{ display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin:0; }
+  .cj-meta span{
+    font-size:14px !important;
+    line-height:1.35;
+    font-weight:400;
+  }
+
+  .cj-dot{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    line-height:1;
+    font-size:10px;
+    transform:translateY(1px);
+    opacity:.35;
+  }
+</style>
+
+<section class="cj-jeans-acc is-open" id="cj-jeans-acc" data-open="true" role="group" aria-label="Fit & Stretch">
+  <div class="cj-jeans-acc__head" role="button" tabindex="0" aria-controls="cj-jeans-panel" aria-expanded="true">
+    <span class="cj-jeans-acc__title">Stretch & Fit</span>
+    <span class="cj-jeans-acc__chevbtn" aria-hidden="true">
+      <svg class="cj-jeans-acc__chev" viewBox="0 0 20 20"><path d="M5 8l5 5 5-5"/></svg>
+    </span>
+  </div>
+
+  <div class="cj-jeans-acc__panel" id="cj-jeans-panel">
+
+    <div class="cj-line" style="display:flex;align-items:center;margin-bottom:14px;">
+      <span class="cj-bars">
+        {% for i in (1..5) %}
+          <span class="cj-bar {% if i <= stretch_bars %}is-on{% endif %}"></span>
+        {% endfor %}
+      </span>
+      <span class="cj-level" style="font-weight:600;margin-right:6px;">{{ stretch_text }}</span>
+      <img src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/checkmark.svg?v=1726653017" style="width:14px;height:14px;margin-right:4px;">
+      <span style="font-size:14px;">{{ holds_shape_text }}</span>
+    </div>
+
+    <div style="margin-bottom:14px;">
+      <div class="cj-section-title">Fit Details</div>
+      <div class="cj-meta">
+        <span>{{ rise_text }}</span>
+        <span class="cj-dot">•</span>
+        <span>{{ fit_text }}</span>
+        <span class="cj-dot">•</span>
+        <span>{{ length_text }}</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function(){
+  var root = document.getElementById('cj-jeans-acc');
+  if(!root) return;
+
+  var head = root.querySelector('.cj-jeans-acc__head');
+  var panel = root.querySelector('.cj-jeans-acc__panel');
+  var startOpen = true;
+
+  function setOpen(open){
+    root.classList.toggle('is-open', open);
+    head.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if(open){ panel.removeAttribute('hidden'); } else { panel.setAttribute('hidden',''); }
+  }
+  setOpen(startOpen);
+
+  head.addEventListener('click', function(){ setOpen(!root.classList.contains('is-open')); });
+
+  /* auto-sync spacing to Impact accordion */
+  var ref = document.querySelector('.product-info__accordion .accordion__toggle');
+  if (ref) {
+    var cs = getComputedStyle(ref);
+    var py = parseFloat(cs.paddingTop) || 16;
+    root.style.setProperty('--row-pad-y', py + 'px');
+  }
+
+  /* seam logic */
+  root.style.marginTop = '0';
+})();
+</script>
+
+{% endif %}

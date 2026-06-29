@@ -1,0 +1,96 @@
+{%- comment -%} CURVJEANS — Cart Upsell (Bundle Message Cart) {%- endcomment -%}
+
+<hr class="cj-bmc__divider">
+
+<div id="cj-bmc" class="cj-bmc cj-bmc--hidden" aria-live="polite">
+  <p class="cj-bmc__headline"></p>
+</div>
+
+<style>
+  .cj-bmc__divider{border:0;border-top:1px solid #ececec;margin:10px 0 12px}
+  .cj-bmc{display:flex;justify-content:center}
+  .cj-bmc--hidden{display:none!important}
+  .cj-bmc__headline{margin:0;padding:0;font-weight:700;text-align:center}
+  .cj-bmc__headline .cj-bmc__title{font-weight:700;margin-right:6px}
+  .cj-bmc__headline .cj-bmc__em{font-weight:800;margin-right:8px}
+  .cj-bmc__pill{
+    background:#B75A4B;color:#fff;border-radius:999px;
+    padding:4px 12px;font-size:12px;line-height:1;font-weight:800;
+    display:inline-flex;align-items:center;justify-content:center;white-space:nowrap
+  }
+</style>
+
+<script>
+(() => {
+  const EVENTS = ["DOMContentLoaded","shopify:section:load","cart:updated"];
+  EVENTS.forEach(ev => document.addEventListener(ev, debouncedRender));
+
+  // Observe cart drawer re-renders
+  let observing=false;
+  function observeDrawer(){
+    if(observing) return;
+    const drawer=document.querySelector('[data-cart-drawer], .cart-drawer, #cart-drawer');
+    if(!drawer) return;
+    observing=true;
+    new MutationObserver(() => debouncedRender()).observe(drawer,{childList:true,subtree:true});
+  }
+  document.addEventListener("DOMContentLoaded", observeDrawer);
+  document.addEventListener("shopify:section:load", observeDrawer);
+
+  let t; function debouncedRender(){ clearTimeout(t); t=setTimeout(render,80); }
+
+  async function render(){
+    const root=document.getElementById("cj-bmc");
+    if(!root) return;
+
+    let cart;
+    try{
+      const res=await fetch("/cart.js",{credentials:"same-origin"});
+      cart=await res.json();
+    }catch(e){
+      root.classList.add("cj-bmc--hidden"); return;
+    }
+
+    const qty=Number(cart.item_count||0);
+    const h=root.querySelector(".cj-bmc__headline");
+    if(!h || qty<1){ root.classList.add("cj-bmc--hidden"); return; }
+
+    // Locale + currency
+    let lang="en", locale="en-US";
+    const p=location.pathname||"";
+    if(p.startsWith("/nl")){ lang="nl"; locale="nl-NL"; }
+    else if(p.startsWith("/de")){ lang="de"; locale="de-DE"; }
+
+    const currency=(cart.currency || (window.Shopify&&Shopify.currency&&Shopify.currency.active) || "EUR").toUpperCase();
+    const fmt=new Intl.NumberFormat(locale,{style:"currency",currency,minimumFractionDigits:0,maximumFractionDigits:0});
+    const money=(n)=>fmt.format(n);
+
+    const pill=(txt)=>`<span class="cj-bmc__pill">${txt}</span>`;
+
+    const copy={
+      title:   lang==="nl"?"Bundel Deal:":lang==="de"?"Bundle-Deal:":"Bundle Deal:",
+      add1:    lang==="nl"?"Voeg nog 1 toe →":lang==="de"?"Noch 1 dazu →":"Add 1 more →",
+      save15:  lang==="nl"?`${money(15)} korting`:lang==="de"?`${money(15)} sparen`:`Save ${money(15)}`,
+      save40:  lang==="nl"?`${money(40)} korting`:lang==="de"?`${money(40)} sparen`:`Save ${money(40)}`,
+      done:    lang==="nl"?"Bundel compleet 🎉 →":lang==="de"?"Bundle komplett 🎉 →":"Bundle complete 🎉 →",
+      youSaved:lang==="nl"?`Je hebt ${money(40)} bespaard`:lang==="de"?`Du hast ${money(40)} gespart`:`You saved ${money(40)}`
+    };
+
+    // Logic: 1 → Save €15, 2 → Save €40, 3+ → hide
+    if(qty===1){
+      h.innerHTML = `<span class="cj-bmc__title">${copy.title}</span> <span class="cj-bmc__em">${copy.add1}</span> ${pill(copy.save15)}`;
+      root.classList.remove("cj-bmc--hidden");
+    }else if(qty===2){
+      h.innerHTML = `<span class="cj-bmc__title">${copy.title}</span> <span class="cj-bmc__em">${copy.add1}</span> ${pill(copy.save40)}`;
+      root.classList.remove("cj-bmc--hidden");
+    }else{
+      // Hide when bundle complete; uncomment two lines below if you prefer a completion state
+      root.classList.add("cj-bmc--hidden");
+      // h.innerHTML = `<span class="cj-bmc__title">${copy.done}</span> ${pill(copy.youSaved)}`;
+      // root.classList.remove("cj-bmc--hidden");
+    }
+  }
+
+  debouncedRender();
+})();
+</script>

@@ -1,0 +1,122 @@
+{%- comment -%}
+CURVJEANS — Minimal Inline Cart Timer (Persistent, No Reset on Add/Remove)
+• Counts down to stored deadline in localStorage
+• Survives theme re-renders (Impact)
+• Never resets unless expired or cart becomes empty
+• Works with EN/NL/DE auto-localized label
+{%- endcomment -%}
+
+{%- assign locale = request.locale.iso_code | downcase -%}
+{%- case locale -%}
+  {%- when 'nl' -%}{%- assign timer_label = 'Gereserveerd voor' -%}
+  {%- when 'de' -%}{%- assign timer_label = 'Reserviert für' -%}
+  {%- else -%}{%- assign timer_label = 'Items reserved for' -%}
+{%- endcase -%}
+
+<div class="cj-cart-timer">
+  {{ timer_label }} <span id="cj-timer">10:00</span>
+</div>
+
+<style>
+  .cj-cart-timer {
+    font-size: 12.5px;
+    font-weight: 500;
+    color: #666;
+    opacity: .9;
+    display: flex;
+    align-items: center;
+    line-height: 1;
+    margin-left: 6px;
+    margin-top: 2px;
+  }
+  .cj-cart-timer span {
+    font-weight: 600;
+    margin-left: 3px;
+  }
+</style>
+
+<script>
+(function(){
+
+  const KEY = 'cj_cart_timer_deadline_v1';
+  const DURATION_MS = 10 * 60 * 1000; // 10 minutes
+  const el = document.getElementById('cj-timer');
+  if (!el) return;
+
+  // Prevent multiple intervals stacking when snippet re-renders
+  if (window.__cjCartTimerInterval) {
+    clearInterval(window.__cjCartTimerInterval);
+    window.__cjCartTimerInterval = null;
+  }
+
+  function now(){ return Date.now(); }
+
+  function getDeadline(){
+    const raw = localStorage.getItem(KEY);
+    const t = raw ? parseInt(raw, 10) : NaN;
+    return Number.isFinite(t) ? t : null;
+  }
+
+  function setDeadline(ts){
+    localStorage.setItem(KEY, String(ts));
+  }
+
+  // The deadline should only be created if missing or expired
+  function ensureDeadline(){
+    const existing = getDeadline();
+    if (!existing || existing <= now()) {
+      setDeadline(now() + DURATION_MS);
+    }
+  }
+
+  function format(msLeft){
+    const totalSec = Math.max(0, Math.floor(msLeft/1000));
+    const m = Math.floor(totalSec/60);
+    const s = totalSec % 60;
+    return `${m}:${String(s).padStart(2,'0')}`;
+  }
+
+  function tick(){
+    const deadline = getDeadline();
+
+    if (!deadline){
+      ensureDeadline();
+      return;
+    }
+
+    const msLeft = deadline - now();
+    el.textContent = format(msLeft);
+
+    // Timer expired → freeze at 0:00
+    if (msLeft <= 0){
+      clearInterval(window.__cjCartTimerInterval);
+      window.__cjCartTimerInterval = null;
+      el.textContent = "0:00";
+    }
+  }
+
+  // Initialize and launch the countdown
+  ensureDeadline();
+  tick();
+  window.__cjCartTimerInterval = setInterval(tick, 1000);
+
+  // Fixes display when coming back from backgrounded tab
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') tick();
+  });
+
+  // Optional: if cart becomes empty, reset timer automatically
+  document.addEventListener('cart:updated', e => {
+    try {
+      const items = (e && e.detail && e.detail.items) || [];
+      if (!items || items.length === 0) {
+        localStorage.removeItem(KEY);
+      }
+    } catch(_) {}
+  });
+
+  // Drawer open should NOT reset timer—only refresh the display
+  document.addEventListener('cart-drawer:open', tick, { passive: true });
+
+})();
+</script>

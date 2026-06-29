@@ -1,0 +1,386 @@
+{% comment %}
+===========================================================
+CURVJEANS — FINAL FREE SHAPEWEAR GIFT WIDGET
+- Stable, safe, fully self-contained
+- Claim button works reliably
+- Variant image updates
+- Toast message on success
+- No duplicated listeners, no site crashes
+===========================================================
+{% endcomment %}
+
+{% assign shapewear_handle = "everyday-snatched-shapewear-mid-back" %}
+{% assign shapewear_product = all_products[shapewear_handle] %}
+
+{% assign gift_in_cart = false %}
+{% for item in cart.items %}
+  {% if item.product.handle == shapewear_handle %}
+    {% assign gift_in_cart = true %}
+  {% endif %}
+{% endfor %}
+
+{% assign unlock_threshold = 20000 %}
+{% assign cart_total = cart.total_price %}
+{% assign remaining_amount = unlock_threshold | minus: cart_total %}
+
+{% liquid
+  assign is_nl = false
+  assign is_de = false
+
+  if request.path contains '/nl' or localization.language.iso_code == 'nl'
+    assign is_nl = true
+  elsif request.path contains '/de' or localization.language.iso_code == 'de'
+    assign is_de = true
+  endif
+%}
+
+<style>
+  .cj-gift-wrapper {
+    border: 1px solid #e5e5e5;
+    padding: 6px;
+    border-radius: 12px;
+    background: #ffffff;
+    margin-bottom: 6px;
+  }
+
+  .cj-gift-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .cj-gift-img {
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    object-fit: cover;
+    flex-shrink: 0;
+    gap: 2px;
+  }
+
+  .cj-gift-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .cj-gift-title {
+    font-weight: 600;
+    font-size: 12px;
+    color: #000;
+    margin: 0;
+  }
+
+  .cj-gift-subtitle {
+    font-size: 11px;
+    color: #666;
+    margin: 0;
+  }
+
+  .cj-gift-btn {
+    padding: 8px 8px;
+    border-radius: 8px;
+    background: black;
+    color: white;
+    border: none;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    height: 32px;
+    min-width: 96px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cj-gift-btn-disabled {
+    background: #e5e5e5;
+    color: #999;
+    pointer-events: none;
+  }
+
+  .cj-gift-select {
+    width: 100%;
+    padding: 6px 8px;
+    border-radius: 6px;
+    border: 2px solid #ccc;
+    font-size: 13px;
+    margin-top: 2px;
+  }
+
+  /* Success toast */
+  #cj-toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 99999999;
+    background: #000;
+    color: #fff;
+    padding: 12px 18px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all .35s ease;
+    pointer-events: none;
+  }
+  #cj-toast.cj-toast-show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Desktop Enhancements */
+@media (min-width: 768px) {
+  .cj-gift-wrapper {
+    padding: 12px 14px;
+    margin-bottom: 0px;
+    border-radius: 14px;
+  }
+
+  .cj-gift-row {
+    gap: 14px;
+  }
+
+  .cj-gift-img {
+    width: 50px;
+    height: 50px;
+    gap: 6px;
+  }
+
+  .cj-gift-title {
+    font-size: 14px;
+  }
+
+  .cj-gift-subtitle {
+    font-size: 12px;
+  }
+
+  .cj-gift-btn {
+    height: 38px;
+    padding: 0 20px;
+    font-size: 13px;
+    min-width: 110px;
+  }
+
+  .cj-gift-select {
+    font-size: 13px !important;
+    padding: 6px 8px !important;
+    margin-top: 0px;
+  }
+}
+
+</style>
+
+<div class="cj-gift-wrapper">
+
+  {% if gift_in_cart %}
+
+  <!-- Gift already added -->
+  <div class="cj-gift-row">
+
+    <!-- Replace product image with checkmark -->
+    <img 
+      src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/checkmark.svg?v=1726653017"
+      class="cj-gift-img"
+      style="object-fit:contain; background:#f5f5f5; padding:8px; border-radius:6px;"
+    >
+
+    <div class="cj-gift-info">
+      <div class="cj-gift-title" style="display:flex; align-items:center; gap:4px;">
+        {% if is_nl %}
+          Gratis shapewear toegevoegd aan je winkelwagen 🎉
+        {% elsif is_de %}
+          Gratis shapewear wurde deinem Warenkorb hinzugefügt 🎉
+        {% else %}
+          Free shapewear added to your cart 🎉
+        {% endif %}
+      </div>
+    </div>
+
+  </div>
+
+{% elsif cart_total < unlock_threshold %}
+  <!-- Not eligible yet -->
+  {% assign remaining_clean = remaining_amount | divided_by: 100.0 | round | times: 100 %}
+
+  <div class="cj-gift-row">
+    <img src="{{ shapewear_product.featured_image | img_url: '120x' }}" class="cj-gift-img">
+    
+    <div class="cj-gift-info">
+      <div class="cj-gift-title">Everyday Confidence Shapewear</div>
+
+      <div class="cj-gift-subtitle">
+        {% if is_nl %}
+          Besteed {{ remaining_clean | money_without_trailing_zeros }} meer en ontvang GRATIS!
+        {% elsif is_de %}
+          Gib {{ remaining_clean | money_without_trailing_zeros }} mehr aus und erhalte GRATIS!
+        {% else %}
+          Spend {{ remaining_clean | money_without_trailing_zeros }} more to receive for FREE!
+        {% endif %}
+      </div>
+    </div>
+
+    <button class="cj-gift-btn cj-gift-btn-disabled">Claim</button>
+  </div>
+
+
+  {% else %}
+  <!-- Eligible (show selector + claim button) -->
+  <div class="cj-gift-row" style="align-items:center;">
+
+    <!-- Product Image -->
+    <img src="{{ shapewear_product.featured_image | img_url: '120x' }}" class="cj-gift-img">
+
+    <!-- Main Info Column -->
+    <div class="cj-gift-info" 
+         style="flex:1; display:flex; flex-direction:column; gap:0px; max-width:170px;">
+
+      <!-- CLEAN one-line title -->
+      <div class="cj-gift-title" style="white-space:nowrap;">
+        Free Shapewear Unlocked!
+      </div>
+
+      <!-- Smaller selector directly under title with tighter spacing -->
+      <select id="cj-gift-variant-select" class="cj-gift-select"
+              style="width:160px; padding:4px 4px; font-size:13px;">
+        {% for v in shapewear_product.variants %}
+          <option value="{{ v.id }}">{{ v.title }}</option>
+        {% endfor %}
+      </select>
+
+    </div>
+
+    <!-- Claim Button (centered) -->
+    <button id="cj-add-gift-btn" class="cj-gift-btn"
+            style="align-self:center; margin-left:auto;">
+      Claim
+    </button>
+
+  </div>
+  {% endif %}
+</div>
+
+
+<!-- VARIANT IMAGE MAP -->
+<script>
+  window.shapewearVariants = {
+    {% for v in shapewear_product.variants %}
+      "{{ v.id }}": "{{ v.featured_image.src | img_url: '120x' }}"{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  };
+</script>
+
+<script>
+/* ======================================================
+   CURVJEANS — IMPACT SAFE FREE GIFT SCRIPT
+   - No page reload
+   - Drawer stays open
+   - Rebuilds ONLY the drawer contents
+====================================================== */
+
+if (!window.cjGiftDelegated) {
+  window.cjGiftDelegated = true;
+
+  /* Variant image changer */
+  document.addEventListener('change', function(event) {
+    const selectEl = event.target;
+    if (!selectEl || selectEl.id !== 'cj-gift-variant-select') return;
+
+    const wrapper = selectEl.closest('.cj-gift-wrapper');
+    if (!wrapper) return;
+
+    const imgEl = wrapper.querySelector('.cj-gift-img');
+    if (!imgEl) return;
+
+    const newImg = window.shapewearVariants?.[selectEl.value];
+    if (newImg) imgEl.src = newImg;
+  });
+
+  /* CLAIM BUTTON */
+  document.addEventListener('click', function(event) {
+    const btn = event.target.closest('#cj-add-gift-btn');
+    if (!btn) return;
+
+    const wrapper = btn.closest('.cj-gift-wrapper');
+    const selectEl = wrapper.querySelector('#cj-gift-variant-select');
+    const toast = document.getElementById('cj-toast');
+
+    const variantId = selectEl.value;
+
+    btn.disabled = true;
+    btn.style.opacity = "0.6";
+    btn.innerText = "Adding...";
+
+    fetch('/cart/add.js', {
+      method: 'POST',
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        id: variantId,
+        quantity: 1,
+        properties: { "_free_gift": "true" }
+      })
+    })
+    .then(res => {
+      if (!res.ok) throw new Error("Failed to add");
+      return res.json();
+    })
+    .then(() => {
+
+      /* ---- Refresh ONLY the cart drawer ---- */
+
+      /* ---- Refresh ONLY the line items inside the drawer ---- */
+
+      fetch('/cart?view=drawer')
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(html, 'text/html');
+
+          /* Replace the line items only */
+          const newItems = doc.querySelector('.cart-drawer__line-items');
+          const currentItems = document.querySelector('.cart-drawer__line-items');
+
+          if (newItems && currentItems) {
+            currentItems.innerHTML = newItems.innerHTML;
+          }
+
+        /* Replace totals area */
+const newTotals = doc.querySelector('.cart-drawer__footer');
+const currentTotals = document.querySelector('.cart-drawer__footer');
+
+if (newTotals && currentTotals) {
+  currentTotals.innerHTML = newTotals.innerHTML;
+}
+
+/* 🔥 IMPORTANT: Tell Impact theme to recompute ALL cart blocks, including yours */
+document.dispatchEvent(new CustomEvent("cart:refresh"));
+
+
+          /* Keep drawer open */
+          const drawer = document.querySelector('#cart-drawer');
+          if (drawer) drawer.classList.add('is-open');
+
+          /* Re-init listeners */
+          setTimeout(() => {
+            document.dispatchEvent(new Event('DOMContentLoaded'));
+          }, 50);
+
+          /* Toast */
+          if (toast) {
+            toast.classList.add('cj-toast-show');
+            setTimeout(() => toast.classList.remove('cj-toast-show'), 2500);
+          }
+        });
+
+    })
+    .catch(() => {
+      btn.disabled = false;
+      btn.style.opacity = "1";
+      btn.innerText = "Claim";
+    });
+  });
+}
+</script>

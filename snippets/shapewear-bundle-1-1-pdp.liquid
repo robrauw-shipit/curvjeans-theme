@@ -1,0 +1,87 @@
+<div class="shapewear-1-1-bundle">
+
+  <!-- HEADER -->
+  <div class="cj-bundle-header">
+    <img 
+      src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/642916-200.png?v=1764585153"
+      alt="Gift icon"
+      class="cj-bundle-icon"
+    >
+    <div class="cj-bundle-title">
+      {% if request.path contains '/nl' %}
+        1 Kopen, 1 Gratis
+      {% elsif request.path contains '/de' %}
+        1 Kaufen, 1 Gratis
+      {% else %}
+        Buy 1, Get 1 Free
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- DESCRIPTION -->
+  <div class="cj-bundle-lines">
+
+    {% if request.path contains '/nl' %}
+      Voeg minimaal 2 bodysuits toe aan je winkelwagen en 1 is helemaal gratis. Your everyday smoothing essentials, doubled.
+      <div class="cj-bundle-subline">Mix & Match — korting automatisch toegepast</div>
+
+    {% elsif request.path contains '/de' %}
+      Lege mindestens 2 Bodysuits in den Warenkorb und erhalten Sie einen davon gratis.
+      <div class="cj-bundle-subline">Mix & Match — Rabatt wird automatisch angewendet</div>
+
+    {% else %}
+      Add any 2 bodysuits to your cart — the second one is free. Your everyday smoothing essentials, doubled.
+      <div class="cj-bundle-subline">Mix & Match — automatic discount</div>
+
+    {% endif %}
+
+  </div>
+
+</div>
+
+<style>
+  .shapewear-1-1-bundle {
+    background: #F5F5F5;
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin: 10px 0;
+  }
+
+  .cj-bundle-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 4px;
+  }
+
+  .cj-bundle-icon {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  .cj-bundle-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #111;
+  }
+
+  .cj-bundle-lines {
+    font-size: 13.5px;
+    color: #111;
+    line-height: 1.3;
+  }
+
+  .cj-bundle-subline {
+    margin-top: 3px;
+    font-size: 11.5px;
+    color: #777; /* grey text */
+  }
+
+  @media (max-width: 600px) {
+    .cj-bundle-title { font-size: 13.5px; }
+    .cj-bundle-lines { font-size: 13px; }
+    .cj-bundle-icon { width: 16px; height: 16px; }
+  }
+</style>

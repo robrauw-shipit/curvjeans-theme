@@ -1,0 +1,134 @@
+{%- comment -%}
+CURVJEANS — Minimal USP Icons Snippet
+• Mobile: 2x2 grid (no borders)
+• Desktop: horizontal row with subtle dividers
+• Original CDN icons
+• Locale-aware labels (EN/NL/DE)
+{%- endcomment -%}
+
+{%- liquid
+assign _lc = request.locale.iso_code | downcase
+
+case _lc
+  when 'nl'
+    assign _l1 = 'Geen waist gap'
+    assign _l2 = 'Omarmt je curves'
+    assign _l3 = 'Voelt als leggings'
+    assign _l4 = 'Verliest nooit vorm'
+  when 'de'
+    assign _l1 = 'Zero Waist Gap'
+    assign _l2 = 'Betont Kurven'
+    assign _l3 = 'Fühlt sich an wie Leggings'
+    assign _l4 = 'Verliert nie die Form'
+  else
+    assign _l1 = 'No Waist Gap'
+    assign _l2 = 'Hugs Your Curves'
+    assign _l3 = 'Feels Like Leggings'
+    assign _l4 = 'Never Loses Shape'
+endcase
+-%}
+
+<style>
+  .cj-usp-min {
+    background:#fff;
+    border-top:1px solid #eee;
+    border-bottom:1px solid #eee;
+    padding:16px 0;
+  }
+
+  .cj-usp-grid {
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    max-width:800px;
+    margin:0 auto;
+    gap:16px 8px;
+    text-align:center;
+  }
+
+  @media (min-width: 768px) {
+    .cj-usp-grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+  }
+
+  .cj-usp-item {
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    padding:8px 0;
+  }
+
+  @media (min-width: 768px) {
+    .cj-usp-item {
+      flex-direction:row;
+      gap:8px;
+      justify-content:center;
+      border-right:1px solid #eee;
+      padding:8px 12px;
+    }
+    .cj-usp-item:last-child {
+      border-right:none;
+    }
+  }
+
+  .cj-usp-icon {
+    width:28px;
+    height:28px;
+    object-fit:contain;
+  }
+
+  @media (min-width: 768px) {
+    .cj-usp-icon {
+      width:26px;
+      height:26px;
+    }
+  }
+
+  .cj-label {
+    font-size:12px;
+    line-height:1.2;
+    color:#444;
+    letter-spacing:0;
+  }
+
+  @media (min-width: 768px) {
+    .cj-label {
+      font-size:13px;
+    }
+  }
+</style>
+
+<section class="cj-usp-min" aria-label="Product benefits">
+  <div class="cj-usp-grid">
+    <div class="cj-usp-item">
+      <img class="cj-usp-icon"
+           src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/waistfit-1.png?v=1752650878"
+           alt="{{ _l1 }}">
+      <span class="cj-label">{{ _l1 }}</span>
+    </div>
+
+    <div class="cj-usp-item">
+      <img class="cj-usp-icon"
+           src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/perfectbutt-5.png?v=1752650877"
+           alt="{{ _l2 }}">
+      <span class="cj-label">{{ _l2 }}</span>
+    </div>
+
+    <div class="cj-usp-item">
+      <img class="cj-usp-icon"
+           src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/stretchy-3.png?v=1752650879"
+           alt="{{ _l3 }}">
+      <span class="cj-label">{{ _l3 }}</span>
+    </div>
+
+    <div class="cj-usp-item">
+      <img class="cj-usp-icon"
+           src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/lovesyourcurves-6.png?v=1752650878"
+           alt="{{ _l4 }}">
+      <span class="cj-label">{{ _l4 }}</span>
+    </div>
+  </div>
+</section>

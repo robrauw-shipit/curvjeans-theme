@@ -1,0 +1,98 @@
+{%- comment -%}
+CURVJEANS — “Why we exist” Section (Shapewear version)
+Mobile: image on top
+Desktop: image left, text right
+Inline EN / NL / DE translations; resilient to Theme Editor reloads
+{%- endcomment -%}
+
+<section id="curv-why-exist" class="curv-why">
+  <div class="curv-why__wrap">
+    <div class="curv-why__media">
+      <img src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/Frame_23_1.jpg?v=1764955152"
+           alt="CURVJEANS - made for your shape"
+           loading="lazy"
+           decoding="async"
+           width="1200"
+           height="1500" />
+    </div>
+
+    <div class="curv-why__content">
+      <h2 class="curv-why__title">It was never your body</h2>
+
+      <p class="curv-why__p">It was the shapewear. Too tight. Too stiff. Pieces that squeezed, rolled down, and made you feel like you had to fix something about yourself.</p>
+      <p class="curv-why__p">We’ve been there, standing in front of the mirror, pulling and adjusting, wishing it felt as good as it looked. That quiet moment where discomfort starts to feel personal.</p>
+      <p class="curv-why__p">That’s why CURVJEANS shapewear exists. To change the story. To give your curves the soft, sculpting support they deserve without digging, rolling or shame.</p>
+      <p class="curv-why__p">Shapewear that’s smooth, breathable, and made to move with you. Luxe enough to wear on its own, seamless under your favorite jeans.</p>
+      <p class="curv-why__p"><strong>Because the right fit doesn’t shrink you — it lets you show up fully as you are.</strong></p>
+    </div>
+  </div>
+</section>
+
+<style>
+  #curv-why-exist { display:block !important; visibility:visible !important; }
+  #curv-why-exist[hidden] { display:block !important; }
+
+  .curv-why{ background:#F9F9F9; padding:40px 0; }
+  .curv-why__wrap{
+    max-width:1200px; margin:0 auto; padding:0 16px;
+    display:grid; grid-template-columns:1fr; gap:24px; align-items:center;
+  }
+  .curv-why__media img{ width:100%; height:auto; display:block; border-radius:16px; }
+  .curv-why__content{ text-align:left; }
+  .curv-why__title{ font-size:32px; line-height:1.15; font-weight:800; margin:0 0 16px; color:#111; }
+  .curv-why__p{ margin:0 0 14px; color:#222; font-size:15px; line-height:1.55; }
+
+  @media (min-width: 992px){
+    .curv-why{ padding:60px 0; }
+    .curv-why__wrap{ grid-template-columns:minmax(0,560px) minmax(0,1fr); gap:48px; }
+    .curv-why__title{ font-size:42px; margin-bottom:20px; }
+    .curv-why__p{ font-size:16px; margin-bottom:16px; }
+  }
+</style>
+
+<script>
+  (function(){
+    function localizeWhyExist(root){
+      var container = root || document;
+      var path = location.pathname || "";
+      var isNL = path.includes('/nl');
+      var isDE = path.includes('/de');
+
+      var title   = container.querySelector('#curv-why-exist .curv-why__title');
+      var paras   = container.querySelectorAll('#curv-why-exist .curv-why__p');
+      var section = container.querySelector('#curv-why-exist');
+
+      if(section){
+        section.removeAttribute('hidden');
+        section.style.display = 'block';
+        section.style.visibility = 'visible';
+      }
+
+      if(isNL){
+        if(title) title.textContent = 'Het lag nooit aan je lichaam';
+        if(paras.length >= 5){
+          paras[0].textContent = 'Het lag aan de shapewear. Te strak. Te stijf. Stukken die knelden, oprolden en je het gevoel gaven dat jíj iets moest veranderen.';
+          paras[1].textContent = 'We kennen dat moment — voor de spiegel staan, trekken en aanpassen, hopend dat het net zo goed zou voelen als het eruitziet.';
+          paras[2].textContent = 'Daarom bestaat CURVJEANS shapewear. Om dat verhaal te veranderen. Om je curves zachte, ondersteunende shaping te geven — zonder knellen, zonder oprollen, zonder schaamte.';
+          paras[3].textContent = 'Shapewear die glad en ademend is, en met je meebeweegt. Luxe genoeg om alleen te dragen, naadloos onder je favoriete jeans.';
+          paras[4].textContent = 'De juiste fit laat je niet verdwijnen — ze laat je volledig jezelf zijn.';
+        }
+      }
+
+      if(isDE){
+        if(title) title.textContent = 'Es lag nie an deinem Körper';
+        if(paras.length >= 5){
+          paras[0].textContent = 'Es lag an der Shapewear. Zu eng. Zu steif. Teile, die einschnüren, herunterrollen und dich glauben lassen, du müsstest dich ändern.';
+          paras[1].textContent = 'Wir kennen diesen Moment — vor dem Spiegel, zupfend und zurechtrückend, in der Hoffnung, dass es sich so gut anfühlt, wie es aussieht.';
+          paras[2].textContent = 'Deshalb gibt es CURVJEANS Shapewear. Um die Geschichte zu verändern. Um deinen Kurven weiche, stützende Form zu geben — ohne Einschneiden, ohne Herunterrollen, ohne Scham.';
+          paras[3].textContent = 'Shapewear, die glatt, atmungsaktiv und bewegungsfreundlich ist. Luxuriös genug, um sie solo zu tragen, nahtlos unter deiner Lieblingsjeans.';
+          paras[4].textContent = 'Die richtige Passform lässt dich nicht kleiner erscheinen — sie lässt dich ganz du selbst sein.';
+        }
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function(){ localizeWhyExist(document); });
+    document.addEventListener('shopify:section:load', function(e){ localizeWhyExist(e.target); });
+    document.addEventListener('shopify:section:select', function(e){ localizeWhyExist(e.target); });
+  })();
+</script>

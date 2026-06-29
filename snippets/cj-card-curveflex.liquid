@@ -1,0 +1,138 @@
+{%- comment -%}
+CURVJEANS — Product Card CurveFlex Line (metaobject-aware)
+Shows a grey uppercase line under the product title on collection cards.
+
+Primary source:
+  product.metafields.custom.stretch_level  (Metaobject: "Clothing features", single entry)
+  We try common fields on the metaobject in this order:
+    label → level → name → title → value → handle → key → slug
+
+Fallbacks:
+  1) product.metafields.descriptors.curveflex_type (string) — optional legacy
+  2) product.tags / product.title (as last resort)
+
+Outputs one of:
+  CURVEFLEX™ 360° | CURVEFLEX™ COMFORT | CURVEFLEX™ SCULPT | CURVEFLEX™ PREMIUM | CURVEFLEX™
+
+Examples that will map correctly:
+  "Comfort", "CurveFlex Comfort Denim", "360", "360°", "4-way", "four way", "360 denim", etc.
+{%- endcomment -%}
+
+{%- assign _lc = localization.language.iso_code | default: shop.locale | default: 'EN' | upcase -%}
+
+{%- comment %} 1) Try metaobject value first {% endcomment -%}
+{%- assign cf_raw = '' -%}
+{%- assign mo_ref = product.metafields.custom.stretch_level -%}
+{%- if mo_ref -%}
+  {%- assign mo_val = mo_ref.value -%}
+  {%- if mo_val and mo_val != blank -%}
+    {%- assign cf_raw = mo_val.label
+      | default: mo_val.level
+      | default: mo_val.name
+      | default: mo_val.title
+      | default: mo_val.value
+      | default: mo_val.handle
+      | default: mo_val.key
+      | default: mo_val.slug
+      | default: '' -%}
+  {%- endif -%}
+{%- endif -%}
+
+{%- comment %} 2) Legacy string metafield (optional) {% endcomment -%}
+{%- if cf_raw == '' -%}
+  {%- assign cf_raw = product.metafields.descriptors.curveflex_type | default: '' -%}
+{%- endif -%}
+
+{%- comment %} 3) If still blank, infer from tags/title {% endcomment -%}
+{%- assign cf_norm = cf_raw | downcase | strip -%}
+{%- if cf_norm == '' -%}
+  {%- assign cf_norm = product.tags | join: ' ' | downcase -%}
+{%- endif -%}
+{%- if cf_norm == '' -%}
+  {%- assign cf_norm = product.title | downcase -%}
+{%- endif -%}
+
+{%- comment %} 4) Normalize and map to a key {% endcomment -%}
+{%- assign cf_norm = cf_norm
+  | replace: '™',''
+  | replace: '°',''
+  | replace: 'curveflex',''
+  | replace: 'denim',''
+  | replace: 'stretch',''
+  | replace: 'layer',''
+  | replace: '-',' '
+  | replace: '_',' '
+  | replace: '  ',' '
+  | strip -%}
+
+{%- assign cf_key = 'plain' -%}
+{%- if cf_norm contains 'comfort' -%}
+  {%- assign cf_key = 'comfort' -%}
+{%- elsif cf_norm contains '360' or cf_norm contains 'four way' or cf_norm contains '4 way' or cf_norm contains '4-way' -%}
+  {%- assign cf_key = '360' -%}
+{%- elsif cf_norm contains 'sculpt' 
+    or cf_norm contains 'curveflex' 
+    or cf_norm contains 'seamless' 
+    or cf_norm contains 'confidence' 
+    or cf_norm contains 'luxe' -%}
+  {%- assign cf_key = 'sculpt' -%}
+{%- elsif cf_norm contains 'premium' -%}
+  {%- assign cf_key = 'premium' -%}
+{%- endif -%}
+
+{%- comment %} 5) Localized labels {% endcomment -%}
+{%- case _lc -%}
+  {%- when 'NL' -%}
+    {%- assign lbl_plain = 'CURVEFLEX™' -%}
+    {%- assign lbl_360   = 'CURVEFLEX™ 360°' -%}
+    {%- assign lbl_conf  = 'CURVEFLEX™ COMFORT' -%}
+    {%- assign lbl_sculp = 'CURVEFLEX™ SCULPT' -%}
+    {%- assign lbl_prem  = 'CURVEFLEX™ PREMIUM' -%}
+  {%- when 'DE' -%}
+    {%- assign lbl_plain = 'CURVEFLEX™' -%}
+    {%- assign lbl_360   = 'CURVEFLEX™ 360°' -%}
+    {%- assign lbl_conf  = 'CURVEFLEX™ COMFORT' -%}
+    {%- assign lbl_sculp = 'CURVEFLEX™ SCULPT' -%}
+    {%- assign lbl_prem  = 'CURVEFLEX™ PREMIUM' -%}
+  {%- else -%}
+    {%- assign lbl_plain = 'CURVEFLEX™' -%}
+    {%- assign lbl_360   = 'CURVEFLEX™ 360°' -%}
+    {%- assign lbl_conf  = 'CURVEFLEX™ COMFORT' -%}
+    {%- assign lbl_sculp = 'CURVEFLEX™ SCULPT' -%}
+    {%- assign lbl_prem  = 'CURVEFLEX™ PREMIUM' -%}
+{%- endcase -%}
+
+{%- assign cf_label = lbl_plain -%}
+{%- if cf_key == 'comfort' -%}{%- assign cf_label = lbl_conf -%}
+{%- elsif cf_key == '360' -%}{%- assign cf_label = lbl_360 -%}
+{%- elsif cf_key == 'sculpt' -%}{%- assign cf_label = lbl_sculp -%}
+{%- elsif cf_key == 'premium' -%}{%- assign cf_label = lbl_prem -%}
+{%- endif -%}
+
+<div class="cj-card-cf">
+  <span class="cj-card-cf__label">{{ cf_label }}</span>
+</div>
+
+<style>
+  .product-card .cj-card-cf__label,
+  .grid-product .cj-card-cf__label,
+  .cj-card-cf__label{
+    display:block;
+    margin:6px 0 2px;
+    font-size:10px;         /* mobile default */
+    line-height:1.2;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    color:#7a7a7a;          /* PDP-like grey */
+    font-weight:400;        /* lighter */
+  }
+
+  @media (min-width: 992px){
+    .product-card .cj-card-cf__label,
+    .grid-product .cj-card-cf__label,
+    .cj-card-cf__label{
+      font-size:12px;       /* bump on desktop */
+    }
+  }
+</style>
+

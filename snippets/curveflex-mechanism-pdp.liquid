@@ -1,0 +1,210 @@
+{% if product %}
+{%- comment -%}
+CURVJEANS — CurveFlex mechanism PDP block
+Snippet: curveflex-mechanism-pdp.liquid
+{%- endcomment -%}
+
+{%- assign path = request.path | downcase -%}
+{%- assign locale_code = localization.language.iso_code | default: shop.locale | default: 'en' | downcase -%}
+
+{%- assign cj_lang = 'en' -%}
+{%- if path contains '/nl' or locale_code contains 'nl' -%}
+  {%- assign cj_lang = 'nl' -%}
+{%- elsif path contains '/de' or locale_code contains 'de' -%}
+  {%- assign cj_lang = 'de' -%}
+{%- endif -%}
+
+{%- case cj_lang -%}
+  {%- when 'nl' -%}
+    {%- assign cj_label = 'CurveFlex&trade; Denim' -%}
+    {%- assign cj_copy = 'Onze zachte, vormvaste stretch denim is ontworpen voor vrouwen met een smallere taille en vollere heupen of bovenbenen. De jeans sluit mooi aan in de taille, geeft ruimte waar normale jeans vaak knellen, en lift de achterkant.' -%}
+    {%- assign cj_bullet_1 = 'Past bij een smallere taille en vollere heupen, zonder waist gap' -%}
+    {%- assign cj_bullet_2 = 'Lift en vormt de achterkant zonder plat te maken' -%}
+    {%- assign cj_bullet_3 = 'Ruimte bij de heupen en bovenbenen, zonder te knellen' -%}
+    {%- assign cj_rigid = 'Stug' -%}
+    {%- assign cj_stretch = '100% stretch' -%}
+
+  {%- when 'de' -%}
+    {%- assign cj_label = 'CurveFlex&trade; Denim' -%}
+    {%- assign cj_copy = 'Unser weicher, formbeständiger Stretch-Denim wurde für Frauen mit schmalerer Taille und volleren Hüften oder Oberschenkeln entwickelt. Er schmiegt sich an die Taille, gibt dort Raum, wo normale Jeans oft einengen, und hebt die Rückseite.' -%}
+    {%- assign cj_bullet_1 = 'Passt bei schmalerer Taille und volleren Hüften, ohne waist gap' -%}
+    {%- assign cj_bullet_2 = 'Hebt und formt die Rückseite, ohne flach zu drücken' -%}
+    {%- assign cj_bullet_3 = 'Mehr Raum an Hüften und Oberschenkeln, ohne einzuengen' -%}
+    {%- assign cj_rigid = 'Starr' -%}
+    {%- assign cj_stretch = '100% Stretch' -%}
+
+  {%- else -%}
+    {%- assign cj_label = 'CurveFlex&trade; Denim' -%}
+    {%- assign cj_copy = 'Our soft shape-holding stretch denim is designed for women with a smaller waist and fuller hips or thighs. It hugs your waist, gives room where regular jeans usually squeeze, and lifts the back.' -%}
+    {%- assign cj_bullet_1 = 'Fits a smaller waist and fuller hips without the waistband gap' -%}
+    {%- assign cj_bullet_2 = 'Lifts and shapes the back without flattening' -%}
+    {%- assign cj_bullet_3 = 'Room through the hips and thighs without squeezing' -%}
+    {%- assign cj_rigid = 'Rigid' -%}
+    {%- assign cj_stretch = '100% stretch' -%}
+{%- endcase -%}
+
+<style>
+  .cj-curveflex-pdp{
+    color:#000;
+    margin:0;
+    padding:16px 0;
+  }
+
+  .cj-curveflex-video{
+    width:100%;
+    margin:0 0 14px;
+    background:#F7EFE5;
+    overflow:hidden;
+  }
+
+  .cj-curveflex-video video{
+    display:block;
+    width:100%;
+    height:auto;
+    aspect-ratio:9 / 16;
+    object-fit:cover;
+  }
+
+  .cj-curveflex-label{
+    display:inline-block;
+    margin:0 0 12px;
+    padding:5px 9px;
+    background:#000000;
+    color:#fff;
+    font-size:13px;
+    line-height:1.2;
+    font-weight:700;
+  }
+
+  .cj-curveflex-copy{
+    font-size:14px;
+    line-height:1.45;
+    margin:0 0 14px;
+    color:#111;
+  }
+
+  .cj-curveflex-list{
+    display:grid;
+    gap:9px;
+    margin:0 0 16px;
+    padding:0;
+    list-style:none;
+  }
+
+  .cj-curveflex-list li{
+    display:flex;
+    gap:8px;
+    align-items:flex-start;
+    font-size:14px;
+    line-height:1.35;
+    color:#111;
+  }
+
+  .cj-curveflex-check{
+    width:15px;
+    height:15px;
+    flex:0 0 15px;
+    margin-top:1px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .cj-curveflex-check img{
+    width:15px;
+    height:15px;
+    display:block;
+  }
+
+  .cj-stretch-meter{
+    margin:0;
+  }
+
+  .cj-stretch-meter__labels{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:8px;
+    font-size:12px;
+    line-height:1;
+    color:#555;
+  }
+
+  .cj-stretch-meter__track{
+    position:relative;
+    height:2px;
+    background:#d9d9d9;
+  }
+
+  .cj-stretch-meter__fill{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:2px;
+    background:#111;
+  }
+
+  .cj-stretch-meter__dot{
+    position:absolute;
+    top:50%;
+    right:0;
+    width:12px;
+    height:12px;
+    border-radius:999px;
+    background:#111;
+    transform:translate(0,-50%);
+  }
+</style>
+
+<section class="cj-curveflex-pdp" aria-label="CurveFlex denim details">
+  <div class="cj-curveflex-video">
+    <video
+      src="https://cdn.shopify.com/videos/c/o/v/314826d5394d47ccad4e555fc3df801e.mp4"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="metadata">
+    </video>
+  </div>
+
+  <div class="cj-curveflex-label">{{ cj_label }}</div>
+
+  <p class="cj-curveflex-copy">
+    {{ cj_copy }}
+  </p>
+
+  <ul class="cj-curveflex-list">
+    <li>
+      <span class="cj-curveflex-check">
+        <img src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/checkmark.svg?v=1726653017" alt="">
+      </span>
+      <span>{{ cj_bullet_1 }}</span>
+    </li>
+    <li>
+      <span class="cj-curveflex-check">
+        <img src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/checkmark.svg?v=1726653017" alt="">
+      </span>
+      <span>{{ cj_bullet_2 }}</span>
+    </li>
+    <li>
+      <span class="cj-curveflex-check">
+        <img src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/checkmark.svg?v=1726653017" alt="">
+      </span>
+      <span>{{ cj_bullet_3 }}</span>
+    </li>
+  </ul>
+
+  <div class="cj-stretch-meter" aria-label="CurveFlex stretch level">
+    <div class="cj-stretch-meter__labels">
+      <span>{{ cj_rigid }}</span>
+      <span>{{ cj_stretch }}</span>
+    </div>
+    <div class="cj-stretch-meter__track">
+      <span class="cj-stretch-meter__fill"></span>
+      <span class="cj-stretch-meter__dot"></span>
+    </div>
+  </div>
+</section>
+{% endif %}

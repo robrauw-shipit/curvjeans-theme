@@ -1,0 +1,265 @@
+{%- comment -%}
+----------------------------------------------------------------------------------------------------------------------
+PRODUCT PRICE
+----------------------------------------------------------------------------------------------------------------------
+
+Supports:
+- Shopify compare-at pricing
+- custom.display_compare_price
+- custom.sale_enabled
+- custom.sale_percentage
+
+US:
+- custom.us_sale_enabled
+- custom.us_sale_display_amount
+----------------------------------------------------------------------------------------------------------------------
+{%- endcomment -%}
+
+{%- liquid
+  case size
+    when 'lg'
+      assign regular_price_classes = 'text-lg'
+      assign on_sale_price_classes = 'text-lg text-on-sale'
+      assign compare_at_price_classes = 'text-subdued line-through'
+      assign unit_price_classes = 'text-subdued'
+
+    when 'sm'
+      assign regular_price_classes = 'text-subdued text-sm'
+      assign on_sale_price_classes = 'text-on-sale text-sm'
+      assign compare_at_price_classes = 'text-subdued text-sm line-through'
+      assign unit_price_classes = 'text-subdued text-sm'
+
+    else
+      assign regular_price_classes = 'text-subdued'
+      assign on_sale_price_classes = 'text-on-sale'
+      assign compare_at_price_classes = 'text-subdued line-through'
+      assign unit_price_classes = 'text-subdued text-sm'
+  endcase
+-%}
+
+{%- assign p = product | default: variant.product | default: line_item.product -%}
+{%- assign customer_country = localization.country.iso_code | default: '' | upcase -%}
+
+{%- assign sale_enabled = false -%}
+{%- assign sale_percentage = 0 -%}
+{%- assign us_sale_enabled = false -%}
+{%- assign us_sale_amount = 0 -%}
+
+{%- if customer_country == 'US' and p and p.metafields.custom.us_sale_enabled.value == true -%}
+  {%- assign us_sale_enabled = true -%}
+  {%- assign us_sale_amount = p.metafields.custom.us_sale_display_amount.value | default: 0 | plus: 0 | times: 100 -%}
+{%- elsif customer_country != 'US' and p and p.metafields.custom.sale_enabled.value == true -%}
+  {%- assign sale_enabled = true -%}
+  {%- assign sale_percentage = p.metafields.custom.sale_percentage.value | default: 0 | plus: 0 -%}
+{%- endif -%}
+
+{%- assign sale_multiplier = 100 | minus: sale_percentage -%}
+
+{%- assign suppress_display_compare = false -%}
+{%- if p and p.tags contains 'no-display-compare' -%}
+  {%- assign suppress_display_compare = true -%}
+{%- endif -%}
+
+{%- assign display_compare_price = 0 -%}
+{%- if p and suppress_display_compare == false and p.metafields.custom.display_compare_price.value != blank -%}
+  {%- assign display_compare_price = p.metafields.custom.display_compare_price.value | plus: 0 -%}
+{%- endif -%}
+
+<price-list class="price-list {% if size == 'lg' %}price-list--lg{% endif %} {% if text_alignment == 'center' or alignment == 'center' %}justify-center{% endif %}">
+
+  {%- if variant != blank -%}
+
+    {%- assign real_price = variant.price | plus: 0 -%}
+    {%- assign current_price = real_price -%}
+    {%- assign compare_price = 0 -%}
+
+    {%- if us_sale_enabled and us_sale_amount > 0 -%}
+      {%- assign current_price = real_price | minus: us_sale_amount -%}
+      {%- assign compare_price = real_price -%}
+
+    {%- elsif sale_enabled and sale_percentage > 0 -%}
+      {%- assign current_price = real_price | times: sale_multiplier | divided_by: 100 -%}
+      {%- assign compare_price = real_price -%}
+
+    {%- elsif variant.compare_at_price and variant.compare_at_price > real_price -%}
+      {%- assign compare_price = variant.compare_at_price | plus: 0 -%}
+
+    {%- elsif display_compare_price > real_price -%}
+      {%- assign compare_price = display_compare_price -%}
+    {%- endif -%}
+
+    <sale-price class="{% if compare_price > current_price %}{{ on_sale_price_classes }}{% else %}{{ regular_price_classes }}{% endif %}">
+      <span class="sr-only">{{ 'product.price.sale_price' | t }}</span>
+      {%- if settings.currency_code_enabled -%}
+        {{- current_price | money_with_currency -}}
+      {%- else -%}
+        {{- current_price | money -}}
+      {%- endif -%}
+    </sale-price>
+
+    {%- if compare_price > current_price -%}
+      <compare-at-price class="{{ compare_at_price_classes }}">
+        <span class="sr-only">{{ 'product.price.regular_price' | t }}</span>
+        {%- if settings.currency_code_enabled -%}
+          {{- compare_price | money_with_currency -}}
+        {%- else -%}
+          {{- compare_price | money -}}
+        {%- endif -%}
+      </compare-at-price>
+    {%- endif -%}
+
+  {%- elsif line_item != blank -%}
+
+    {%- assign li_variant = line_item.variant -%}
+    {%- assign current_line_price = line_item.final_line_price | plus: 0 -%}
+    {%- assign compare_line_price = 0 -%}
+
+    {%- assign has_cart_discount = false -%}
+    {%- if line_item.original_line_price > line_item.final_line_price -%}
+      {%- assign has_cart_discount = true -%}
+    {%- endif -%}
+
+    {%- if has_cart_discount -%}
+      {%- assign compare_line_price = line_item.original_line_price | plus: 0 -%}
+
+    {%- elsif li_variant.compare_at_price and li_variant.compare_at_price > li_variant.price -%}
+      {%- assign compare_line_price = li_variant.compare_at_price | times: line_item.quantity -%}
+
+    {%- elsif display_compare_price > li_variant.price -%}
+      {%- assign compare_line_price = display_compare_price | times: line_item.quantity -%}
+    {%- endif -%}
+
+    <sale-price class="{% if compare_line_price > current_line_price %}{{ on_sale_price_classes }}{% else %}{{ regular_price_classes }}{% endif %}">
+      <span class="sr-only">{{ 'product.price.sale_price' | t }}</span>
+      {%- if settings.currency_code_enabled -%}
+        {{- current_line_price | money_with_currency -}}
+      {%- else -%}
+        {{- current_line_price | money -}}
+      {%- endif -%}
+    </sale-price>
+
+    {%- if compare_line_price > current_line_price -%}
+      <compare-at-price class="{{ compare_at_price_classes }}">
+        <span class="sr-only">{{ 'product.price.regular_price' | t }}</span>
+        {%- if settings.currency_code_enabled -%}
+          {{- compare_line_price | money_with_currency -}}
+        {%- else -%}
+          {{- compare_line_price | money -}}
+        {%- endif -%}
+      </compare-at-price>
+    {%- endif -%}
+
+  {%- else -%}
+
+    {%- if product.price_varies -%}
+
+      {%- assign cheapest_variant = product.variants | sort: 'price' | first -%}
+      {%- assign real_price = product.price_min | plus: 0 -%}
+      {%- assign current_price = real_price -%}
+      {%- assign compare_price = 0 -%}
+
+      {%- if us_sale_enabled and us_sale_amount > 0 -%}
+        {%- assign current_price = real_price | minus: us_sale_amount -%}
+        {%- assign compare_price = real_price -%}
+
+      {%- elsif sale_enabled and sale_percentage > 0 -%}
+        {%- assign current_price = real_price | times: sale_multiplier | divided_by: 100 -%}
+        {%- assign compare_price = real_price -%}
+
+      {%- elsif cheapest_variant.compare_at_price and cheapest_variant.compare_at_price > cheapest_variant.price -%}
+        {%- assign compare_price = cheapest_variant.compare_at_price | plus: 0 -%}
+
+      {%- elsif display_compare_price > real_price -%}
+        {%- assign compare_price = display_compare_price -%}
+      {%- endif -%}
+
+      {%- capture price_min -%}
+        {%- if settings.currency_code_enabled -%}
+          {{- current_price | money_with_currency -}}
+        {%- else -%}
+          {{- current_price | money -}}
+        {%- endif -%}
+      {%- endcapture -%}
+
+      <sale-price class="{% if compare_price > current_price %}{{ on_sale_price_classes }}{% else %}{{ regular_price_classes }}{% endif %}">
+        <span class="sr-only">{{ 'product.price.sale_price' | t }}</span>
+        {{- 'product.price.from_price_html' | t: price_min: price_min -}}
+      </sale-price>
+
+      {%- if compare_price > current_price -%}
+        {%- capture compare_min -%}
+          {%- if settings.currency_code_enabled -%}
+            {{- compare_price | money_with_currency -}}
+          {%- else -%}
+            {{- compare_price | money -}}
+          {%- endif -%}
+        {%- endcapture -%}
+
+        <compare-at-price class="{{ compare_at_price_classes }}">
+          <span class="sr-only">{{ 'product.price.regular_price' | t }}</span>
+          {{- 'product.price.from_price_html' | t: price_min: compare_min -}}
+        </compare-at-price>
+      {%- endif -%}
+
+    {%- else -%}
+
+      {%- assign real_price = product.price | plus: 0 -%}
+      {%- assign current_price = real_price -%}
+      {%- assign compare_price = 0 -%}
+
+      {%- if us_sale_enabled and us_sale_amount > 0 -%}
+        {%- assign current_price = real_price | minus: us_sale_amount -%}
+        {%- assign compare_price = real_price -%}
+
+      {%- elsif sale_enabled and sale_percentage > 0 -%}
+        {%- assign current_price = real_price | times: sale_multiplier | divided_by: 100 -%}
+        {%- assign compare_price = real_price -%}
+
+      {%- elsif product.compare_at_price and product.compare_at_price > real_price -%}
+        {%- assign compare_price = product.compare_at_price | plus: 0 -%}
+
+      {%- elsif display_compare_price > real_price -%}
+        {%- assign compare_price = display_compare_price -%}
+      {%- endif -%}
+
+      <sale-price class="{% if compare_price > current_price %}{{ on_sale_price_classes }}{% else %}{{ regular_price_classes }}{% endif %}">
+        <span class="sr-only">{{ 'product.price.sale_price' | t }}</span>
+        {%- if settings.currency_code_enabled -%}
+          {{- current_price | money_with_currency -}}
+        {%- else -%}
+          {{- current_price | money -}}
+        {%- endif -%}
+      </sale-price>
+
+      {%- if compare_price > current_price -%}
+        <compare-at-price class="{{ compare_at_price_classes }}">
+          <span class="sr-only">{{ 'product.price.regular_price' | t }}</span>
+          {%- if settings.currency_code_enabled -%}
+            {{- compare_price | money_with_currency -}}
+          {%- else -%}
+            {{- compare_price | money -}}
+          {%- endif -%}
+        </compare-at-price>
+      {%- endif -%}
+
+    {%- endif -%}
+
+  {%- endif -%}
+
+  {%- unless hide_unit_price -%}
+    {%- assign unit_price_item = variant | default: line_item | default: product.selected_or_first_available_variant -%}
+
+    {%- if unit_price_item.unit_price -%}
+      <unit-price class="{{ unit_price_classes }}">
+        {%- assign unit_price_measurement = unit_price_item.unit_price_measurement -%}
+
+        {%- if unit_price_measurement.reference_value != 1 -%}
+          {%- assign reference_value = unit_price_measurement.reference_value -%}
+        {%- endif -%}
+
+        ({{ unit_price_item.unit_price | money }}/{{ reference_value }}{{ unit_price_measurement.reference_unit }})
+      </unit-price>
+    {%- endif -%}
+  {%- endunless -%}
+
+</price-list>

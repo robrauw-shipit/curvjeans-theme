@@ -1,0 +1,56 @@
+{% assign is_nl = false %}
+{% assign is_de = false %}
+
+{% if request.path contains '/nl' or localization.language.iso_code == 'nl' %}
+  {% assign is_nl = true %}
+{% elsif request.path contains '/de' or localization.language.iso_code == 'de' %}
+  {% assign is_de = true %}
+{% endif %}
+
+{%- comment -%}
+Use cents for money filter (3995 = 39.95 in store currency)
+{%- endcomment -%}
+{% assign bodysuit_value = 3995 | money %}
+
+<div style="
+  background:#F7F7F7;
+  padding:14px 16px;
+  border-radius:12px;
+  margin:12px 0 16px;
+">
+
+  <!-- ROW 1: ICON + TITLE -->
+  <div style="display:flex; align-items:center; gap:8px; margin-bottom:4px;">
+
+    <!-- Icon -->
+    <img 
+      src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/642916-200.png?v=1764585153"
+      alt="Gift icon"
+      style="width:20px; height:20px; object-fit:contain; flex-shrink:0;"
+    >
+
+    <!-- Title -->
+    <div style="font-size:15px; font-weight:700; color:#000; margin:0;">
+      {% if is_nl %}
+        Gratis Seamless Bodysuit
+      {% elsif is_de %}
+        Gratis Seamless Bodysuit
+      {% else %}
+        Free Seamless Bodysuit
+      {% endif %}
+    </div>
+
+  </div>
+
+  <!-- ROW 2: BODY TEXT FULL-WIDTH, ALIGNED LEFT -->
+  <div style="font-size:14px; color:#000; line-height:1.35; margin:0;">
+    {% if is_nl %}
+      Koop 2 jeans, krijg onze Confidence Bodysuit gratis ({{ bodysuit_value }}).
+    {% elsif is_de %}
+      2 Jeans kaufen, unseren Confidence Bodysuit gratis dazu ({{ bodysuit_value }}).
+    {% else %}
+      Buy any 2 jeans and get our smooth base layer for free ({{ bodysuit_value }} value)
+    {% endif %}
+  </div>
+
+</div>

@@ -1,0 +1,116 @@
+{%- comment -%}
+CURVJEANS — Cart Upsell (Bundle Savings)
+Tiers:
+• 1 item → Add 1 more, save 20
+• 2 items → Add 1 more, save 45
+• 3+ items → Max unlocked (45)
+{%- endcomment -%}
+
+{%- assign count = cart.item_count | default: 0 -%}
+{%- assign show = false -%}
+{%- assign is_max = false -%}
+{%- assign amount = 0 -%}
+
+{%- comment %}
+Currency:
+US → $
+Else → €
+{%- endcomment -%}
+{%- assign cur = '$' -%}
+
+{%- if cart.currency.iso_code == 'EUR' -%}
+  {%- assign cur = '€' -%}
+{%- elsif cart.currency.iso_code == 'USD' -%}
+  {%- assign cur = '$' -%}
+{%- endif -%}
+
+
+{%- if count == 1 -%}
+  {%- assign amount = 20 -%}
+  {%- assign show = true -%}
+{%- elsif count == 2 -%}
+  {%- assign amount = 45 -%}
+  {%- assign show = true -%}
+{%- elsif count >= 3 -%}
+  {%- assign amount = 45 -%}
+  {%- assign show = true -%}
+  {%- assign is_max = true -%}
+{%- endif -%}
+
+{%- capture pill_text -%}
+  {%- if is_max -%}
+    You’ve unlocked maximum savings ({{ cur }}{{ amount }})
+  {%- else -%}
+    Add 1 more, save {{ cur }}{{ amount }}
+  {%- endif -%}
+{%- endcapture -%}
+
+{%- if show -%}
+  <div class="bf-upsell-wrapper">
+    <div class="bf-upsell-header">
+      <div class="bf-upsell-line"></div>
+      <div class="bf-upsell-title">Bundle Savings</div>
+      <div class="bf-upsell-line"></div>
+    </div>
+
+    <div class="
+      bf-upsell-pill
+      {% if is_max %} bf-upsell-pill--max {% elsif amount == 45 %} bf-upsell-pill--tier2 {% else %} bf-upsell-pill--tier1 {% endif %}
+    ">
+      {{ pill_text }}
+    </div>
+  </div>
+
+  <style>
+    .bf-upsell-wrapper {
+      margin-top: 14px;
+      text-align: center;
+    }
+    .bf-upsell-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+    .bf-upsell-line {
+      flex: 1;
+      height: 1px;
+      background-color: #E5E5E5;
+    }
+    .bf-upsell-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #111;
+      letter-spacing: .01em;
+      white-space: nowrap;
+    }
+
+    .bf-upsell-pill {
+      display: inline-block;
+      font-weight: 600;
+      font-size: 12.5px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      letter-spacing: .01em;
+    }
+
+    .bf-upsell-pill--tier1 {
+      background: rgba(217, 119, 6, 0.12);
+      color: #D97706;
+    }
+    .bf-upsell-pill--tier2 {
+      background: rgba(22, 163, 74, 0.12);
+      color: #16A34A;
+    }
+    .bf-upsell-pill--max {
+      background: rgba(21, 128, 61, 0.12);
+      color: #15803D;
+    }
+
+    @media (max-width: 600px){
+      .bf-upsell-title { font-size: 15px; }
+      .bf-upsell-pill { font-size: 12px; padding: 3px 9px; }
+    }
+  </style>
+{%- endif -%}

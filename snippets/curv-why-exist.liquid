@@ -1,0 +1,106 @@
+{%- comment -%}
+CURVJEANS — “Why we exist” Section
+Mobile: image on top
+Desktop: image left, text right
+Inline NL/DE translations; resilient to Theme Editor reloads
+{%- endcomment -%}
+
+<section id="curv-why-exist" class="curv-why">
+  <div class="curv-why__wrap">
+    <div class="curv-why__media">
+<img src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/why_we_exist_3.png?v=1758865355"
+     alt="CURVJEANS - made for your shape"
+     loading="lazy"
+     decoding="async"
+     width="1200"
+     height="1500" />
+    </div>
+
+    <div class="curv-why__content">
+      <h2 class="curv-why__title">It was never your body</h2>
+
+      <p class="curv-why__p">It was the jeans. Too loose at the waist. Too tight on the thighs. Jeans that made you feel like you were the problem.</p>
+      <p class="curv-why__p">We’ve been there. That moment in the mirror where nothing fits right and it chips away at your confidence.</p>
+      <p class="curv-why__p">That’s why CURVJEANS exists. To flip the script. To make jeans that finally fit your shape: snatched waist, fuller hips, real curves.</p>
+      <p class="curv-why__p">Jeans that stretch with you, hug you in the right places, and make you feel like you again.</p>
+      <p class="curv-why__p"><strong>Because the right fit doesn’t just change your outfit. It changes how you see yourself.</strong></p>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* --- Visibility guard (neutral, safe) --- */
+  #curv-why-exist { display:block !important; visibility:visible !important; }
+  #curv-why-exist[hidden] { display:block !important; }
+
+  /* --- Layout --- */
+  .curv-why{ background:#F9F9F9; padding:40px 0; }
+  .curv-why__wrap{
+    max-width:1200px; margin:0 auto; padding:0 16px;
+    display:grid; grid-template-columns:1fr; gap:24px; align-items:center;
+  }
+  .curv-why__media img{ width:100%; height:auto; display:block; border-radius:16px; }
+  .curv-why__content{ text-align:left; }
+  .curv-why__eyebrow{ font-size:13px; font-weight:700; color:#666; margin:0 0 8px; }
+  .curv-why__title{ font-size:32px; line-height:1.15; font-weight:800; margin:0 0 16px; color:#111; }
+  .curv-why__p{ margin:0 0 14px; color:#222; font-size:15px; line-height:1.55; }
+
+  @media (min-width: 992px){
+    .curv-why{ padding:60px 0; }
+    .curv-why__wrap{ grid-template-columns:minmax(0,560px) minmax(0,1fr); gap:48px; }
+    .curv-why__title{ font-size:42px; margin-bottom:20px; }
+    .curv-why__p{ font-size:16px; margin-bottom:16px; }
+  }
+</style>
+
+<script>
+  (function(){
+    function localizeWhyExist(root){
+      var container = root || document;
+      var path = location.pathname || "";
+      var isNL = path.includes('/nl');
+      var isDE = path.includes('/de');
+
+      var eyebrow = container.querySelector('#curv-why-exist .curv-why__eyebrow');
+      var title   = container.querySelector('#curv-why-exist .curv-why__title');
+      var paras   = container.querySelectorAll('#curv-why-exist .curv-why__p');
+
+      // Ensure it's visible in case the theme toggles sections
+      var section = container.querySelector('#curv-why-exist');
+      if(section){
+        section.removeAttribute('hidden');
+        section.style.display = 'block';
+        section.style.visibility = 'visible';
+      }
+
+      if(isNL){
+        if(title)   title.textContent   = 'Het lag nooit aan je lichaam';
+        if(paras.length >= 5){
+          paras[0].textContent = 'Het lag aan de jeans. Te wijd in de taille. Te strak bij de bovenbenen. Jeans waardoor jij het probleem leek.';
+          paras[1].textContent = 'We kennen dat moment in de spiegel waarop niets goed zit en je zelfvertrouwen een knak krijgt.';
+          paras[2].textContent = 'Daarom bestaat CURVJEANS. Om het script om te draaien. Jeans die eindelijk jouw shape volgen: smalle taille, vollere heupen, echte curves.';
+          paras[3].textContent = 'Jeans die met je meebewegen, je op de juiste plekken omarmen en je weer jezelf laten voelen.';
+          paras[4].textContent = 'De juiste fit verandert niet alleen je outfit. Het verandert hoe je jezelf ziet.';
+        }
+      }
+
+      if(isDE){
+        if(title)   title.textContent   = 'Es war nie die Schuld Ihres Körpers';
+        if(paras.length >= 5){
+          paras[0].textContent = 'Es lag an den Jeans. Zu weit an der Taille. Zu eng an den Oberschenkeln. Jeans, die dir das Gefühl gaben, du wärst das Problem.';
+          paras[1].textContent = 'Wir kennen das. Dieser Moment im Spiegel, wenn nichts richtig sitzt und dein Selbstvertrauen leidet.';
+          paras[2].textContent = 'Deshalb gibt es CURVJEANS. Um die Geschichte zu drehen. Jeans, die endlich zu deiner Form passen: schmale Taille, volle Hüften, echte Kurven.';
+          paras[3].textContent = 'Jeans, die sich mit dir bewegen, dich an den richtigen Stellen umarmen und dir dein Gefühl zurückgeben.';
+          paras[4].textContent = 'Denn die richtige Passform verändert nicht nur dein Outfit. Sie verändert, wie du dich selbst siehst.';
+        }
+      }
+    }
+
+    // Run on initial load
+    document.addEventListener('DOMContentLoaded', function(){ localizeWhyExist(document); });
+
+    // Run again when Theme Editor reloads/changes sections
+    document.addEventListener('shopify:section:load', function(e){ localizeWhyExist(e.target); });
+    document.addEventListener('shopify:section:select', function(e){ localizeWhyExist(e.target); });
+  })();
+</script>

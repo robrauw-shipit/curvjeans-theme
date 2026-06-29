@@ -1,0 +1,194 @@
+{%- comment -%}
+CURVS — Shapewear Hybrid USP Snippet
+• Desktop: all 4 USPs inline
+• Mobile: 2-at-a-time with smooth fading every 5s
+• Localization EN/NL/DE
+• Icons updated for shapewear
+{%- endcomment -%}
+
+{%- liquid
+assign _lc = request.locale.iso_code | downcase
+
+case _lc
+  when 'nl'
+    assign _l1 = 'Instant Hourglass'
+    assign _l2 = 'CurveFlex™ Sculpt'
+    assign _l3 = 'All-day comfort'
+    assign _l4 = 'Snap & Go'
+  when 'de'
+    assign _l1 = 'Sofort Hourglass'
+    assign _l2 = 'CurveFlex™ Sculpt'
+    assign _l3 = 'Ganztags Komfort'
+    assign _l4 = 'Snap & Go'
+  else
+    assign _l1 = 'Instant Hourglass'
+    assign _l2 = 'CurveFlex™ Sculpt'
+    assign _l3 = 'All-Day Comfort'
+    assign _l4 = 'Snap & Go'
+endcase
+-%}
+
+<style>
+.cj-usp-fade {
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  background: #fff;
+  padding: 16px 0;
+  overflow: hidden;
+  width: 100%;
+}
+
+/* wrapper that fades */
+.cj-usp-fade-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 48px;
+  opacity: 1;
+  transition: opacity .5s ease-in-out;
+}
+
+.cj-usp-fade-wrapper.fade-out {
+  opacity: 0;
+}
+
+/* individual items */
+.cj-usp-fade-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.cj-usp-fade-icon {
+  width: 26px;
+  height: 26px;
+}
+
+.cj-usp-fade-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #222;
+}
+
+/* ✅ Desktop: show all 4 */
+@media (min-width: 768px){
+  .cj-usp-fade-wrapper {
+    gap: 48px;
+  }
+}
+
+/* ✅ Mobile: show 2 centered */
+@media (max-width: 767px){
+  .cj-usp-fade-wrapper {
+    gap: 32px;
+    justify-content: center;
+  }
+
+  .cj-usp-fade-item {
+    flex: 0 0 auto;
+    width: auto;
+  }
+}
+</style>
+
+<section class="cj-usp-fade">
+  <div class="cj-usp-fade-wrapper" id="cjShpUspFade">
+    <!-- Initial mobile pair -->
+    <div class="cj-usp-fade-item">
+      <img class="cj-usp-fade-icon"
+           src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/shapesyourcurves-2.png?v=1752650877">
+      <span class="cj-usp-fade-label">{{ _l1 }}</span>
+    </div>
+    <div class="cj-usp-fade-item">
+      <img class="cj-usp-fade-icon"
+           src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/360_sculpt_support_CURVS_shapewear.png?v=1757651701">
+      <span class="cj-usp-fade-label">{{ _l2 }}</span>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  const wrapper = document.getElementById('cjShpUspFade');
+  let showingFirst = true;
+
+  /* ✅ Desktop render: all 4 inline */
+  function renderDesktop(){
+    wrapper.innerHTML = `
+      <div class="cj-usp-fade-item">
+        <img class="cj-usp-fade-icon" src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/shapesyourcurves-2.png?v=1752650877">
+        <span class="cj-usp-fade-label">{{ _l1 }}</span>
+      </div>
+
+      <div class="cj-usp-fade-item">
+        <img class="cj-usp-fade-icon" src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/360_sculpt_support_CURVS_shapewear.png?v=1757651701">
+        <span class="cj-usp-fade-label">{{ _l2 }}</span>
+      </div>
+
+      <div class="cj-usp-fade-item">
+        <img class="cj-usp-fade-icon" src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/soft_curvs_shapewear.png?v=1757651743">
+        <span class="cj-usp-fade-label">{{ _l3 }}</span>
+      </div>
+
+      <div class="cj-usp-fade-item">
+        <img class="cj-usp-fade-icon" src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/curvs_shapewear_quick_snap.png?v=1757653088">
+        <span class="cj-usp-fade-label">{{ _l4 }}</span>
+      </div>
+    `;
+  }
+
+  /* ✅ Mobile fade logic */
+  function swapMobile(){
+    if(window.innerWidth >= 768) return; 
+
+    wrapper.classList.add('fade-out');
+
+    setTimeout(() => {
+      wrapper.innerHTML = showingFirst
+      ? `
+        <div class="cj-usp-fade-item">
+          <img class="cj-usp-fade-icon"
+               src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/soft_curvs_shapewear.png?v=1757651743">
+          <span class="cj-usp-fade-label">{{ _l3 }}</span>
+        </div>
+        <div class="cj-usp-fade-item">
+          <img class="cj-usp-fade-icon"
+               src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/curvs_shapewear_quick_snap.png?v=1757653088">
+          <span class="cj-usp-fade-label">{{ _l4 }}</span>
+        </div>
+      `
+      : `
+        <div class="cj-usp-fade-item">
+          <img class="cj-usp-fade-icon"
+               src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/shapesyourcurves-2.png?v=1752650877">
+          <span class="cj-usp-fade-label">{{ _l1 }}</span>
+        </div>
+        <div class="cj-usp-fade-item">
+          <img class="cj-usp-fade-icon"
+               src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/360_sculpt_support_CURVS_shapewear.png?v=1757651701">
+          <span class="cj-usp-fade-label">{{ _l2 }}</span>
+        </div>
+      `;
+
+      showingFirst = !showingFirst;
+      wrapper.classList.remove('fade-out');
+    }, 400);
+  }
+
+  /* Init */
+  if(window.innerWidth >= 768){
+    renderDesktop();
+  } else {
+    setInterval(swapMobile, 5000);
+  }
+
+  window.addEventListener('resize', () => {
+    if(window.innerWidth >= 768){
+      renderDesktop();
+    }
+  });
+})();
+</script>

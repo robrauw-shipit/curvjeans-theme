@@ -1,0 +1,88 @@
+{%- comment -%}
+CURVJEANS — Social Proof Badge (Unique Class Version)
+{%- endcomment -%}
+
+{%- liquid
+assign _lc = request.locale.iso_code | downcase
+
+case _lc
+  when "nl"
+    assign spt = "<strong>20.000+</strong> vonden hun perfecte fit"
+  when "de"
+    assign spt = "<strong>20.000+</strong> Frauen lieben die Passform"
+  else
+    assign spt = "<strong>20.000+</strong> found their perfect fit"
+endcase
+-%}
+
+<div class="cj-spb-wrapper">
+
+  <div class="cj-spb-avatars">
+     <img src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/customer_2.jpg?v=1761889230" alt="customer 1">
+    <img src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/458401446_861392519278045_7170310081411598418_n.jpg?v=1763781967" alt="customer 2">
+    <img src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/143996871_2715931985385887_965993897469689912_n.jpg?v=1763781966" alt="customer 3">
+  </div>
+
+  <div class="cj-spb-text">
+    <span>{{ spt }}</span>
+    <img class="cj-spb-verified"
+         src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/verified.webp?v=1726649878"
+         alt="verified">
+  </div>
+
+</div>
+
+<style>.cj-spb-wrapper {
+  max-width: 480px;
+  margin: 16px auto 0;
+  padding: 0 10px;
+  background: transparent !important; /* force transparent */
+  border-radius: 999px;
+  box-shadow: none !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+@media (max-width: 768px) {
+  .cj-spb-wrapper {
+    width: 100%;
+    max-width: none;
+    margin-top: 22px;
+    padding: 0 12px;
+    gap: 8px;
+  }
+}
+
+.cj-spb-avatars {
+  display: flex;
+}
+
+.cj-spb-avatars img {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #ffffff;
+  margin-left: -12px; /* overlap */
+}
+
+.cj-spb-avatars img:first-child {
+  margin-left: 0;
+}
+
+
+.cj-spb-text {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #fff;
+}
+
+.cj-spb-verified {
+  width: 16px;
+  height: 16px;
+}
+</style>

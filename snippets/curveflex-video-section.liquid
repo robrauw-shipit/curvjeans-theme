@@ -1,0 +1,257 @@
+{% comment %}
+==================================================
+CurveFlex Video Section with Translations
+- Auto-detects language from URL (/de, /nl, or default EN)
+- Mobile: Full-width video with text overlay
+- Desktop: 60/40 split (video left, benefits right)
+==================================================
+{% endcomment %}
+
+<section class="cj-curveflex-section">
+  <div class="cj-curveflex-container">
+    <!-- LEFT — VIDEO -->
+    <div class="cj-curveflex-media-wrapper">
+      <video class="cj-curveflex-media" autoplay loop muted playsinline>
+        <source src="https://cdn.shopify.com/videos/c/o/v/f5d0ceb1b5fe4e22920d39b60de3873d.mp4" type="video/mp4">
+      </video>
+      <!-- MOBILE CENTERED TEXT -->
+      <div class="cj-curveflex-mobile-center">
+        <h2 class="cj-cf-mobile-title" data-lang-key="mobile-title">Why CurveFlex™ Actually Fits Your Body</h2>
+        <p class="cj-cf-mobile-sub" data-lang-key="mobile-sub">Stretches with you. Doesn't squeeze or sag.</p>
+      </div>
+    </div>
+    
+    <!-- DESKTOP TEXT — ICON BASED -->
+    <div class="cj-curveflex-textblock">
+      <h2 class="cj-cf-title" data-lang-key="title">Why CurveFlex™ Actually Fits Your Body</h2>
+      
+      <!-- BENEFIT 1 -->
+      <div class="cj-cf-feature">
+        <img class="cj-cf-icon" src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/waistfit-1.png?v=1752650878" alt="Waist Icon">
+        <div class="cj-cf-feature-text">
+          <h3 class="cj-cf-feature-title" data-lang-key="benefit1-title">No Waist Gap</h3>
+          <p class="cj-cf-feature-desc" data-lang-key="benefit1-desc">Stays close to your back when you sit or bend.<br>No more pulling your shirt down.</p>
+        </div>
+      </div>
+
+      <!-- BENEFIT 2 -->
+      <div class="cj-cf-feature">
+        <img class="cj-cf-icon" src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/stretchy-3.png?v=1752650879" alt="Stretch Icon">
+        <div class="cj-cf-feature-text">
+          <h3 class="cj-cf-feature-title" data-lang-key="benefit2-title">5× More Stretch</h3>
+          <p class="cj-cf-feature-desc" data-lang-key="benefit2-desc">Moves with your thighs and hips.<br>Comfortable all day — no squeezing, no sagging.</p>
+        </div>
+      </div>
+
+      <!-- BENEFIT 3 -->
+      <div class="cj-cf-feature">
+        <img class="cj-cf-icon" src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/perfectbutt-5.png?v=1752650877" alt="Silhouette Icon">
+        <div class="cj-cf-feature-text">
+          <h3 class="cj-cf-feature-title" data-lang-key="benefit3-title">Looks Right On Your Body</h3>
+          <p class="cj-cf-feature-desc" data-lang-key="benefit3-desc">Doesn't flatten your butt. Front stays smooth.<br>No weird lines or bunching.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+/* SECTION */
+.cj-curveflex-section {
+  padding: 0;
+  margin: 0;
+}
+.cj-curveflex-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ============================
+   MOBILE — FULL WIDTH VIDEO
+   ============================ */
+.cj-curveflex-media-wrapper {
+  position: relative;
+  width: 100vw;          
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+.cj-curveflex-media {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  border-radius: 0;
+}
+.cj-curveflex-mobile-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 90%;
+}
+.cj-cf-mobile-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+  margin: 0 0 8px;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+  line-height: 1.2;
+}
+.cj-cf-mobile-sub {
+  font-size: 15px;
+  color: #fff;
+  margin: 0;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+  line-height: 1.3;
+}
+
+/* ============================
+   DESKTOP (60/40 SPLIT)
+   ============================ */
+@media (min-width: 768px) {
+  .cj-curveflex-container {
+    padding: 40px 20px;
+    flex-direction: row;
+    align-items: center;
+    gap: 50px;
+  }
+  .cj-curveflex-media-wrapper {
+    width: 60%;
+    max-width: none;
+    margin: 0;
+    transform: none;
+  }
+  .cj-curveflex-media {
+    border-radius: 8px;
+  }
+  .cj-curveflex-textblock {
+    width: 40%;
+    display: block;
+  }
+  .cj-curveflex-mobile-center {
+    display: none;
+  }
+  
+  /* TITLE */
+  .cj-cf-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 32px;
+    line-height: 1.2;
+  }
+  
+  /* ICON + TEXT BLOCKS */
+  .cj-cf-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .cj-cf-feature:last-child {
+    margin-bottom: 0;
+  }
+  .cj-cf-icon {
+    width: 36px;
+    height: auto;
+    filter: brightness(0);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .cj-cf-feature-text {
+    flex: 1;
+  }
+  .cj-cf-feature-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #000;
+    margin: 0 0 6px;
+    line-height: 1.2;
+  }
+  .cj-cf-feature-desc {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333;
+    margin: 0;
+  }
+}
+
+/* MOBILE hides desktop text block */
+@media (max-width: 767px) {
+  .cj-curveflex-textblock { display: none; }
+}
+</style>
+
+<script>
+(function() {
+  // Translation dictionary
+  const translations = {
+    en: {
+      'mobile-title': 'Why CurveFlex™ Actually Fits Your Body',
+      'mobile-sub': 'Stretches with you. Doesn\'t squeeze or sag.',
+      'title': 'Why CurveFlex™ Actually Fits Your Body',
+      'benefit1-title': 'No Waist Gap',
+      'benefit1-desc': 'Stays close to your back when you sit or bend.<br>No more pulling your shirt down.',
+      'benefit2-title': '5× More Stretch',
+      'benefit2-desc': 'Moves with your thighs and hips.<br>Comfortable all day — no squeezing, no sagging.',
+      'benefit3-title': 'Looks Right On Your Body',
+      'benefit3-desc': 'Doesn\'t flatten your butt. Front stays smooth.<br>No weird lines or bunching.'
+    },
+    de: {
+      'mobile-title': 'Warum CurveFlex™ wirklich passt',
+      'mobile-sub': 'Bewegt sich mit dir und kein Absacken.',
+      'title': 'Warum CurveFlex™ wirklich passt',
+      'benefit1-title': 'Kein Waist Gap',
+      'benefit1-desc': 'Bleibt am Rücken, wenn du dich hinsetzt oder bückst.<br>Kein Shirt-Runterzupfen mehr.',
+      'benefit2-title': '5× mehr Stretch',
+      'benefit2-desc': 'Bewegt sich mit deinen Oberschenkeln und Hüften.<br>Den ganzen Tag bequem — kein Einschnüren, kein Absacken.',
+      'benefit3-title': 'Sieht richtig aus an deinem Körper',
+      'benefit3-desc': 'Macht deinen Po nicht platt. Vorne schön glatt.<br>Keine komischen Linien oder Falten.'
+    },
+    nl: {
+      'mobile-title': 'Waarom CurveFlex™ echt past',
+      'mobile-sub': 'Beweegt mee en zakt niet af.',
+      'title': 'Waarom CurveFlex™ echt past',
+      'benefit1-title': 'Geen Waist Gap',
+      'benefit1-desc': 'Sluit perfect aan wanneer je zit of bukt.<br>Geen shirt meer naar beneden trekken.',
+      'benefit2-title': '5× meer stretch',
+      'benefit2-desc': 'Beweegt mee met je bovenbenen en heupen.<br>Hele dag comfortabel — knijpt niet, zakt niet af.',
+      'benefit3-title': 'Laat je shape stralen',
+      'benefit3-desc': 'Maakt je billen niet plat. Voorkant blijft glad.<br>Geen rare lijnen of plooien.'
+    }
+  };
+
+  // Detect language from URL
+  function detectLanguage() {
+    const path = window.location.pathname;
+    if (path.includes('/de')) return 'de';
+    if (path.includes('/nl')) return 'nl';
+    return 'en';
+  }
+
+  // Apply translations
+  function applyTranslations() {
+    const lang = detectLanguage();
+    const langData = translations[lang];
+    
+    if (!langData) return;
+
+    document.querySelectorAll('[data-lang-key]').forEach(function(element) {
+      const key = element.getAttribute('data-lang-key');
+      if (langData[key]) {
+        element.innerHTML = langData[key];
+      }
+    });
+  }
+
+  // Run on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', applyTranslations);
+  } else {
+    applyTranslations();
+  }
+})();
+</script>

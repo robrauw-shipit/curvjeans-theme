@@ -1,0 +1,58 @@
+<!-- CURVJEANS — Trustpilot Badge (Cart Drawer) -->
+<div class="trustpilot-atc-badge-wrapper">
+  <div class="trustpilot-atc-badge">
+    <img 
+      src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/Trustpilot_Logo__2022.svg?v=1755756067" 
+      alt="Trustpilot Logo" 
+      class="trustpilot-atc-logo">
+
+    <img 
+      src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/trustpilot_4.5_stars.png?v=1738211488" 
+      alt="Trustpilot Stars" 
+      class="trustpilot-atc-stars">
+
+    {% if request.path contains '/nl' %}
+      <span class="trustpilot-atc-text">Uitstekend</span>
+    {% elsif request.path contains '/de' %}
+      <span class="trustpilot-atc-text">Hervorragend</span>
+    {% else %}
+      <span class="trustpilot-atc-text">Excellent</span>
+    {% endif %}
+  </div>
+</div>
+
+
+<style>
+.trustpilot-atc-badge-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 0px;
+  margin-bottom: 20px; /* ✅ proper spacing below Trustpilot */
+}
+
+.trustpilot-atc-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.trustpilot-atc-logo,
+.trustpilot-atc-stars {
+  height: 18px;
+}
+
+.trustpilot-atc-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111;
+  letter-spacing: .01em;
+}
+
+@media (max-width: 768px) {
+  .trustpilot-atc-logo,
+  .trustpilot-atc-stars { height: 16px; }
+  .trustpilot-atc-text { font-size: 12px; }
+}
+
+</style>

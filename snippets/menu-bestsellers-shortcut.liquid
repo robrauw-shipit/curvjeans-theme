@@ -1,0 +1,76 @@
+{% assign product_1 = all_products['relax-sky-blue'] %}
+{% assign product_2 = all_products['curve-hugging-wide-leg-mid-rise-indigo'] %}
+
+{% if product_1 and product_2 %}
+  <div class="cj-menu-bestsellers">
+
+    <!-- Title (menu-aligned) -->
+    <a href="/collections/bestsellers" class="cj-menu-bestsellers-heading h3 sm:h4">
+      BESTSELLERS
+    </a>
+
+    <!-- Grid -->
+    <div class="cj-menu-bestsellers-grid">
+      <a href="{{ product_1.url }}" class="cj-menu-bestseller-card">
+        <img
+          src="{{ product_1.featured_media | image_url: width: 500 }}"
+          alt="{{ product_1.title | escape }}"
+          loading="lazy"
+        >
+      </a>
+
+      <a href="{{ product_2.url }}" class="cj-menu-bestseller-card">
+        <img
+          src="{{ product_2.featured_media | image_url: width: 500 }}"
+          alt="{{ product_2.title | escape }}"
+          loading="lazy"
+        >
+      </a>
+    </div>
+
+  </div>
+{% endif %}
+
+<style>
+/* FULL-WIDTH, MENU-ALIGNED BLOCK */
+.cj-menu-bestsellers {
+  width: 100%;
+  padding: 12px 16px 8px; /* EXACT same horizontal padding as menu */
+}
+
+/* Title matches menu rhythm */
+.cj-menu-bestsellers-heading {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 700;
+  color: #111;
+  text-decoration: none;
+}
+
+.cj-menu-bestsellers-heading:hover {
+  text-decoration: underline;
+}
+
+/* Grid hugs left edge, no centering feel */
+.cj-menu-bestsellers-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px; /* smaller gap = less visual dominance */
+}
+
+/* Card */
+.cj-menu-bestseller-card {
+  display: block;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f4f4f4;
+}
+
+/* Image — slightly smaller visual weight */
+.cj-menu-bestseller-card img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  display: block;
+}
+</style>

@@ -1,0 +1,92 @@
+{%- comment -%}
+CURVJEANS — Mobile Quick Links (Collections only)
+Render with: {% render 'cj-mobile-quick-links', menu: 'mobile-quick-links' %}
+- Mobile only
+- Shows ONLY on collection templates (hidden on product pages)
+- "NEW" link is pink across locales via URL match (/collections/new)
+{%- endcomment -%}
+
+{%- assign _menu_handle = menu | default: 'mobile-quick-links' -%}
+{%- assign _menu = linklists[_menu_handle] -%}
+
+{%- if template.name == 'collection' -%}
+  {%- if _menu and _menu.links and _menu.links.size > 0 -%}
+    <nav class="cj-mql" aria-label="Quick links">
+      <div class="cj-mql__scroll">
+        {%- for l in _menu.links -%}
+          <a href="{{ l.url }}"
+             class="cj-mql__link{% if l.current %} is-active{% endif %}"
+             aria-label="{{ l.title | escape }}">
+            {{- l.title -}}
+          </a>
+        {%- endfor -%}
+      </div>
+    </nav>
+
+    <style>
+/* --- Mobile-only --- */
+@media (min-width: 990px){ .cj-mql{ display:none !important; } }
+
+.cj-mql{
+  background:#F8F9FA;
+  border-bottom:1px solid rgba(17,17,17,.06);
+  position:relative;
+}
+
+.cj-mql__scroll{
+  display:flex;
+  gap:18px;
+  padding:6px 14px;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+}
+.cj-mql__scroll::-webkit-scrollbar{ display:none; }
+
+.cj-mql__link{
+  flex:0 0 auto;
+  display:inline-block;
+  font-size:13px;
+  font-weight:600;
+  line-height:1;
+  color:#a9a9a9;                        /* default = medium grey */
+  text-decoration:none;
+  white-space:nowrap;
+  padding:4px 0;
+  transition: color .15s ease;
+}
+
+/* Active/current page = strong black + bold */
+.cj-mql__link.is-active{
+  color:#000;
+  font-weight:700;
+}
+
+/* Hover/focus = also black */
+.cj-mql__link:hover,
+.cj-mql__link:focus-visible{
+  color:#000;
+  outline:none;
+}
+
+/* "NEW" link always pink */
+.cj-mql__link[href*="/collections/new"]{
+  color:#ff5189;
+}
+.cj-mql__link[href*="/collections/new"]:hover,
+.cj-mql__link[href*="/collections/new"].is-active,
+.cj-mql__link[href*="/collections/new"]:focus-visible{
+  color:#ff5189;
+}
+
+/* Right fade */
+.cj-mql::after{
+  content:"";
+  position:absolute; right:0; top:0; bottom:0; width:24px;
+  pointer-events:none;
+  background:linear-gradient(to right, rgba(248,249,250,0), #F8F9FA 70%);
+}
+
+    </style>
+  {%- endif -%}
+{%- endif -%}

@@ -1,0 +1,87 @@
+<div class="cj-cart-guarantee-wrapper">
+  <div class="cj-cart-guarantee">
+
+    <!-- Checkmark Icon -->
+    <span class="cj-cart-iconwrap" aria-hidden="true">
+      <svg class="cj-cart-guarantee-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="none">
+        <path d="M7.5 10L9.01575 11.5158L12.5 8.33334"
+          stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </span>
+
+    <!-- Reassurance Text -->
+    <span class="cj-cart-usp-text">
+      {% if request.path contains '/nl' %}
+        Probeer ze thuis. Makkelijk retourneren als ze niet goed zitten.
+      {% elsif request.path contains '/de' %}
+        Zuhause anprobieren. Einfache Rückgabe, wenn sie nicht passen.
+      {% else %}
+        Try them at home. Easy returns if the fit isn’t right.
+      {% endif %}
+    </span>
+
+  </div>
+</div>
+
+<style>
+/* Always center the whole block */
+.cj-cart-guarantee-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Make the row itself centered and consistent */
+.cj-cart-guarantee {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  white-space: nowrap;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+/* Text */
+.cj-cart-usp-text {
+  font-size: 11px;
+  font-weight: 400;
+  color: #666;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Icon wrapper */
+.cj-cart-iconwrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+/* SVG */
+.cj-cart-guarantee-icon {
+  width: 18px;
+  height: 18px;
+  color: #666;
+  flex-shrink: 0;
+  display: block;
+  transform: translateY(-0.25px);
+}
+
+/* Desktop enhancement */
+@media (min-width: 769px) {
+  .cj-cart-usp-text {
+    font-size: 13px;
+  }
+
+  .cj-cart-guarantee-icon {
+    width: 24px;
+    height: 24px;
+  }
+}
+</style>
+
+

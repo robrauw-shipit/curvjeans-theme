@@ -1,0 +1,48 @@
+<div class="cj-price-no-badge">
+  {%- assign v = product.selected_or_first_available_variant -%}
+  {%- assign cp = v.compare_at_price -%}
+  {%- assign ap = v.price -%}
+
+  <!-- CURRENT PRICE (hero) -->
+  <span class="cj-price-no-badge__now">
+    {%- if settings.currency_code_enabled -%}
+      {{ ap | money_with_currency }}
+    {%- else -%}
+      {{ ap | money }}
+    {%- endif -%}
+  </span>
+
+  <!-- COMPARE-AT (smaller, theme red, only if higher than selling price) -->
+  {%- if cp != blank and cp > ap -%}
+    <span class="cj-price-no-badge__compare">
+      {%- if settings.currency_code_enabled -%}
+        {{ cp | money_with_currency }}
+      {%- else -%}
+        {{ cp | money }}
+      {%- endif -%}
+    </span>
+  {%- endif -%}
+</div>
+
+<style>
+.cj-price-no-badge{
+  display:flex;
+  align-items:baseline;
+  gap:8px;
+  flex-wrap:wrap;
+  margin:8px 0;
+}
+
+.cj-price-no-badge__now{
+  font-size:18px;
+  font-weight:600;
+  color:#111;
+}
+
+.cj-price-no-badge__compare{
+  text-decoration:line-through;
+  color:#e20101;
+  font-size:13px;
+  font-weight:500;
+}
+</style>

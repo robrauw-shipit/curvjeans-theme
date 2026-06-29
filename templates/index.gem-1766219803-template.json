@@ -1,0 +1,411 @@
+{
+  "sections": {
+    "ss_hero_2_review_rQQfjc": {
+      "type": "ss-hero-2-review",
+      "blocks": {
+        "slide_Wp46wJ": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/collection_banner_1_desktop.webp",
+            "image_mobile": "shopify:\/\/shop_images\/curv_jeans_ecommerve_13-07-2025_-77.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "slide_Wp46wJ"
+      ],
+      "name": "SS - Hero #2",
+      "settings": {
+        "fixed_height": "fixed_height",
+        "hero_fixed_height": 760,
+        "hero_fixed_height_mobile": 540,
+        "vertical_alignment": "center",
+        "vertical_alignment_mobile": "center",
+        "horizontal_alignment": "center",
+        "horizontal_alignment_mobile": "center",
+        "interval": 5,
+        "image_radius": 0,
+        "image_overlay": 0.3,
+        "title": "<h3><strong>Jeans that actually fit your waist<\/strong><\/h3>",
+        "title_custom": false,
+        "title_font": "josefin_sans_n4",
+        "title_size": 72,
+        "title_size_mobile": 36,
+        "title_height": 130,
+        "subtitle": "<p>Made for smaller waists and fuller hips. Stays up. Stays comfortable. All day.<\/p>",
+        "subtitle_custom": false,
+        "subtitle_font": "josefin_sans_n4",
+        "subtitle_size": 16,
+        "subtitle_size_mobile": 16,
+        "subtitle_height": 150,
+        "subtitle_mt": 20,
+        "buttons_mt": 32,
+        "buttons_gap": 16,
+        "button": "BESTSELLERS",
+        "button_url": "shopify:\/\/collections\/bestsellers",
+        "second_button": "SHOP ALL",
+        "second_button_url": "shopify:\/\/collections\/all-products",
+        "button_custom": false,
+        "button_font": "josefin_sans_n4",
+        "button_size": 16,
+        "button_size_mobile": 12,
+        "button_height": 100,
+        "button_padding_vertical": 16,
+        "button_padding_vertical_mobile": 16,
+        "button_padding_horizontal": 32,
+        "button_padding_horizontal_mobile": 32,
+        "button_radius": 8,
+        "button_border_thickness": 0,
+        "button_color": "#121212",
+        "button_hover_color": "#ffffff",
+        "button_bg_color": "#f7f7f7",
+        "button_bg_hover_color": "#121212",
+        "button_border_color": "#ffffff",
+        "button_border_hover_color": "#121212",
+        "second_button_color": "#ffffff",
+        "second_button_hover_color": "#ffffff",
+        "second_button_bg_color": "#1a1a1a",
+        "second_button_bg_hover_color": "#121212",
+        "second_button_border_color": "#ffffff",
+        "second_button_border_hover_color": "#121212",
+        "title_color": "#ffffff",
+        "subtitle_color": "#ffffff",
+        "image_overlay_color": "#121212",
+        "background_color": "",
+        "margin_top": 0,
+        "margin_bottom": 0,
+        "margin_horizontal": 0,
+        "margin_horizontal_mobile": 0,
+        "padding_top": 36,
+        "padding_bottom": 36,
+        "padding_horizontal": 5,
+        "padding_horizontal_mobile": 1.5,
+        "full_width": true,
+        "content_width": 1200,
+        "section_radius": 0,
+        "lazy_load": false
+      }
+    },
+    "collection-list": {
+      "type": "collection-list",
+      "blocks": {
+        "collection-1": {
+          "type": "collection",
+          "settings": {
+            "collection": "all-products",
+            "image": "shopify:\/\/shop_images\/curv_jeans_20-09-2025-158.jpg",
+            "subheading": "",
+            "title": "",
+            "url": "shopify:\/\/collections\/all-products",
+            "heading_tag": "h3",
+            "text_position": "place-self-center text-center",
+            "text_color": "#f9f9f9",
+            "overlay_color": "#000000",
+            "overlay_opacity": 15
+          }
+        },
+        "collection_3M6EME": {
+          "type": "collection",
+          "settings": {
+            "collection": "bestsellers",
+            "image": "shopify:\/\/shop_images\/curv_jeans_ecommerve_13-07-2025_-77.jpg",
+            "subheading": "",
+            "title": "BESTSELLERS",
+            "url": "",
+            "heading_tag": "h2",
+            "text_position": "place-self-center text-center",
+            "text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 30
+          }
+        },
+        "collection_CLX39H": {
+          "type": "collection",
+          "settings": {
+            "collection": "wide-leg",
+            "subheading": "",
+            "title": "WIDE LEG",
+            "url": "",
+            "heading_tag": "h2",
+            "text_position": "place-self-center text-center",
+            "text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 30
+          }
+        },
+        "collection_GGMRy4": {
+          "type": "collection",
+          "settings": {
+            "collection": "relax",
+            "image": "shopify:\/\/shop_images\/curvjeans20-09-2025-2_0023_curvjeans20-09-2025-83.jpg",
+            "subheading": "",
+            "title": "RELAX",
+            "url": "shopify:\/\/collections\/relax",
+            "heading_tag": "h2",
+            "text_position": "place-self-center text-center",
+            "text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 15
+          }
+        },
+        "collection-3": {
+          "type": "collection",
+          "settings": {
+            "collection": "straight",
+            "image": "shopify:\/\/shop_images\/straight-grey_ecommerve_13-07-2025_-122.webp",
+            "subheading": "",
+            "title": "",
+            "url": "shopify:\/\/collections\/straight",
+            "heading_tag": "h3",
+            "text_position": "place-self-center text-center",
+            "text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 15
+          }
+        },
+        "collection_trGPNY": {
+          "type": "collection",
+          "settings": {
+            "collection": "shapewear",
+            "image": "shopify:\/\/shop_images\/Frame_10.jpg",
+            "subheading": "",
+            "title": "SHAPEWEAR",
+            "url": "",
+            "heading_tag": "h2",
+            "text_position": "place-self-center text-center",
+            "text_color": "#ffffff",
+            "overlay_color": "#000000",
+            "overlay_opacity": 30
+          }
+        }
+      },
+      "block_order": [
+        "collection-1",
+        "collection_3M6EME",
+        "collection_CLX39H",
+        "collection_GGMRy4",
+        "collection-3",
+        "collection_trGPNY"
+      ],
+      "settings": {
+        "full_width": true,
+        "stack_collections": false,
+        "collections_per_row_mobile": "2",
+        "collections_per_row": 3,
+        "show_progress_bar": true,
+        "subheading": "",
+        "title": "Our Collection",
+        "content": "",
+        "link_url": "shopify:\/\/collections\/all-products",
+        "link_text": "View all",
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "heading_color": "",
+        "heading_gradient": ""
+      }
+    },
+    "featured_collection_Ux7W8W": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "new",
+        "products": [],
+        "full_width": true,
+        "stack_products": false,
+        "show_progress_bar": true,
+        "products_count": 3,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 3,
+        "subheading": "",
+        "title": "New: CurveFlex™ 360° Denim",
+        "content": "<p>5× stretchier than regular jeans — freedom in every direction.<\/p>",
+        "link_url": "shopify:\/\/collections\/new",
+        "link_text": "Shop New Collection",
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "heading_color": "",
+        "heading_gradient": "",
+        "product_card_background": "",
+        "product_card_text_color": ""
+      }
+    },
+    "featured_collection_tByM9i": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "bestsellers",
+        "products": [],
+        "full_width": true,
+        "stack_products": true,
+        "show_progress_bar": true,
+        "products_count": 4,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 4,
+        "subheading": "",
+        "title": "Bestsellers",
+        "content": "",
+        "link_url": "",
+        "link_text": "",
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "heading_color": "",
+        "heading_gradient": "",
+        "product_card_background": "",
+        "product_card_text_color": ""
+      }
+    },
+    "featured_collection_rxQna4": {
+      "type": "featured-collection",
+      "name": "Featured collection",
+      "settings": {
+        "collection": "shapewear",
+        "products": [],
+        "full_width": true,
+        "stack_products": false,
+        "show_progress_bar": false,
+        "products_count": 3,
+        "products_per_row_mobile": "1",
+        "products_per_row_desktop": 3,
+        "subheading": "",
+        "title": "Shapewear",
+        "content": "<p>Our CurveFlex™ Sculpt Layer smooths, sculpts & stays invisible<\/p>",
+        "link_url": "",
+        "link_text": "View all",
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "heading_color": "",
+        "heading_gradient": "",
+        "product_card_background": "",
+        "product_card_text_color": ""
+      }
+    },
+    "featured_collection_jtEDkX": {
+      "type": "featured-collection",
+      "name": "Featured collection",
+      "settings": {
+        "collection": "straight",
+        "products": [],
+        "full_width": true,
+        "stack_products": true,
+        "show_progress_bar": false,
+        "products_count": 6,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 3,
+        "subheading": "",
+        "title": "Last Chance",
+        "content": "<p>Your Snatched Straight fit won’t be back — last chance.<\/p>",
+        "link_url": "",
+        "link_text": "",
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "heading_color": "",
+        "heading_gradient": "",
+        "product_card_background": "",
+        "product_card_text_color": ""
+      }
+    },
+    "scrolling-text": {
+      "type": "scrolling-text",
+      "settings": {
+        "full_width": true,
+        "text": "Finally, jeans that fit.",
+        "text_size": "small",
+        "text_style": "fill",
+        "scrolling_mode": "auto",
+        "scrolling_speed": 12,
+        "background": "",
+        "background_gradient": "",
+        "text_color": "#1a1a1a",
+        "text_gradient": ""
+      }
+    },
+    "17418353076b3406a4": {
+      "type": "apps",
+      "blocks": {
+        "loox_reviews_loox_card_carousel_section_eM3gkV": {
+          "type": "shopify:\/\/apps\/loox-reviews\/blocks\/loox-card-carousel-section\/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "settings": {
+            "maxWidth": 1100,
+            "borderRadius": 8,
+            "itemsPerView": 4,
+            "mobileItemsPerView": 2,
+            "maxNumberOfCharacters": 100,
+            "imageRatio": "0.72",
+            "reviewerNameColor": "#000000",
+            "textColor": "#000000",
+            "itemBackgroundColor": "#ffffff",
+            "starsColor": "",
+            "starsBackgroundColor": "#ffffff",
+            "arrows_backgroundColor": "#ffffff",
+            "arrows_iconColor": "#9a9a9a",
+            "shadow": "offset-dark",
+            "border_active": false,
+            "border_width": 2,
+            "border_color": "#000000",
+            "productIds": ""
+          }
+        }
+      },
+      "block_order": [
+        "loox_reviews_loox_card_carousel_section_eM3gkV"
+      ],
+      "settings": {
+        "full_width": true,
+        "remove_vertical_spacing": true,
+        "remove_horizontal_spacing": false,
+        "background": "",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
+    "blog_posts_HiWJTf": {
+      "type": "blog-posts",
+      "blocks": {
+        "blog_XV7Rmq": {
+          "type": "blog",
+          "settings": {
+            "blog": "news",
+            "posts_count": 2,
+            "stack_items": false
+          }
+        }
+      },
+      "block_order": [
+        "blog_XV7Rmq"
+      ],
+      "disabled": true,
+      "settings": {
+        "full_width": true,
+        "show_excerpt": true,
+        "show_date": false,
+        "show_author": false,
+        "show_comments_count": false,
+        "show_category": false,
+        "subheading": "",
+        "title": "Blogs",
+        "content": "",
+        "link_url": "",
+        "link_text": "Read all",
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "heading_color": "",
+        "heading_gradient": ""
+      }
+    }
+  },
+  "order": [
+    "ss_hero_2_review_rQQfjc",
+    "collection-list",
+    "featured_collection_Ux7W8W",
+    "featured_collection_tByM9i",
+    "featured_collection_rxQna4",
+    "featured_collection_jtEDkX",
+    "scrolling-text",
+    "17418353076b3406a4",
+    "blog_posts_HiWJTf"
+  ]
+}

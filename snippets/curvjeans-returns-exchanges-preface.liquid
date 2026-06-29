@@ -1,0 +1,677 @@
+{%- comment -%}
+  Snippet: curvjeans-returns-exchanges-preface (NO parse_json)
+
+  Usage:
+    {% render 'curvjeans-returns-exchanges-preface',
+      portal_url: 'https://curvjeans.returnista.com/',
+      return_label_cost: '€6.95'
+    %}
+
+  - Auto language EN/NL/DE via request.locale.iso_code (fallback EN)
+  - Soft selection logic + adaptive CTA copy
+  - Namespaced classes to avoid interference
+  - Adds Klarna pre-frame banner (reduce Klarna disputes / invoice anxiety)
+  - Updated structure:
+      Header
+      "How it works" as clean headline + inline steps (no big bordered box)
+      Klarna banner BELOW "How it works" and ABOVE cards
+      Cohesive spacing system (desktop + mobile)
+{%- endcomment -%}
+
+{%- assign cjrx_portal_url = portal_url | default: "https://curvjeans.returnista.com/" -%}
+{%- assign cjrx_return_label_cost = return_label_cost | default: "" -%}
+{%- assign cjrx_locale = request.locale.iso_code | downcase -%}
+{%- if cjrx_locale != 'nl' and cjrx_locale != 'de' -%}{%- assign cjrx_locale = 'en' -%}{%- endif -%}
+
+{%- assign cjrx_klarna_logo = "https://cdn.shopify.com/s/files/1/0864/5165/0895/files/klarna.svg?v=1731852955" -%}
+
+{%- comment -%} ===== TRANSLATIONS (Liquid-safe) ===== {%- endcomment -%}
+{%- case cjrx_locale -%}
+
+  {%- when 'nl' -%}
+    {%- assign t_page_title = "Retourneren & Ruilen" -%}
+    {%- assign t_page_sub = "Kies wat het beste bij je past. De meeste fit-issues los je op met een snelle ruil of shoptegoed. Een normale terugbetaling is altijd mogelijk als je dat liever wilt." -%}
+
+    {%- assign t_how_title = "Hoe werkt het" -%}
+    {%- assign t_how_1 = "Selecteer je item in het portal." -%}
+    {%- assign t_how_2 = "Kies ruilen, shoptegoed of een normale terugbetaling." -%}
+    {%- assign t_how_3 = "Bevestig — wij regelen de rest." -%}
+
+    {%- assign t_klarna_title = "Betaald met Klarna?" -%}
+    {%- assign t_klarna_body = "Na het starten van je retour kan het even duren voordat Klarna je factuur bijwerkt. Zie je nog een open bedrag? Mail ons via help@curvjeans.com met je ordernummer — wij verwerken de retour en zorgen dat Klarna wordt bijgewerkt." -%}
+
+    {%- assign t_badge_most = "★ Meest gekozen" -%}
+    {%- assign t_badge_smart = "Slimme keuze" -%}
+    {%- assign t_badge_standard = "Standaard optie" -%}
+
+    {%- assign t_ex_title = "Ruilen voor de perfecte fit (of andere style)" -%}
+    {%- assign t_ex_desc = "De snelste manier om een fit-issue op te lossen — zonder te wachten op je geld." -%}
+    {%- assign t_ex_b1 = "Ontvang je nieuwe item met gratis verzending" -%}
+    {%- assign t_ex_b2 = "Snelle vervanging (je maat wordt gereserveerd na bevestiging)" -%}
+    {%- assign t_ex_b3 = "De meeste klanten lossen het op met één ruil" -%}
+    {%- assign t_ex_note = "Wat je kunt verwachten: je kiest je nieuwe maat in de volgende stap." -%}
+
+    {%- assign t_cr_title = "Shoptegoed met bonus" -%}
+    {%- assign t_cr_desc = "Maak van je retour iets extra’s en krijg meer te besteden." -%}
+    {%- assign t_cr_b1 = "Ontvang 10% extra shoptegoed als bonus" -%}
+    {%- assign t_cr_b2 = "Gratis retourlabel inbegrepen" -%}
+    {%- assign t_cr_b3 = "Geen vervaldatum — gebruik wanneer je wilt" -%}
+    {%- assign t_cr_note = "Voorbeeld: €90 item → €99 shoptegoed. Slimme keuze: waarom minder pakken als je meer kunt houden?" -%}
+
+    {%- assign t_rf_title = "Normale terugbetaling" -%}
+    {%- assign t_rf_desc = "Terugbetaling naar je originele betaalmethode zodra je retour is ontvangen." -%}
+    {%- assign t_rf_b1 = "Verwerkt binnen 5–10 werkdagen na ontvangst" -%}
+    {%- assign t_rf_b2 = "Geen bonus van toepassing" -%}
+    {%- assign t_rf_b3_cost_tpl = "Retourkosten (%s) worden verrekend met je terugbetaling" -%}
+    {%- assign t_rf_b3_nocost = "Retourkosten worden verrekend met je terugbetaling" -%}
+    {%- assign t_rf_note = "Als je het liever helemaal wilt afsluiten, kan dat via deze optie." -%}
+
+    {%- assign t_selected = "Gekozen" -%}
+
+    {%- assign t_cta_none = "Ga verder naar het retourportal →" -%}
+    {%- assign t_cta_exchange = "Ga verder met ruilen →" -%}
+    {%- assign t_cta_credit = "Ga verder met shoptegoed (+10%) →" -%}
+    {%- assign t_cta_refund = "Ga verder met terugbetaling →" -%}
+
+    {%- assign t_cta_sub_none = "In het portal selecteer je je item en bevestig je je keuze." -%}
+    {%- assign t_cta_sub_exchange = "In het portal selecteer je je item en kies je je nieuwe maat." -%}
+    {%- assign t_cta_sub_credit = "In het portal selecteer je je item en bevestig je shoptegoed." -%}
+    {%- assign t_cta_sub_refund = "In het portal selecteer je je item en bevestig je terugbetaling." -%}
+
+  {%- when 'de' -%}
+    {%- assign t_page_title = "Rückgabe & Umtausch" -%}
+    {%- assign t_page_sub = "Wähle den besten nächsten Schritt. Die meisten Passform-Probleme lassen sich durch einen schnellen Umtausch oder Store Credit lösen — eine normale Rückerstattung ist möglich, wenn du das lieber möchtest." -%}
+
+    {%- assign t_how_title = "So funktioniert’s" -%}
+    {%- assign t_how_1 = "Wähle deinen Artikel im Portal aus." -%}
+    {%- assign t_how_2 = "Wähle Umtausch, Store Credit oder eine normale Rückerstattung." -%}
+    {%- assign t_how_3 = "Bestätigen — wir kümmern uns um den Rest." -%}
+
+    {%- assign t_klarna_title = "Mit Klarna bezahlt?" -%}
+    {%- assign t_klarna_body = "Nach dem Start deiner Rücksendung kann es kurz dauern, bis Klarna deine Rechnung aktualisiert. Siehst du noch einen offenen Betrag? Schreib uns an help@curvjeans.com mit deiner Bestellnummer — wir bearbeiten die Rücksendung und sorgen dafür, dass Klarna aktualisiert wird." -%}
+
+    {%- assign t_badge_most = "★ Am häufigsten gewählt" -%}
+    {%- assign t_badge_smart = "Clevere Wahl" -%}
+    {%- assign t_badge_standard = "Standardoption" -%}
+
+    {%- assign t_ex_title = "Umtausch für die perfekte Passform (oder anderen Style)" -%}
+    {%- assign t_ex_desc = "Der schnellste Weg, ein Passform-Problem zu lösen — ohne auf dein Geld zu warten." -%}
+    {%- assign t_ex_b1 = "Neuer Artikel mit kostenlosem Versand" -%}
+    {%- assign t_ex_b2 = "Schneller Ersatz (deine Größe wird nach Bestätigung reserviert)" -%}
+    {%- assign t_ex_b3 = "Die meisten lösen es mit einem Umtausch" -%}
+    {%- assign t_ex_note = "Was dich erwartet: Du wählst deine neue Größe im nächsten Schritt." -%}
+
+    {%- assign t_cr_title = "Store Credit mit Bonus" -%}
+    {%- assign t_cr_desc = "Mach mehr aus deiner Rücksendung." -%}
+    {%- assign t_cr_b1 = "Erhalte zusätzlich 10% Store Credit als Bonus" -%}
+    {%- assign t_cr_b2 = "Kostenloses Rücksendeetikett inklusive" -%}
+    {%- assign t_cr_b3 = "Kein Ablaufdatum — jederzeit nutzbar" -%}
+    {%- assign t_cr_note = "Beispiel: €90 Artikel → €99 Store Credit. Clevere Wahl: warum weniger nehmen, wenn du mehr behalten kannst?" -%}
+
+    {%- assign t_rf_title = "Normale Rückerstattung" -%}
+    {%- assign t_rf_desc = "Rückerstattung auf die ursprüngliche Zahlungsmethode nach Eingang der Rücksendung." -%}
+    {%- assign t_rf_b1 = "Bearbeitung innerhalb von 5–10 Werktagen nach Eingang" -%}
+    {%- assign t_rf_b2 = "Kein Bonus" -%}
+    {%- assign t_rf_b3_cost_tpl = "Rücksendekosten (%s) werden von der Rückerstattung abgezogen" -%}
+    {%- assign t_rf_b3_nocost = "Rücksendekosten werden von der Rückerstattung abgezogen" -%}
+    {%- assign t_rf_note = "Wenn du es komplett abschließen möchtest, ist diese Option verfügbar." -%}
+
+    {%- assign t_selected = "Ausgewählt" -%}
+
+    {%- assign t_cta_none = "Weiter zum Rückgabe-Portal →" -%}
+    {%- assign t_cta_exchange = "Weiter mit Umtausch →" -%}
+    {%- assign t_cta_credit = "Weiter mit Store Credit (+10%) →" -%}
+    {%- assign t_cta_refund = "Weiter mit Rückerstattung →" -%}
+
+    {%- assign t_cta_sub_none = "Im Portal wählst du deinen Artikel aus und bestätigst deine Option." -%}
+    {%- assign t_cta_sub_exchange = "Im Portal wählst du deinen Artikel aus und wählst deine neue Größe." -%}
+    {%- assign t_cta_sub_credit = "Im Portal wählst du deinen Artikel aus und bestätigst Store Credit." -%}
+    {%- assign t_cta_sub_refund = "Im Portal wählst du deinen Artikel aus und bestätigst die Rückerstattung." -%}
+
+  {%- else -%}
+    {%- assign t_page_title = "Returns & Exchanges" -%}
+    {%- assign t_page_sub = "Select the best way to move forward. Most fit issues are solved with a quick exchange or store credit. A regular refund is always available if needed." -%}
+
+    {%- assign t_how_title = "How it works" -%}
+    {%- assign t_how_1 = "Select your item inside the portal." -%}
+    {%- assign t_how_2 = "Choose exchange, store credit, or a regular refund." -%}
+    {%- assign t_how_3 = "Confirm — we’ll handle the rest." -%}
+
+    {%- assign t_klarna_title = "Paid with Klarna?" -%}
+    {%- assign t_klarna_body = "After starting your return, it may take a moment for Klarna to update your invoice. Still seeing an open amount? Email help@curvjeans.com with your order number — we process the return and make sure Klarna is updated." -%}
+
+    {%- assign t_badge_most = "★ Most chosen" -%}
+    {%- assign t_badge_smart = "Smart choice" -%}
+    {%- assign t_badge_standard = "Standard option" -%}
+
+    {%- assign t_ex_title = "Exchange for the perfect fit (or different style)" -%}
+    {%- assign t_ex_desc = "The fastest way to fix a fit issue — without waiting for money to come back." -%}
+    {%- assign t_ex_b1 = "Receive your new item with free shipping" -%}
+    {%- assign t_ex_b2 = "Fast replacement (your size is reserved once confirmed)" -%}
+    {%- assign t_ex_b3 = "Most customers solve it with one exchange" -%}
+    {%- assign t_ex_note = "What to expect: You’ll choose your new size in the next step." -%}
+
+    {%- assign t_cr_title = "Store credit with bonus" -%}
+    {%- assign t_cr_desc = "Turn your return into more to spend." -%}
+    {%- assign t_cr_b1 = "Receive an extra 10% as a bonus" -%}
+    {%- assign t_cr_b2 = "Free return label included" -%}
+    {%- assign t_cr_b3 = "No expiration — use it anytime" -%}
+    {%- assign t_cr_note = "Example: €90 item → €99 store credit. Smart choice: why get less when you can keep more?" -%}
+
+    {%- assign t_rf_title = "Regular refund" -%}
+    {%- assign t_rf_desc = "Refund to your original payment method after the return is received." -%}
+    {%- assign t_rf_b1 = "Processed within 5–10 business days after arrival" -%}
+    {%- assign t_rf_b2 = "No bonus applied" -%}
+    {%- assign t_rf_b3_cost_tpl = "Return shipping (%s) is deducted from your refund" -%}
+    {%- assign t_rf_b3_nocost = "Return shipping is deducted from your refund" -%}
+    {%- assign t_rf_note = "If you prefer to close the loop completely, this option is available." -%}
+
+    {%- assign t_selected = "Selected" -%}
+
+    {%- assign t_cta_none = "Continue to return portal →" -%}
+    {%- assign t_cta_exchange = "Continue with exchange →" -%}
+    {%- assign t_cta_credit = "Continue with store credit (+10%) →" -%}
+    {%- assign t_cta_refund = "Continue with regular refund →" -%}
+
+    {%- assign t_cta_sub_none = "You’ll select your item and confirm your choice inside the portal." -%}
+    {%- assign t_cta_sub_exchange = "You’ll select your item and choose your new size inside the portal." -%}
+    {%- assign t_cta_sub_credit = "You’ll select your item and confirm store credit inside the portal." -%}
+    {%- assign t_cta_sub_refund = "You’ll select your item and confirm your refund inside the portal." -%}
+{%- endcase -%}
+
+{%- if cjrx_return_label_cost != blank -%}
+  {%- assign rf_shipping_line = t_rf_b3_cost_tpl | replace: "%s", cjrx_return_label_cost -%}
+{%- else -%}
+  {%- assign rf_shipping_line = t_rf_b3_nocost -%}
+{%- endif -%}
+
+{%- capture cjrx_check_svg -%}
+<svg viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false">
+  <path d="M3.2 8.2l3 3L12.8 4.8" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+{%- endcapture -%}
+
+<style>
+  /* =========================
+     Layout + Vertical Rhythm
+  ========================= */
+  .curvjeans-returns-exchanges-preface{
+    max-width:1100px;
+    margin:80px auto;
+    padding:0 20px;
+    font-family:inherit;
+    color:#111;
+  }
+
+  .curvjeans-returns-exchanges-preface__header,
+  .curvjeans-returns-exchanges-preface__how,
+  .curvjeans-returns-exchanges-preface__klarna,
+  .curvjeans-returns-exchanges-preface__cards,
+  .curvjeans-returns-exchanges-preface__cta-wrap{
+    margin-top:48px;
+  }
+
+  .curvjeans-returns-exchanges-preface__header{margin-top:0;text-align:center;}
+  .curvjeans-returns-exchanges-preface__cards{margin-top:56px;margin-bottom:40px;}
+  .curvjeans-returns-exchanges-preface__cta-wrap{margin-top:40px;}
+
+  .curvjeans-returns-exchanges-preface__title{
+    font-size:46px;
+    line-height:1.05;
+    font-weight:650;
+    letter-spacing:-.02em;
+    margin:0 0 12px;
+  }
+  .curvjeans-returns-exchanges-preface__sub{
+    max-width:760px;
+    margin:0 auto;
+    font-size:16px;
+    line-height:1.6;
+    color:#555;
+  }
+
+  /* =========================
+     How it works (clean)
+  ========================= */
+  .curvjeans-returns-exchanges-preface__how{
+    max-width:880px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .curvjeans-returns-exchanges-preface__how-title{
+    font-size:16px;
+    font-weight:750;
+    letter-spacing:-.01em;
+    margin:0 0 14px;
+    color:#111;
+  }
+  .curvjeans-returns-exchanges-preface__how-steps{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:18px;
+    margin:0;
+    padding:0;
+    list-style:none;
+  }
+  .curvjeans-returns-exchanges-preface__how-step{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+    font-size:14px;
+    line-height:1.5;
+    color:#444;
+  }
+  .curvjeans-returns-exchanges-preface__how-num{
+    flex:0 0 auto;
+    width:28px;
+    height:28px;
+    border-radius:999px;
+    border:1px solid #e6e6e6;
+    background:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:12px;
+    font-weight:750;
+    color:#111;
+    margin-top:1px;
+  }
+
+  /* =========================
+     Klarna notice
+  ========================= */
+  .curvjeans-returns-exchanges-preface__klarna{
+    max-width:880px;
+    margin-left:auto;
+    margin-right:auto;
+    padding:16px 18px;
+    border-radius:16px;
+    border:1px solid rgba(255,0,128,.18);
+    background:rgba(255,0,128,.06);
+    display:flex;
+    gap:14px;
+    align-items:flex-start;
+    text-align:left;
+  }
+  .curvjeans-returns-exchanges-preface__klarna-logo{
+    flex:0 0 auto;
+    width:72px;
+    height:auto;
+    margin-top:2px;
+  }
+  .curvjeans-returns-exchanges-preface__klarna-text{
+    margin:0;
+    color:#333;
+    font-size:13px;
+    line-height:1.55;
+  }
+  .curvjeans-returns-exchanges-preface__klarna-text strong{
+    display:block;
+    color:#111;
+    font-weight:750;
+    margin-bottom:4px;
+  }
+  .curvjeans-returns-exchanges-preface__klarna-text a{
+    color:#111;
+    text-decoration:underline;
+    text-underline-offset:2px;
+    font-weight:650;
+  }
+
+  /* =========================
+     Cards
+  ========================= */
+  .curvjeans-returns-exchanges-preface__cards{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:18px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .curvjeans-returns-exchanges-preface__card{
+    border:1px solid #e8e8e8;
+    border-radius:16px;
+    background:#fff;
+    padding:18px 18px 16px;
+    box-shadow:0 1px 0 rgba(0,0,0,.02);
+    cursor:pointer;
+    transition:transform .12s ease,box-shadow .12s ease,border-color .12s ease;
+    outline:none;
+  }
+  .curvjeans-returns-exchanges-preface__card:hover{
+    transform:translateY(-1px);
+    box-shadow:0 10px 28px rgba(0,0,0,.06);
+  }
+  .curvjeans-returns-exchanges-preface__card:focus-visible{
+    box-shadow:0 0 0 3px rgba(17,17,17,.12);
+  }
+  .curvjeans-returns-exchanges-preface__card.is-selected{
+    border-color:#111;
+    box-shadow:0 14px 34px rgba(0,0,0,.10);
+    transform:translateY(-2px);
+  }
+
+  .curvjeans-returns-exchanges-preface__badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size:12px;
+    font-weight:650;
+    padding:6px 10px;
+    border-radius:999px;
+    border:1px solid #e9e9e9;
+    background:#fff;
+    margin-bottom:12px;
+    color:#111;
+  }
+  .curvjeans-returns-exchanges-preface__badge--green{border-color:#d7ead8;background:#f3fbf4;color:#1f6b24}
+  .curvjeans-returns-exchanges-preface__badge--mint{border-color:#d7ebe6;background:#edf8f6;color:#0f5b4f}
+  .curvjeans-returns-exchanges-preface__badge--grey{border-color:#ededed;background:#f7f7f7;color:#666}
+
+  .curvjeans-returns-exchanges-preface__card-title{
+    font-size:18px;
+    line-height:1.25;
+    font-weight:750;
+    margin:0 0 8px;
+    letter-spacing:-.01em;
+  }
+  .curvjeans-returns-exchanges-preface__card-desc{
+    font-size:13px;
+    line-height:1.5;
+    color:#555;
+    margin:0 0 12px;
+  }
+
+  .curvjeans-returns-exchanges-preface__checklist{
+    margin:0 0 12px;
+    padding:0;
+    list-style:none;
+    color:#444;
+    font-size:13px;
+    line-height:1.45;
+  }
+  .curvjeans-returns-exchanges-preface__checkitem{
+    display:flex;
+    gap:10px;
+    align-items:flex-start;
+    margin-bottom:8px;
+  }
+  .curvjeans-returns-exchanges-preface__checkicon{
+    flex:0 0 auto;
+    width:16px;
+    height:16px;
+    margin-top:2px;
+  }
+  .curvjeans-returns-exchanges-preface__checkicon svg{width:16px;height:16px;display:block}
+
+  .curvjeans-returns-exchanges-preface__card-note{
+    font-size:12.5px;
+    line-height:1.5;
+    color:#666;
+    margin:0;
+  }
+  .curvjeans-returns-exchanges-preface__card-note strong{color:#111;font-weight:650}
+
+  .curvjeans-returns-exchanges-preface__selected-row{
+    display:none;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    margin-top:14px;
+    padding-top:12px;
+    border-top:1px solid #f0f0f0;
+  }
+  .curvjeans-returns-exchanges-preface__selected-label{
+    font-size:12px;
+    color:#666;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+  }
+  .curvjeans-returns-exchanges-preface__selected-check{
+    width:18px;
+    height:18px;
+    border-radius:999px;
+    border:1px solid #111;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    font-size:12px;
+    color:#111;
+    background:#fff;
+  }
+
+  /* =========================
+     CTA
+  ========================= */
+  .curvjeans-returns-exchanges-preface__cta-wrap{
+    text-align:center;
+    max-width:880px;
+    margin-left:auto;
+    margin-right:auto;
+    padding-top:0;
+  }
+  .curvjeans-returns-exchanges-preface__cta{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    padding:14px 28px;
+    border-radius:999px;
+    background:#111;
+    color:#fff;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:650;
+    letter-spacing:.01em;
+    min-height:48px;
+    width:auto;
+  }
+  .curvjeans-returns-exchanges-preface__cta:hover{opacity:.92}
+  .curvjeans-returns-exchanges-preface__cta-sub{
+    margin:10px 0 0;
+    font-size:12.5px;
+    color:#777;
+    line-height:1.5;
+  }
+
+  /* =========================
+     Responsive
+  ========================= */
+  @media (max-width:900px){
+    .curvjeans-returns-exchanges-preface{
+      margin:56px auto;
+      padding:0 18px;
+    }
+
+    .curvjeans-returns-exchanges-preface__header,
+    .curvjeans-returns-exchanges-preface__how,
+    .curvjeans-returns-exchanges-preface__klarna,
+    .curvjeans-returns-exchanges-preface__cards,
+    .curvjeans-returns-exchanges-preface__cta-wrap{
+      margin-top:36px;
+    }
+
+    .curvjeans-returns-exchanges-preface__title{font-size:34px;}
+    .curvjeans-returns-exchanges-preface__cards{grid-template-columns:1fr;margin-top:44px;}
+    .curvjeans-returns-exchanges-preface__cta{width:100%;}
+    .curvjeans-returns-exchanges-preface__klarna{flex-direction:column;gap:10px;}
+    .curvjeans-returns-exchanges-preface__klarna-logo{width:64px;}
+
+    .curvjeans-returns-exchanges-preface__how-steps{
+      grid-template-columns:1fr;
+      gap:12px;
+    }
+  }
+  @media (max-width:420px){
+    .curvjeans-returns-exchanges-preface__title{font-size:30px;}
+    .curvjeans-returns-exchanges-preface__sub{font-size:15px;}
+    .curvjeans-returns-exchanges-preface__card{padding:16px;}
+  }
+</style>
+
+<div class="curvjeans-returns-exchanges-preface" data-curvjeans-returns-exchanges-preface>
+  <div class="curvjeans-returns-exchanges-preface__header">
+    <h1 class="curvjeans-returns-exchanges-preface__title">{{ t_page_title }}</h1>
+    <p class="curvjeans-returns-exchanges-preface__sub">{{ t_page_sub }}</p>
+  </div>
+
+  <!-- How it works (clean) -->
+  <div class="curvjeans-returns-exchanges-preface__how" aria-label="{{ t_how_title }}">
+    <p class="curvjeans-returns-exchanges-preface__how-title">{{ t_how_title }}</p>
+    <ul class="curvjeans-returns-exchanges-preface__how-steps">
+      <li class="curvjeans-returns-exchanges-preface__how-step">
+        <span class="curvjeans-returns-exchanges-preface__how-num">1</span>
+        <span>{{ t_how_1 }}</span>
+      </li>
+      <li class="curvjeans-returns-exchanges-preface__how-step">
+        <span class="curvjeans-returns-exchanges-preface__how-num">2</span>
+        <span>{{ t_how_2 }}</span>
+      </li>
+      <li class="curvjeans-returns-exchanges-preface__how-step">
+        <span class="curvjeans-returns-exchanges-preface__how-num">3</span>
+        <span>{{ t_how_3 }}</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Klarna notice (below How it works, above cards) -->
+  <div class="curvjeans-returns-exchanges-preface__klarna" role="note" aria-label="Klarna notice">
+    <img
+      src="{{ cjrx_klarna_logo }}"
+      alt="Klarna"
+      class="curvjeans-returns-exchanges-preface__klarna-logo"
+      loading="lazy"
+    />
+    <p class="curvjeans-returns-exchanges-preface__klarna-text">
+      <strong>{{ t_klarna_title }}</strong>
+      {{ t_klarna_body }}
+    </p>
+  </div>
+
+  <!-- Choice cards -->
+  <div class="curvjeans-returns-exchanges-preface__cards" role="group" aria-label="Choose your preferred option">
+
+    <div class="curvjeans-returns-exchanges-preface__card" role="button" tabindex="0" aria-pressed="false" data-curvjeans-rx-choice="exchange">
+      <span class="curvjeans-returns-exchanges-preface__badge curvjeans-returns-exchanges-preface__badge--green">{{ t_badge_most }}</span>
+      <h3 class="curvjeans-returns-exchanges-preface__card-title">{{ t_ex_title }}</h3>
+      <p class="curvjeans-returns-exchanges-preface__card-desc">{{ t_ex_desc }}</p>
+      <ul class="curvjeans-returns-exchanges-preface__checklist">
+        <li class="curvjeans-returns-exchanges-preface__checkitem"><span class="curvjeans-returns-exchanges-preface__checkicon">{{ cjrx_check_svg }}</span><span>{{ t_ex_b1 }}</span></li>
+        <li class="curvjeans-returns-exchanges-preface__checkitem"><span class="curvjeans-returns-exchanges-preface__checkicon">{{ cjrx_check_svg }}</span><span>{{ t_ex_b2 }}</span></li>
+        <li class="curvjeans-returns-exchanges-preface__checkitem"><span class="curvjeans-returns-exchanges-preface__checkicon">{{ cjrx_check_svg }}</span><span>{{ t_ex_b3 }}</span></li>
+      </ul>
+      <p class="curvjeans-returns-exchanges-preface__card-note"><strong>{{ t_ex_note }}</strong></p>
+      <div class="curvjeans-returns-exchanges-preface__selected-row" aria-hidden="true">
+        <span class="curvjeans-returns-exchanges-preface__selected-label"><span class="curvjeans-returns-exchanges-preface__selected-check">✓</span> {{ t_selected }}</span>
+      </div>
+    </div>
+
+    <div class="curvjeans-returns-exchanges-preface__card" role="button" tabindex="0" aria-pressed="false" data-curvjeans-rx-choice="credit">
+      <span class="curvjeans-returns-exchanges-preface__badge curvjeans-returns-exchanges-preface__badge--mint">{{ t_badge_smart }}</span>
+      <h3 class="curvjeans-returns-exchanges-preface__card-title">{{ t_cr_title }}</h3>
+      <p class="curvjeans-returns-exchanges-preface__card-desc">{{ t_cr_desc }}</p>
+      <ul class="curvjeans-returns-exchanges-preface__checklist">
+        <li class="curvjeans-returns-exchanges-preface__checkitem"><span class="curvjeans-returns-exchanges-preface__checkicon">{{ cjrx_check_svg }}</span><span>{{ t_cr_b1 }}</span></li>
+        <li class="curvjeans-returns-exchanges-preface__checkitem"><span class="curvjeans-returns-exchanges-preface__checkicon">{{ cjrx_check_svg }}</span><span>{{ t_cr_b2 }}</span></li>
+        <li class="curvjeans-returns-exchanges-preface__checkitem"><span class="curvjeans-returns-exchanges-preface__checkicon">{{ cjrx_check_svg }}</span><span>{{ t_cr_b3 }}</span></li>
+      </ul>
+      <p class="curvjeans-returns-exchanges-preface__card-note">{{ t_cr_note }}</p>
+      <div class="curvjeans-returns-exchanges-preface__selected-row" aria-hidden="true">
+        <span class="curvjeans-returns-exchanges-preface__selected-label"><span class="curvjeans-returns-exchanges-preface__selected-check">✓</span> {{ t_selected }}</span>
+      </div>
+    </div>
+
+    <div class="curvjeans-returns-exchanges-preface__card" role="button" tabindex="0" aria-pressed="false" data-curvjeans-rx-choice="refund">
+      <span class="curvjeans-returns-exchanges-preface__badge curvjeans-returns-exchanges-preface__badge--grey">{{ t_badge_standard }}</span>
+      <h3 class="curvjeans-returns-exchanges-preface__card-title">{{ t_rf_title }}</h3>
+      <p class="curvjeans-returns-exchanges-preface__card-desc">{{ t_rf_desc }}</p>
+      <ul class="curvjeans-returns-exchanges-preface__checklist">
+        <li class="curvjeans-returns-exchanges-preface__checkitem"><span class="curvjeans-returns-exchanges-preface__checkicon">{{ cjrx_check_svg }}</span><span>{{ t_rf_b1 }}</span></li>
+        <li class="curvjeans-returns-exchanges-preface__checkitem"><span class="curvjeans-returns-exchanges-preface__checkicon">{{ cjrx_check_svg }}</span><span>{{ t_rf_b2 }}</span></li>
+        <li class="curvjeans-returns-exchanges-preface__checkitem"><span class="curvjeans-returns-exchanges-preface__checkicon">{{ cjrx_check_svg }}</span><span>{{ rf_shipping_line }}</span></li>
+      </ul>
+      <p class="curvjeans-returns-exchanges-preface__card-note">{{ t_rf_note }}</p>
+      <div class="curvjeans-returns-exchanges-preface__selected-row" aria-hidden="true">
+        <span class="curvjeans-returns-exchanges-preface__selected-label"><span class="curvjeans-returns-exchanges-preface__selected-check">✓</span> {{ t_selected }}</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CTA -->
+  <div class="curvjeans-returns-exchanges-preface__cta-wrap">
+    <a class="curvjeans-returns-exchanges-preface__cta"
+       href="{{ cjrx_portal_url }}"
+       target="_blank"
+       rel="noopener noreferrer"
+       data-curvjeans-rx-cta>
+       {{ t_cta_none }}
+    </a>
+    <p class="curvjeans-returns-exchanges-preface__cta-sub" data-curvjeans-rx-cta-sub>{{ t_cta_sub_none }}</p>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var root = document.querySelector('[data-curvjeans-returns-exchanges-preface]');
+    if (!root) return;
+
+    var cards = root.querySelectorAll('[data-curvjeans-rx-choice]');
+    var cta = root.querySelector('[data-curvjeans-rx-cta]');
+    var ctaSub = root.querySelector('[data-curvjeans-rx-cta-sub]');
+
+    var copyMap = {
+      exchange: { cta: {{ t_cta_exchange | json }}, sub: {{ t_cta_sub_exchange | json }} },
+      credit:   { cta: {{ t_cta_credit | json }},   sub: {{ t_cta_sub_credit | json }} },
+      refund:   { cta: {{ t_cta_refund | json }},   sub: {{ t_cta_sub_refund | json }} },
+      none:     { cta: {{ t_cta_none | json }},     sub: {{ t_cta_sub_none | json }} }
+    };
+
+    function clearSelection() {
+      cards.forEach(function (card) {
+        card.classList.remove('is-selected');
+        card.setAttribute('aria-pressed', 'false');
+        var row = card.querySelector('.curvjeans-returns-exchanges-preface__selected-row');
+        if (row) row.style.display = 'none';
+      });
+    }
+
+    function setSelection(choice) {
+      var map = copyMap[choice] || copyMap.none;
+      if (cta) cta.textContent = map.cta;
+      if (ctaSub) ctaSub.textContent = map.sub;
+
+      if (cta) {
+        var base = cta.getAttribute('href') || '';
+        try {
+          var url = new URL(base, window.location.origin);
+          url.searchParams.delete('intent');
+          if (choice && choice !== 'none') url.searchParams.set('intent', choice);
+          cta.setAttribute('href', url.toString());
+        } catch (e) {}
+      }
+    }
+
+    setSelection('none');
+
+    function onPick(card) {
+      var choice = card.getAttribute('data-curvjeans-rx-choice');
+      clearSelection();
+      card.classList.add('is-selected');
+      card.setAttribute('aria-pressed', 'true');
+
+      var row = card.querySelector('.curvjeans-returns-exchanges-preface__selected-row');
+      if (row) row.style.display = 'flex';
+
+      setSelection(choice);
+    }
+
+    cards.forEach(function (card) {
+      card.addEventListener('click', function () { onPick(card); });
+      card.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onPick(card); }
+      });
+    });
+  })();
+</script>

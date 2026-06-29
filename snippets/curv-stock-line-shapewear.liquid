@@ -1,0 +1,88 @@
+{%- comment -%}
+CURVS — Stock line for shapewear (threshold 100 units)
+Usage: {% render 'curv-stock-line-shapewear' %}
+{%- endcomment -%}
+
+{%- assign p  = p | default: product -%}
+{%- assign v  = v | default: p.selected_or_first_available_variant -%}
+{%- assign lc = request.locale.iso_code | downcase -%}
+
+{%- assign ship_raw = v.metafields.custom.pre_order_date
+  | default: p.metafields.custom.pre_order_date
+  | default: settings.preorder_ship_date -%}
+
+{%- assign day = ship_raw | date: "%-d" -%}
+{%- assign m   = ship_raw | date: "%-m" | plus: 0 -%}
+{%- capture ship_fmt -%}
+  {%- if ship_raw == blank -%}
+    {%- if lc == 'nl' -%}binnenkort{%- elsif lc == 'de' -%}in Kürze{%- else -%}soon{%- endif -%}
+  {%- elsif lc == 'nl' -%}
+    {%- case m -%}
+      {%- when 1 -%}{{ day }} jan.{%- when 2 -%}{{ day }} feb.{%- when 3 -%}{{ day }} mrt.{%- when 4 -%}{{ day }} apr.
+      {%- when 5 -%}{{ day }} mei{%- when 6 -%}{{ day }} jun.{%- when 7 -%}{{ day }} jul.{%- when 8 -%}{{ day }} aug.
+      {%- when 9 -%}{{ day }} sep.{%- when 10 -%}{{ day }} okt.{%- when 11 -%}{{ day }} nov.{%- when 12 -%}{{ day }} dec.
+    {%- endcase -%}
+  {%- elsif lc == 'de' -%}
+    {%- case m -%}
+      {%- when 1 -%}{{ day }}. Jan.{%- when 2 -%}{{ day }}. Feb.{%- when 3 -%}{{ day }}. März{%- when 4 -%}{{ day }}. Apr.
+      {%- when 5 -%}{{ day }}. Mai{%- when 6 -%}{{ day }}. Juni{%- when 7 -%}{{ day }}. Juli{%- when 8 -%}{{ day }}. Aug.
+      {%- when 9 -%}{{ day }}. Sept.{%- when 10 -%}{{ day }}. Okt.{%- when 11 -%}{{ day }}. Nov.{%- when 12 -%}{{ day }}. Dez.
+    {%- endcase -%}
+  {%- else -%}
+    {{ day }} {{ ship_raw | date: "%B" }}
+  {%- endif -%}
+{%- endcapture -%}
+
+{%- assign is_preorder = false -%}
+{%- if v and v.inventory_policy == 'continue' -%}
+  {%- assign qty = v.inventory_quantity | default: 0 | plus: 0 -%}
+  {%- if qty <= 0 -%}{%- assign is_preorder = true -%}{%- endif -%}
+{%- endif -%}
+
+<div class="cj-stock">
+  {% if is_preorder %}
+    <span class="cj-dot blue pulse"></span>
+    <span class="cj-text blue-text">
+      {%- if lc == 'nl' -%}Wordt aangevuld — verzending {{ ship_fmt }}
+      {%- elsif lc == 'de' -%}Wird aufgefüllt — Versand ab {{ ship_fmt }}
+      {%- else -%}Restocking — ships {{ ship_fmt }}{%- endif -%}
+    </span>
+
+  {% elsif v.inventory_quantity >= 100 %}
+    <span class="cj-dot green pulse"></span>
+    <span class="cj-text green-text">
+      {%- if lc == 'nl' -%}Op voorraad, klaar voor verzending
+      {%- elsif lc == 'de' -%}Auf Lager – sofort versandbereit
+      {%- else -%}In stock, ready to ship{%- endif -%}
+    </span>
+
+  {% elsif v.inventory_quantity > 0 %}
+    <span class="cj-dot orange pulse"></span>
+    <span class="cj-text orange-text">
+      {%- if lc == 'nl' -%}Snel zijn! Bijna uitverkocht
+      {%- elsif lc == 'de' -%}Schnell sein! Fast ausverkauft
+      {%- else -%}Hurry! Almost sold out{%- endif -%}
+    </span>
+
+  {% else %}
+    <span class="cj-dot red pulse"></span>
+    <span class="cj-text red-text">
+      {%- if lc == 'nl' -%}Uitverkocht
+      {%- elsif lc == 'de' -%}Ausverkauft
+      {%- else -%}Sold out – join waitlist{%- endif -%}
+    </span>
+  {% endif %}
+</div>
+
+<style>
+.cj-stock{display:flex;align-items:center;gap:8px;padding:5px 0;margin:14px 0}
+.cj-text{font-size:var(--text-base-size);color:#000}
+.cj-dot{width:10px;height:10px;border-radius:50%;margin-right:2px}
+.pulse{animation:pulse-cj 2.5s infinite ease-in-out}
+@keyframes pulse-cj{0%{transform:scale(.9);opacity:.7}50%{transform:scale(1.1);opacity:1}100%{transform:scale(.9);opacity:.7}}
+.green{background:#00A341;box-shadow:0 0 8px rgba(0,163,65,.5)}
+.orange{background:#FFA500;box-shadow:0 0 8px rgba(255,165,0,.5)}
+.red{background:#D52C2C;box-shadow:0 0 8px rgba(213,44,44,.5)}
+.blue{background:#1E90FF;box-shadow:0 0 8px rgba(30,144,255,.5)}
+.green-text{color:#00A341}.orange-text{color:#FFA500}.red-text{color:#D52C2C}.blue-text{color:#1E90FF}
+</style>

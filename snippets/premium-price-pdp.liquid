@@ -1,0 +1,67 @@
+<div class="cj-premium-price">
+  {% assign v = product.selected_or_first_available_variant %}
+  {% assign cp = v.compare_at_price %}
+  {% assign ap = v.price %}
+
+  {% if cp and cp > ap %}
+    <!-- LEFT: compare price ONLY -->
+    <div class="cj-premium-price__meta">
+      <span class="cj-premium-price__compare">
+        {% if settings.currency_code_enabled %}
+          {{ cp | money_with_currency }}
+        {% else %}
+          {{ cp | money }}
+        {% endif %}
+      </span>
+    </div>
+
+    <!-- CURRENT PRICE -->
+    <span class="cj-premium-price__now">
+      {% if settings.currency_code_enabled %}
+        {{ ap | money_with_currency }}
+      {% else %}
+        {{ ap | money }}
+      {% endif %}
+    </span>
+
+  {% else %}
+    <span class="cj-premium-price__now">
+      {% if settings.currency_code_enabled %}
+        {{ ap | money_with_currency }}
+      {% else %}
+        {{ ap | money }}
+      {% endif %}
+    </span>
+  {% endif %}
+</div>
+
+<style>/* PRICE WRAPPER */
+.cj-premium-price {
+  display: flex;
+  align-items: center; /* original */
+  gap: 6px 8px;        /* original */
+  flex-wrap: wrap;
+}
+
+/* LEFT SECTION */
+.cj-premium-price__meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* CROSSED OUT PRICE */
+.cj-premium-price__compare {
+  text-decoration: line-through;
+  color: #8B8B8B;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* CURRENT PRICE */
+.cj-premium-price__now {
+  font-size: 18px;
+  font-weight: 800;
+  color: #111;
+}
+</style>

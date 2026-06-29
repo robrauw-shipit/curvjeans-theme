@@ -1,0 +1,34 @@
+{%- comment -%}
+CURVJEANS — Upsell Badge
+Shows only if product metafield custom.upsell_badge is filled.
+Use inside upsell / horizontal product cards only.
+{%- endcomment -%}
+
+{%- assign badge_product = upsell_product | default: product -%}
+{%- assign upsell_badge = badge_product.metafields.custom.upsell_badge.value | default: badge_product.metafields.custom.upsell_badge -%}
+
+{%- if upsell_badge != blank -%}
+  <span class="cj-upsell-offer-badge">
+    {{ upsell_badge }}
+  </span>
+
+  <style>
+    .cj-upsell-offer-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: fit-content;
+      margin-top: 4px;
+      padding: 3px 7px;
+      border-radius: 999px;
+      background: rgba(44, 143, 85, 0.12);
+      color: #2C8F55;
+      font-size: 10px;
+      line-height: 1;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+  </style>
+{%- endif -%}

@@ -1,0 +1,127 @@
+<div class="cj-atc-trust-row">
+
+  <!-- Trustpilot -->
+  <div class="trustpilot-atc-badge">
+    <img 
+      src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/Trustpilot_Logo__2022.svg?v=1755756067" 
+      alt="Trustpilot Logo" 
+      class="trustpilot-atc-logo">
+
+    <img
+      src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/stars-4.svg?v=1768637288"
+      alt="Trustpilot Stars"
+      class="trustpilot-atc-stars">
+
+    {% if request.path contains '/nl' %}
+      <span class="trustpilot-atc-text">Goed</span>
+    {% elsif request.path contains '/de' %}
+      <span class="trustpilot-atc-text">Gut</span>
+    {% else %}
+      <span class="trustpilot-atc-text">Great</span>
+    {% endif %}
+  </div>
+
+      <!-- Payment Icons Section in Cart Drawer -->
+<div class="cart-payment-icons-wrapper">
+  <ul class="cart-payment-icons-list">
+
+{%- assign payment_order = 'visa,master,ideal,bancontact,american_express,apple_pay,google_pay,paypal' | split: ',' -%}
+
+{%- for type in payment_order -%}
+  {%- if shop.enabled_payment_types contains type -%}
+    <li class="cart-payment-icon-item">
+      {{ type | payment_type_svg_tag: class: 'cart-payment-icon' }}
+    </li>
+  {%- endif -%}
+{%- endfor -%}
+  </ul>
+</div>
+
+
+</div>
+
+<style>
+/* Wrapper to keep the icons separate from the checkout button */
+.cart-payment-icons-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* Payment Icons Layout */
+.cart-payment-icons-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 13px; /* Even spacing */
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+/* Individual Payment Icons */
+.cart-payment-icon-item {
+  display: flex;
+  align-items: center;
+}
+
+/* Icon Styling */
+.cart-payment-icon {
+  width: 40px; /* Adjust icon size */
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .cart-payment-icon,
+  .payment-icon {
+    width: 30px; /* SAME size for Klarna + iDEAL + cards */
+    height: auto;
+  }
+
+  .cart-payment-icons-list {
+    gap: 10px;
+  }
+}
+</style>
+
+</div>
+
+<style>
+/* ONE INLINE ROW */
+.cj-atc-trust-row{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:18px;
+  width:100%;
+  flex-wrap:wrap;
+}
+
+/* Trustpilot inline */
+.trustpilot-atc-badge{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  white-space:nowrap;
+}
+
+.trustpilot-atc-logo,
+.trustpilot-atc-stars{
+  height:18px;
+  width:auto;
+  display:block;
+}
+
+.trustpilot-atc-text{
+  font-size:14px;
+  font-weight:700; /* FORCE bold on desktop + mobile */
+}
+
+  .trustpilot-atc-logo,
+  .trustpilot-atc-stars{
+    height:16px;
+  }
+}
+
+</style>

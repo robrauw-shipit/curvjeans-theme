@@ -1,0 +1,68 @@
+<div class="cj-fit-guarantee">
+  <img
+    src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/checkmark.svg?v=1726653017"
+    alt=""
+    loading="lazy"
+    width="13"
+    height="13"
+  >
+
+  <span>
+    {% if request.path contains '/nl' %}
+      <strong>89%</strong> vindt de juiste fit de eerste keer.
+    {% elsif request.path contains '/de' %}
+      <strong>89%</strong> finden direkt die richtige Größe.
+    {% else %}
+      <strong>89%</strong> get their size right first time.
+    {% endif %}
+  </span>
+</div>
+
+<style>
+.cj-fit-guarantee {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 6px;
+  width: 100%;
+  margin: 8px 0 0;
+  padding: 0;
+  color: #7A7A7A;
+  font-size: 13px;
+  line-height: 1;
+  font-weight: 400;
+  text-align: left;
+  background: transparent !important;
+  border: 0 !important;
+}
+
+.cj-fit-guarantee img {
+  display: block;
+  width: 13px;
+  height: 13px;
+  flex: 0 0 13px;
+  opacity: .75;
+}
+
+.cj-fit-guarantee span {
+  display: block;
+}
+
+.cj-fit-guarantee strong {
+  font-weight: 700;
+  color: #5F5F5F;
+}
+
+@media (max-width: 749px) {
+  .cj-fit-guarantee {
+    font-size: 11px;
+    gap: 5px;
+  }
+
+  .cj-fit-guarantee img {
+    width: 11px;
+    height: 11px;
+    flex-basis: 11px;
+  }
+}
+</style>

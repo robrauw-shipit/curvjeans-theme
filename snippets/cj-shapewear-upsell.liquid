@@ -1,0 +1,407 @@
+{%- assign upsell_product = all_products[upsell_handle] -%}
+{%- assign upsell_qty = upsell_quantity | default: 2 -%}
+{%- assign upsell_variant = upsell_product.selected_or_first_available_variant -%}
+{%- assign offer_price = upsell_variant.price -%}
+{%- assign compare_total = upsell_variant.price | times: upsell_qty -%}
+{%- assign checkmark_icon = 'https://cdn.shopify.com/s/files/1/0864/5165/0895/files/checkmark.svg?v=1726653017' -%}
+{%- assign lang = localization.language.iso_code | default: request.locale.iso_code | slice: 0, 2 -%}
+
+{%- case lang -%}
+  {%- when 'nl' -%}
+    {%- assign upsell_heading = 'Maak je look compleet' -%}
+    {%- assign upsell_subline = 'Blijft zitten en voelt als een tweede huid.' -%}
+    {%- assign upsell_deal = '1+1 gratis' -%}
+    {%- assign upsell_button = '+ 2 BODYSUITS TOEVOEGEN' -%}
+    {%- assign upsell_adding = 'TOEVOEGEN...' -%}
+    {%- assign upsell_size_fallback = 'Afgestemd op je jeans.' -%}
+    {%- assign upsell_size_prefix = 'Maat ' -%}
+    {%- assign upsell_size_suffix = ', afgestemd op je jeans.' -%}
+    {%- assign upsell_unavailable = 'Deze maat is niet beschikbaar bij je geselecteerde jeansmaat.' -%}
+    {%- assign upsell_sold_out = 'Binnenkort weer terug in jouw maat.' -%}
+    {%- assign upsell_error = 'Het toevoegen is niet gelukt. Probeer het opnieuw.' -%}
+  {%- when 'de' -%}
+    {%- assign upsell_heading = 'Vervollständige deinen Look' -%}
+    {%- assign upsell_subline = 'Sitzt, wo es soll, und fühlt sich an wie nichts' -%}
+    {%- assign upsell_deal = '1+1 gratis' -%}
+    {%- assign upsell_button = '+ 2 BODYSUITS HINZUFÜGEN' -%}
+    {%- assign upsell_adding = 'WIRD HINZUGEFÜGT...' -%}
+    {%- assign upsell_size_fallback = 'Passend zu deiner Jeans.' -%}
+    {%- assign upsell_size_prefix = 'Größe ' -%}
+    {%- assign upsell_size_suffix = ', passend zu deiner Jeans.' -%}
+    {%- assign upsell_unavailable = 'Diese Größe ist für deine ausgewählte Jeansgröße nicht verfügbar.' -%}
+    {%- assign upsell_sold_out = 'Bald wieder in deiner Größe verfügbar.' -%}
+    {%- assign upsell_error = 'Konnte nicht hinzugefügt werden. Bitte versuche es erneut.' -%}
+  {%- else -%}
+    {%- assign upsell_heading = 'Get a smoother fit' -%}
+    {%- assign upsell_subline = 'Stays put. Smooths everything. Feels like nothing.' -%}
+    {%- assign upsell_deal = 'Buy 1, Get 1 Free' -%}
+    {%- assign upsell_button = '+ ADD 2 BODYSUITS' -%}
+    {%- assign upsell_adding = 'ADDING...' -%}
+    {%- assign upsell_size_fallback = 'Made to match your jeans.' -%}
+    {%- assign upsell_size_prefix = 'Size ' -%}
+    {%- assign upsell_size_suffix = ', made to match your jeans.' -%}
+    {%- assign upsell_unavailable = 'Size unavailable for your selected jeans size.' -%}
+    {%- assign upsell_sold_out = 'Back in your size soon.' -%}
+    {%- assign upsell_error = 'Could not add the bodysuits. Please try again.' -%}
+{%- endcase -%}
+
+<div class="cj-shape-upsell" data-cj-shape-upsell>
+  <div class="cj-shape-upsell__header">
+    <h3>{{ upsell_heading }}</h3>
+    <p>{{ upsell_subline }}</p>
+  </div>
+
+  <div class="cj-shape-upsell__product">
+    <div class="cj-shape-upsell__image">
+      {{ upsell_product.featured_image | image_url: width: 180 | image_tag: loading: 'lazy' }}
+    </div>
+
+    <div class="cj-shape-upsell__details">
+      <div class="cj-shape-upsell__title">Seamless Sculpt Bodysuit</div>
+
+      <div class="cj-shape-upsell__price">
+        <strong>{{ offer_price | money }}</strong>
+        <s>{{ compare_total | money }}</s>
+      </div>
+
+      <div class="cj-shape-upsell__deal">{{ upsell_deal }}</div>
+    </div>
+  </div>
+
+  <div class="cj-shape-upsell__size" data-cj-shape-size-note>
+    <img src="{{ checkmark_icon }}" alt="" loading="lazy">
+    <span>{{ upsell_size_fallback }}</span>
+  </div>
+
+  <button class="cj-shape-upsell__button" type="button" data-cj-shape-button>
+    {{ upsell_button }}
+  </button>
+
+  <p class="cj-shape-upsell__status" data-cj-shape-status></p>
+</div>
+
+<script>
+  (function() {
+    var root = document.querySelector('[data-cj-shape-upsell]');
+    if (!root) return;
+
+    var form = document.querySelector('form[action*="/cart/add"]');
+    var button = root.querySelector('[data-cj-shape-button]');
+    var status = root.querySelector('[data-cj-shape-status]');
+    var sizeNote = root.querySelector('[data-cj-shape-size-note] span');
+
+    var currentProduct = {{ product | json }};
+    var upsellProduct = {{ upsell_product | json }};
+    var defaultUpsellVariantId = {{ upsell_variant.id | json }};
+    var upsellQty = {{ upsell_qty | json }};
+
+    var buttonText = {{ upsell_button | json }};
+    var addingText = {{ upsell_adding | json }};
+    var sizeFallbackText = {{ upsell_size_fallback | json }};
+    var sizePrefixText = {{ upsell_size_prefix | json }};
+    var sizeSuffixText = {{ upsell_size_suffix | json }};
+    var unavailableText = {{ upsell_unavailable | json }};
+    var soldOutText = {{ upsell_sold_out | json }};
+    var errorText = {{ upsell_error | json }};
+
+    function normalize(value) {
+      return String(value || '').trim().toLowerCase().replace(/\s+/g, '');
+    }
+
+    function getSizeIndex(productObj) {
+      if (!productObj || !productObj.options) return -1;
+
+      return productObj.options.findIndex(function(option) {
+        var name = typeof option === 'string' ? option : option.name;
+        var cleanName = normalize(name);
+
+        return cleanName.indexOf('size') > -1 ||
+          cleanName.indexOf('maat') > -1 ||
+          cleanName.indexOf('größe') > -1 ||
+          cleanName.indexOf('groesse') > -1;
+      });
+    }
+
+    function getCurrentVariant() {
+      if (!form) return null;
+
+      var input = form.querySelector('[name="id"]');
+      if (!input || !currentProduct.variants) return null;
+
+      var variantId = Number(input.value);
+
+      return currentProduct.variants.find(function(variant) {
+        return Number(variant.id) === variantId;
+      });
+    }
+
+    function getVariantSize(productObj, variant) {
+      var sizeIndex = getSizeIndex(productObj);
+      if (sizeIndex === -1 || !variant) return null;
+
+      return variant.options[sizeIndex];
+    }
+
+    function findUpsellVariant(size) {
+      var sizeIndex = getSizeIndex(upsellProduct);
+      if (sizeIndex === -1 || !size || !upsellProduct.variants) return null;
+
+      return upsellProduct.variants.find(function(variant) {
+        return normalize(variant.options[sizeIndex]) === normalize(size);
+      });
+    }
+
+    function updateUpsell() {
+      var jeansVariant = getCurrentVariant();
+      var jeansSize = getVariantSize(currentProduct, jeansVariant);
+      var upsellVariant = findUpsellVariant(jeansSize);
+
+      if (!upsellVariant && defaultUpsellVariantId) {
+        root.dataset.upsellVariantId = defaultUpsellVariantId;
+        sizeNote.textContent = sizeFallbackText;
+        button.disabled = false;
+        status.textContent = '';
+        return;
+      }
+
+      if (!upsellVariant) {
+        root.dataset.upsellVariantId = '';
+        button.disabled = true;
+        sizeNote.textContent = unavailableText;
+        status.textContent = '';
+        return;
+      }
+
+      if (!upsellVariant.available) {
+        root.dataset.upsellVariantId = '';
+        button.disabled = true;
+        sizeNote.textContent = soldOutText;
+        status.textContent = '';
+        return;
+      }
+
+      root.dataset.upsellVariantId = upsellVariant.id;
+      button.disabled = false;
+      sizeNote.textContent = jeansSize
+        ? sizePrefixText + jeansSize + sizeSuffixText
+        : sizeFallbackText;
+      status.textContent = '';
+    }
+
+    function openCartDrawer() {
+      document.documentElement.dispatchEvent(new CustomEvent('cart:refresh', { bubbles: true }));
+      document.documentElement.dispatchEvent(new CustomEvent('cart:open', { bubbles: true }));
+      document.documentElement.dispatchEvent(new CustomEvent('cart-drawer:open', { bubbles: true }));
+      document.dispatchEvent(new CustomEvent('cart:refresh', { bubbles: true }));
+      document.dispatchEvent(new CustomEvent('cart:open', { bubbles: true }));
+      document.dispatchEvent(new CustomEvent('cart-drawer:open', { bubbles: true }));
+
+      var cartDrawer = document.querySelector('cart-drawer');
+      if (cartDrawer && typeof cartDrawer.open === 'function') {
+        cartDrawer.open();
+        return;
+      }
+
+      var cartToggle = document.querySelector(
+        '[data-cart-drawer-toggle], [data-drawer-id="cart"], .js-drawer-open-cart, a[href="/cart"], a[href="/cart/"]'
+      );
+
+      if (cartToggle) {
+        cartToggle.click();
+      }
+    }
+
+    function addUpsellToCart() {
+      var upsellVariantId = Number(root.dataset.upsellVariantId || defaultUpsellVariantId);
+      if (!upsellVariantId) return;
+
+      button.disabled = true;
+      button.textContent = addingText;
+      status.textContent = '';
+
+      fetch('/cart/add.js', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          items: [
+            {
+              id: upsellVariantId,
+              quantity: upsellQty,
+              properties: {
+                '_Offer': 'Buy 1 Get 1 Free'
+              }
+            }
+          ]
+        })
+      })
+      .then(function(response) {
+        if (!response.ok) throw new Error('Cart add failed');
+        return response.json();
+      })
+      .then(function() {
+        setTimeout(openCartDrawer, 150);
+      })
+      .catch(function() {
+        status.textContent = errorText;
+      })
+      .finally(function() {
+        button.disabled = false;
+        button.textContent = buttonText;
+      });
+    }
+
+    if (form) {
+      form.addEventListener('change', function() {
+        setTimeout(updateUpsell, 50);
+      });
+    }
+
+    document.addEventListener('variant:change', function() {
+      setTimeout(updateUpsell, 50);
+    });
+
+    button.addEventListener('click', addUpsellToCart);
+
+    updateUpsell();
+  })();
+</script>
+
+<style>
+  .cj-shape-upsell {
+    margin: 18px 0;
+    padding: 0;
+    background: #fff;
+    color: #1d1d1f;
+  }
+
+  .cj-shape-upsell__header {
+    margin-bottom: 12px;
+  }
+
+  .cj-shape-upsell__header h3 {
+    margin: 0 0 4px;
+    font-size: 16px;
+    line-height: 1.25;
+    font-weight: 700;
+    color: #1d1d1f;
+  }
+
+  .cj-shape-upsell__header p {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.35;
+    color: #333;
+  }
+
+  .cj-shape-upsell__product {
+    display: grid;
+    grid-template-columns: 74px 1fr;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .cj-shape-upsell__image {
+    width: 74px;
+    height: 82px;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #eee;
+  }
+
+  .cj-shape-upsell__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .cj-shape-upsell__title {
+    font-size: 14px;
+    line-height: 1.25;
+    font-weight: 600;
+  }
+
+  .cj-shape-upsell__price {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    align-items: baseline;
+    margin-top: 6px;
+    line-height: 1.2;
+  }
+
+  .cj-shape-upsell__price strong {
+    font-size: 14px;
+    font-weight: 400;
+    color: #1d1d1f;
+  }
+
+  .cj-shape-upsell__price s {
+    font-size: 11px;
+    color: #8b8b8b;
+  }
+
+  .cj-shape-upsell__deal {
+    margin-top: 5px;
+    font-size: 13px;
+    line-height: 1.25;
+    font-weight: 700;
+    color: #c7332f;
+  }
+
+  .cj-shape-upsell__size {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin: 10px 0 14px;
+    font-size: 14px;
+    line-height: 1.35;
+    color: #1d1d1f;
+  }
+
+  .cj-shape-upsell__size img {
+    width: 16px;
+    height: 16px;
+    flex: 0 0 16px;
+    display: block;
+  }
+
+  .cj-shape-upsell__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 54px;
+    padding: 0 18px;
+    border: 0;
+    border-radius: 9px;
+    background: #1d1d1f;
+    color: #fff;
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.2;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  .cj-shape-upsell__button:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+  }
+
+  .cj-shape-upsell__status {
+    margin: 8px 0 0;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.35;
+    color: #b5483e;
+  }
+
+  .cj-shape-upsell__status:empty {
+    display: none;
+  }
+</style>

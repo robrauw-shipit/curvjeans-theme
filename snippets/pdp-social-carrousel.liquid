@@ -1,0 +1,531 @@
+{% comment %}
+  Snippet: pdp-social-carrousel.liquid
+  CURVJEANS PDP External Social Proof Carousel
+  Recommended placement: directly below main product section, before product recommendations.
+{% endcomment %}
+
+{% liquid
+  assign cj_locale = 'en'
+
+  if request.path contains '/nl'
+    assign cj_locale = 'nl'
+  elsif request.path contains '/de'
+    assign cj_locale = 'de'
+  endif
+
+  case cj_locale
+    when 'nl'
+      assign cj_social_heading = 'Gedragen door echte vrouwen'
+      assign cj_followers_label = 'volgers'
+    when 'de'
+      assign cj_social_heading = 'Getragen von echten Frauen'
+      assign cj_followers_label = 'Follower'
+    else
+      assign cj_social_heading = 'Worn by real women'
+      assign cj_followers_label = 'followers'
+  endcase
+%}
+
+<section class="cj-social-proof" aria-label="{{ cj_social_heading }}">
+  <div class="cj-social-proof__inner">
+
+    <div class="cj-social-proof__header">
+      <h2 class="cj-social-proof__title h5">{{ cj_social_heading }}</h2>
+    </div>
+
+    <div class="cj-social-proof__viewport">
+      <div class="cj-social-proof__track">
+
+        {% comment %} Original card set {% endcomment %}
+
+        <article class="cj-social-card">
+          <div class="cj-social-card__image-wrap">
+            <img
+              src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/Social_Proof_-_1.jpg?v=1778482656"
+              alt="The Tally Sharp wearing CURVJEANS"
+              class="cj-social-card__image"
+              loading="lazy"
+            >
+
+            <div class="cj-social-card__overlay">
+              <div class="cj-social-card__profile">
+                <span class="cj-social-card__handle">@thetallysharp</span>
+                <img
+                  src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/verified.webp?v=1726649878"
+                  alt="Verified"
+                  class="cj-social-card__verified"
+                  loading="lazy"
+                >
+              </div>
+              <p class="cj-social-card__meta">428K {{ cj_followers_label }}</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="cj-social-card">
+          <div class="cj-social-card__image-wrap">
+            <img
+              src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/Social_Proof_-_4.jpg?v=1778482655"
+              alt="Nadia Noelle wearing CURVJEANS"
+              class="cj-social-card__image"
+              loading="lazy"
+            >
+
+            <div class="cj-social-card__overlay">
+              <div class="cj-social-card__profile">
+                <span class="cj-social-card__handle">@thenadianoelle</span>
+                <img
+                  src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/verified.webp?v=1726649878"
+                  alt="Verified"
+                  class="cj-social-card__verified"
+                  loading="lazy"
+                >
+              </div>
+              <p class="cj-social-card__meta">18.4K {{ cj_followers_label }}</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="cj-social-card">
+          <div class="cj-social-card__image-wrap">
+            <img
+              src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/Social_Proof_-_3.jpg?v=1778482655"
+              alt="Sxphiemxi wearing CURVJEANS"
+              class="cj-social-card__image"
+              loading="lazy"
+            >
+
+            <div class="cj-social-card__overlay">
+              <div class="cj-social-card__profile">
+                <span class="cj-social-card__handle">@sxphiemxi</span>
+                <img
+                  src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/verified.webp?v=1726649878"
+                  alt="Verified"
+                  class="cj-social-card__verified"
+                  loading="lazy"
+                >
+              </div>
+              <p class="cj-social-card__meta">1M {{ cj_followers_label }}</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="cj-social-card">
+          <div class="cj-social-card__image-wrap">
+            <img
+              src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/Social_Proof_-_5.jpg?v=1778482657"
+              alt="Maxime K wearing CURVJEANS"
+              class="cj-social-card__image"
+              loading="lazy"
+            >
+
+            <div class="cj-social-card__overlay">
+              <div class="cj-social-card__profile">
+                <span class="cj-social-card__handle">@maximee.k</span>
+                <img
+                  src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/verified.webp?v=1726649878"
+                  alt="Verified"
+                  class="cj-social-card__verified"
+                  loading="lazy"
+                >
+              </div>
+              <p class="cj-social-card__meta">13.2K {{ cj_followers_label }}</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="cj-social-card">
+          <div class="cj-social-card__image-wrap">
+            <img
+              src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/Social_Proof_-_2.jpg?v=1778482655"
+              alt="Carla Kent wearing CURVJEANS"
+              class="cj-social-card__image"
+              loading="lazy"
+            >
+
+            <div class="cj-social-card__overlay">
+              <div class="cj-social-card__profile">
+                <span class="cj-social-card__handle">@carlakentx</span>
+                <img
+                  src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/verified.webp?v=1726649878"
+                  alt="Verified"
+                  class="cj-social-card__verified"
+                  loading="lazy"
+                >
+              </div>
+              <p class="cj-social-card__meta">218K {{ cj_followers_label }}</p>
+            </div>
+          </div>
+        </article>
+
+        {% comment %}
+          Duplicate card set for seamless infinite scroll.
+          Keep this duplicate set identical to the original set.
+        {% endcomment %}
+
+        <article class="cj-social-card" aria-hidden="true">
+          <div class="cj-social-card__image-wrap">
+            <img
+              src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/Social_Proof_-_1.jpg?v=1778482656"
+              alt=""
+              class="cj-social-card__image"
+              loading="lazy"
+            >
+
+            <div class="cj-social-card__overlay">
+              <div class="cj-social-card__profile">
+                <span class="cj-social-card__handle">@thetallysharp</span>
+                <img
+                  src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/verified.webp?v=1726649878"
+                  alt=""
+                  class="cj-social-card__verified"
+                  loading="lazy"
+                >
+              </div>
+              <p class="cj-social-card__meta">428K {{ cj_followers_label }}</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="cj-social-card" aria-hidden="true">
+          <div class="cj-social-card__image-wrap">
+            <img
+              src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/Social_Proof_-_4.jpg?v=1778482655"
+              alt=""
+              class="cj-social-card__image"
+              loading="lazy"
+            >
+
+            <div class="cj-social-card__overlay">
+              <div class="cj-social-card__profile">
+                <span class="cj-social-card__handle">@thenadianoelle</span>
+                <img
+                  src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/verified.webp?v=1726649878"
+                  alt=""
+                  class="cj-social-card__verified"
+                  loading="lazy"
+                >
+              </div>
+              <p class="cj-social-card__meta">18.4K {{ cj_followers_label }}</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="cj-social-card" aria-hidden="true">
+          <div class="cj-social-card__image-wrap">
+            <img
+              src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/Social_Proof_-_3.jpg?v=1778482655"
+              alt=""
+              class="cj-social-card__image"
+              loading="lazy"
+            >
+
+            <div class="cj-social-card__overlay">
+              <div class="cj-social-card__profile">
+                <span class="cj-social-card__handle">@sxphiemxi</span>
+                <img
+                  src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/verified.webp?v=1726649878"
+                  alt=""
+                  class="cj-social-card__verified"
+                  loading="lazy"
+                >
+              </div>
+              <p class="cj-social-card__meta">1M {{ cj_followers_label }}</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="cj-social-card" aria-hidden="true">
+          <div class="cj-social-card__image-wrap">
+            <img
+              src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/Social_Proof_-_5.jpg?v=1778482657"
+              alt=""
+              class="cj-social-card__image"
+              loading="lazy"
+            >
+
+            <div class="cj-social-card__overlay">
+              <div class="cj-social-card__profile">
+                <span class="cj-social-card__handle">@maximee.k</span>
+                <img
+                  src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/verified.webp?v=1726649878"
+                  alt=""
+                  class="cj-social-card__verified"
+                  loading="lazy"
+                >
+              </div>
+              <p class="cj-social-card__meta">13.2K {{ cj_followers_label }}</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="cj-social-card" aria-hidden="true">
+          <div class="cj-social-card__image-wrap">
+            <img
+              src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/Social_Proof_-_2.jpg?v=1778482655"
+              alt=""
+              class="cj-social-card__image"
+              loading="lazy"
+            >
+
+            <div class="cj-social-card__overlay">
+              <div class="cj-social-card__profile">
+                <span class="cj-social-card__handle">@carlakentx</span>
+                <img
+                  src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/verified.webp?v=1726649878"
+                  alt=""
+                  class="cj-social-card__verified"
+                  loading="lazy"
+                >
+              </div>
+              <p class="cj-social-card__meta">218K {{ cj_followers_label }}</p>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .cj-social-proof {
+    width: 100%;
+    background: #fff;
+    padding: 44px 0 38px;
+    color: inherit;
+    font: inherit;
+    overflow: hidden;
+  }
+
+  .cj-social-proof__inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .cj-social-proof__header {
+    margin-bottom: 22px;
+  }
+
+  .cj-social-proof__title {
+    margin: 0;
+    color: inherit;
+    font-family: inherit;
+  }
+
+  .cj-social-proof__viewport {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .cj-social-proof__viewport::before,
+  .cj-social-proof__viewport::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 18px;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .cj-social-proof__viewport::before {
+    left: 0;
+    background: linear-gradient(to right, rgba(255,255,255,.45) 0%, rgba(255,255,255,0) 100%);
+  }
+
+  .cj-social-proof__viewport::after {
+    right: 0;
+    background: linear-gradient(to left, rgba(255,255,255,.45) 0%, rgba(255,255,255,0) 100%);
+  }
+
+  .cj-social-proof__track {
+    display: flex;
+    gap: 16px;
+    width: max-content;
+    animation: cjSocialProofScroll 52s linear infinite;
+    will-change: transform;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .cj-social-proof__viewport:hover .cj-social-proof__track {
+      animation-play-state: paused;
+    }
+  }
+
+  .cj-social-card {
+    width: 230px;
+    flex: 0 0 230px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #f4eee8;
+    border: none;
+  }
+
+  .cj-social-card__image-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    background: #f4eee8;
+    overflow: hidden;
+    border-radius: 12px;
+  }
+
+  .cj-social-card__image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+  }
+
+  .cj-social-card__image-wrap::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 32%;
+    background: linear-gradient(to top, rgba(0,0,0,.42) 0%, rgba(0,0,0,0) 100%);
+    pointer-events: none;
+  }
+
+  .cj-social-card__overlay {
+    position: absolute;
+    left: 13px;
+    right: 13px;
+    bottom: 13px;
+    z-index: 1;
+    color: #fff;
+  }
+
+  .cj-social-card__profile {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    min-width: 0;
+  }
+
+  .cj-social-card__handle {
+    font: inherit;
+    font-size: 13px;
+    line-height: 1.2;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-shadow: 0 1px 6px rgba(0,0,0,.28);
+  }
+
+  .cj-social-card__verified {
+    width: 13px;
+    height: 13px;
+    flex: 0 0 13px;
+    display: block;
+  }
+
+  .cj-social-card__meta {
+    margin: 4px 0 0;
+    font: inherit;
+    font-size: 11px;
+    line-height: 1.3;
+    opacity: .84;
+    text-shadow: 0 1px 6px rgba(0,0,0,.28);
+  }
+
+  @keyframes cjSocialProofScroll {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(calc(-50% - 8px), 0, 0);
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .cj-social-proof {
+      padding: 28px 0 28px;
+    }
+
+    .cj-social-proof__inner {
+      padding: 0 16px;
+    }
+
+    .cj-social-proof__header {
+      margin-bottom: 14px;
+    }
+
+    .cj-social-proof__viewport::before,
+    .cj-social-proof__viewport::after {
+      display: none;
+    }
+
+    .cj-social-proof__track {
+      gap: 10px;
+      animation-duration: 44s;
+    }
+
+    .cj-social-card {
+      width: 48vw;
+      max-width: 190px;
+      min-width: 165px;
+      flex: 0 0 48vw;
+      border-radius: 12px;
+    }
+
+    .cj-social-card__image-wrap {
+      border-radius: 12px;
+    }
+
+    .cj-social-card__overlay {
+      left: 9px;
+      right: 9px;
+      bottom: 9px;
+    }
+
+    .cj-social-card__handle {
+      font-size: 11px;
+    }
+
+    .cj-social-card__verified {
+      width: 11px;
+      height: 11px;
+      flex-basis: 11px;
+    }
+
+    .cj-social-card__meta {
+      margin-top: 3px;
+      font-size: 9.5px;
+    }
+
+    .cj-social-card__image-wrap::after {
+      height: 30%;
+      background: linear-gradient(to top, rgba(0,0,0,.38) 0%, rgba(0,0,0,0) 100%);
+    }
+  }
+
+  @media screen and (max-width: 420px) {
+    .cj-social-card {
+      width: 50vw;
+      flex-basis: 50vw;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cj-social-proof__track {
+      animation: none;
+      overflow-x: auto;
+      width: 100%;
+      padding-bottom: 4px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .cj-social-card {
+      scroll-snap-align: start;
+    }
+  }
+</style>

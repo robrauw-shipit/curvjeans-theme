@@ -1,0 +1,169 @@
+{%- comment -%}
+CURVJEANS — Cart Offer Nudge
+Offer: Buy 1, get 2nd jeans 50% off
+{%- endcomment -%}
+
+{%- assign _count = cart.item_count | default: 0 -%}
+{%- assign _show = false -%}
+{%- assign _is_unlocked = false -%}
+{%- assign _lc = request.locale.iso_code | downcase -%}
+
+{%- if _count >= 1 -%}
+  {%- assign _show = true -%}
+{%- endif -%}
+
+{%- if _count >= 2 -%}
+  {%- assign _is_unlocked = true -%}
+{%- endif -%}
+
+{%- capture _title_text -%}
+  {%- if _lc == 'nl' -%}
+    Voeg nog één jeans toe
+  {%- elsif _lc == 'de' -%}
+    Füge eine weitere Jeans hinzu
+  {%- else -%}
+    Add one more jeans
+  {%- endif -%}
+{%- endcapture -%}
+
+{%- capture _pill_text -%}
+  {%- if _is_unlocked -%}
+    {%- if _lc == 'nl' -%}
+      50% korting toegepast
+    {%- elsif _lc == 'de' -%}
+      50% Rabatt angewendet
+    {%- else -%}
+      50% off applied
+    {%- endif -%}
+  {%- else -%}
+    {%- if _lc == 'nl' -%}
+      Krijg 50% korting op de 2e
+    {%- elsif _lc == 'de' -%}
+      Erhalte 50% Rabatt auf die 2.
+    {%- else -%}
+      Get 50% off the 2nd
+    {%- endif -%}
+  {%- endif -%}
+{%- endcapture -%}
+
+{%- if _show -%}
+  <div class="cj-bundle-nudge-wrapper">
+    <div class="cj-bundle-header">
+      <div class="cj-bundle-line"></div>
+
+      {%- if _is_unlocked -%}
+        <div class="cj-bundle-pill cj-unlocked">
+          <img
+            class="cj-bundle-check"
+            src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/checkmark.svg?v=1726653017"
+            alt=""
+            aria-hidden="true"
+            loading="lazy"
+          >
+          <span>{{ _pill_text | strip }}</span>
+        </div>
+      {%- else -%}
+        <div class="cj-bundle-title">{{ _title_text | strip }}</div>
+      {%- endif -%}
+
+      <div class="cj-bundle-line"></div>
+    </div>
+
+    {%- unless _is_unlocked -%}
+      <div class="cj-bundle-pill">
+        <span>{{ _pill_text | strip }}</span>
+      </div>
+    {%- endunless -%}
+  </div>
+
+  <style>
+    .cj-bundle-nudge-wrapper {
+      margin-top: 14px;
+      text-align: center;
+    }
+
+    .cj-bundle-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 7px;
+    }
+
+    .cj-bundle-line {
+      flex: 1;
+      height: 1px;
+      background-color: #E5E0DB;
+    }
+
+    .cj-bundle-title {
+      font-size: 15px;
+      line-height: 1.15;
+      font-weight: 700;
+      color: #161616;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+    }
+
+    .cj-bundle-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      background: rgba(181, 72, 62, 0.10);
+      color: #B5483E;
+      font-weight: 700;
+      font-size: 12.5px;
+      line-height: 1;
+      padding: 6px 11px;
+      border-radius: 8px;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+    }
+
+    .cj-bundle-pill.cj-unlocked {
+      background: rgba(44, 143, 85, 0.12);
+      color: #2C8F55;
+      padding: 6px 12px;
+    }
+
+    .cj-bundle-check {
+      width: 13px;
+      height: 13px;
+      display: block;
+      flex: 0 0 13px;
+      filter: brightness(0) saturate(100%) invert(42%) sepia(38%) saturate(789%) hue-rotate(95deg) brightness(90%) contrast(88%);
+    }
+
+    @media (max-width: 600px) {
+      .cj-bundle-nudge-wrapper {
+        margin-top: 12px;
+      }
+
+      .cj-bundle-header {
+        gap: 9px;
+        margin-bottom: 6px;
+      }
+
+      .cj-bundle-title {
+        font-size: 14.5px;
+      }
+
+      .cj-bundle-pill {
+        font-size: 12px;
+        padding: 5px 10px;
+        border-radius: 7px;
+      }
+
+      .cj-bundle-pill.cj-unlocked {
+        padding: 5px 11px;
+      }
+
+      .cj-bundle-check {
+        width: 12.5px;
+        height: 12.5px;
+        flex-basis: 12.5px;
+      }
+    }
+  </style>
+{%- endif -%}

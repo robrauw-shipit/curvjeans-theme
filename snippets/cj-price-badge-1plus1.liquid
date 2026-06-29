@@ -1,0 +1,199 @@
+<div class="cj-price">
+  {% assign v = product.selected_or_first_available_variant %}
+  {% assign cp = v.compare_at_price %}
+  {% assign ap = v.price %}
+
+  {% if cp and cp > ap %}
+    {% assign save = cp | minus: ap %}
+
+    <!-- LEFT: compare price + info icon -->
+    <div class="cj-price__meta">
+      <span class="cj-price__compare">
+        {% if settings.currency_code_enabled %}
+          {{ cp | money_with_currency }}
+        {% else %}
+          {{ cp | money }}
+        {% endif %}
+      </span>
+
+      <!-- INFO ICON with tooltip -->
+      <button class="cj-price__info" type="button" aria-label="Price information">
+        <svg width="13" height="13" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <circle cx="10" cy="10" r="9" stroke="#9aa0a6" stroke-width="1.5"/>
+          <line x1="10" y1="8" x2="10" y2="14" stroke="#9aa0a6" stroke-width="1.5"/>
+          <circle cx="10" cy="6" r="1" fill="#9aa0a6"/>
+        </svg>
+
+        <div class="cj-tooltip">
+          <div class="cj-tooltip__close">×</div>
+
+          {% case request.locale.iso_code %}
+            {% when 'nl' %}
+              <p>Dit is de standaard winkelprijs.</p>
+              <p>Onze prijs is lager omdat we rechtstreeks aan jou verkopen.</p>
+
+            {% when 'de' %}
+              <p>Das ist der reguläre Einzelhandelspreis.</p>
+              <p>Unser Preis ist niedriger, weil wir direkt an dich verkaufen.</p>
+
+            {% else %}
+              <p>This is the standard retail value.</p>
+              <p>Our price is lower because we sell directly to you.</p>
+          {% endcase %}
+        </div>
+      </button>
+    </div>
+
+    <!-- CURRENT PRICE -->
+    <span class="cj-price__now">
+      {% if settings.currency_code_enabled %}
+        {{ ap | money_with_currency }}
+      {% else %}
+        {{ ap | money }}
+      {% endif %}
+    </span>
+
+    <!-- SAVE BADGE -->
+    <span class="cj-badge" aria-label="discount">
+      {% case request.locale.iso_code %}
+        {% when 'nl' %}
+          1+1 GRATIS
+        {% when 'de' %}
+          1+1 GRATIS
+        {% else %}
+          1+1 FREE
+      {% endcase %}
+    </span>
+
+  {% else %}
+    <span class="cj-price__now">
+      {% if settings.currency_code_enabled %}
+        {{ ap | money_with_currency }}
+      {% else %}
+        {{ ap | money }}
+      {% endif %}
+    </span>
+  {% endif %}
+</div>
+
+<style>
+/* CONTAINER */
+/* PRICE WRAPPER */
+.cj-price {
+  display: flex;
+  align-items: center;
+  gap: 6px 8px;
+  flex-wrap: wrap;
+}
+
+/* LEFT SECTION: compare + info icon */
+.cj-price__meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* CROSSED OUT PRICE — only SIZE + COLOR changed */
+.cj-price__compare {
+  text-decoration: line-through;
+  color: #8B8B8B;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* INFO ICON */
+.cj-price__info {
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* TOOLTIP WRAPPER */
+.cj-tooltip {
+  position: absolute;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ffffff;
+  color: #111;
+  font-size: 14px;
+  line-height: 1.45;
+  padding: 14px 16px;
+  border-radius: 10px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+  width: 260px;
+  max-width: 90vw;
+  display: none;
+  z-index: 9999;
+  word-wrap: break-word;
+}
+
+/* ARROW */
+.cj-tooltip::before {
+  content: "";
+  position: absolute;
+  top: -7px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid #ffffff;
+}
+
+/* CLOSE ICON */
+.cj-tooltip__close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  font-size: 16px;
+  color: #aaa;
+  line-height: 1;
+}
+
+/* SHOW POPUP */
+.cj-price__info:hover .cj-tooltip,
+.cj-price__info:focus-within .cj-tooltip {
+  display: block;
+}
+
+/* MOBILE SAFE */
+@media (max-width: 600px) {
+  .cj-tooltip {
+    left: 0 !important;
+    transform: none !important;
+    margin-left: -20px;
+    max-width: calc(100vw - 20px);
+  }
+
+  .cj-tooltip::before {
+    left: 24px;
+    transform: none;
+  }
+}
+
+/* CURRENT PRICE */
+.cj-price__now {
+  font-size: 18px;
+  font-weight: 800;
+  color: #111;
+}
+
+/* SAVINGS PILL */
+.cj-badge {
+  background: #dff3e7;
+  color: #1eab52;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .1px;
+  line-height: 1;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+}
+</style>

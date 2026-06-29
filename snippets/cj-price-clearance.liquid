@@ -1,0 +1,105 @@
+<div class="cj-price-clearance">
+  {% assign v = product.selected_or_first_available_variant %}
+  {% assign cp = v.compare_at_price %}
+  {% assign ap = v.price %}
+
+  {% if cp and cp > ap %}
+    {% assign save = cp | minus: ap %}
+    {% assign pct = save | times: 100 | divided_by: cp %}
+    {% if pct < 1 %}{% assign pct = 1 %}{% endif %}
+
+    <!-- LEFT: compare price -->
+    <div class="cj-price-clearance__meta">
+      <span class="cj-price-clearance__compare">
+        {% if settings.currency_code_enabled %}
+          {{ cp | money_with_currency }}
+        {% else %}
+          {{ cp | money }}
+        {% endif %}
+      </span>
+    </div>
+
+    <!-- CURRENT PRICE -->
+    <span class="cj-price-clearance__now">
+      {% if settings.currency_code_enabled %}
+        {{ ap | money_with_currency }}
+      {% else %}
+        {{ ap | money }}
+      {% endif %}
+    </span>
+
+    <!-- CLEARANCE PILL (right after price) -->
+    <span class="cj-price-clearance__badge" aria-label="discount">
+      {% case request.locale.iso_code %}
+        {% when 'nl' %}
+          LAATSTE KANS
+        {% when 'de' %}
+          LETZTE CHANCE
+        {% else %}
+          FINAL CLEARANCE
+      {% endcase %}
+    </span>
+
+  {% else %}
+    <span class="cj-price-clearance__now">
+      {% if settings.currency_code_enabled %}
+        {{ ap | money_with_currency }}
+      {% else %}
+        {{ ap | money }}
+      {% endif %}
+    </span>
+  {% endif %}
+</div>
+
+<style>
+/* PRICE WRAPPER (keep original layout) */
+.cj-price-clearance {
+  display: flex;
+  align-items: center;
+  gap: 6px 8px;
+  flex-wrap: nowrap;       /* keep pill on same line */
+  margin: 8px 0;
+}
+
+/* allow wrapping on very small screens only */
+@media (max-width: 420px) {
+  .cj-price-clearance { flex-wrap: wrap; }
+}
+
+/* LEFT SECTION: compare */
+.cj-price-clearance__meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* CROSSED OUT PRICE */
+.cj-price-clearance__compare {
+  text-decoration: line-through;
+  color: #8B8B8B;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* CURRENT PRICE */
+.cj-price-clearance__now {
+  font-size: 18px;
+  font-weight: 800;
+  color: #111;
+}
+
+/* CLEARANCE PILL (same pill styling as original) */
+.cj-price-clearance__badge {
+  background: #dff3e7;
+  color: #1eab52;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .1px;
+  line-height: 1;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+}
+</style>

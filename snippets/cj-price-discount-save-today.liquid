@@ -1,0 +1,211 @@
+<!-- CURVJEANS — Metafield Sale Display Pricing -->
+<div class="custom-discount-pricing custom-discount-pricing--sale">
+  {% assign variant = product.selected_or_first_available_variant %}
+  {% assign regular_price = variant.price | default: 0 | plus: 0 %}
+  {% assign standard_compare_price = variant.compare_at_price | default: 0 | plus: 0 %}
+  {% assign customer_country = localization.country.iso_code | default: '' | upcase %}
+
+  {% assign sale_enabled = false %}
+  {% assign sale_percentage = 0 %}
+
+  {% assign us_sale_enabled = product.metafields.custom.us_sale_enabled.value %}
+  {% assign us_sale_display_amount = product.metafields.custom.us_sale_display_amount.value | default: 0 | plus: 0 %}
+
+  {% if customer_country == 'US' and us_sale_enabled == true and us_sale_display_amount > 0 %}
+    {% assign us_visual_discount = us_sale_display_amount | times: 100 %}
+    {% assign display_price = regular_price | minus: us_visual_discount %}
+
+    <span class="original-price">
+      {% if settings.currency_code_enabled %}
+        {{ regular_price | money_with_currency }}
+      {% else %}
+        {{ regular_price | money }}
+      {% endif %}
+    </span>
+
+    <span class="discounted-price">
+      {% if settings.currency_code_enabled %}
+        {{ display_price | money_with_currency }}
+      {% else %}
+        {{ display_price | money }}
+      {% endif %}
+    </span>
+
+    <span class="savings-label">
+      Save ${{ us_sale_display_amount }} today
+    </span>
+
+  {% else %}
+    {% if customer_country != 'US' and product.metafields.custom.sale_enabled.value == true %}
+      {% assign sale_enabled = true %}
+      {% assign sale_percentage = product.metafields.custom.sale_percentage.value | default: 0 | plus: 0 %}
+    {% endif %}
+
+    {% assign sale_multiplier = 100 | minus: sale_percentage %}
+    {% assign display_price = regular_price | times: sale_multiplier | divided_by: 100.0 | round %}
+
+    {% if customer_country == '' %}
+      <span class="discounted-price">
+        {% if settings.currency_code_enabled %}
+          {{ regular_price | money_with_currency }}
+        {% else %}
+          {{ regular_price | money }}
+        {% endif %}
+      </span>
+
+      {% if standard_compare_price > regular_price %}
+        {% assign savings = standard_compare_price | minus: regular_price %}
+        {% assign savings_rounded = savings | divided_by: 100 | round | times: 100 %}
+
+        <span class="original-price">
+          {% if settings.currency_code_enabled %}
+            {{ standard_compare_price | money_with_currency }}
+          {% else %}
+            {{ standard_compare_price | money }}
+          {% endif %}
+        </span>
+
+        <span class="savings-label">
+          Save {{ savings_rounded | money_without_trailing_zeros }} today
+        </span>
+      {% endif %}
+
+    {% elsif sale_enabled and sale_percentage > 0 %}
+      {% assign savings = regular_price | minus: display_price %}
+      {% assign savings_rounded = savings | divided_by: 100 | round | times: 100 %}
+
+      <span class="original-price">
+        {% if settings.currency_code_enabled %}
+          {{ regular_price | money_with_currency }}
+        {% else %}
+          {{ regular_price | money }}
+        {% endif %}
+      </span>
+
+      <span class="discounted-price">
+        {% if settings.currency_code_enabled %}
+          {{ display_price | money_with_currency }}
+        {% else %}
+          {{ display_price | money }}
+        {% endif %}
+      </span>
+
+      <span class="savings-label">
+        {% if request.locale.iso_code == 'nl' %}
+          Bespaar {{ savings_rounded | money_without_trailing_zeros }} vandaag
+        {% elsif request.locale.iso_code == 'de' %}
+          Spare {{ savings_rounded | money_without_trailing_zeros }} heute
+        {% else %}
+          Save {{ savings_rounded | money_without_trailing_zeros }} today
+        {% endif %}
+      </span>
+
+    {% else %}
+      <span class="discounted-price">
+        {% if settings.currency_code_enabled %}
+          {{ regular_price | money_with_currency }}
+        {% else %}
+          {{ regular_price | money }}
+        {% endif %}
+      </span>
+    {% endif %}
+  {% endif %}
+</div>
+
+
+
+<style>
+  .custom-discount-pricing {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 12px 0 16px !important;
+    padding: 0;
+    flex-wrap: wrap;
+    font-family: inherit;
+  }
+
+  .custom-discount-pricing .discounted-price {
+    font-size: 20px;
+    line-height: 1;
+    font-weight: 800;
+    color: #161616;
+    letter-spacing: -0.04em;
+  }
+
+  .custom-discount-pricing .original-price {
+    font-size: 15px;
+    line-height: 1;
+    font-weight: 500;
+    color: #B5483E;
+    text-decoration: line-through;
+    text-decoration-thickness: 1.2px;
+    text-decoration-color: #B5483E;
+    white-space: nowrap;
+  }
+
+.custom-discount-pricing .savings-label{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    background:#dff3e7;
+    color:#1eab52;
+    border-radius:999px;
+    padding:6px 12px;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:.1px;
+    line-height:1;
+    white-space:nowrap;
+}
+
+  .custom-shop-pay-line {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: -6px;
+    margin-bottom: 14px;
+    font-family: inherit;
+    font-size: 13px;
+    line-height: 1.4;
+    color: rgba(22,22,22,.82);
+    flex-wrap: wrap;
+  }
+
+  .custom-shop-pay-line strong {
+    font-weight: 700;
+    color: #161616;
+  }
+
+  .custom-shop-pay-logo {
+    height: 11px;
+    width: auto;
+    display: inline-block;
+filter: grayscale(100%) opacity(.55);
+  }
+
+  @media (max-width: 600px) {
+    .custom-discount-pricing {
+      gap: 8px;
+      margin: 10px 0 14px !important;
+    }
+
+    .custom-discount-pricing .discounted-price {
+      font-size: 18px;
+    }
+
+    .custom-discount-pricing .original-price {
+      font-size: 14px;
+    }
+
+    .custom-discount-pricing .savings-label {
+      font-size: 12.5px;
+    }
+
+    .custom-shop-pay-line {
+      font-size: 13px;
+      margin-top: -5px;
+      margin-bottom: 14px;
+    }
+  }
+</style>

@@ -1,0 +1,344 @@
+{%- if product -%}
+{%- assign info_id = 'model-info-inline-' | append: product.id -%}
+{%- assign lc = localization.language.iso_code | default: shop.locale | downcase -%}
+{%- assign country = localization.country.iso_code | default: '' | upcase -%}
+{%- assign use_inches = false -%}
+
+{%- if country == 'US' -%}
+  {%- assign use_inches = true -%}
+{%- endif -%}
+
+<div
+  id="{{ info_id }}"
+  class="model-info-inline"
+  data-use-inches="{{ use_inches }}"
+  data-locale="{{ lc }}"
+  aria-live="polite">
+</div>
+
+<style>
+  #{{ info_id }} {
+    margin: 0 0 6px;
+    font-size: 13px;
+    line-height: 1.35;
+    color: #000;
+  }
+
+  #{{ info_id }} .mi-name,
+  #{{ info_id }} .mi-size {
+    font-weight: 500;
+  }
+</style>
+
+<script>
+(function () {
+  var box = document.getElementById({{ info_id | json }});
+  if (!box) return;
+
+  var useInches = box.dataset.useInches === 'true';
+  var locale = box.dataset.locale || 'en';
+  var currentHTML = '';
+
+  function parseNum(value) {
+    if (!value) return null;
+    var match = String(value).replace(',', '.').match(/(\d+(?:\.\d+)?)/);
+    return match ? parseFloat(match[1]) : null;
+  }
+
+  function cleanName(value) {
+    if (!value) return null;
+    return String(value)
+      .trim()
+      .replace(/[_-]+/g, ' ')
+      .replace(/\s+/g, ' ');
+  }
+
+  function cleanSize(value) {
+    if (!value) return null;
+    return String(value)
+      .trim()
+      .replace(/^size\s*/i, '')
+      .toUpperCase();
+  }
+
+  function cmToIn(cm) {
+    return cm * 0.3937008;
+  }
+
+  function formatHeight(cm) {
+    if (!cm) return '';
+
+    if (!useInches) {
+      return Math.round(cm) + 'cm';
+    }
+
+    var totalInches = Math.round(cmToIn(cm));
+    var feet = Math.floor(totalInches / 12);
+    var inches = totalInches % 12;
+
+    return feet + '’' + inches + '”';
+  }
+
+  function formatWaist(cm) {
+    if (!cm) return '';
+
+    if (!useInches) {
+      return Math.round(cm) + 'cm';
+    }
+
+    return Math.round(cmToIn(cm)) + '”';
+  }
+
+  function hasData(data) {
+    if (!data) return false;
+    if (Array.isArray(data)) return data.length > 0;
+    return !!(data.name || data.size || data.hCm != null || data.wCm != null);
+  }
+
+  function parseAltHashtags(alt) {
+    var result = { name: null, size: null, hCm: null, wCm: null };
+    var tags = (alt || '').match(/#[^\s]+/g) || [];
+
+    tags.forEach(function (tag) {
+      var lower = tag.toLowerCase();
+
+      if (/^#model[_\-:]?/.test(lower)) {
+        result.name = cleanName(tag.replace(/^#model[_\-:]?/i, ''));
+      }
+
+      if (/^#size[_\-:]?/.test(lower)) {
+        result.size = cleanSize(tag.replace(/^#size[_\-:]?/i, ''));
+      }
+
+      if (/^#h(?:eight)?[_\-:]?/.test(lower)) {
+        result.hCm = parseNum(tag.replace(/^#h(?:eight)?[_\-:]?/i, ''));
+      }
+
+      if (/^#w(?:aist)?[_\-:]?/.test(lower)) {
+        result.wCm = parseNum(tag.replace(/^#w(?:aist)?[_\-:]?/i, ''));
+      }
+    });
+
+    return result;
+  }
+
+  function parseAltPipes(alt) {
+    if (!alt) return { name: null, size: null, hCm: null, wCm: null };
+
+    var cleaned = alt.trim().replace(/^\s*model\s*:\s*/i, '');
+    var parts = cleaned.split('|').map(function (part) {
+      return part.trim();
+    });
+
+    /*
+      Supported ALT formats:
+
+      Old:
+      L | 169cm | 74cm waist
+
+      New:
+      Delana | L | 169cm | 74cm waist
+    */
+
+    if (parts.length >= 4) {
+      return {
+        name: cleanName(parts[0]),
+        size: cleanSize(parts[1]),
+        hCm: parseNum(parts[2]),
+        wCm: parseNum(parts[3])
+      };
+    }
+
+    if (parts.length >= 3) {
+      return {
+        name: null,
+        size: cleanSize(parts[0]),
+        hCm: parseNum(parts[1]),
+        wCm: parseNum(parts[2])
+      };
+    }
+
+    return { name: null, size: null, hCm: null, wCm: null };
+  }
+
+  function parseFromAlt(alt) {
+    var hashData = parseAltHashtags(alt);
+    if (hasData(hashData)) return [hashData];
+
+    var pipeData = parseAltPipes(alt);
+    return hasData(pipeData) ? [pipeData] : [];
+  }
+
+  function parseFromFilename(src) {
+    var output = [];
+    if (!src) return output;
+
+    try {
+      var url = new URL(src, location.origin);
+      var filename = url.pathname.split('/').pop();
+
+      filename = filename.split('?')[0];
+      filename = filename.replace(/_(\d+)x(?=\.[a-z]+$)/i, '');
+
+      /*
+        Filename fallback:
+        __mi-<SIZE>_<HEIGHT>_<WAIST>
+        __miA-<SIZE>_<HEIGHT>_<WAIST>
+        __miB-<SIZE>_<HEIGHT>_<WAIST>
+      */
+
+      var multiTokens = filename.match(/__mi[AB]-[a-z0-9\-+]+_[\d.,]+_[\d.,]+/gi) || [];
+
+      multiTokens.forEach(function (token) {
+        var match = token.match(/__mi([AB])-([a-z0-9\-+]+)_([\d.,]+)_([\d.,]+)/i);
+
+        if (match) {
+          output.push({
+            name: null,
+            id: match[1],
+            size: cleanSize(match[2]),
+            hCm: parseNum(match[3]),
+            wCm: parseNum(match[4])
+          });
+        }
+      });
+
+      if (!output.length) {
+        var single = filename.match(/__mi-([a-z0-9\-+]+)_([\d.,]+)_([\d.,]+)(?=\.[a-z]+$|[_\-\.])/i);
+
+        if (single) {
+          output.push({
+            name: null,
+            id: 'A',
+            size: cleanSize(single[1]),
+            hCm: parseNum(single[2]),
+            wCm: parseNum(single[3])
+          });
+        }
+      }
+
+      return output;
+    } catch (error) {
+      return output;
+    }
+  }
+
+function formatModelSentence(data) {
+  var name = data.name || 'Model';
+  var size = data.size ? '<span class="mi-size">' + data.size + '</span>' : '';
+  var height = formatHeight(data.hCm);
+  var waist = formatWaist(data.wCm);
+
+  var displayName = '<span class="mi-name">' + name + '</span>';
+
+  if (locale === 'nl') {
+    if (height && waist && size) {
+      return displayName + ' is ' + height + ', de taille is ' + waist + ' en draagt maat ' + size + '.';
+    }
+
+    if (height && size) {
+      return displayName + ' is ' + height + ' en draagt maat ' + size + '.';
+    }
+
+    if (size) {
+      return displayName + ' draagt maat ' + size + '.';
+    }
+  }
+
+  if (locale === 'de') {
+    if (height && waist && size) {
+      return displayName + ' ist ' + height + ' groß, Taille ' + waist + ' und trägt Größe ' + size + '.';
+    }
+
+    if (height && size) {
+      return displayName + ' ist ' + height + ' groß und trägt Größe ' + size + '.';
+    }
+
+    if (size) {
+      return displayName + ' trägt Größe ' + size + '.';
+    }
+  }
+
+  if (height && waist && size) {
+    return displayName + ' is ' + height + ', has a ' + waist + ' waist and wears size ' + size + '.';
+  }
+
+  if (height && size) {
+    return displayName + ' is ' + height + ' and wears size ' + size + '.';
+  }
+
+  if (size) {
+    return displayName + ' wears size ' + size + '.';
+  }
+
+  return '';
+}
+
+  function getModelData(img) {
+    if (!img) return [];
+
+    var altData = parseFromAlt(img.alt);
+    if (hasData(altData)) return altData;
+
+    return parseFromFilename(img.currentSrc || img.src);
+  }
+
+  function buildHTML(img) {
+    var data = getModelData(img);
+    if (!hasData(data)) return '';
+
+    return data.map(formatModelSentence).join(' ');
+  }
+
+  function setHTML(html) {
+    if (html !== currentHTML) {
+      box.innerHTML = html;
+      currentHTML = html;
+    }
+  }
+
+  function getActiveImage() {
+    return document.querySelector('.product-gallery__media.is-selected img') ||
+           document.querySelector('.product-gallery__media.is-selected picture img') ||
+           document.querySelector('.product__media-item.is-active img') ||
+           document.querySelector('.product__media-item.is-active picture img') ||
+           document.querySelector('.product__media img');
+  }
+
+  function update() {
+    setHTML(buildHTML(getActiveImage()));
+  }
+
+  function watchGallery() {
+    var gallery = document.querySelector('.product-gallery, .product__media-list, .product__media');
+
+    if (gallery) {
+      new MutationObserver(update).observe(gallery, {
+        attributes: true,
+        subtree: true,
+        childList: true,
+        attributeFilter: ['class', 'aria-hidden', 'src', 'alt']
+      });
+    }
+
+    update();
+  }
+
+  document.addEventListener('shopify:section:load', function () {
+    setTimeout(update, 50);
+  });
+
+  document.addEventListener('variant:change', function () {
+    setTimeout(update, 50);
+  });
+
+  document.addEventListener('change', function (event) {
+    if (event.target && event.target.matches('[name="id"]')) {
+      setTimeout(update, 50);
+    }
+  });
+
+  watchGallery();
+})();
+</script>
+{%- endif -%}

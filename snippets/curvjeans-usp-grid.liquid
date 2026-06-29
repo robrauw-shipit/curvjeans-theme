@@ -1,0 +1,180 @@
+{%- comment -%}
+CURVJEANS — Hybrid USP Snippet (FINAL VERSION)
+• Desktop: show all 4 USPs inline
+• Mobile: show 2-at-a-time, centered, fade every 5s
+• Localized (EN/NL/DE)
+{%- endcomment -%}
+
+{%- liquid
+assign _lc = request.locale.iso_code | downcase
+
+case _lc
+  when 'nl'
+    assign _l1 = 'Geen waist gap'
+    assign _l2 = 'Past Taille + Heupen'
+    assign _l3 = 'All-day comfort'
+    assign _l4 = 'Behoudt vorm'
+  when 'de'
+    assign _l1 = 'Zero Waist Gap'
+    assign _l2 = 'Passt an Taille und Hüfte'
+    assign _l3 = 'Ganztags Komfort'
+    assign _l4 = 'Formstabil'
+  else
+    assign _l1 = 'No Waist Gap'
+    assign _l2 = 'Fits Waist + Hips'
+    assign _l3 = 'All-Day Comfort'
+    assign _l4 = 'Holds Its Shape'
+endcase
+-%}
+
+<style>
+.cj-usp-fade {
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  background: #fff;
+  padding: 16px 0;
+  overflow: hidden;
+  width: 100%;
+}
+
+.cj-usp-fade-wrapper {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center;
+  align-items: center;
+  gap: 48px;
+  opacity: 1;
+  transition: opacity .5s ease-in-out;
+}
+
+.cj-usp-fade-wrapper.fade-out {
+  opacity: 0;
+}
+
+.cj-usp-fade-item {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.cj-usp-fade-icon {
+  width: 26px;
+  height: 26px;
+}
+
+.cj-usp-fade-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #222;
+}
+
+/* ✅ Desktop — show all 4 always */
+@media (min-width: 768px){
+  .cj-usp-fade-wrapper {
+    gap: 48px !important;
+  }
+}
+
+/* ✅ Mobile — show 2 centered (not stretched) */
+@media (max-width: 767px){
+  .cj-usp-fade-wrapper {
+    gap: 32px !important;
+    justify-content: center !important;     /* ✅ center both USPs as a unit */
+  }
+
+  .cj-usp-fade-item {
+    flex: 0 0 auto !important;              /* ✅ no forced width */
+    width: auto !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+}
+</style>
+
+<section class="cj-usp-fade">
+  <div class="cj-usp-fade-wrapper" id="cjUspFade">
+    <!-- Mobile first pair -->
+    <div class="cj-usp-fade-item">
+      <img class="cj-usp-fade-icon" src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/waistfit-1.png?v=1752650878">
+      <span class="cj-usp-fade-label">{{ _l1 }}</span>
+    </div>
+    <div class="cj-usp-fade-item">
+      <img class="cj-usp-fade-icon" src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/perfectbutt-5.png?v=1752650877">
+      <span class="cj-usp-fade-label">{{ _l2 }}</span>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  const wrapper = document.getElementById('cjUspFade');
+  let showingFirst = true;
+
+  function renderDesktop(){
+    wrapper.innerHTML = `
+      <div class="cj-usp-fade-item">
+        <img class="cj-usp-fade-icon" src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/waistfit-1.png?v=1752650878">
+        <span class="cj-usp-fade-label">{{ _l1 }}</span>
+      </div>
+      <div class="cj-usp-fade-item">
+        <img class="cj-usp-fade-icon" src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/perfectbutt-5.png?v=1752650877">
+        <span class="cj-usp-fade-label">{{ _l2 }}</span>
+      </div>
+      <div class="cj-usp-fade-item">
+        <img class="cj-usp-fade-icon" src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/stretchy-3.png?v=1752650879">
+        <span class="cj-usp-fade-label">{{ _l3 }}</span>
+      </div>
+      <div class="cj-usp-fade-item">
+        <img class="cj-usp-fade-icon" src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/lovesyourcurves-6.png?v=1752650878">
+        <span class="cj-usp-fade-label">{{ _l4 }}</span>
+      </div>
+    `;
+  }
+
+  function swapMobile(){
+    if(window.innerWidth >= 768) return;
+
+    wrapper.classList.add('fade-out');
+    setTimeout(() => {
+      wrapper.innerHTML = showingFirst
+      ? `
+        <div class="cj-usp-fade-item">
+          <img class="cj-usp-fade-icon" src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/stretchy-3.png?v=1752650879">
+          <span class="cj-usp-fade-label">{{ _l3 }}</span>
+        </div>
+        <div class="cj-usp-fade-item">
+          <img class="cj-usp-fade-icon" src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/lovesyourcurves-6.png?v=1752650878">
+          <span class="cj-usp-fade-label">{{ _l4 }}</span>
+        </div>
+      `
+      : `
+        <div class="cj-usp-fade-item">
+          <img class="cj-usp-fade-icon" src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/waistfit-1.png?v=1752650878">
+          <span class="cj-usp-fade-label">{{ _l1 }}</span>
+        </div>
+        <div class="cj-usp-fade-item">
+          <img class="cj-usp-fade-icon" src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/perfectbutt-5.png?v=1752650877">
+          <span class="cj-usp-fade-label">{{ _l2 }}</span>
+        </div>
+      `;
+      showingFirst = !showingFirst;
+      wrapper.classList.remove('fade-out');
+    }, 400);
+  }
+
+  if(window.innerWidth >= 768){
+    renderDesktop();
+  } else {
+    setInterval(swapMobile, 5000);
+  }
+
+  window.addEventListener('resize', () => {
+    if(window.innerWidth >= 768){
+      renderDesktop();
+    }
+  });
+})();
+</script>

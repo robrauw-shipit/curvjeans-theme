@@ -1,0 +1,146 @@
+<!-- CURVJEANS — Shapewear Shopify Compare At Pricing -->
+<div class="custom-discount-pricing custom-discount-pricing--shapewear">
+  {% assign variant = product.selected_or_first_available_variant %}
+  {% assign regular_price = variant.price | default: 0 | plus: 0 %}
+  {% assign compare_price = variant.compare_at_price | default: 0 | plus: 0 %}
+
+  {% assign discount_percentage = 0 %}
+  {% if compare_price > regular_price %}
+    {% assign discount_amount = compare_price | minus: regular_price %}
+    {% assign discount_percentage = discount_amount | times: 100 | divided_by: compare_price | round %}
+  {% endif %}
+
+  <span class="discounted-price">
+    {% if settings.currency_code_enabled %}
+      {{ regular_price | money_with_currency }}
+    {% else %}
+      {{ regular_price | money }}
+    {% endif %}
+  </span>
+
+  {% if compare_price > regular_price %}
+    <span class="original-price">
+      {% if settings.currency_code_enabled %}
+        {{ compare_price | money_with_currency }}
+      {% else %}
+        {{ compare_price | money }}
+      {% endif %}
+    </span>
+
+    <span class="savings-label">
+      {% if request.locale.iso_code == 'nl' %}
+        Bespaar {{ discount_percentage }}%
+      {% elsif request.locale.iso_code == 'de' %}
+        Spare {{ discount_percentage }}%
+      {% else %}
+        Save {{ discount_percentage }}%
+      {% endif %}
+    </span>
+  {% endif %}
+</div>
+
+{% assign installment_price = regular_price | divided_by: 4.0 | round %}
+
+{% if localization.country.iso_code == 'US' %}
+  <div class="custom-shop-pay-line">
+    or 4 interest-free payments of
+    <strong>
+      {% if settings.currency_code_enabled %}
+        {{ installment_price | money_with_currency }}
+      {% else %}
+        {{ installment_price | money }}
+      {% endif %}
+    </strong>
+    with
+    <img
+      src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/Shop_Pay_logo_svg.png?v=1781252724"
+      alt="Shop Pay"
+      class="custom-shop-pay-logo"
+    >
+  </div>
+{% endif %}
+
+<style>
+  .custom-discount-pricing {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin: 12px 0 16px !important;
+    padding: 0;
+    flex-wrap: wrap;
+    font-family: inherit;
+  }
+
+  .custom-discount-pricing .discounted-price {
+    font-size: 20px;
+    line-height: 1;
+    font-weight: 800;
+    color: #161616;
+    letter-spacing: -0.04em;
+  }
+
+  .custom-discount-pricing .original-price {
+    font-size: 15px;
+    line-height: 1;
+    font-weight: 500;
+    color: #77716B;
+    text-decoration: line-through;
+    text-decoration-thickness: 1.2px;
+    text-decoration-color: #77716B;
+    white-space: nowrap;
+  }
+
+  .custom-discount-pricing .savings-label {
+    font-size: 13px;
+    line-height: 1;
+    font-weight: 700;
+    color: #B5483E;
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 600px) {
+    .custom-discount-pricing {
+      gap: 8px;
+      margin: 10px 0 14px !important;
+    }
+
+    .custom-discount-pricing .discounted-price {
+      font-size: 18px;
+    }
+
+    .custom-discount-pricing .original-price {
+      font-size: 14px;
+    }
+
+    .custom-discount-pricing .savings-label {
+      font-size: 12.5px;
+    }
+  }
+
+  .custom-shop-pay-line {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: -6px;
+    margin-bottom: 14px;
+    font-family: inherit;
+    font-size: 13px;
+    line-height: 1.4;
+    color: rgba(22,22,22,.82);
+    flex-wrap: wrap;
+  }
+
+  .custom-shop-pay-line strong {
+    font-weight: 700;
+    color: #161616;
+  }
+
+  .custom-shop-pay-logo {
+    height: 14px;
+    width: auto;
+    display: inline-block;
+  }
+</style>

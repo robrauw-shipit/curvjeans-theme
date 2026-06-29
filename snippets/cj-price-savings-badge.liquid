@@ -1,0 +1,93 @@
+<div class="price-badge-savings">
+  {%- assign v = product.selected_or_first_available_variant -%}
+  {%- assign cp = v.compare_at_price -%}
+  {%- assign ap = v.price -%}
+
+  {%- if cp and cp > ap -%}
+    {%- assign save = cp | minus: ap -%}
+
+    <!-- META: compare price -->
+    <div class="price-badge-savings__meta">
+      <span class="price-badge-savings__compare">
+        {%- if settings.currency_code_enabled -%}
+          {{ cp | money_with_currency }}
+        {%- else -%}
+          {{ cp | money }}
+        {%- endif -%}
+      </span>
+    </div>
+
+    <!-- CURRENT PRICE -->
+    <span class="price-badge-savings__now">
+      {%- if settings.currency_code_enabled -%}
+        {{ ap | money_with_currency }}
+      {%- else -%}
+        {{ ap | money }}
+      {%- endif -%}
+    </span>
+
+    <!-- SAVE BADGE -->
+    <span class="price-badge-savings__badge" aria-label="discount">
+      {%- case request.locale.iso_code -%}
+        {%- when 'nl' -%}
+          Bespaar {{ save | money_without_trailing_zeros }} vandaag
+        {%- when 'de' -%}
+          Spare {{ save | money_without_trailing_zeros }} heute
+        {%- else -%}
+          Save {{ save | money_without_trailing_zeros }} today
+      {%- endcase -%}
+    </span>
+
+  {%- else -%}
+    <span class="price-badge-savings__now">
+      {%- if settings.currency_code_enabled -%}
+        {{ ap | money_with_currency }}
+      {%- else -%}
+        {{ ap | money }}
+      {%- endif -%}
+    </span>
+  {%- endif -%}
+</div>
+
+<style>
+.price-badge-savings{
+  display:flex;
+  align-items:center;
+  gap:6px 8px;
+  flex-wrap:wrap;
+  margin:8px 0;
+}
+
+.price-badge-savings__meta{
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+}
+
+.price-badge-savings__compare{
+  text-decoration:line-through;
+  color:#8B8B8B;
+  font-size:14px;
+  font-weight:500;
+}
+
+.price-badge-savings__now{
+  font-size:18px;
+  font-weight:800;
+  color:#111;
+}
+
+.price-badge-savings__badge{
+  background:#dff3e7;
+  color:#1eab52;
+  border-radius:999px;
+  padding:6px 12px;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.1px;
+  line-height:1;
+  white-space:nowrap;
+  display:inline-flex;
+  align-items:center;
+}
+</style>

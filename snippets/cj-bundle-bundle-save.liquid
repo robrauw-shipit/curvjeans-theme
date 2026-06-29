@@ -1,0 +1,99 @@
+{%- comment -%}
+CURVJEANS — Cart Offer Nudge
+Simplified: Bundle & Save
+{%- endcomment -%}
+
+{%- assign _count = 0 -%}
+{%- assign _show = false -%}
+{%- assign _lc = request.locale.iso_code | downcase -%}
+{%- assign _country = localization.country.iso_code | default: '' | upcase -%}
+
+{%- assign _jeans_collection_1 = 'mid-rise' -%}
+{%- assign _jeans_collection_2 = 'high-waist' -%}
+
+{%- for item in cart.items -%}
+  {%- assign _is_jeans = false -%}
+
+  {%- for collection in item.product.collections -%}
+    {%- if collection.handle == _jeans_collection_1 or collection.handle == _jeans_collection_2 -%}
+      {%- assign _is_jeans = true -%}
+      {%- break -%}
+    {%- endif -%}
+  {%- endfor -%}
+
+  {%- if _is_jeans -%}
+    {%- assign _count = _count | plus: item.quantity -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- if _count >= 1 -%}
+  {%- assign _show = true -%}
+{%- endif -%}
+
+{%- capture _label -%}
+  {%- if _lc == 'nl' -%}
+    Bundel & bespaar
+  {%- elsif _lc == 'de' -%}
+    Bündeln & sparen
+  {%- else -%}
+    Bundle & save
+  {%- endif -%}
+{%- endcapture -%}
+
+{%- if _show and _country != 'US' -%}
+  <div class="cj-bundle-nudge-wrapper">
+    <div class="cj-bundle-header">
+      <div class="cj-bundle-line"></div>
+
+      <div class="cj-bundle-reward">
+        {{ _label | strip }}
+      </div>
+
+      <div class="cj-bundle-line"></div>
+    </div>
+  </div>
+
+  <style>
+    .cj-bundle-nudge-wrapper {
+      margin-top: 14px;
+      text-align: center;
+    }
+
+    .cj-bundle-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .cj-bundle-line {
+      flex: 1;
+      height: 1px;
+      background-color: #E5E0DB;
+    }
+
+.cj-bundle-reward {
+  color: #7A7A7A;
+  font-size: 14px;
+  line-height: 1.4;
+  font-weight: 600;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+    @media (max-width: 600px) {
+      .cj-bundle-nudge-wrapper {
+        margin-top: 12px;
+      }
+
+      .cj-bundle-header {
+        gap: 9px;
+      }
+
+      .cj-bundle-reward {
+        font-size: 12px;
+        padding: 5px 12px;
+      }
+    }
+  </style>
+{%- endif -%}

@@ -1,0 +1,110 @@
+<!-- CURVJEANS — Black Friday Pricing Block -->
+<div class="cj-bf-price">
+  {% assign v = product.selected_or_first_available_variant %}
+  {% assign cp = v.compare_at_price %}
+  {% assign ap = v.price %}
+
+  {% if cp and cp > ap %}
+    {% assign save = cp | minus: ap %}
+    {% assign percent_num = save | times: 100.0 | divided_by: cp %}
+    {% assign percent = percent_num | round %}
+
+    {%- comment -%}
+      Force BF tiers:
+      1pc = 15%
+      2pc = 25%
+      3pc+ = 35%
+      If discount matches these, show fixed %.
+      Else show automatically calculated.
+    {%- endcomment -%}
+
+    {% assign bf_percent = percent %}
+    {% if percent == 15 %}
+      {% assign bf_percent = 15 %}
+    {% elsif percent == 25 %}
+      {% assign bf_percent = 25 %}
+    {% elsif percent == 35 %}
+      {% assign bf_percent = 35 %}
+    {% endif %}
+
+    <span class="cj-bf-price__compare">
+      {% if settings.currency_code_enabled %}
+        {{ cp | money_with_currency }}
+      {% else %}
+        {{ cp | money }}
+      {% endif %}
+    </span>
+
+    <span class="cj-bf-price__now">
+      {% if settings.currency_code_enabled %}
+        {{ ap | money_with_currency }}
+      {% else %}
+        {{ ap | money }}
+      {% endif %}
+    </span>
+
+    <span class="cj-bf-badge" aria-label="discount">
+      {% case request.locale.iso_code %}
+        {% when 'nl' %}
+          {{ bf_percent }}% KORTING – Bespaar {{ save | money_without_trailing_zeros }}
+        {% when 'de' %}
+          {{ bf_percent }}% RABATT – Spare {{ save | money_without_trailing_zeros }}
+        {% else %}
+          {{ bf_percent }}% OFF – Save {{ save | money_without_trailing_zeros }}
+      {% endcase %}
+    </span>
+
+  {% else %}
+    <span class="cj-bf-price__now">
+      {% if settings.currency_code_enabled %}
+        {{ ap | money_with_currency }}
+      {% else %}
+        {{ ap | money }}
+      {% endif %}
+    </span>
+  {% endif %}
+</div>
+
+<style>
+  .cj-bf-price {
+    display: flex;
+    align-items: center;
+    gap: 10px 12px;
+    flex-wrap: wrap;
+  }
+
+  .cj-bf-price__compare {
+    text-decoration: line-through;
+    color: #9aa0a6;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .cj-bf-price__now {
+    font-size: 20px;
+    font-weight: 800;
+    color: #111;
+  }
+
+  .cj-bf-badge {
+    background: #C25447;
+    color: #fff;
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: .2px;
+    text-transform: uppercase;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 600px) {
+    .cj-bf-price { gap: 8px; }
+    .cj-bf-price__compare { font-size: 12px; }
+    .cj-bf-price__now { font-size: 18px; }
+    .cj-bf-badge { font-size: 13px; padding: 5px 10px; }
+  }
+</style>

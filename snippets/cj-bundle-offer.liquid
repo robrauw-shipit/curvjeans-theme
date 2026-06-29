@@ -1,0 +1,124 @@
+{%- comment -%}
+CURVJEANS — Cart Bundle Nudge (Percentage-first, tier-colored)
+{%- endcomment -%}
+
+{%- assign discount_2 = 30 -%}
+{%- assign discount_3 = 40 -%}
+
+{%- assign _count = cart.item_count | default: 0 -%}
+{%- assign _show = false -%}
+{%- assign _is_max = false -%}
+{%- assign _is_tier2 = false -%}
+
+{%- if _count == 1 -%}
+  {%- assign _show = true -%}
+{%- elsif _count == 2 -%}
+  {%- assign _show = true -%}
+  {%- assign _is_tier2 = true -%}
+{%- elsif _count >= 3 -%}
+  {%- assign _show = true -%}
+  {%- assign _is_max = true -%}
+{%- endif -%}
+
+{%- comment -%}
+Determine next discount tier dynamically
+{%- endcomment -%}
+{%- assign _next_discount = discount_2 -%}
+{%- if _count == 2 -%}
+  {%- assign _next_discount = discount_3 -%}
+{%- endif -%}
+
+{%- assign _lc = request.locale.iso_code | downcase -%}
+
+{%- capture _pill_text -%}
+  {%- if _is_max -%}
+    {%- if _lc == 'nl' -%}
+      Je hebt de maximale korting ontgrendeld
+    {%- elsif _lc == 'de' -%}
+      maximaler Rabatt erreicht
+    {%- else -%}
+      You’ve unlocked maximum savings
+    {%- endif -%}
+  {%- else -%}
+    {%- if _lc == 'nl' -%}
+      Voeg 1 toe · Bespaar {{ _next_discount }}%
+    {%- elsif _lc == 'de' -%}
+      Füge 1 hinzu und erhalte {{ _next_discount }}% Rabatt
+    {%- else -%}
+      Add 1 more · Save {{ _next_discount }}%
+    {%- endif -%}
+  {%- endif -%}
+{%- endcapture -%}
+
+{%- if _show -%}
+  <div class="cj-bundle-nudge-wrapper">
+    <div class="cj-bundle-header">
+      <div class="cj-bundle-line"></div>
+      <div class="cj-bundle-title">Bundle Savings</div>
+      <div class="cj-bundle-line"></div>
+    </div>
+
+    <div class="cj-bundle-pill 
+      {% if _is_max %}cj-max{% elsif _is_tier2 %}cj-tier-2{% endif %}">
+      {{ _pill_text }}
+    </div>
+  </div>
+
+  <style>
+    .cj-bundle-nudge-wrapper {
+      margin-top: 14px;
+      text-align: center;
+    }
+
+    .cj-bundle-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    .cj-bundle-line {
+      flex: 1;
+      height: 1px;
+      background-color: #E5E5E5;
+    }
+
+    .cj-bundle-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #111;
+      letter-spacing: .01em;
+      white-space: nowrap;
+    }
+
+    /* Tier 1 (default / red) */
+    .cj-bundle-pill {
+      display: inline-block;
+      background: rgba(184, 76, 66, 0.12);
+      color: #B84C42;
+      font-weight: 600;
+      font-size: 12.5px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      letter-spacing: .01em;
+    }
+
+    /* Tier 2 (orange / momentum) */
+    .cj-bundle-pill.cj-tier-2 {
+      background: rgba(242, 153, 74, 0.14);
+      color: #F2994A;
+    }
+
+    /* Max tier (green / success) */
+    .cj-bundle-pill.cj-max {
+      background: rgba(44, 181, 93, 0.12);
+      color: #2CB55D;
+    }
+
+    @media (max-width: 600px){
+      .cj-bundle-title { font-size: 15px; }
+      .cj-bundle-pill { font-size: 12px; padding: 3px 9px; }
+    }
+  </style>
+{%- endif -%}

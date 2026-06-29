@@ -1,0 +1,194 @@
+{%- comment -%}
+CURVJEANS — Shapewear USP Section (updated)
+• New top USP: CurveFlex™ Sculpt Layer (360° only in the desc line)
+• Removed: 360° Sculpt & Support
+• Order: Sculpt Layer → Hourglass → Quick Snap → Soft & Seamless → Breathable
+{%- endcomment -%}
+
+{%- assign shp_usp_image = product.metafields.descriptors.shapewear_usp_image 
+  | default: "https://cdn.shopify.com/s/files/1/0864/5165/0895/files/0021_curvjeans20-09-2025-131__miA-L_163_70__miB-S_158_68.jpg?v=1759119976" -%}
+
+<section id="cj-shp-usp-band" class="cj-usp-band">
+  <div class="cj-usp__wrap">
+    <!-- CONTENT -->
+    <div class="cj-usp__content">
+      <h2 class="cj-usp__title">Confidence you can feel immediately</h2>
+      <p class="cj-usp__subtitle">Smooth, sculpt and lift — this is shapewear you’ll actually enjoy wearing</p>
+
+      <ul class="cj-usp__grid">
+        <!-- 1) CurveFlex Sculpt Layer (360° only in desc) -->
+        <li class="cj-usp__item">
+          <span class="cj-usp__icon">
+            <!-- Swap this icon URL if you have a dedicated Sculpt Layer icon -->
+            <img src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/360_sculpt_support_CURVS_shapewear.png?v=1757651701" alt="">
+          </span>
+          <div>
+            <div class="cj-usp__heading">CurveFlex™ Sculpt Layer</div>
+            <p class="cj-usp__desc">Instantly drops a size with 360° support — no rolling, no suffocating.</p>
+          </div>
+        </li>
+
+        <!-- 2) Instant Hourglass -->
+        <li class="cj-usp__item">
+          <span class="cj-usp__icon">
+            <img src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/shapesyourcurves-2.png?v=1752650877" alt="">
+          </span>
+          <div>
+            <div class="cj-usp__heading">Instant Hourglass Effect</div>
+            <p class="cj-usp__desc">Snatches your waist, smooths tummy and flatters every curve.</p>
+          </div>
+        </li>
+
+        <!-- 3) Quick Snap -->
+        <li class="cj-usp__item">
+          <span class="cj-usp__icon">
+            <img src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/curvs_shapewear_quick_snap.png?v=1757653088" alt="">
+          </span>
+          <div>
+            <div class="cj-usp__heading">Quick Snap Closure</div>
+            <p class="cj-usp__desc">Bathroom breaks made easy, without the hassle.</p>
+          </div>
+        </li>
+
+        <!-- 4) Soft & Seamless -->
+        <li class="cj-usp__item">
+          <span class="cj-usp__icon">
+            <img src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/soft_curvs_shapewear.png?v=1757651743" alt="">
+          </span>
+          <div>
+            <div class="cj-usp__heading">Soft & Seamless Comfort</div>
+            <p class="cj-usp__desc">Ultra-smooth fabric feels invisible under clothes, weightless on skin.</p>
+          </div>
+        </li>
+
+        <!-- 5) Breathable -->
+        <li class="cj-usp__item">
+          <span class="cj-usp__icon">
+            <img src="https://cdn.shopify.com/s/files/1/0864/5165/0895/files/breathable_curvs_shapewear.png?v=1757651742" alt="">
+          </span>
+          <div>
+            <div class="cj-usp__heading">Breathable & All-Day Cool</div>
+            <p class="cj-usp__desc">Stays dry, comfy, and snatched from morning to night.</p>
+          </div>
+        </li>
+      </ul>
+
+      <button type="button" id="cj-shp-usp-cta" class="cj-usp__cta">Shop Confidence</button>
+    </div>
+
+    <!-- IMAGE -->
+    <div class="cj-usp__media">
+      <img src="{{ shp_usp_image }}" alt="CURVJEANS shapewear" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<style>
+  .cj-usp-band{ margin:32px 0; }
+  .cj-usp__wrap{
+    max-width:1200px; margin:0 auto; padding:0 16px;
+    display:grid; gap:24px; grid-template-columns:1fr; align-items:center;
+  }
+
+  /* Image first on mobile */
+  .cj-usp__media{ order:-1; }
+  .cj-usp__media img{ width:100%; display:block; border-radius:16px; }
+
+  .cj-usp__content{ text-align:left; }
+  .cj-usp__title{ font-size:28px; font-weight:800; margin:0 0 6px; color:#111; }
+  .cj-usp__subtitle{ font-size:16px; color:#444; margin:0 0 20px; }
+
+  .cj-usp__grid{
+    list-style:none; margin:0 0 16px; padding:0;
+    display:grid; gap:16px; grid-template-columns:1fr;
+  }
+  .cj-usp__item{
+    display:flex; gap:12px; align-items:flex-start;
+    text-align:left; max-width:560px; margin:0;
+  }
+  .cj-usp__icon{
+    width:44px; height:44px; flex:0 0 44px;
+    display:flex; align-items:center; justify-content:center;
+    background:#f1f3f5; border-radius:999px;
+  }
+  .cj-usp__icon img{ width:28px; height:28px; }
+  .cj-usp__heading{ font-weight:700; font-size:15px; margin:0 0 4px; color:#111; }
+  .cj-usp__desc{ margin:0; font-size:14px; line-height:1.45; color:#333; }
+
+  .cj-usp__cta{
+    display:inline-flex; align-items:center; justify-content:center;
+    padding:12px 20px; border-radius:999px;
+    border:1px solid #111; background:#111; color:#fff;
+    font-weight:700; font-size:14px; cursor:pointer;
+    margin:20px 0 0; transition:opacity .2s ease;
+  }
+  .cj-usp__cta:hover{ opacity:.9; }
+
+  @media (min-width:992px){
+    .cj-usp__wrap{ grid-template-columns:minmax(0,640px) 1fr; gap:40px; }
+    .cj-usp__media{ order:initial; }
+    .cj-usp__title{ font-size:40px; }
+    .cj-usp__subtitle{ font-size:18px; margin-bottom:28px; }
+    .cj-usp__grid{ grid-template-columns:repeat(2, minmax(0,1fr)); gap:20px 24px; }
+    .cj-usp__cta{ margin:12px 0 0; }
+  }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  var path = location.pathname || "";
+  var isNL = path.includes('/nl');
+  var isDE = path.includes('/de');
+
+  var title    = document.querySelector('#cj-shp-usp-band .cj-usp__title');
+  var subtitle = document.querySelector('#cj-shp-usp-band .cj-usp__subtitle');
+  var items    = document.querySelectorAll('#cj-shp-usp-band .cj-usp__item');
+  var cta      = document.querySelector('#cj-shp-usp-cta');
+
+  if(isNL){
+    if(title) title.textContent = "Jouw instant confidence boost";
+    if(subtitle) subtitle.textContent = "Smooth, sculpt & lift — dit is shapewear die je wél wilt dragen";
+    if(items.length >= 5){
+      items[0].querySelector('.cj-usp__heading').textContent = "CurveFlex™ Sculpt Layer";
+      items[0].querySelector('.cj-usp__desc').textContent    = "Lijkt meteen een maat kleiner met 360° steun — zonder oprollen of benauwd gevoel.";
+      items[1].querySelector('.cj-usp__heading').textContent = "Instant Hourglass Effect";
+      items[1].querySelector('.cj-usp__desc').textContent    = "Accentueert je taille, strijkt je buik glad en flatteert je curves.";
+      items[2].querySelector('.cj-usp__heading').textContent = "Quick Snap Closure";
+      items[2].querySelector('.cj-usp__desc').textContent    = "Snel en makkelijk naar de wc.";
+      items[3].querySelector('.cj-usp__heading').textContent = "Zacht & Naadloos Comfort";
+      items[3].querySelector('.cj-usp__desc').textContent    = "Voelt gewichtloos aan en verdwijnt onder je outfit.";
+      items[4].querySelector('.cj-usp__heading').textContent = "Ademend & All-Day Cool";
+      items[4].querySelector('.cj-usp__desc').textContent    = "Blijft koel, droog en comfy van ochtend tot avond.";
+    }
+    if(cta) cta.textContent = "Shop Confidence";
+  }
+
+  if(isDE){
+    if(title) title.textContent = "Dein Instant Confidence Boost";
+    if(subtitle) subtitle.textContent = "Smooth, sculpt & lift — das ist Shapewear, die du wirklich tragen willst.";
+    if(items.length >= 5){
+      items[0].querySelector('.cj-usp__heading').textContent = "CurveFlex™ Sculpt Layer";
+      items[0].querySelector('.cj-usp__desc').textContent    = "Wirkt sofort eine Größe schlanker mit 360° Halt — ohne Einrollen oder Einengen.";
+      items[1].querySelector('.cj-usp__heading').textContent = "Instant Hourglass Effect";
+      items[1].querySelector('.cj-usp__desc').textContent    = "Formt deine Taille, glättet den Bauch und schmeichelt deinen Kurven.";
+      items[2].querySelector('.cj-usp__heading').textContent = "Quick Snap Closure";
+      items[2].querySelector('.cj-usp__desc').textContent    = "Toilettenpausen stressfrei, schnell & diskret.";
+      items[3].querySelector('.cj-usp__heading').textContent = "Weich & Nahtloser Komfort";
+      items[3].querySelector('.cj-usp__desc').textContent    = "Federleicht auf der Haut, unsichtbar unter Kleidung.";
+      items[4].querySelector('.cj-usp__heading').textContent = "Atmungsaktiv & All-Day Cool";
+      items[4].querySelector('.cj-usp__desc').textContent    = "Bleibt kühl, trocken & bequem von früh bis spät.";
+    }
+    if(cta) cta.textContent = "Shop Confidence";
+  }
+
+  // CTA scroll to product form
+  if(cta){
+    cta.addEventListener('click', function(){
+      var form = document.querySelector('form[action*="/cart/add"]') || document.querySelector('[data-product-form]');
+      if(form && form.scrollIntoView){
+        form.scrollIntoView({ behavior:'smooth', block:'center' });
+      }
+    });
+  }
+});
+</script>

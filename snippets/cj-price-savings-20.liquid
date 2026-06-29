@@ -1,0 +1,80 @@
+<div class="cj-price-savings-20">
+  {%- assign v = product.selected_or_first_available_variant -%}
+  {%- assign compare_price = v.compare_at_price -%}
+  {%- assign current_price = v.price -%}
+
+  {%- if compare_price and compare_price > current_price -%}
+    {%- assign savings = compare_price | minus: current_price -%}
+    {%- assign savings_rounded = savings | divided_by: 100 | round | times: 100 -%}
+
+    <span class="cj-price-savings-20__compare">
+      {%- if settings.currency_code_enabled -%}
+        {{ compare_price | money_with_currency }}
+      {%- else -%}
+        {{ compare_price | money }}
+      {%- endif -%}
+    </span>
+  {%- endif -%}
+
+  <span class="cj-price-savings-20__now">
+    {%- if settings.currency_code_enabled -%}
+      {{ current_price | money_with_currency }}
+    {%- else -%}
+      {{ current_price | money }}
+    {%- endif -%}
+  </span>
+
+  {%- if compare_price and compare_price > current_price -%}
+    <span class="cj-price-savings-20__badge" aria-label="discount">
+      {%- case request.locale.iso_code -%}
+
+        {%- when 'nl' -%}
+          Bespaar {{ savings_rounded | money_without_trailing_zeros }} vandaag
+
+        {%- when 'de' -%}
+          Spare {{ savings_rounded | money_without_trailing_zeros }} heute
+
+        {%- else -%}
+          Save {{ savings_rounded | money_without_trailing_zeros }} today
+
+      {%- endcase -%}
+    </span>
+  {%- endif -%}
+</div>
+
+<style>
+.cj-price-savings-20{
+  display:flex;
+  align-items:center;
+  gap:6px 8px;
+  flex-wrap:wrap;
+  margin:8px 0;
+}
+
+.cj-price-savings-20__compare{
+  text-decoration:line-through;
+  color:#8B8B8B;
+  font-size:14px;
+  font-weight:500;
+}
+
+.cj-price-savings-20__now{
+  font-size:18px;
+  font-weight:800;
+  color:#111;
+}
+
+.cj-price-savings-20__badge{
+  background:#dff3e7;
+  color:#1eab52;
+  border-radius:999px;
+  padding:6px 12px;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.1px;
+  line-height:1;
+  white-space:nowrap;
+  display:inline-flex;
+  align-items:center;
+}
+</style>
