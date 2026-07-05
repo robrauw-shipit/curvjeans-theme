@@ -1,0 +1,554 @@
+{
+  "sections": {
+    "cj_pdp_css": {
+      "type": "custom-liquid",
+      "settings": {
+        "full_width": true,
+        "remove_vertical_spacing": true,
+        "remove_horizontal_spacing": true,
+        "liquid": "\n<style>\n/* ============ CURVJEANS no-gap PDP restyle (scoped to page) ============ */\n/* Palette tokens available to custom sections below */\n:root{--cj-ink:#111;--cj-ink-3:#555;--cj-panel:#f7f7f7;--cj-accent:#e48175;--cj-sale:#e11900;--cj-line:rgba(17,17,17,.12)}\n\n/* Product title + review row spacing */\n.shopify-section--main-product .product-title,\n.shopify-section--main-product h1{letter-spacing:-.01em}\n\n/* Save badge / discount text = deliberate RED sale exception */\n.cj-sale-badge{display:inline-flex;align-items:center;background:var(--cj-sale);color:#fff;font-weight:700;\n  font-size:.85rem;padding:.28rem .6rem;border-radius:6px;letter-spacing:.01em;line-height:1}\n.price--on-sale .price__sale,.price__badge-sale{color:var(--cj-sale)!important}\n\n/* Size / variant pills -> squared, ink selected (screenshot) */\n.variant-picker__option .block-swatch,\n.variant-picker fieldset [type=radio]+label{border-radius:8px}\n\n/* selected size = solid ink */\n.variant-picker fieldset [type=radio]:checked+label{background:var(--cj-ink)!important;color:#fff!important;border-color:var(--cj-ink)!important}\n\n/* Add to cart = full-width ink, tall tap target */\n.shopify-section--main-product .product-form__buttons button[type=submit],\n.shopify-section--main-product .buy-buttons button{min-height:56px;border-radius:10px;font-weight:700;letter-spacing:.01em}\n\n/* trust row under ATC */\n.cj-pdp-trust{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:16px 0 8px;text-align:left}\n.cj-pdp-trust .ti{display:flex;gap:8px;align-items:flex-start}\n.cj-pdp-trust .ti svg{flex:none;color:var(--cj-ink);margin-top:1px}\n.cj-pdp-trust .ti b{display:block;font-size:.8rem;font-weight:700;color:var(--cj-ink);line-height:1.2}\n.cj-pdp-trust .ti span{font-size:.74rem;color:var(--cj-ink-3);line-height:1.25}\n@media(max-width:600px){.cj-pdp-trust{grid-template-columns:1fr;gap:10px}}\n\n/* 100% fit promise card */\n.cj-fit-promise{display:flex;align-items:center;gap:16px;background:var(--cj-panel);border:1px solid var(--cj-line);\n  border-radius:12px;padding:16px 18px;margin-top:14px}\n.cj-fit-promise .big{font-family:inherit;font-weight:800;font-size:1.35rem;color:var(--cj-ink);line-height:1;white-space:nowrap}\n.cj-fit-promise .big small{display:block;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--cj-ink-3);margin-top:4px;font-weight:700}\n.cj-fit-promise .txt b{display:block;font-size:.9rem;color:var(--cj-ink);font-weight:700}\n.cj-fit-promise .txt span{font-size:.82rem;color:var(--cj-ink-3)}\n</style>\n",
+        "background": "",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "badges_Eh4rQf": {
+          "type": "badges",
+          "settings": {}
+        },
+        "liquid_nhxCLp": {
+          "type": "liquid",
+          "disabled": true,
+          "settings": {
+            "liquid": "<a href=\"#looxReviews\" class=\"cj-trustpilot-clickwrap\" aria-label=\"Scroll to reviews\">\n  <div class=\"cj-trustpilot-line\">\n    <img \n      class=\"cj-trustpilot-stars\"\n      src=\"https://cdn.shopify.com/s/files/1/0864/5165/0895/files/trustpilot_4.5_stars.png?v=1738211488\"\n      alt=\"Trustpilot rating\"\n      loading=\"lazy\"\n    >\n\n    {% assign _path = request.path | downcase %}\n\n    <div class=\"cj-trustpilot-text\">\n      {% if _path contains '/nl' %}\n        Over <span class=\"cj-trustpilot-link\">20.000+</span> tevreden klanten\n      {% elsif _path contains '/de' %}\n        Über <span class=\"cj-trustpilot-link\">20.000+</span> zufriedene Frauen\n      {% else %}\n        Over <span class=\"cj-trustpilot-link\">20,000+</span> satisfied customers\n      {% endif %}\n    </div>\n  </div>\n</a>\n\n<style>\n  .cj-trustpilot-clickwrap,\n  .cj-trustpilot-clickwrap:visited,\n  .cj-trustpilot-clickwrap:active,\n  .cj-trustpilot-clickwrap:hover{\n    display:block;\n    color:inherit !important;\n    text-decoration:none !important;\n    cursor:pointer;\n  }\n\n  .cj-trustpilot-line{\n    margin:10px 0 12px;\n    display:flex;\n    align-items:center;\n    gap:20px;\n    font-family:inherit;\n  }\n\n  .cj-trustpilot-stars{\n    width:100px;\n    height:auto;\n    display:block;\n    flex:0 0 auto;\n  }\n\n  .cj-trustpilot-text{\n    font-family:inherit;\n    font-size:13px;\n    line-height:1.2;\n    font-weight:400;\n    color:#111;\n    letter-spacing:-0.3px;\n  }\n\n  .cj-trustpilot-link{\n    color:#111 !important;\n    font-weight:800 !important;\n    text-decoration:none !important;\n    cursor:pointer;\n  }\n\n  @media (max-width:600px){\n    .cj-trustpilot-line{\n      gap:12px;\n      margin:20px 0 20px;\n    }\n\n    .cj-trustpilot-stars{\n      width:100px;\n    }\n\n    .cj-trustpilot-text{\n      font-size:13px;\n      letter-spacing:-0.2px;\n    }\n  }\n</style>"
+          }
+        },
+        "loox_reviews_loox_rating_xBmR9W": {
+          "type": "shopify://apps/loox-reviews/blocks/loox-rating/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "settings": {
+            "contentSize": 13,
+            "pattern": "[count] reviews",
+            "hideText": false,
+            "alignment": "",
+            "layout": "",
+            "textColor": "",
+            "starColor": "",
+            "showAllReviews": false,
+            "looxOpenFloatingWidget": false,
+            "emptyRatingWidget": false
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+            "heading_tag": "h5"
+          }
+        },
+        "liquid_bV3Xjz": {
+          "type": "liquid",
+          "settings": {
+            "liquid": "<div class=\"cj-price-divider\"></div>\n\n<style>\n.cj-price-divider {\n  width: 100%;\n  height: 1px;\n  background-color: rgba(0, 0, 0, 0.10);\n  margin: 0 0 6px;\n}\n</style>"
+          }
+        },
+        "liquid_aLn6R9": {
+          "type": "liquid",
+          "settings": {
+            "liquid": "{% render 'cj-price-discount-save-today' %}"
+          }
+        },
+        "liquid_pGwERN": {
+          "type": "liquid",
+          "disabled": true,
+          "settings": {
+            "liquid": "{% assign badges = product.metafields.custom.badges.value %}\n{% assign _lc = localization.language.iso_code | default: shop.locale | default: 'EN' | upcase %}\n\n{% if badges != blank %}\n  <div class=\"cj-custom-badge-list\">\n    {% for badge in badges %}\n      {% assign badge_raw = badge | strip %}\n      {% assign badge_key = badge_raw | upcase %}\n\n      {% case badge_key %}\n        {% when 'NEW' %}\n          {% case _lc %}\n            {% when 'NL' %}\n              {% assign badge_text = 'NIEUW' %}\n            {% when 'DE' %}\n              {% assign badge_text = 'NEU' %}\n            {% else %}\n              {% assign badge_text = 'NEW' %}\n          {% endcase %}\n        {% else %}\n          {% assign badge_text = badge_raw %}\n      {% endcase %}\n\n      <span class=\"cj-custom-badge\">\n        {{ badge_text }}\n      </span>\n    {% endfor %}\n  </div>\n{% endif %}\n\n<style>\n  /* Hide native Impact badge placement on PDP */\n  .product-info__badge-list {\n    display: none !important;\n  }\n\n  .cj-custom-badge-list {\n    display: flex;\n    flex-wrap: wrap;\n    gap: 6px;\n    margin: 0 0 12px;\n  }\n\n  .cj-custom-badge {\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    min-height: 24px;\n    padding: 0 9px;\n    border-radius: 999px;\n    background: #111;\n    color: #fff;\n    font-family: inherit;\n    font-size: 10px;\n    line-height: 1;\n    font-weight: 400;\n    letter-spacing: 0.04em;\n    text-transform: uppercase;\n    white-space: nowrap;\n  }\n\n  @media (max-width: 768px) {\n    .cj-custom-badge-list {\n      margin: 0px 0 10px;\n    }\n\n    .cj-custom-badge {\n      min-height: 22px;\n      padding: 0 8px;\n      font-size: 10px;\n    }\n  }\n</style>"
+          }
+        },
+        "liquid_BnUwWa": {
+          "type": "liquid",
+          "disabled": true,
+          "settings": {
+            "liquid": "<div class=\"cj-fit-for-you\">\n\n  <div class=\"cj-fit-for-you-lines\">\n    {% assign check_svg = '<svg class=\"cj-check\" viewBox=\"0 0 20 20\" aria-hidden=\"true\" focusable=\"false\"><path d=\"M7.8 13.6 4.7 10.5a1 1 0 0 1 1.4-1.4l2.4 2.4 5.7-5.7a1 1 0 1 1 1.4 1.4l-6.4 6.4a1 1 0 0 1-1.4 0Z\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>' %}\n\n    {% if request.path contains '/nl' %}\n      <div class=\"cj-fit-line\">{{ check_svg }}<span>Ontworpen voor een smalle taille en vollere heupen</span></div>\n      <div class=\"cj-fit-line\">{{ check_svg }}<span>Geen opening bij de taille als je zit</span></div>\n      <div class=\"cj-fit-line\">{{ check_svg }}<span>Zachte stretch die vorm houdt</span></div>\n\n    {% elsif request.path contains '/de' %}\n      <div class=\"cj-fit-line\">{{ check_svg }}<span>Passt bei schmalerer Taille und volleren Hüften</span></div>\n      <div class=\"cj-fit-line\">{{ check_svg }}<span>Kein Abstehen an der Taille im Sitzen</span></div>\n      <div class=\"cj-fit-line\">{{ check_svg }}<span>Weiches, formbeständiges Stretch</span></div>\n\n    {% else %}\n      <div class=\"cj-fit-line\">{{ check_svg }}<span>Designed for a small waist and fuller hips</span></div>\n      <div class=\"cj-fit-line\">{{ check_svg }}<span>No waist gap, even sitting down</span></div>\n      <div class=\"cj-fit-line\">{{ check_svg }}<span>Soft stretch that holds all day</span></div>\n    {% endif %}\n  </div>\n\n</div>\n\n<style>\n.cj-fit-for-you{\n  margin:12px 0;\n}\n\n.cj-fit-for-you-lines{\n  font-size:13.5px;\n  color:#111;\n  line-height:1.45;\n}\n\n.cj-fit-line{\n  display:flex;\n  align-items:flex-start;\n  gap:8px;\n  margin:3px 0;\n}\n\n.cj-check{\n  width:14px;\n  height:14px;\n  flex:0 0 14px;\n  margin-top:3px;\n  color:#111;\n}\n\n@media (max-width:600px){\n  .cj-fit-for-you-lines{\n    font-size:13px;\n  }\n}\n</style>"
+          }
+        },
+        "price_nJFG8z": {
+          "type": "price",
+          "disabled": true,
+          "settings": {
+            "show_taxes_notice": false
+          }
+        },
+        "linkedoption_combined_listings_app_block_r9FxMn": {
+          "type": "shopify://apps/linkedoption/blocks/app-block/564f3d71-fe5e-48d7-a0de-284b76666f1e",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "hide_sold_out_variants": false,
+            "stack_blocks": true,
+            "selector_style": "block",
+            "swatch_selector_style": "swatch",
+            "variant_image_options": "",
+            "size_chart_page": ""
+          }
+        },
+        "fit_quiz_for_clothes_and_shoes_fitquiz_block_VEFLPN": {
+          "type": "shopify://apps/fit-quiz-size-recommender/blocks/fitquiz-block/b10c5f36-d033-4d47-9f46-97864f785a5a",
+          "settings": {}
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "disabled": true,
+          "settings": {}
+        },
+        "liquid_TdVGjG": {
+          "type": "liquid",
+          "settings": {
+            "liquid": "{% render 'curv-stock-line-returns' %}"
+          }
+        },
+        "liquid_dy8zjc": {
+          "type": "liquid",
+          "disabled": true,
+          "settings": {
+            "liquid": "<div class=\"product-usps\">\n  \n  <!-- In Stock / Out of Stock / Low Stock -->\n  <div class=\"usp-item stock-status\">\n    {% if product.available %}\n      {% if product.variants.first.inventory_quantity > 10 %}\n        <span class=\"stock-indicator green pulse\"></span>\n        <span class=\"usp-text stock-text green-text\">In stock, ready to ship</span>\n      {% elsif product.variants.first.inventory_quantity > 0 and product.variants.first.inventory_quantity <= 10 %}\n        <span class=\"stock-indicator orange pulse\"></span>\n        <span class=\"usp-text stock-text orange-text\">Only a few jeans left</span>\n      {% endif %}\n    {% else %}\n      <span class=\"stock-indicator red pulse\"></span>\n      <span class=\"usp-text stock-text red-text\">Out of stock</span>\n    {% endif %}\n  </div>\n\n</div>\n\n<!-- Styles (Fixed Mobile Pop-up & Increased Margins) -->\n<style>\n  .product-usps {\n    display: flex;\n    flex-direction: column;\n    gap: 15px;\n    margin-bottom: 15px !important; /* Space BELOW all USPs */\n    margin-top: 15px !important; /* Space ABOVE all USPs */\n    padding: 5px 5px; /* Padding inside the USP container */\n  }\n\n  .usp-item {\n    display: flex;\n    align-items: center;\n    font-size: var(--text-base-size);\n    color: #000;\n    position: relative;\n    gap: 8px;\n  }\n\n  .return-icon {\n    width: 16px;\n    height: 16px;\n  }\n\n  .usp-text {\n    font-weight: 400;\n  font-size: var(--text-base-size);\n  }\n\n  .stock-text {\n    font-weight: 500;\n  }\n\n  .info-icon {\n    font-size: var(--text-base-size);\n    font-weight: 700;\n    cursor: pointer;\n    color: #555;\n    position: relative;\n  }\n\n  .info-icon:hover {\n    color: #000;\n  }\n\n  /* Stock Indicator */\n  .stock-indicator {\n    display: inline-block;\n    width: 10px;\n    height: 10px;\n    border-radius: 50%;\n    position: relative;\nmargin-right: 8px;\n  }\n\n  .pulse {\n    animation: pulse-animation 2.5s infinite ease-in-out;\n  }\n\n  @keyframes pulse-animation {\n    0% { transform: scale(0.9); opacity: 0.7; }\n    50% { transform: scale(1.1); opacity: 1; }\n    100% { transform: scale(0.9); opacity: 0.7; }\n  }\n\n  .green { background-color: #00A341; box-shadow: 0 0 8px rgba(0, 163, 65, 0.5); }\n  .orange { background-color: #FFA500; box-shadow: 0 0 8px rgba(255, 165, 0, 0.5); }\n  .red { background-color: #D52C2C; box-shadow: 0 0 8px rgba(213, 44, 44, 0.5); }\n\n  .green-text { color: #00A341; }\n  .orange-text { color: #FFA500; }\n  .red-text { color: #D52C2C; }\n\n  /* Pop-up */\n  .popup {\n    display: none;\n    position: absolute;\n    left: 50%;\n    transform: translateX(-50%);\n    top: -50px;\n    background: #fff;\n    padding: 12px;\n    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);\n    border-radius: 8px;\n    font-size: 14px;\n    text-align: left;\n    line-height: 1.5;\n    z-index: 9999;\n    max-width: 260px;\n    word-wrap: break-word;\n    white-space: normal;\n  }\n\n  .popup::before {\n    content: \"\";\n    position: absolute;\n    bottom: -6px;\n    left: 50%;\n    transform: translateX(-50%);\n    border-width: 6px;\n    border-style: solid;\n    border-color: #fff transparent transparent transparent;\n  }\n\n  /* Pop-up for Mobile (Positioned More to the Right) */\n  @media (max-width: 768px) {\n    .popup {\n      top: auto;\n      bottom: -40px;\n      left: auto;\n      right: 10%;\n      transform: translateX(0%);\n      max-width: 220px;\n    }\n\n    .popup::before {\n      bottom: auto;\n      top: -6px;\n      left: 20%;\n      border-color: transparent transparent #fff transparent;\n    }\n  }\n</style>\n\n<!-- JavaScript (Mobile Click Fix & Desktop Hover) -->\n<script>\n  function toggleReturnPopup(event) {\n    var popup = document.getElementById(\"return-popup\");\n\n    // Toggle visibility\n    if (popup.style.display === \"block\") {\n      popup.style.display = \"none\";\n    } else {\n      popup.style.display = \"block\";\n\n      // Close when clicking outside on mobile\n      setTimeout(() => {\n        document.addEventListener(\"click\", closePopupOutside);\n      }, 100);\n    }\n  }\n\n  let popupTimeout;\n\nfunction showReturnPopup(event) {\n  if (window.innerWidth > 768) { // Only activate hover on desktop\n    clearTimeout(popupTimeout); // Prevent immediate hiding\n    var popup = document.getElementById(\"return-popup\");\n    popup.style.display = \"block\";\n  }\n}\n\nfunction hideReturnPopup() {\n  if (window.innerWidth > 768) { // Only hide after a short delay\n    popupTimeout = setTimeout(() => {\n      var popup = document.getElementById(\"return-popup\");\n      popup.style.display = \"none\";\n    }, 300); // Delay of 300ms before hiding\n  }\n}\n\n// Prevent flickering when moving from icon to popup\ndocument.getElementById(\"return-popup\").addEventListener(\"mouseenter\", function () {\n  clearTimeout(popupTimeout);\n});\n\ndocument.getElementById(\"return-popup\").addEventListener(\"mouseleave\", function () {\n  hideReturnPopup();\n});\n\n  function closePopupOutside(event) {\n    var popup = document.getElementById(\"return-popup\");\n    if (!event.target.classList.contains(\"info-icon\") && event.target !== popup) {\n      popup.style.display = \"none\";\n      document.removeEventListener(\"click\", closePopupOutside);\n    }\n  }\n\n  // Detect if URL contains \"/nl\" and change text dynamically\n  document.addEventListener(\"DOMContentLoaded\", function () {\n  function translateToDutch() {\n    if (window.location.pathname.includes(\"/nl\")) {\n      let returnText = document.querySelector(\".return-text\");\n      let popupText = document.querySelector(\".popup-text\");\n      let stockText = document.querySelector(\".stock-text\");\n\n      if (returnText) returnText.textContent = \"14 dagen gemakkelijk retour\";\n      if (popupText) popupText.textContent = \"Wij bieden een retour- of omruilbeleid van 14 dagen, als je om wat voor reden ontevreden bent!\";\n      if (stockText) {\n        if (stockText.dataset.originalText == null) {\n          stockText.dataset.originalText = stockText.textContent; // Store original text\n        }\n\n        if (stockText.dataset.originalText.includes(\"In stock\")) {\n          stockText.textContent = \"Op voorraad, klaar voor verzending\";\n        } else if (stockText.dataset.originalText.includes(\"Only a few\")) {\n          stockText.textContent = \"Nog maar een paar jeans over\";\n        } else if (stockText.dataset.originalText.includes(\"Out of stock\")) {\n          stockText.textContent = \"Uitverkocht\";\n        }\n      }\n    }\n  }\n\n  // Run translation function on page load\n  translateToDutch();\n\n  // Observe Shopify changes & instantly translate\n  let observer = new MutationObserver(function () {\n    translateToDutch();\n  });\n\n  let targetNode = document.querySelector(\".product-usps\");\n  if (targetNode) {\n    observer.observe(targetNode, { childList: true, subtree: true });\n  }\n\n  // Ensure translation persists on variant selection\n  document.addEventListener(\"change\", function (event) {\n    if (event.target.matches(\"[name='id']\")) {\n      setTimeout(translateToDutch, 10); // Small delay to ensure translation happens immediately\n    }\n  });\n});\n\n</script>"
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_payment_button": false,
+            "show_gift_card_recipient": true,
+            "atc_button_background": "#1a1a1a",
+            "atc_button_text_color": "#ffffff",
+            "payment_button_background": "",
+            "payment_button_text_color": ""
+          }
+        },
+        "liquid_WML8Rh": {
+          "type": "liquid",
+          "settings": {
+            "liquid": "{%- assign path = request.path | downcase -%}\n{%- assign locale_code = localization.language.iso_code | default: shop.locale | default: 'en' | downcase -%}\n\n{%- assign shipping_note = 'Free shipping over $100 • Free exchanges' -%}\n{%- if path contains '/nl' or locale_code contains 'nl' -%}\n  {%- assign shipping_note = 'Gratis verzending vanaf €100 • Gratis omruilen' -%}\n{%- elsif path contains '/de' or locale_code contains 'de' -%}\n  {%- assign shipping_note = 'Kostenloser Versand ab 100 € • Kostenloser Umtausch' -%}\n{%- endif -%}\n\n<div class=\"us-shipping-note\">\n  {{ shipping_note }}\n</div>\n\n<style>\n  .us-shipping-note {\n    margin-top: 16px;\nmargin-bottom: 16px;\n    text-align: center;\n    font-size: 13px;\n    line-height: 1.4;\n    color: rgba(0, 0, 0, 0.65);\n  }\n\n  @media (max-width: 768px) {\n    .us-shipping-note {\n      font-size: 12.5px;\n    }\n  }\n</style>"
+          }
+        },
+        "offer_ewPhGW": {
+          "type": "offer",
+          "settings": {
+            "text_alignment": "start",
+            "icon_position": "aligned",
+            "icon": "picto-coupon",
+            "icon_width": 20,
+            "title": "Summer Sale",
+            "content": "<p>Buy 2, Get <strong>40% off</strong><br/>Buy 3, Get <strong>50% off</strong></p>",
+            "background": "#ededed",
+            "text_color": "#000000"
+          }
+        },
+        "liquid_imcndA": {
+          "type": "liquid",
+          "disabled": true,
+          "settings": {
+            "liquid": "{% assign sale_enabled = product.metafields.custom.sale_enabled.value | default: false %}\n\n{% if sale_enabled %}\n\n<div class=\"cj-bundle-simple\">\n\n  <!-- Title -->\n  <div class=\"cj-bundle-simple-title\">\n    {% if request.path contains '/nl' %}\n      Summer sale\n    {% elsif request.path contains '/de' %}\n      Summer sale\n    {% else %}\n      Summer sale\n    {% endif %}\n  </div>\n\n  {% assign discount_1 = 30 %}\n  {% assign discount_2 = 40 %}\n  {% assign discount_3 = 50 %}\n\n  <!-- Offer lines -->\n  <div class=\"cj-bundle-simple-lines\">\n\n    {% if request.path contains '/nl' %}\n\n      <div>• 2 jeans = <strong>{{ discount_2 }}% korting</strong></div>\n      <div>• 3 jeans = <strong>{{ discount_3 }}% korting</strong></div>\n      <div class=\"cj-bundle-auto\">\n        Mix & Match · Automatische korting\n      </div>\n\n    {% elsif request.path contains '/de' %}\n\n      <div>• 1 Jeans = <strong>{{ discount_1 }}% Rabatt</strong></div>\n      <div>• 2 Jeans = <strong>{{ discount_2 }}% Rabatt</strong></div>\n      <div>• 3 Jeans = <strong>{{ discount_3 }}% Rabatt</strong></div>\n      <div class=\"cj-bundle-auto\">\n        Kombinieren & sparen · Automatischer Rabatt\n      </div>\n\n    {% else %}\n\n      <div>• 1 jean = <strong>{{ discount_1 }}% off</strong></div>\n      <div>• 2 jeans = <strong>{{ discount_2 }}% off</strong></div>\n      <div>• 3 jeans = <strong>{{ discount_3 }}% off</strong></div>\n      <div class=\"cj-bundle-auto\">\n        Mix & Match · Automatic Discount\n      </div>\n\n    {% endif %}\n\n  </div>\n\n</div>\n\n<style>\n.cj-bundle-simple{\n  background:#F7EFE5;\n  border-radius:10px;\n  padding:10px 12px;\n  margin:12px 0 16px;\n}\n\n.cj-bundle-simple-title{\n  font-size:15px;\n  font-weight:600;\n  color:#111;\n  margin-bottom:0;\n}\n\n.cj-bundle-simple-lines{\n  font-size:14px;\n  color:#111;\n  line-height:1.45;\n}\n\n.cj-bundle-simple-lines strong{\n  font-weight:700;\n}\n\n.cj-bundle-auto{\n  color:#7f7f7f;\n  font-weight:400;\n  font-size:12px;\n  margin-top:4px;\n}\n\n@media (max-width:600px){\n\n  .cj-bundle-simple-title{\n    font-size:15px;\n  }\n\n  .cj-bundle-simple-lines{\n    font-size:13px;\n  }\n\n}\n</style>\n\n{% endif %}"
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {
+            "icon": "none",
+            "icon_width": 20,
+            "collapse_content": true
+          }
+        },
+        "collapsible_text_zTnn64": {
+          "type": "collapsible_text",
+          "settings": {
+            "icon": "none",
+            "icon_width": 20,
+            "title": "Shipping & Returns",
+            "content": "<p>Finding the right jeans online can feel risky. We get it.<br/><br/>That’s why most customers find their right fit the first time — and if it’s not quite right, you have 14 days to return your order.<br/><br/>Need another size or style? Exchanges are completely free.<br/><br/>Free shipping on orders over €90 / $100. Once your order is processed, you’ll receive your tracking number by email.</p><p><strong>Estimated delivery times:</strong></p><ul><li><strong>Netherlands & Belgium:</strong> 3–5 business days</li><li><strong>Germany:</strong> 3–5 business days</li><li><strong>United States:</strong> 3–6 business days</li><li><strong>Rest of Europe:</strong> 3–6 business days</li><li><strong>Rest of world:</strong> 3–9 business days<br/><br/>For full details, see our <a href=\"/policies/shipping-policy\" title=\"Shipping Policy\">Shipping page</a>.</li></ul>",
+            "page": ""
+          }
+        },
+        "liquid_TDK366": {
+          "type": "liquid",
+          "settings": {
+            "liquid": "<div class=\"essential-upsell-cross-sell-block\"></div>"
+          }
+        },
+        "liquid_kyP9bH": {
+          "type": "liquid",
+          "settings": {
+            "liquid": "{% assign sale_enabled = product.metafields.custom.sale_enabled.value | default: false %}\n\n{% unless sale_enabled %}\n  <div style=\"height:16px;\"></div>\n{% endunless %}"
+          }
+        },
+        "kiwi_size_chart_recommender_kiwi_sizing_zVwWrC": {
+          "type": "shopify://apps/kiwi-size-chart-recommender/blocks/kiwiSizing/b7369922-bf15-44ce-a121-a22a8fcbc4b0",
+          "settings": {
+            "fallbackToBlockPosition": false,
+            "waitForElementSelector": "",
+            "waitForElementDelay": 5
+          }
+        },
+        "liquid_G387Qz": {
+          "type": "liquid",
+          "settings": {
+            "liquid": "{%- assign path = request.path | downcase -%}\n{%- assign locale_code = localization.language.iso_code | default: shop.locale | default: 'en' | downcase -%}\n\n{%- assign customers_say_label = 'Customers say:' -%}\n{%- if path contains '/nl' or locale_code contains 'nl' -%}\n  {%- assign customers_say_label = 'Klanten zeggen:' -%}\n{%- elsif path contains '/de' or locale_code contains 'de' -%}\n  {%- assign customers_say_label = 'Kundinnen sagen:' -%}\n{%- endif -%}\n\n<div class=\"cj-customers-say\">\n  <strong>{{ customers_say_label }}</strong>\n  <div class=\"cj-customers-say__value\">\n    {{ product.metafields.shopify.fit | metafield_tag: field: 'label' }}\n  </div>\n</div>\n\n<style>\n  .cj-customers-say{\n    margin:0 0 16px;\n    font-size:14px;\n    line-height:1.35;\n    color:#111;\n  }\n\n  .cj-customers-say__value{\n    margin-top:4px;\n  }\n\n  .cj-customers-say__value,\n  .cj-customers-say__value *{\n    display:block;\n    margin-bottom:0;\n  }\n</style>"
+          }
+        },
+        "liquid_e4XYY7": {
+          "type": "liquid",
+          "settings": {
+            "liquid": "{% render 'curveflex-mechanism-pdp' %}"
+          }
+        },
+        "collapsible_text_XtCTEg": {
+          "type": "collapsible_text",
+          "disabled": true,
+          "settings": {
+            "icon": "none",
+            "icon_width": 20,
+            "title": "FAQ",
+            "content": "<p><strong>How do I measure my waist?<br/></strong>Use a measuring tape and measure around the smallest part of your waist. Keep the tape close to your body, but not tight.</p><p>For the best fit, also compare your hip measurement with our size guide.</p><p><strong>How do I know CURVJEANS will fit my shape?<br/></strong>CURVJEANS are designed for women who need more room at the hips, thighs and glutes, without a loose waist.</p><p>Start with our size guide or take the fit quiz. Still unsure? Message us and we’ll help you choose the right size.</p><p><strong>Should I choose my usual size?<br/></strong>Not always. Sizing can vary a lot between denim brands.</p><p>For the most accurate fit, measure your waist and hips, then compare them with our size guide. If you’re between sizes, use the fit quiz or contact us before ordering.</p><p><strong>Will the jeans stretch out after wearing?<br/></strong>No. CURVJEANS are made with CurveFlex™ denim, designed to stretch with your body and recover after wear.</p><p>That means they stay comfortable without sagging or losing shape by the end of the day.</p><p><strong>Will they gap at the waist?</strong></p><p>CURVJEANS are made with a curve-first fit, so the waistband is designed to stay closer to your waist while giving room through the hips and thighs.</p><p>That’s what helps reduce the waist gap many women get with regular jeans.</p><p><strong>What's the length of the jeans?<br/></strong>Length depends on the fit and style. You can find the inseam measurements in our size guide.</p><p>Still unsure? Contact us with your height and preferred fit, and we’ll help you choose.</p><p><strong>What if I order the wrong size?<br/></strong>Most customers find their right fit the first time. If your size is not quite right, you can exchange for another size or style.</p><p>Exchanges are free.</p><p><strong>What’s your return policy?<br/></strong>You can return your order within <strong>14 days</strong> as long as it meets our return conditions.</p><p>Final sale or clearance items cannot be returned or exchanged. Full details are available on our returns page.</p>",
+            "page": ""
+          }
+        },
+        "liquid_cdTNtY": {
+          "type": "liquid",
+          "settings": {
+            "liquid": "<div class=\"cj-price-divider\"></div>\n\n<style>\n.cj-price-divider {\n  width: 100%;\n  height: 1px;\n  background-color: rgba(0, 0, 0, 0.10);\n  margin: 0 0 6px;\n}\n</style>"
+          }
+        },
+        "liquid_CGBTtJ": {
+          "type": "liquid",
+          "settings": {
+            "liquid": "{% render 'cj-shapewear-upsell',\n  upsell_handle: 'seamless-snatched-shapewear',\n  upsell_quantity: 2,\n  prechecked: true\n%}"
+          }
+        },
+        "liquid_HKW6nY": {
+          "type": "liquid",
+          "disabled": true,
+          "settings": {
+            "liquid": "{% if product %}\n<style>\n  :root{ --curv-border: rgba(17,17,17,.08); --row-pad-y:14px; --chev-size:24px; --chev-icon:10px; }\n\n  .cj-reviews-acc{ color:#000; margin:0; border-top:1px solid var(--curv-border); }\n  .cj-reviews-acc__head{ display:flex; align-items:center; justify-content:space-between; padding:var(--row-pad-y) 0; line-height:1; cursor:pointer; }\n  .cj-reviews-acc__title{ font-weight:700; color:#000; }\n  .cj-reviews-acc__chevbtn{ width:var(--chev-size); height:var(--chev-size); border-radius:999px; background:#EDEDED; display:inline-flex; align-items:center; justify-content:center; flex:0 0 auto; }\n  .cj-reviews-acc__chev{ width:var(--chev-icon); height:var(--chev-icon); stroke:#000; stroke-width:2.6; stroke-linecap:round; stroke-linejoin:round; fill:none; transition:transform .2s ease; }\n  .cj-reviews-acc.is-open .cj-reviews-acc__chev{ transform:rotate(180deg); }\n  .cj-reviews-acc__panel[hidden]{ display:none !important; }\n  .cj-reviews-acc__panel{ padding:0 0 16px; }\n</style>\n\n<section class=\"cj-reviews-acc\" id=\"cj-reviews-acc\" data-open=\"false\" role=\"group\" aria-label=\"Reviews\">\n  <div class=\"cj-reviews-acc__head\" role=\"button\" tabindex=\"0\" aria-controls=\"cj-reviews-panel\" aria-expanded=\"false\">\n    <span class=\"cj-reviews-acc__title\">Reviews</span>\n    <span class=\"cj-reviews-acc__chevbtn\" aria-hidden=\"true\">\n      <svg class=\"cj-reviews-acc__chev\" viewBox=\"0 0 20 20\"><path d=\"M5 8l5 5 5-5\"/></svg>\n    </span>\n  </div>\n\n  <div class=\"cj-reviews-acc__panel\" id=\"cj-reviews-panel\" hidden>\n    <div id=\"ss-product-reviews-2\"></div>\n  </div>\n</section>\n\n<script>\n(function(){\n  var root = document.getElementById('cj-reviews-acc');\n  if(!root) return;\n\n  var head = root.querySelector('.cj-reviews-acc__head');\n  var panel = root.querySelector('.cj-reviews-acc__panel');\n  var startOpen = false;\n\n  function setOpen(open){\n    root.classList.toggle('is-open', open);\n    head.setAttribute('aria-expanded', open ? 'true' : 'false');\n    if(open){ panel.removeAttribute('hidden'); } \n    else { panel.setAttribute('hidden',''); }\n  }\n\n  setOpen(startOpen);\n\n  head.addEventListener('click', function(){\n    setOpen(!root.classList.contains('is-open'));\n  });\n\n  head.addEventListener('keydown', function(e){\n    if(e.key === 'Enter' || e.key === ' '){\n      e.preventDefault();\n      setOpen(!root.classList.contains('is-open'));\n    }\n  });\n\n  var ref = document.querySelector('.product-info__accordion .accordion__toggle');\n  if (ref) {\n    var cs = getComputedStyle(ref);\n    var py = parseFloat(cs.paddingTop) || 16;\n    root.style.setProperty('--row-pad-y', py + 'px');\n  }\n\n  root.style.marginTop = '0';\n})();\n</script>\n{% endif %}"
+          }
+        },
+        "liquid_Yb9YLC": {
+          "type": "liquid",
+          "disabled": true,
+          "settings": {
+            "liquid": "<div id=\"ss-product-reviews-2\"></div>"
+          }
+        },
+        "associated_products_3HFQw8": {
+          "type": "associated_products",
+          "disabled": true,
+          "settings": {
+            "title": "Get a smoother fit",
+            "stack_products": true,
+            "products_count": 3,
+            "background": "rgba(0,0,0,0)",
+            "text_color": ""
+          }
+        }
+      },
+      "block_order": [
+        "badges_Eh4rQf",
+        "liquid_nhxCLp",
+        "loox_reviews_loox_rating_xBmR9W",
+        "title",
+        "liquid_bV3Xjz",
+        "liquid_aLn6R9",
+        "liquid_pGwERN",
+        "liquid_BnUwWa",
+        "price_nJFG8z",
+        "linkedoption_combined_listings_app_block_r9FxMn",
+        "variant_picker",
+        "fit_quiz_for_clothes_and_shoes_fitquiz_block_VEFLPN",
+        "quantity_selector",
+        "liquid_TdVGjG",
+        "liquid_dy8zjc",
+        "buy_buttons",
+        "liquid_WML8Rh",
+        "offer_ewPhGW",
+        "liquid_imcndA",
+        "description",
+        "collapsible_text_zTnn64",
+        "liquid_TDK366",
+        "liquid_kyP9bH",
+        "kiwi_size_chart_recommender_kiwi_sizing_zVwWrC",
+        "liquid_G387Qz",
+        "liquid_e4XYY7",
+        "collapsible_text_XtCTEg",
+        "liquid_cdTNtY",
+        "liquid_CGBTtJ",
+        "liquid_HKW6nY",
+        "liquid_Yb9YLC",
+        "associated_products_3HFQw8"
+      ],
+      "custom_css": [
+        ".product-info__block-item {margin-top: 6px; margin-bottom: 6px;}",
+        ".product-info {margin-top: -10px !important;}",
+        ".product-info__text {font-size: var(--text-base-size);}",
+        ".product-info__title.h5 {margin-top: 0px;}",
+        "@media (max-width: 768px) {.product__media {position: relative; } .product-info__badge-list {position: absolute; top: 10px; left: 10px; z-index: 1; } .product {margin-bottom: -30px; }}",
+        ".product-gallery__ar-wrapper {margin-top: -10px;}",
+        ".product-usps {margin-bottom: 15px !important;}"
+      ],
+      "settings": {
+        "full_width": false,
+        "show_fixed_add_to_cart": true,
+        "desktop_media_width": 55,
+        "desktop_media_layout": "grid",
+        "mobile_media_size": "expanded",
+        "mobile_carousel_control": "thumbnails",
+        "enable_video_autoplay": true,
+        "enable_video_looping": true,
+        "enable_image_zoom": true,
+        "max_image_zoom_level": 1.5,
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "input_background": "rgba(0,0,0,0)",
+        "input_text_color": ""
+      }
+    },
+    "cj_usp": {
+      "type": "custom-liquid",
+      "settings": {
+        "full_width": true,
+        "remove_vertical_spacing": true,
+        "remove_horizontal_spacing": true,
+        "liquid": "\n<style>\n.cj-blk{--ink:#111;--ink-3:#555;--panel:#f7f7f7;--accent:#e48175;--line:rgba(17,17,17,.12);font-family:inherit;color:var(--ink);line-height:1.6}\n.cj-blk *{box-sizing:border-box}\n.cj-blk .wrap{max-width:1200px;margin:0 auto;padding:0 20px}\n.cj-blk h2,.cj-blk h3{font-family:inherit;font-weight:800;letter-spacing:-.01em;line-height:1.15;margin:0;color:var(--ink)}\n.cj-blk p{margin:0}\n.cj-blk img{display:block;max-width:100%}\n.cj-blk a{color:inherit;text-decoration:none}\n/* USP strip */\n.cj-usp{background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}\n.cj-usp .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;padding:22px 20px;max-width:1200px;margin:0 auto}\n.cj-usp .u{display:flex;gap:12px;align-items:flex-start}\n.cj-usp .u svg{color:var(--ink);flex:none}\n.cj-usp .u b{display:block;font-size:.9rem;font-weight:700;line-height:1.2}\n.cj-usp .u span{font-size:.82rem;color:var(--ink-3);line-height:1.3}\n@media(max-width:768px){.cj-usp .grid{grid-template-columns:1fr 1fr;gap:16px 14px;padding:20px 16px}}\n/* made for curves split */\n.cj-made{padding:48px 0}\n.cj-made .row{display:grid;grid-template-columns:1fr 1.1fr;gap:36px;align-items:center}\n.cj-made h2{font-size:clamp(1.5rem,3vw,2rem);margin-bottom:12px}\n.cj-made .lead{color:var(--ink-3);font-size:1.05rem;margin-bottom:18px;max-width:36ch}\n.cj-made ul{list-style:none;padding:0;margin:0 0 22px;display:flex;flex-direction:column;gap:11px}\n.cj-made li{display:flex;gap:.6rem;align-items:flex-start;font-size:1rem}\n.cj-made li svg{color:var(--accent);flex:none;margin-top:2px}\n.cj-made .btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:.9rem 1.6rem;\n  border:1.5px solid var(--ink);border-radius:.75rem;font-weight:700;font-size:.95rem;background:#fff;color:var(--ink)}\n.cj-made .media{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:16/11;background:var(--panel)}\n.cj-made .media img{width:100%;height:100%;object-fit:cover}\n.cj-made .play{position:absolute;inset:0;display:grid;place-items:center}\n.cj-made .play span{width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,.92);display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.18)}\n.cj-made .play svg{color:var(--ink);margin-left:3px}\n@media(max-width:768px){.cj-made{padding:36px 0}.cj-made .row{grid-template-columns:1fr;gap:20px}.cj-made .media{order:-1}}\n/* review carousel */\n.cj-revs{background:var(--panel);padding:44px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}\n.cj-revs .head{display:flex;flex-direction:column;gap:6px;margin-bottom:20px}\n.cj-revs .rating{display:flex;align-items:center;gap:10px}\n.cj-revs .rating .stars{color:var(--accent);font-size:1.15rem;letter-spacing:2px}\n.cj-revs .rating b{font-size:1.15rem}\n.cj-revs .rating small{color:var(--ink-3);font-size:.85rem}\n.cj-revs .track{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}\n.cj-revs .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;gap:14px;align-items:flex-start}\n.cj-revs .card img{width:56px;height:56px;border-radius:50%;object-fit:cover;flex:none}\n.cj-revs .card .q{font-size:.96rem;line-height:1.45;color:var(--ink)}\n.cj-revs .card .n{font-size:.82rem;color:var(--ink-3);font-weight:600;margin-top:8px}\n@media(max-width:768px){.cj-revs .track{grid-template-columns:1fr;gap:12px}}\n</style>\n\n<div class=\"cj-blk cj-usp\">\n  <div class=\"grid\">\n    <div class=\"u\"><svg width=\"26\" height=\"26\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 12h18\"/><path d=\"M7 8c2 2.5 8 2.5 10 0\"/><path d=\"M7 16c2-2.5 8-2.5 10 0\"/></svg><div><b>No waist gap</b><span>Designed for curves</span></div></div>\n    <div class=\"u\"><svg width=\"26\" height=\"26\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 3v18\"/><path d=\"M6 8h12\"/><path d=\"M8 20h8\"/></svg><div><b>Flattering fit</b><span>Enhances your shape</span></div></div>\n    <div class=\"u\"><svg width=\"26\" height=\"26\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 15a8 8 0 0 1 16 0\"/><path d=\"M9 15a3 3 0 0 1 6 0\"/></svg><div><b>All day comfort</b><span>Premium stretch denim</span></div></div>\n    <div class=\"u\"><svg width=\"26\" height=\"26\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z\"/></svg><div><b>Made to last</b><span>High quality materials</span></div></div>\n  </div>\n</div>\n",
+        "background": "",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
+    "cj_made": {
+      "type": "custom-liquid",
+      "settings": {
+        "full_width": true,
+        "remove_vertical_spacing": true,
+        "remove_horizontal_spacing": true,
+        "liquid": "\n<style>\n.cj-blk{--ink:#111;--ink-3:#555;--panel:#f7f7f7;--accent:#e48175;--line:rgba(17,17,17,.12);font-family:inherit;color:var(--ink);line-height:1.6}\n.cj-blk *{box-sizing:border-box}\n.cj-blk .wrap{max-width:1200px;margin:0 auto;padding:0 20px}\n.cj-blk h2,.cj-blk h3{font-family:inherit;font-weight:800;letter-spacing:-.01em;line-height:1.15;margin:0;color:var(--ink)}\n.cj-blk p{margin:0}\n.cj-blk img{display:block;max-width:100%}\n.cj-blk a{color:inherit;text-decoration:none}\n/* USP strip */\n.cj-usp{background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}\n.cj-usp .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;padding:22px 20px;max-width:1200px;margin:0 auto}\n.cj-usp .u{display:flex;gap:12px;align-items:flex-start}\n.cj-usp .u svg{color:var(--ink);flex:none}\n.cj-usp .u b{display:block;font-size:.9rem;font-weight:700;line-height:1.2}\n.cj-usp .u span{font-size:.82rem;color:var(--ink-3);line-height:1.3}\n@media(max-width:768px){.cj-usp .grid{grid-template-columns:1fr 1fr;gap:16px 14px;padding:20px 16px}}\n/* made for curves split */\n.cj-made{padding:48px 0}\n.cj-made .row{display:grid;grid-template-columns:1fr 1.1fr;gap:36px;align-items:center}\n.cj-made h2{font-size:clamp(1.5rem,3vw,2rem);margin-bottom:12px}\n.cj-made .lead{color:var(--ink-3);font-size:1.05rem;margin-bottom:18px;max-width:36ch}\n.cj-made ul{list-style:none;padding:0;margin:0 0 22px;display:flex;flex-direction:column;gap:11px}\n.cj-made li{display:flex;gap:.6rem;align-items:flex-start;font-size:1rem}\n.cj-made li svg{color:var(--accent);flex:none;margin-top:2px}\n.cj-made .btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:.9rem 1.6rem;\n  border:1.5px solid var(--ink);border-radius:.75rem;font-weight:700;font-size:.95rem;background:#fff;color:var(--ink)}\n.cj-made .media{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:16/11;background:var(--panel)}\n.cj-made .media img{width:100%;height:100%;object-fit:cover}\n.cj-made .play{position:absolute;inset:0;display:grid;place-items:center}\n.cj-made .play span{width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,.92);display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.18)}\n.cj-made .play svg{color:var(--ink);margin-left:3px}\n@media(max-width:768px){.cj-made{padding:36px 0}.cj-made .row{grid-template-columns:1fr;gap:20px}.cj-made .media{order:-1}}\n/* review carousel */\n.cj-revs{background:var(--panel);padding:44px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}\n.cj-revs .head{display:flex;flex-direction:column;gap:6px;margin-bottom:20px}\n.cj-revs .rating{display:flex;align-items:center;gap:10px}\n.cj-revs .rating .stars{color:var(--accent);font-size:1.15rem;letter-spacing:2px}\n.cj-revs .rating b{font-size:1.15rem}\n.cj-revs .rating small{color:var(--ink-3);font-size:.85rem}\n.cj-revs .track{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}\n.cj-revs .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;gap:14px;align-items:flex-start}\n.cj-revs .card img{width:56px;height:56px;border-radius:50%;object-fit:cover;flex:none}\n.cj-revs .card .q{font-size:.96rem;line-height:1.45;color:var(--ink)}\n.cj-revs .card .n{font-size:.82rem;color:var(--ink-3);font-weight:600;margin-top:8px}\n@media(max-width:768px){.cj-revs .track{grid-template-columns:1fr;gap:12px}}\n</style>\n\n<section class=\"cj-blk cj-made\">\n  <div class=\"wrap\">\n    <div class=\"row\">\n      <div class=\"copy\">\n        <h2>Made for curves.<br>Not for gaps.</h2>\n        <p class=\"lead\">Finally, jeans that fit your waist and your curves, without the gap.</p>\n        <ul>\n          <li><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 12.5l5 5 11-11\"/></svg> Sits perfectly on your waist</li>\n          <li><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 12.5l5 5 11-11\"/></svg> No gaping or pulling</li>\n          <li><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 12.5l5 5 11-11\"/></svg> Hugs your curves in all the right places</li>\n          <li><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 12.5l5 5 11-11\"/></svg> Wide leg for a flattering shape</li>\n        </ul>\n        <a class=\"btn\" href=\"/pages/why-curvjeans\">Why CURVJEANS?</a>\n      </div>\n      <div class=\"media\">\n        <img src=\"https://curvjeans.com/cdn/shop/files/MidRise-Black11.jpg?v=1780213356&width=1000\" alt=\"Close up of the CURVJEANS mid rise waistband fit\">\n        <div class=\"play\"><span><svg width=\"26\" height=\"26\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M8 5v14l11-7z\" fill=\"currentColor\" stroke=\"none\"/></svg></span></div>\n      </div>\n    </div>\n  </div>\n</section>\n",
+        "background": "",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
+    "cj_revs": {
+      "type": "custom-liquid",
+      "settings": {
+        "full_width": true,
+        "remove_vertical_spacing": true,
+        "remove_horizontal_spacing": true,
+        "liquid": "\n<style>\n.cj-blk{--ink:#111;--ink-3:#555;--panel:#f7f7f7;--accent:#e48175;--line:rgba(17,17,17,.12);font-family:inherit;color:var(--ink);line-height:1.6}\n.cj-blk *{box-sizing:border-box}\n.cj-blk .wrap{max-width:1200px;margin:0 auto;padding:0 20px}\n.cj-blk h2,.cj-blk h3{font-family:inherit;font-weight:800;letter-spacing:-.01em;line-height:1.15;margin:0;color:var(--ink)}\n.cj-blk p{margin:0}\n.cj-blk img{display:block;max-width:100%}\n.cj-blk a{color:inherit;text-decoration:none}\n/* USP strip */\n.cj-usp{background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}\n.cj-usp .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;padding:22px 20px;max-width:1200px;margin:0 auto}\n.cj-usp .u{display:flex;gap:12px;align-items:flex-start}\n.cj-usp .u svg{color:var(--ink);flex:none}\n.cj-usp .u b{display:block;font-size:.9rem;font-weight:700;line-height:1.2}\n.cj-usp .u span{font-size:.82rem;color:var(--ink-3);line-height:1.3}\n@media(max-width:768px){.cj-usp .grid{grid-template-columns:1fr 1fr;gap:16px 14px;padding:20px 16px}}\n/* made for curves split */\n.cj-made{padding:48px 0}\n.cj-made .row{display:grid;grid-template-columns:1fr 1.1fr;gap:36px;align-items:center}\n.cj-made h2{font-size:clamp(1.5rem,3vw,2rem);margin-bottom:12px}\n.cj-made .lead{color:var(--ink-3);font-size:1.05rem;margin-bottom:18px;max-width:36ch}\n.cj-made ul{list-style:none;padding:0;margin:0 0 22px;display:flex;flex-direction:column;gap:11px}\n.cj-made li{display:flex;gap:.6rem;align-items:flex-start;font-size:1rem}\n.cj-made li svg{color:var(--accent);flex:none;margin-top:2px}\n.cj-made .btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:.9rem 1.6rem;\n  border:1.5px solid var(--ink);border-radius:.75rem;font-weight:700;font-size:.95rem;background:#fff;color:var(--ink)}\n.cj-made .media{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:16/11;background:var(--panel)}\n.cj-made .media img{width:100%;height:100%;object-fit:cover}\n.cj-made .play{position:absolute;inset:0;display:grid;place-items:center}\n.cj-made .play span{width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,.92);display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.18)}\n.cj-made .play svg{color:var(--ink);margin-left:3px}\n@media(max-width:768px){.cj-made{padding:36px 0}.cj-made .row{grid-template-columns:1fr;gap:20px}.cj-made .media{order:-1}}\n/* review carousel */\n.cj-revs{background:var(--panel);padding:44px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}\n.cj-revs .head{display:flex;flex-direction:column;gap:6px;margin-bottom:20px}\n.cj-revs .rating{display:flex;align-items:center;gap:10px}\n.cj-revs .rating .stars{color:var(--accent);font-size:1.15rem;letter-spacing:2px}\n.cj-revs .rating b{font-size:1.15rem}\n.cj-revs .rating small{color:var(--ink-3);font-size:.85rem}\n.cj-revs .track{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}\n.cj-revs .card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px;display:flex;gap:14px;align-items:flex-start}\n.cj-revs .card img{width:56px;height:56px;border-radius:50%;object-fit:cover;flex:none}\n.cj-revs .card .q{font-size:.96rem;line-height:1.45;color:var(--ink)}\n.cj-revs .card .n{font-size:.82rem;color:var(--ink-3);font-weight:600;margin-top:8px}\n@media(max-width:768px){.cj-revs .track{grid-template-columns:1fr;gap:12px}}\n</style>\n\n<section class=\"cj-blk cj-revs\">\n  <div class=\"wrap\">\n    <div class=\"head\">\n      <div class=\"rating\"><span class=\"stars\">★★★★★</span> <b>4.8/5</b> <small>Loved by 10,000+ curvy women, based on 1,200+ reviews</small></div>\n    </div>\n    <div class=\"track\">\n      <div class=\"card\"><img src=\"https://curvjeans.com/cdn/shop/files/Model1-Straight2.jpg?v=1777822491&width=200\" alt=\"\">\n        <div><div class=\"q\">“Finally jeans that fit my waist and my hips. No gap.”</div><div class=\"n\">Jessica R.</div></div></div>\n      <div class=\"card\"><img src=\"https://curvjeans.com/cdn/shop/files/Brayana-Tall_1.jpg?v=1781166659&width=200\" alt=\"\">\n        <div><div class=\"q\">“The most flattering jeans I have ever owned.”</div><div class=\"n\">Amanda T.</div></div></div>\n      <div class=\"card\"><img src=\"https://curvjeans.com/cdn/shop/files/MidRise-Black11.jpg?v=1780213356&width=200\" alt=\"\">\n        <div><div class=\"q\">“So comfortable and the quality is amazing.”</div><div class=\"n\">Brianna K.</div></div></div>\n    </div>\n  </div>\n</section>\n",
+        "background": "",
+        "background_gradient": "",
+        "text_color": ""
+      }
+    },
+    "related_products_xwmcwE": {
+      "type": "related-products",
+      "custom_css": [
+        "h2 {font-size: 24px;}"
+      ],
+      "name": "Related products",
+      "settings": {
+        "recommendations_count": 8,
+        "products": [],
+        "full_width": true,
+        "stack_products": true,
+        "show_progress_bar": false,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 4,
+        "subheading": "",
+        "title": "Others also bought",
+        "content": "",
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "heading_color": "",
+        "heading_gradient": "",
+        "product_card_background": "",
+        "product_card_text_color": ""
+      }
+    },
+    "product_reviews_2_VBWwQR": {
+      "type": "product-reviews-2",
+      "blocks": {
+        "item_wnN9ye": {
+          "type": "item",
+          "settings": {
+            "stars_count": 5,
+            "verified_text": "Verified",
+            "title": "nice jeans that really fit",
+            "text": "<p>the jeans fit really well for wider hips and a smaller waist (no waist gap). shipping was fast, custumer service friendly.</p>",
+            "author": "Anja L",
+            "time": "15 hours ago"
+          }
+        },
+        "item_EDyXMC": {
+          "type": "item",
+          "settings": {
+            "stars_count": 5,
+            "verified_text": "Verified",
+            "title": "Amazing jeans",
+            "text": "<p>Amazing jeans. So comfortable! I love them so much, very stretchy. Will order more of these jeans in the furture.</p>",
+            "author": "Vera Vos",
+            "time": "24 hours ago"
+          }
+        },
+        "item_CmHCz9": {
+          "type": "item",
+          "settings": {
+            "stars_count": 5,
+            "verified_text": "Verified",
+            "title": "No waist gap",
+            "text": "<p>The jeans fit great! They are nice and stretchy, which makes sure they are also super comfortable to sit in!</p>",
+            "author": "Jane",
+            "time": "2 days ago"
+          }
+        },
+        "item_FXTBA4": {
+          "type": "item",
+          "settings": {
+            "stars_count": 5,
+            "verified_text": "Verified",
+            "title": "Never had any jeans this comfy…",
+            "text": "<p>Can’t believe how comfy these jeans are while still making me feel so confident. The fit is perfect! Thank you, Curvjeans!</p>",
+            "author": "Sofie",
+            "time": "3 days ago"
+          }
+        },
+        "item_VmLYG3": {
+          "type": "item",
+          "settings": {
+            "stars_count": 5,
+            "verified_text": "Verified",
+            "title": "Great jeans",
+            "text": "<p>The jeans always fit perfectly, they have stretch, they're durable, and exactly as described on the site</p>",
+            "author": "Patricia",
+            "time": "2 days ago"
+          }
+        }
+      },
+      "block_order": [
+        "item_wnN9ye",
+        "item_EDyXMC",
+        "item_CmHCz9",
+        "item_FXTBA4",
+        "item_VmLYG3"
+      ],
+      "settings": {
+        "reviews_position": "below_description",
+        "use_metafield": false,
+        "slider_view": 1,
+        "slider_view_mobile": 1,
+        "slider_gap": 16,
+        "slider_gap_mobile": 16,
+        "item_padding_horizontal": 20,
+        "item_padding_horizontal_mobile": 42,
+        "item_padding_vertical": 20,
+        "item_padding_vertical_mobile": 20,
+        "item_radius": 4,
+        "item_border_thickness": 0,
+        "item_shadow": true,
+        "stars_size": 16,
+        "stars_size_mobile": 16,
+        "use_verified_tag": true,
+        "verified_icon_size": 14,
+        "verified_icon_size_mobile": 14,
+        "verified_custom": false,
+        "verified_font": "josefin_sans_n4",
+        "verified_size": 12,
+        "verified_size_mobile": 12,
+        "verified_height": 100,
+        "title_custom": false,
+        "title_font": "josefin_sans_n4",
+        "title_size": 14,
+        "title_size_mobile": 13,
+        "title_height": 150,
+        "title_mt": 12,
+        "title_mt_mobile": 12,
+        "text_custom": false,
+        "text_font": "josefin_sans_n4",
+        "text_size": 14,
+        "text_size_mobile": 13,
+        "text_height": 150,
+        "text_mt": 12,
+        "text_mt_mobile": 12,
+        "author_custom": false,
+        "author_font": "josefin_sans_n4",
+        "author_size": 12,
+        "author_size_mobile": 12,
+        "author_height": 130,
+        "publication_mt": 12,
+        "publication_mt_mobile": 12,
+        "time_custom": false,
+        "time_font": "josefin_sans_n4",
+        "time_size": 12,
+        "time_size_mobile": 12,
+        "time_height": 130,
+        "arrow_size": 32,
+        "arrow_size_mobile": 28,
+        "arrow_icon_size": 8,
+        "arrow_icon_size_mobile": 8,
+        "arrow_border_thickness": 0,
+        "arrow_radius": 100,
+        "arrow_hover_effect": "color",
+        "arrow_show_desktop": true,
+        "arrow_show_mobile": true,
+        "bottom_text": "<p>Rated <strong>4.1</strong>/5. Showing our 4 & 5 star reviews.</p>",
+        "bottom_text_custom": false,
+        "bottom_text_font": "josefin_sans_n4",
+        "bottom_text_size": 13,
+        "bottom_text_size_mobile": 13,
+        "bottom_text_height": 150,
+        "bottom_text_mt": 10,
+        "bottom_text_mt_mobile": 16,
+        "bottom_text_align": "center",
+        "bottom_text_align_mobile": "center",
+        "title_color": "#1f2936",
+        "text_color": "#191919",
+        "author_color": "#636464",
+        "time_color": "#636464",
+        "item_bg_color": "#f8f9fa",
+        "item_border_color": "#e2e7ec",
+        "stars_color": "#ffffff",
+        "stars_bg_color": "#00b67a",
+        "verified_color": "#6c6c85",
+        "verified_text_color": "#6c6c85",
+        "arrow_color": "#000000",
+        "arrow_hover_color": "#7b7b7b",
+        "arrow_bg_color": "#ededed",
+        "arrow_bg_hover_color": "#ededed",
+        "arrow_border_color": "#c7c7c7",
+        "arrow_border_hover_color": "#a2a2a2",
+        "bottom_text_color": "#000000",
+        "background_color": "#ffffff",
+        "background_gradient": "",
+        "border_color": "#000000",
+        "margin_top": 28,
+        "margin_bottom": 52,
+        "padding_top": 0,
+        "padding_bottom": 0,
+        "padding_horizontal": 0,
+        "padding_horizontal_mobile": 10,
+        "border_thickness": 0,
+        "lazy": true
+      }
+    }
+  },
+  "order": [
+    "cj_pdp_css",
+    "main",
+    "cj_usp",
+    "cj_made",
+    "cj_revs",
+    "related_products_xwmcwE",
+    "product_reviews_2_VBWwQR"
+  ]
+}
