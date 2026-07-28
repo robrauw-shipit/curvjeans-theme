@@ -1,0 +1,71 @@
+{%- comment -%}
+  CURVS Collection Hero — problem-led collection intro (Shapermint-style).
+  Uses collection title/description or custom override. Optional banner image.
+  Mobile-first. Native + editable.
+{%- endcomment -%}
+
+<style>
+  #shopify-section-{{ section.id }} { --coh-char: {{ section.settings.text_color }}; --coh-bg: {{ section.settings.bg_color }}; }
+  #shopify-section-{{ section.id }} .coh { background: var(--coh-bg); color: var(--coh-char); }
+  /* MOBILE-FIRST */
+  #shopify-section-{{ section.id }} .coh__banner { position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; background: #EDE7E0; }
+  #shopify-section-{{ section.id }} .coh__banner img { width: 100%; height: 100%; object-fit: cover; object-position: {{ section.settings.image_position }}; }
+  #shopify-section-{{ section.id }} .coh__text { text-align: center; padding: 24px 20px 8px; max-width: 720px; margin: 0 auto; }
+  #shopify-section-{{ section.id }} .coh__eyebrow { font-size: .72rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; opacity: .55; }
+  #shopify-section-{{ section.id }} .coh__title { font-weight: 800; letter-spacing: -.02em; font-size: 1.7rem; line-height: 1.08; margin: 8px 0 10px; }
+  #shopify-section-{{ section.id }} .coh__desc { font-size: .96rem; line-height: 1.5; opacity: .72; }
+  #shopify-section-{{ section.id }} .coh__desc p { margin: 0; }
+  #shopify-section-{{ section.id }} .coh__trust { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 14px; font-size: .78rem; font-weight: 600; opacity: .8; }
+  #shopify-section-{{ section.id }} .coh__trust span { display: inline-flex; align-items: center; gap: 5px; }
+  #shopify-section-{{ section.id }} .coh__trust .icon { color: {{ section.settings.accent_color }}; }
+  @media (min-width: 750px) {
+    #shopify-section-{{ section.id }} .coh__banner { aspect-ratio: 21/6; }
+    #shopify-section-{{ section.id }} .coh__text { padding: 32px 24px 10px; }
+    #shopify-section-{{ section.id }} .coh__title { font-size: 2.4rem; }
+    #shopify-section-{{ section.id }} .coh__desc { font-size: 1.05rem; }
+  }
+</style>
+
+<div class="coh">
+  {%- if section.settings.image -%}
+    <div class="coh__banner">{{ section.settings.image | image_url: width: 2000 | image_tag: loading: 'eager', sizes: '100vw', widths: '600,800,1000,1200,1600,2000' }}</div>
+  {%- endif -%}
+  <div class="coh__text">
+    {%- if section.settings.eyebrow != blank -%}<div class="coh__eyebrow">{{ section.settings.eyebrow }}</div>{%- endif -%}
+    <h1 class="coh__title">{{ section.settings.title | default: collection.title }}</h1>
+    {%- assign desc = section.settings.description | default: collection.description -%}
+    {%- if desc != blank -%}<div class="coh__desc">{{ desc }}</div>{%- endif -%}
+    {%- if section.settings.trust_1 != blank or section.settings.trust_2 != blank or section.settings.trust_3 != blank -%}
+      <div class="coh__trust">
+        {%- if section.settings.trust_1 != blank -%}<span>{%- render 'icon' with 'picto-star', width: 15, height: 15 -%}{{ section.settings.trust_1 }}</span>{%- endif -%}
+        {%- if section.settings.trust_2 != blank -%}<span>{%- render 'icon' with 'picto-return', width: 15, height: 15 -%}{{ section.settings.trust_2 }}</span>{%- endif -%}
+        {%- if section.settings.trust_3 != blank -%}<span>{%- render 'icon' with 'picto-truck', width: 15, height: 15 -%}{{ section.settings.trust_3 }}</span>{%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "CURVS Collection Hero",
+  "tag": "section",
+  "class": "shopify-section--curvs-collection-hero",
+  "settings": [
+    { "type": "paragraph", "content": "Title and description default to the collection's own. Override below if needed." },
+    { "type": "image_picker", "id": "image", "label": "Banner image (optional)" },
+    { "type": "text", "id": "image_position", "label": "Image focal point", "default": "50% 40%" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+    { "type": "text", "id": "title", "label": "Title override" },
+    { "type": "richtext", "id": "description", "label": "Description override" },
+    { "type": "header", "content": "Trust row" },
+    { "type": "text", "id": "trust_1", "label": "Trust 1", "default": "4.8 · 20,000+ reviews" },
+    { "type": "text", "id": "trust_2", "label": "Trust 2", "default": "Free exchanges until it fits" },
+    { "type": "text", "id": "trust_3", "label": "Trust 3", "default": "Free shipping over $80" },
+    { "type": "header", "content": "Color" },
+    { "type": "color", "id": "bg_color", "label": "Background", "default": "#F5F1ED" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#1C1C1C" },
+    { "type": "color", "id": "accent_color", "label": "Icon accent", "default": "#C0787E" }
+  ],
+  "presets": [ { "name": "CURVS Collection Hero" } ]
+}
+{% endschema %}
