@@ -1,0 +1,10 @@
+{%- comment -%}
+  CURVS Stars — 5 filled yellow SVG stars (static, for review displays).
+  Usage: {% render 'curvs-stars', size: 16 %}
+{%- endcomment -%}
+{%- assign s = size | default: 15 -%}
+<span class="curvs-stars" style="display:inline-flex;gap:1px;color:#F2A900;line-height:0" role="img" aria-label="5 out of 5 stars">
+  {%- for i in (1..5) -%}
+    <svg viewBox="0 0 20 20" width="{{ s }}" height="{{ s }}" fill="currentColor" aria-hidden="true"><path d="M10 1.5l2.47 5.01 5.53.8-4 3.9.94 5.5L10 14.9l-4.95 2.6.94-5.5-4-3.9 5.53-.8z"/></svg>
+  {%- endfor -%}
+</span>

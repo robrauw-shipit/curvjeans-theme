@@ -1,34 +1,33 @@
 /* ============================================================================
    CURVS — brand design layer (loaded after theme.css so it wins)
-   DTC / direct-response product card + badges, Shapermint treatment, CURVS palette.
-   Uses the theme's real component classes. No custom-liquid, no HTML-entity icons.
+   MOBILE-FIRST (90% mobile). Shapermint product card: yellow SVG stars + review
+   count, dark-red badges, strikethrough pricing. Hybrid palette:
+   red badges + yellow stars (Shapermint conversion) / blush+charcoal (brand).
+   No HTML-entity icons.
    ============================================================================ */
 :root{
   --curvs-bone:#F5F1ED;
   --curvs-bone-2:#EDE7E0;
   --curvs-char:#1C1C1C;
-  --curvs-char-70:rgba(28,28,28,.7);
+  --curvs-char-70:rgba(28,28,28,.72);
   --curvs-blush:#E7C4C7;
   --curvs-blush-deep:#C0787E;
   --curvs-taupe:#A69E95;
   --curvs-gray:#D9D6D2;
   --curvs-white:#FFFFFF;
-  --curvs-sale:#B14A45;
-  --curvs-badge-yellow:#F2D96F;
-  --curvs-radius:6px;
+  --curvs-red:#882A2B;        /* Shapermint dark-red for sale/urgency badges */
+  --curvs-star:#F2A900;       /* Shapermint-style yellow/orange review stars */
+  --curvs-radius:8px;
 }
 
 /* ---------------------------------------------------------------------------
-   PRODUCT CARD — clean commerce surface
+   PRODUCT CARD — mobile-first
    --------------------------------------------------------------------------- */
 .product-card{
   background:var(--curvs-white);
   border-radius:var(--curvs-radius);
   overflow:hidden;
-  transition:box-shadow .25s ease, transform .25s ease;
-}
-.product-card:hover{
-  box-shadow:0 8px 30px rgba(28,28,28,.10);
+  transition:box-shadow .2s ease;
 }
 .product-card__figure{
   position:relative;
@@ -36,25 +35,33 @@
   border-radius:var(--curvs-radius) var(--curvs-radius) 0 0;
   overflow:hidden;
 }
-.product-card__image{ transition:transform .6s cubic-bezier(.2,.7,.2,1); }
-.product-card:hover .product-card__image--primary{ transform:scale(1.04); }
-
+.product-card__image{ transition:transform .5s cubic-bezier(.2,.7,.2,1); }
 .product-card__info{
-  padding:14px 14px 18px;
+  padding:10px 10px 14px;
   display:flex;
   flex-direction:column;
-  gap:6px;
+  gap:4px;
 }
 .product-card__title a{
   font-weight:600;
   letter-spacing:-.01em;
   color:var(--curvs-char);
-  line-height:1.25;
+  line-height:1.22;
+  font-size:.86rem;
 }
 
-/* price: bold sale, muted struck compare-at (Shapermint pricing hierarchy) */
+/* ---- CURVS rating: yellow SVG stars + (count) — Shapermint style ---- */
+.curvs-rating{ display:flex; align-items:center; gap:5px; margin:1px 0 2px; }
+.curvs-rating__stars{ display:inline-flex; gap:1px; color:var(--curvs-star); line-height:0; }
+.curvs-star{ display:block; }
+.curvs-star--full{ fill:var(--curvs-star); }
+.curvs-star--empty{ color:var(--curvs-star); }
+.curvs-star--half{ color:var(--curvs-star); }
+.curvs-rating__count{ font-size:.74rem; color:var(--curvs-char); opacity:.55; font-weight:500; }
+
+/* ---- price: bold sale, muted struck compare-at ---- */
 .product-card .price,
-.product-card__info .price{ font-weight:700; color:var(--curvs-char); }
+.product-card__info .price{ font-weight:700; color:var(--curvs-char); font-size:.9rem; }
 .product-card .price s,
 .product-card__info s{
   color:var(--curvs-taupe);
@@ -62,121 +69,73 @@
   margin-right:.25rem;
 }
 .product-card .price--on-sale,
-.product-card .price ins{ color:var(--curvs-sale); font-weight:800; text-decoration:none; }
+.product-card .price ins{ color:var(--curvs-red); font-weight:800; text-decoration:none; }
 
 /* ---------------------------------------------------------------------------
-   BADGES — Shapermint flat-bar seals, top-left, on brand
+   BADGES — Shapermint flat-bar seals, dark-red for sale
    --------------------------------------------------------------------------- */
 .product-card__badge-list{
   position:absolute;
-  top:10px; left:10px;
+  top:8px; left:8px;
   z-index:2;
   display:flex;
   flex-direction:column;
   align-items:flex-start;
-  gap:6px;
+  gap:5px;
   margin:0;
 }
 .product-card__badge-list .badge,
 .product-card .badge{
   display:inline-flex;
   align-items:center;
-  height:22px;
-  padding:0 9px;
+  height:20px;
+  padding:0 8px;
   border-radius:3px;
-  font-size:.62rem;
+  font-size:.58rem;
   font-weight:800;
-  letter-spacing:.08em;
+  letter-spacing:.06em;
   text-transform:uppercase;
   line-height:1;
   border:none;
-  box-shadow:0 1px 3px rgba(28,28,28,.12);
+  box-shadow:0 1px 3px rgba(28,28,28,.14);
 }
-/* primary custom badge = charcoal (BEST SELLER / NEW) */
+/* custom badge (BEST SELLER / NEW) = charcoal */
 .badge.badge--primary{ background:var(--curvs-char); color:var(--curvs-bone); }
-/* discount / sale = red urgency bar */
+/* discount / sale = DARK RED (Shapermint) */
 .badge.badge--discount,
-.badge.badge--sale{ background:var(--curvs-sale); color:#fff; }
+.badge.badge--sale{ background:var(--curvs-red); color:#fff; }
 /* sold out = muted taupe */
 .badge.badge--sold-out{ background:var(--curvs-taupe); color:#fff; }
 
-/* ---------------------------------------------------------------------------
-   RATING — Loox / native rating in charcoal, tidy
-   --------------------------------------------------------------------------- */
-.product-card .loox-rating{ margin:2px 0 0; }
-.rating-with-text .product-rating,
-.product-card .rating{ color:var(--curvs-char); }
-
-/* ---------------------------------------------------------------------------
-   COLOR SWATCHES — restrained, brand
-   --------------------------------------------------------------------------- */
-.product-card__color-count{ color:var(--curvs-taupe); font-size:.78rem; }
-
-/* ---------------------------------------------------------------------------
-   QUICK BUY — full-width charcoal, appears on hover (desktop)
-   --------------------------------------------------------------------------- */
+/* quick buy */
 .product-card__quick-buy .button,
 .product-card__quick-buy button[is="custom-button"]{
-  background:var(--curvs-char);
-  color:var(--curvs-bone);
-  border-radius:var(--curvs-radius);
-  font-weight:700;
-  letter-spacing:.02em;
+  background:var(--curvs-char); color:var(--curvs-bone);
+  border-radius:var(--curvs-radius); font-weight:700;
 }
 .product-card__mobile-quick-buy-button{
-  background:var(--curvs-white);
-  color:var(--curvs-char);
-  border-radius:50%;
-  box-shadow:0 2px 8px rgba(28,28,28,.16);
+  background:var(--curvs-white); color:var(--curvs-char);
+  border-radius:50%; box-shadow:0 2px 8px rgba(28,28,28,.16);
 }
 
-/* ============================================================================
-   CURVS — homepage / section polish (native sections, DTC density)
-   ============================================================================ */
+/* color swatch count */
+.product-card__color-count{ color:var(--curvs-taupe); font-size:.74rem; }
 
-/* Section headings: confident, tight */
-.shopify-section .section-header__title,
-.shopify-section h2.h1, .shopify-section .h2{
-  letter-spacing:-.02em;
+/* ---------------------------------------------------------------------------
+   TABLET / DESKTOP card polish
+   --------------------------------------------------------------------------- */
+@media (min-width:750px){
+  .product-card{ transition:box-shadow .25s, transform .25s; }
+  .product-card:hover{ box-shadow:0 8px 30px rgba(28,28,28,.10); }
+  .product-card:hover .product-card__image--primary{ transform:scale(1.04); }
+  .product-card__info{ padding:14px 14px 18px; gap:6px; }
+  .product-card__title a{ font-size:.95rem; }
+  .product-card .price,.product-card__info .price{ font-size:1rem; }
+  .curvs-star{ width:15px; height:15px; }
+  .curvs-rating__count{ font-size:.78rem; }
 }
 
-/* HERO (image-with-text-overlay): stronger offer type, brand CTA */
-.shopify-section--image-with-text-overlay .content-over-media h1{
-  font-weight:800; letter-spacing:-.02em; line-height:1.02;
-}
-.shopify-section--image-with-text-overlay .subheading{
-  color:var(--curvs-blush); font-weight:700; letter-spacing:.16em; text-transform:uppercase;
-}
-
-/* CATEGORY TILES (collection-list): editorial, gradient label */
-.shopify-section--collection-list .collection-card,
-.collection-list__item{ border-radius:var(--curvs-radius); overflow:hidden; }
-.collection-list__item .collection-card__title,
-.collection-list__item .h5{ font-weight:700; letter-spacing:-.01em; }
-
-/* TRUST STRIP (text-with-icons): compact, iconography charcoal */
-.shopify-section--text-with-icons .text-with-icon__icon svg,
-.shopify-section--text-with-icons svg{ color:var(--curvs-char); }
-.shopify-section--text-with-icons .h6,
-.shopify-section--text-with-icons .text-with-icon__title{ font-weight:700; letter-spacing:.01em; }
-
-/* PRODUCT ROWS (featured-collection): SHOP ALL button = charcoal fill */
-.shopify-section--featured-collection .button,
-.shopify-section--featured-collection [is="custom-button"]{
-  --button-background:var(--curvs-char); --button-text-color:var(--curvs-bone);
-}
-
-/* WHY IT FITS (multi-column): number-free, benefit-led cards */
-.shopify-section--multi-column .multi-column__item h3,
-.shopify-section--multi-column .multi-column__item .h4{ font-weight:700; letter-spacing:-.01em; }
-
-/* REVIEWS + NEWSLETTER dark section legibility */
-.shopify-section--newsletter{ background:var(--curvs-char); }
-.shopify-section--newsletter .h2,
-.shopify-section--newsletter p{ color:var(--curvs-bone); }
-
-/* Generic: brand primary buttons everywhere use charcoal/bone (already token) */
+/* ---------------------------------------------------------------------------
+   Generic brand button (SHOP ALL etc. inherit charcoal)
+   --------------------------------------------------------------------------- */
 .button--primary{ --button-background:var(--curvs-char); --button-text-color:var(--curvs-bone); }
-
-/* PRESS logos: muted, tidy */
-.shopify-section--logo-list .logo-list__item{ opacity:.6; }

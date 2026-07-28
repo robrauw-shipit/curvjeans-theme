@@ -171,10 +171,8 @@ Supported variables
         <span class="product-card__title"><a href="{{ product.url }}" class="bold" data-instant>{{ product.title }}</a></span>
         
       {%- endif -%}
-                                      <!-- Loox Review Stars under Product Title -->
-          <div class="loox-rating" data-id="{{ product.id }}" 
-               data-rating="{{ product.metafields.loox.avg_rating }}" 
-               data-raters="{{ product.metafields.loox.num_reviews }}"></div>
+                                      <!-- CURVS Shapermint-style rating: yellow stars + review count -->
+          {%- render 'curvs-rating', product: product -%}
       {%- render 'price-list', product: product, text_alignment: text_alignment -%}
     </div>
 
