@@ -1,0 +1,52 @@
+{%- comment -%}
+  CURVJEANS — Collection card offer
+
+  Optional Store metafields:
+    custom.card_offer_quantity_1 (integer)
+    custom.card_offer_discount_1 (integer)
+    custom.card_offer_quantity_2 (integer)
+    custom.card_offer_discount_2 (integer)
+
+  Defaults to: 2 = 30% off / 3 = 40% off.
+  The offer is shown only when the selected country is the United States.
+{%- endcomment -%}
+
+{%- assign offer_country = localization.country.iso_code | default: '' | upcase -%}
+
+{%- if offer_country == 'US' -%}
+  {%- assign offer_quantity_1 = shop.metafields.custom.card_offer_quantity_1.value | default: 2 | plus: 0 -%}
+  {%- assign offer_discount_1 = shop.metafields.custom.card_offer_discount_1.value | default: 30 | plus: 0 -%}
+  {%- assign offer_quantity_2 = shop.metafields.custom.card_offer_quantity_2.value | default: 3 | plus: 0 -%}
+  {%- assign offer_discount_2 = shop.metafields.custom.card_offer_discount_2.value | default: 40 | plus: 0 -%}
+
+  <div class="cj-card-offer">
+    <span class="cj-card-offer__text">
+      {{- offer_quantity_1 }}: {{ offer_discount_1 }}% OFF ·
+      {{ offer_quantity_2 }}: {{ offer_discount_2 }}% OFF
+    </span>
+  </div>
+
+  <style>
+    .product-card .cj-card-offer__text,
+    .grid-product .cj-card-offer__text,
+    .cj-card-offer__text {
+      display: block;
+      max-width: 100%;
+      margin: 6px 0 2px;
+      color: #b5483e;
+      font-size: 10px;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    @media (min-width: 992px) {
+      .product-card .cj-card-offer__text,
+      .grid-product .cj-card-offer__text,
+      .cj-card-offer__text {
+        font-size: 11px;
+      }
+    }
+  </style>
+{%- endif -%}

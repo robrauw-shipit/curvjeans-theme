@@ -1,0 +1,62 @@
+<div class="cj-us-cart-payments" aria-label="Accepted payment methods">
+  <ul class="cj-us-cart-payments__list" role="list">
+    <li>{{ 'visa' | payment_type_svg_tag: class: 'cj-us-cart-payments__icon' }}</li>
+    <li>{{ 'master' | payment_type_svg_tag: class: 'cj-us-cart-payments__icon' }}</li>
+    <li>{{ 'american_express' | payment_type_svg_tag: class: 'cj-us-cart-payments__icon' }}</li>
+    <li>{{ 'discover' | payment_type_svg_tag: class: 'cj-us-cart-payments__icon' }}</li>
+    <li>{{ 'paypal' | payment_type_svg_tag: class: 'cj-us-cart-payments__icon' }}</li>
+    <li>{{ 'apple_pay' | payment_type_svg_tag: class: 'cj-us-cart-payments__icon' }}</li>
+    <li>{{ 'google_pay' | payment_type_svg_tag: class: 'cj-us-cart-payments__icon' }}</li>
+    <li>{{ 'shopify_pay' | payment_type_svg_tag: class: 'cj-us-cart-payments__icon' }}</li>
+  </ul>
+
+  <p class="cj-us-cart-payments__text">FREE Shipping included</p>
+</div>
+
+<style>
+  .cj-us-cart-payments {
+    margin: 0;
+    text-align: center;
+  }
+
+  .cj-us-cart-payments__list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    gap: 5px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .cj-us-cart-payments__list li {
+    display: flex;
+    line-height: 0;
+  }
+
+  .cj-us-cart-payments__icon {
+    display: block;
+    width: 32px;
+    height: auto;
+  }
+
+  .cj-us-cart-payments__text {
+    margin: 6px 0 0;
+    color: #2d241d;
+    font-size: 12px;
+    line-height: 1.35;
+    font-weight: 500;
+    letter-spacing: 0;
+  }
+
+  @media screen and (max-width: 380px) {
+    .cj-us-cart-payments__list {
+      gap: 4px;
+    }
+
+    .cj-us-cart-payments__icon {
+      width: 29px;
+    }
+  }
+</style>

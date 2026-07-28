@@ -1,0 +1,131 @@
+/* ============================================================================
+   CURVS — brand design layer (loaded after theme.css so it wins)
+   DTC / direct-response product card + badges, Shapermint treatment, CURVS palette.
+   Uses the theme's real component classes. No custom-liquid, no HTML-entity icons.
+   ============================================================================ */
+:root{
+  --curvs-bone:#F5F1ED;
+  --curvs-bone-2:#EDE7E0;
+  --curvs-char:#1C1C1C;
+  --curvs-char-70:rgba(28,28,28,.7);
+  --curvs-blush:#E7C4C7;
+  --curvs-blush-deep:#C0787E;
+  --curvs-taupe:#A69E95;
+  --curvs-gray:#D9D6D2;
+  --curvs-white:#FFFFFF;
+  --curvs-sale:#B14A45;
+  --curvs-badge-yellow:#F2D96F;
+  --curvs-radius:6px;
+}
+
+/* ---------------------------------------------------------------------------
+   PRODUCT CARD — clean commerce surface
+   --------------------------------------------------------------------------- */
+.product-card{
+  background:var(--curvs-white);
+  border-radius:var(--curvs-radius);
+  overflow:hidden;
+  transition:box-shadow .25s ease, transform .25s ease;
+}
+.product-card:hover{
+  box-shadow:0 8px 30px rgba(28,28,28,.10);
+}
+.product-card__figure{
+  position:relative;
+  background:var(--curvs-bone-2);
+  border-radius:var(--curvs-radius) var(--curvs-radius) 0 0;
+  overflow:hidden;
+}
+.product-card__image{ transition:transform .6s cubic-bezier(.2,.7,.2,1); }
+.product-card:hover .product-card__image--primary{ transform:scale(1.04); }
+
+.product-card__info{
+  padding:14px 14px 18px;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+.product-card__title a{
+  font-weight:600;
+  letter-spacing:-.01em;
+  color:var(--curvs-char);
+  line-height:1.25;
+}
+
+/* price: bold sale, muted struck compare-at (Shapermint pricing hierarchy) */
+.product-card .price,
+.product-card__info .price{ font-weight:700; color:var(--curvs-char); }
+.product-card .price s,
+.product-card__info s{
+  color:var(--curvs-taupe);
+  font-weight:500;
+  margin-right:.25rem;
+}
+.product-card .price--on-sale,
+.product-card .price ins{ color:var(--curvs-sale); font-weight:800; text-decoration:none; }
+
+/* ---------------------------------------------------------------------------
+   BADGES — Shapermint flat-bar seals, top-left, on brand
+   --------------------------------------------------------------------------- */
+.product-card__badge-list{
+  position:absolute;
+  top:10px; left:10px;
+  z-index:2;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:6px;
+  margin:0;
+}
+.product-card__badge-list .badge,
+.product-card .badge{
+  display:inline-flex;
+  align-items:center;
+  height:22px;
+  padding:0 9px;
+  border-radius:3px;
+  font-size:.62rem;
+  font-weight:800;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  line-height:1;
+  border:none;
+  box-shadow:0 1px 3px rgba(28,28,28,.12);
+}
+/* primary custom badge = charcoal (BEST SELLER / NEW) */
+.badge.badge--primary{ background:var(--curvs-char); color:var(--curvs-bone); }
+/* discount / sale = red urgency bar */
+.badge.badge--discount,
+.badge.badge--sale{ background:var(--curvs-sale); color:#fff; }
+/* sold out = muted taupe */
+.badge.badge--sold-out{ background:var(--curvs-taupe); color:#fff; }
+
+/* ---------------------------------------------------------------------------
+   RATING — Loox / native rating in charcoal, tidy
+   --------------------------------------------------------------------------- */
+.product-card .loox-rating{ margin:2px 0 0; }
+.rating-with-text .product-rating,
+.product-card .rating{ color:var(--curvs-char); }
+
+/* ---------------------------------------------------------------------------
+   COLOR SWATCHES — restrained, brand
+   --------------------------------------------------------------------------- */
+.product-card__color-count{ color:var(--curvs-taupe); font-size:.78rem; }
+
+/* ---------------------------------------------------------------------------
+   QUICK BUY — full-width charcoal, appears on hover (desktop)
+   --------------------------------------------------------------------------- */
+.product-card__quick-buy .button,
+.product-card__quick-buy button[is="custom-button"]{
+  background:var(--curvs-char);
+  color:var(--curvs-bone);
+  border-radius:var(--curvs-radius);
+  font-weight:700;
+  letter-spacing:.02em;
+}
+.product-card__mobile-quick-buy-button{
+  background:var(--curvs-white);
+  color:var(--curvs-char);
+  border-radius:50%;
+  box-shadow:0 2px 8px rgba(28,28,28,.16);
+}
