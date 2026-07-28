@@ -1,1 +1,468 @@
-{"sections":{"slideshow_k7xFn7":{"type":"slideshow","blocks":{"video_fNpkpy":{"type":"video","settings":{"video":"shopify:\/\/files\/videos\/1778240020228-45rhkhh4din.mp4","mobile_video":"shopify:\/\/files\/videos\/1778240020228-45rhkhh4din.mp4","content_max_width":780,"mobile_text_position":"place-self-end-start text-start","desktop_text_position":"sm:place-self-end-start sm:text-start","subheading":"The Summer Denim Collection","title":"Lighter denim. Same curve-loving fit.","heading_tag":"h5","button_text":"Shop Summer Denim","button_link":"shopify:\/\/collections\/all-products","text_color":"#ffffff","button_background":"rgba(0,0,0,0)","button_text_color":"rgba(0,0,0,0)","overlay_color":"rgba(0,0,0,0)","overlay_opacity":19,"background":"","background_gradient":""}}},"block_order":["video_fNpkpy"],"custom_css":[".prose {transform: translateY(-18px);}",".subheading {font-size: 13px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 10px;}",".h0 {font-size: clamp(36px, 5vw, 72px); font-weight: 800; line-height: 0.95; letter-spacing: -0.04em;}",".button {background: transparent !important; text-decoration: underline; text-underline-offset: 4px; padding: 0 !important; border: 0 !important;}","@media (max-width: 749px) {.h0 {font-size: 28px; line-height: 1.05; max-width: 330px; } .subheading {font-size: 10.5px; margin-bottom: 8px; }}"],"name":"Slideshow","settings":{"full_width":true,"allow_transparent_header":true,"show_initial_transition":false,"image_size":"fill","controls_type":"dots","transition_type":"fade_with_text","autoplay":false,"cycle_speed":6,"background":"rgba(0,0,0,0)","background_gradient":""}},"featured_collection_Ux7W8W":{"type":"featured-collection","settings":{"collection":"new","products":[],"full_width":true,"stack_products":false,"show_progress_bar":true,"products_count":3,"products_per_row_mobile":"2","products_per_row_desktop":3,"subheading":"","title":"New in","content":"","link_url":"shopify:\/\/collections\/new","link_text":"","background":"","background_gradient":"","text_color":"","heading_color":"","heading_gradient":"","product_card_background":"","product_card_text_color":""}},"featured_collection_tByM9i":{"type":"featured-collection","settings":{"collection":"bestsellers","products":[],"full_width":true,"stack_products":false,"show_progress_bar":true,"products_count":3,"products_per_row_mobile":"2","products_per_row_desktop":3,"subheading":"","title":"Bestsellers","content":"","link_url":"","link_text":"","background":"","background_gradient":"","text_color":"","heading_color":"","heading_gradient":"","product_card_background":"","product_card_text_color":""}},"rich_text_WVY93k":{"type":"rich-text","blocks":{"image_P7cgzR":{"type":"image","settings":{"image":"shopify:\/\/shop_images\/summer_a5_cliff_crochet_FIXED_9x16_20260508_152346_1.jpg","width_mode":"custom","max_width":600,"mobile_max_width":400}},"divider_PHBV6e":{"type":"divider","settings":{}},"heading_AqNBAk":{"type":"heading","settings":{"text":"Soft stretch for warmer days","heading_tag":"h5","text_color":"","gradient":""}},"richtext_MwT9Dk":{"type":"richtext","settings":{"content":"<p>CurveFlex™ denim moves with you, keeps its shape, and never digs in.<\/p>"}},"image_kRYY8j":{"type":"image","settings":{"image":"shopify:\/\/shop_images\/Model_2_-_Stretch_1.jpg","width_mode":"custom","max_width":600,"mobile_max_width":400}}},"block_order":["image_P7cgzR","divider_PHBV6e","heading_AqNBAk","richtext_MwT9Dk","image_kRYY8j"],"name":"Rich text","settings":{"full_width":true,"content_width":"small","text_position":"center","background":"","background_gradient":"","text_color":""}},"collection-list":{"type":"collection-list","blocks":{"collection_NWcG3N":{"type":"collection","settings":{"collection":"mid-rise","image":"shopify:\/\/shop_images\/OceanBlue-20263.jpg","subheading":"","title":"","url":"","heading_tag":"h2","text_position":"place-self-center text-center","text_color":"#ffffff","overlay_color":"#000000","overlay_opacity":0}},"collection_CLX39H":{"type":"collection","settings":{"collection":"high-waist","image":"shopify:\/\/shop_images\/high_waist_collection.jpg","subheading":"","title":"High Waist","url":"","heading_tag":"h2","text_position":"place-self-center text-center","text_color":"#ffffff","overlay_color":"#000000","overlay_opacity":9}},"collection-1":{"type":"collection","settings":{"collection":"all-products","image":"shopify:\/\/shop_images\/collection_curvjeans.jpg","subheading":"","title":"All CURVJEANS","url":"shopify:\/\/collections\/all-products","heading_tag":"h3","text_position":"place-self-center text-center","text_color":"#f9f9f9","overlay_color":"#000000","overlay_opacity":15}}},"block_order":["collection_NWcG3N","collection_CLX39H","collection-1"],"settings":{"full_width":true,"stack_collections":false,"collections_per_row_mobile":"2","collections_per_row":3,"show_progress_bar":true,"subheading":"","title":"Our Collection","content":"","link_url":"shopify:\/\/collections\/all-products","link_text":"View all","background":"","background_gradient":"","text_color":"","heading_color":"","heading_gradient":""}},"featured_collection_rxQna4":{"type":"featured-collection","name":"Featured collection","settings":{"collection":"shapewear","products":[],"full_width":true,"stack_products":false,"show_progress_bar":false,"products_count":3,"products_per_row_mobile":"1","products_per_row_desktop":3,"subheading":"","title":"Shapewear","content":"<p>Our CurveFlex™ Sculpt Layer smooths, sculpts & stays invisible<\/p>","link_url":"","link_text":"View all","background":"","background_gradient":"","text_color":"","heading_color":"","heading_gradient":"","product_card_background":"","product_card_text_color":""}},"scrolling-text":{"type":"scrolling-text","settings":{"full_width":true,"text":"Finally, jeans that fit.","text_size":"small","text_style":"fill","scrolling_mode":"auto","scrolling_speed":12,"background":"","background_gradient":"","text_color":"#1a1a1a","text_gradient":""}},"17418353076b3406a4":{"type":"apps","settings":{"full_width":true,"remove_vertical_spacing":true,"remove_horizontal_spacing":false,"background":"","background_gradient":"","text_color":""}},"blog_posts_HiWJTf":{"type":"blog-posts","blocks":{"blog_XV7Rmq":{"type":"blog","settings":{"blog":"news","posts_count":2,"stack_items":false}}},"block_order":["blog_XV7Rmq"],"disabled":true,"settings":{"full_width":true,"show_excerpt":true,"show_date":false,"show_author":false,"show_comments_count":false,"show_category":false,"subheading":"","title":"Blogs","content":"","link_url":"","link_text":"Read all","background":"","background_gradient":"","text_color":"","heading_color":"","heading_gradient":""}}},"order":["slideshow_k7xFn7","featured_collection_Ux7W8W","featured_collection_tByM9i","rich_text_WVY93k","collection-list","featured_collection_rxQna4","scrolling-text","17418353076b3406a4","blog_posts_HiWJTf"]}
+{
+  "sections": {
+    "hero": {
+      "type": "image-with-text-overlay",
+      "blocks": {
+        "sub": {
+          "type": "subheading",
+          "settings": {
+            "text": "Summer sale · Last chance"
+          }
+        },
+        "h": {
+          "type": "heading",
+          "settings": {
+            "text": "Up to 50% off the jeans that actually fit.",
+            "heading_tag": "h1"
+          }
+        },
+        "p": {
+          "type": "richtext",
+          "settings": {
+            "content": "<p>The no-gap fit curvy women reorder in every wash. Selling fast, and your size won't wait.</p>"
+          }
+        },
+        "b1": {
+          "type": "button",
+          "settings": {
+            "style": "fill",
+            "size": "xl",
+            "text": "Shop the sale",
+            "url": "/collections/all-products",
+            "background": "#1C1C1C",
+            "text_color": "#F5F1ED"
+          }
+        }
+      },
+      "block_order": [
+        "sub",
+        "h",
+        "p",
+        "b1"
+      ],
+      "settings": {
+        "full_width": true,
+        "allow_transparent_header": true,
+        "image_size": "large",
+        "mobile_text_position": "place-self-end text-center",
+        "desktop_text_position": "place-self-center-start text-start",
+        "text_color": "#FFFFFF",
+        "overlay_color": "#1C1C1C",
+        "overlay_opacity": 26
+      }
+    },
+    "trust": {
+      "type": "text-with-icons",
+      "blocks": {
+        "a": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-return",
+            "title": "Free exchanges",
+            "content": "<p>Swap sizes free until they fit.</p>",
+            "icon_color": "#1C1C1C",
+            "icon_background_type": "none",
+            "icon_width": 32
+          }
+        },
+        "b": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-customer-support",
+            "title": "Real fit help",
+            "content": "<p>Ask us. A real person answers.</p>",
+            "icon_color": "#1C1C1C",
+            "icon_background_type": "none",
+            "icon_width": 32
+          }
+        },
+        "c": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-lock",
+            "title": "Secure checkout",
+            "content": "<p>Pay safely, however you like.</p>",
+            "icon_color": "#1C1C1C",
+            "icon_background_type": "none",
+            "icon_width": 32
+          }
+        },
+        "d": {
+          "type": "item",
+          "settings": {
+            "icon": "picto-plane",
+            "title": "Fast delivery",
+            "content": "<p>Free shipping over $80.</p>",
+            "icon_color": "#1C1C1C",
+            "icon_background_type": "none",
+            "icon_width": 32
+          }
+        }
+      },
+      "block_order": [
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "settings": {
+        "full_width": true,
+        "stack_on_mobile": false,
+        "title": "",
+        "heading_tag": "h3",
+        "text_alignment": "center",
+        "background": "#EDE7E0",
+        "text_color": "#1C1C1C"
+      }
+    },
+    "categories": {
+      "type": "collection-list",
+      "blocks": {
+        "c1": {
+          "type": "collection",
+          "settings": {
+            "collection": "all-jeans",
+            "title": "All Jeans",
+            "subheading": "Your waist should fit too",
+            "url": "/collections/all-jeans",
+            "heading_tag": "h3",
+            "text_position": "place-self-end text-start",
+            "text_color": "#FFFFFF",
+            "overlay_color": "#1C1C1C",
+            "overlay_opacity": 22
+          }
+        },
+        "c2": {
+          "type": "collection",
+          "settings": {
+            "collection": "high-waist",
+            "title": "High Waist",
+            "subheading": "No muffin top",
+            "url": "/collections/high-waist",
+            "heading_tag": "h3",
+            "text_position": "place-self-end text-start",
+            "text_color": "#FFFFFF",
+            "overlay_color": "#1C1C1C",
+            "overlay_opacity": 22
+          }
+        },
+        "c3": {
+          "type": "collection",
+          "settings": {
+            "collection": "mid-rise",
+            "title": "Mid Rise",
+            "subheading": "Sits flat at the back",
+            "url": "/collections/mid-rise",
+            "heading_tag": "h3",
+            "text_position": "place-self-end text-start",
+            "text_color": "#FFFFFF",
+            "overlay_color": "#1C1C1C",
+            "overlay_opacity": 22
+          }
+        },
+        "c4": {
+          "type": "collection",
+          "settings": {
+            "collection": "wide-leg",
+            "title": "Wide Leg",
+            "subheading": "Room where you need it",
+            "url": "/collections/wide-leg",
+            "heading_tag": "h3",
+            "text_position": "place-self-end text-start",
+            "text_color": "#FFFFFF",
+            "overlay_color": "#1C1C1C",
+            "overlay_opacity": 22
+          }
+        },
+        "c5": {
+          "type": "collection",
+          "settings": {
+            "collection": "shapewear",
+            "title": "Shapewear",
+            "subheading": "Smooth, don't squash",
+            "url": "/collections/shapewear",
+            "heading_tag": "h3",
+            "text_position": "place-self-end text-start",
+            "text_color": "#FFFFFF",
+            "overlay_color": "#1C1C1C",
+            "overlay_opacity": 22
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5"
+      ],
+      "settings": {
+        "full_width": false,
+        "collections_per_row_mobile": "2",
+        "collections_per_row": 5,
+        "subheading": "Shop by fit",
+        "title": "Find the fit for the part that never fits.",
+        "background": "#F5F1ED",
+        "text_color": "#1C1C1C"
+      }
+    },
+    "bestsellers": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "bestsellers",
+        "products_count": 8,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 4,
+        "stack_products": true,
+        "subheading": "",
+        "title": "Our best sellers",
+        "link_text": "Shop all",
+        "link_url": "/collections/all-products",
+        "background": "#FFFFFF",
+        "text_color": "#1C1C1C"
+      }
+    },
+    "feature": {
+      "type": "image-link-blocks",
+      "blocks": {
+        "i": {
+          "type": "item",
+          "settings": {
+            "link_text": "Shop the no-gap fit",
+            "link_url": "/collections/no-gap-jeans",
+            "text_color": "#FFFFFF",
+            "overlay_color": "#1C1C1C",
+            "overlay_opacity": 28,
+            "stretch_image": true
+          }
+        }
+      },
+      "block_order": [
+        "i"
+      ],
+      "settings": {
+        "full_width": true,
+        "block_size": "large",
+        "subheading": "The fix",
+        "title": "No more choosing which part gets to fit.",
+        "background": "#F5F1ED",
+        "text_color": "#1C1C1C"
+      }
+    },
+    "deals": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "sale",
+        "products_count": 4,
+        "products_per_row_mobile": "2",
+        "products_per_row_desktop": 4,
+        "stack_products": true,
+        "subheading": "",
+        "title": "Great deals this week",
+        "link_text": "Shop all",
+        "link_url": "/collections/sale",
+        "background": "#F5F1ED",
+        "text_color": "#1C1C1C"
+      }
+    },
+    "why": {
+      "type": "multi-column",
+      "blocks": {
+        "w1": {
+          "type": "item",
+          "settings": {
+            "column_size": "3",
+            "title": "No waist gap",
+            "heading_tag": "h3",
+            "content": "<p>We made the waist smaller. Not the thighs.</p>",
+            "link_text": "Shop",
+            "link_url": "/collections/all-jeans",
+            "link_style": "link"
+          }
+        },
+        "w2": {
+          "type": "item",
+          "settings": {
+            "column_size": "3",
+            "title": "Room for curves",
+            "heading_tag": "h3",
+            "content": "<p>Built-in space through the hip, thigh and seat.</p>",
+            "link_text": "Shop",
+            "link_url": "/collections/wide-leg",
+            "link_style": "link"
+          }
+        },
+        "w3": {
+          "type": "item",
+          "settings": {
+            "column_size": "3",
+            "title": "Stays put",
+            "heading_tag": "h3",
+            "content": "<p>Hugs your waist and holds all day, no belt.</p>",
+            "link_text": "Shop",
+            "link_url": "/collections/high-waist",
+            "link_style": "link"
+          }
+        },
+        "w4": {
+          "type": "item",
+          "settings": {
+            "column_size": "3",
+            "title": "Smooth shaping",
+            "heading_tag": "h3",
+            "content": "<p>Smooths your stomach, leaves your curves alone.</p>",
+            "link_text": "Shop",
+            "link_url": "/collections/shapewear",
+            "link_style": "link"
+          }
+        }
+      },
+      "block_order": [
+        "w1",
+        "w2",
+        "w3",
+        "w4"
+      ],
+      "settings": {
+        "full_width": false,
+        "stack_on_mobile": true,
+        "gap": "medium",
+        "text_alignment": "start",
+        "subheading": "Why it fits better",
+        "title": "We fixed the part that never fit.",
+        "background": "#FFFFFF",
+        "text_color": "#1C1C1C"
+      }
+    },
+    "reviews": {
+      "type": "product-reviews-2",
+      "blocks": {
+        "r1": {
+          "type": "item",
+          "settings": {
+            "stars_count": 5,
+            "verified_text": "Verified",
+            "title": "Fits both, finally",
+            "text": "<p>Every other pair cuts me in half or gapes so bad I'm pulling my shirt down all day. I pulled these up and actually laughed.</p>",
+            "author": "Jessica R. · Size 14",
+            "time": "Verified buyer"
+          }
+        },
+        "r2": {
+          "type": "item",
+          "settings": {
+            "stars_count": 5,
+            "verified_text": "Verified",
+            "title": "Stays put",
+            "text": "<p>They hug my waist and stay PUT when I'm chasing my toddler. First jeans that fit my body after two kids.</p>",
+            "author": "Amanda T. · Size 16",
+            "time": "Verified buyer"
+          }
+        },
+        "r3": {
+          "type": "item",
+          "settings": {
+            "stars_count": 5,
+            "verified_text": "Verified",
+            "title": "No belt needed",
+            "text": "<p>I usually size up for my thighs and then the waist swims. These fit both. Didn't touch a belt once.</p>",
+            "author": "Brianna K. · Size L",
+            "time": "Verified buyer"
+          }
+        }
+      },
+      "block_order": [
+        "r1",
+        "r2",
+        "r3"
+      ],
+      "settings": {
+        "reviews_position": "below_buy",
+        "use_metafield": false,
+        "slider_view": 3,
+        "slider_view_mobile": 1.2,
+        "item_radius": 6,
+        "item_shadow": false,
+        "background_color": "",
+        "stars_icon": "star"
+      }
+    },
+    "press": {
+      "type": "logo-list",
+      "blocks": {
+        "l1": {
+          "type": "logo",
+          "settings": {
+            "logo_width": 120
+          }
+        },
+        "l2": {
+          "type": "logo",
+          "settings": {
+            "logo_width": 120
+          }
+        },
+        "l3": {
+          "type": "logo",
+          "settings": {
+            "logo_width": 120
+          }
+        },
+        "l4": {
+          "type": "logo",
+          "settings": {
+            "logo_width": 120
+          }
+        },
+        "l5": {
+          "type": "logo",
+          "settings": {
+            "logo_width": 120
+          }
+        }
+      },
+      "block_order": [
+        "l1",
+        "l2",
+        "l3",
+        "l4",
+        "l5"
+      ],
+      "settings": {
+        "full_width": true,
+        "stack_mobile": false,
+        "title": "As seen in",
+        "text_alignment": "center",
+        "items_per_row": 5,
+        "background": "#F5F1ED",
+        "text_color": "#A69E95"
+      }
+    },
+    "email": {
+      "type": "newsletter",
+      "settings": {
+        "full_width": true,
+        "show_icon": false,
+        "title": "Come join CURVS.",
+        "content": "<p>First access to new drops, restocks, fit tips and the offers actually worth opening.</p>",
+        "button_text": "Sign me up",
+        "background": "#1C1C1C",
+        "text_color": "#F5F1ED",
+        "button_background": "#F5F1ED",
+        "button_text_color": "#1C1C1C"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "trust",
+    "categories",
+    "bestsellers",
+    "feature",
+    "deals",
+    "why",
+    "reviews",
+    "press",
+    "email"
+  ]
+}

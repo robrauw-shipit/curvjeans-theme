@@ -129,3 +129,54 @@
   border-radius:50%;
   box-shadow:0 2px 8px rgba(28,28,28,.16);
 }
+
+/* ============================================================================
+   CURVS — homepage / section polish (native sections, DTC density)
+   ============================================================================ */
+
+/* Section headings: confident, tight */
+.shopify-section .section-header__title,
+.shopify-section h2.h1, .shopify-section .h2{
+  letter-spacing:-.02em;
+}
+
+/* HERO (image-with-text-overlay): stronger offer type, brand CTA */
+.shopify-section--image-with-text-overlay .content-over-media h1{
+  font-weight:800; letter-spacing:-.02em; line-height:1.02;
+}
+.shopify-section--image-with-text-overlay .subheading{
+  color:var(--curvs-blush); font-weight:700; letter-spacing:.16em; text-transform:uppercase;
+}
+
+/* CATEGORY TILES (collection-list): editorial, gradient label */
+.shopify-section--collection-list .collection-card,
+.collection-list__item{ border-radius:var(--curvs-radius); overflow:hidden; }
+.collection-list__item .collection-card__title,
+.collection-list__item .h5{ font-weight:700; letter-spacing:-.01em; }
+
+/* TRUST STRIP (text-with-icons): compact, iconography charcoal */
+.shopify-section--text-with-icons .text-with-icon__icon svg,
+.shopify-section--text-with-icons svg{ color:var(--curvs-char); }
+.shopify-section--text-with-icons .h6,
+.shopify-section--text-with-icons .text-with-icon__title{ font-weight:700; letter-spacing:.01em; }
+
+/* PRODUCT ROWS (featured-collection): SHOP ALL button = charcoal fill */
+.shopify-section--featured-collection .button,
+.shopify-section--featured-collection [is="custom-button"]{
+  --button-background:var(--curvs-char); --button-text-color:var(--curvs-bone);
+}
+
+/* WHY IT FITS (multi-column): number-free, benefit-led cards */
+.shopify-section--multi-column .multi-column__item h3,
+.shopify-section--multi-column .multi-column__item .h4{ font-weight:700; letter-spacing:-.01em; }
+
+/* REVIEWS + NEWSLETTER dark section legibility */
+.shopify-section--newsletter{ background:var(--curvs-char); }
+.shopify-section--newsletter .h2,
+.shopify-section--newsletter p{ color:var(--curvs-bone); }
+
+/* Generic: brand primary buttons everywhere use charcoal/bone (already token) */
+.button--primary{ --button-background:var(--curvs-char); --button-text-color:var(--curvs-bone); }
+
+/* PRESS logos: muted, tidy */
+.shopify-section--logo-list .logo-list__item{ opacity:.6; }

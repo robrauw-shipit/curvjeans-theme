@@ -1,1 +1,95 @@
-{"type":"header","name":"Header group","sections":{"announcement-bar":{"type":"announcement-bar","blocks":{"message_PkLEtN":{"type":"message","settings":{"text":"Free exchanges until they fit","url":"shopify:\/\/collections\/all-products"}},"message_DDggcy":{"type":"message","settings":{"text":"Summer sale • Up to 50% off","url":""}},"message_pX8zgz":{"type":"message","settings":{"text":"NEW: White Mid Rise & Tall Indigo","url":"shopify:\/\/collections\/new"}}},"block_order":["message_PkLEtN","message_DDggcy","message_pX8zgz"],"custom_css":[],"settings":{"enable_sticky":true,"autoplay":true,"cycle_speed":6,"text_size":"text-xs","navigation_mode":"arrows","scrolling_speed":22,"background":"#000000","background_gradient":"","text_color":"#FFFFFF"}},"header":{"type":"header","blocks":{"mega_menu_ymtN8t":{"type":"mega_menu","settings":{"menu_item":"BESTSELLERS","layout":"horizontal","submenu_style":"bold_text","image_1":"shopify:\/\/shop_images\/Relax-midrise-blue_ecommerve_13-07-2025_-81_93f0995c-c27c-4db1-a9b1-8653a16fc3df.webp","image_heading_1":"","image_link_1":"shopify:\/\/products\/curve-hugging-wide-leg-ocean-blue","image_text_color_1":"#121212","image_2":"shopify:\/\/shop_images\/curvjeans20-09-2025-2_0021_curvjeans20-09-2025-85.jpg","image_heading_2":"","image_link_2":"shopify:\/\/products\/relax-sky-blue","image_text_color_2":"#ffffff","image_3":"shopify:\/\/shop_images\/Relax-skyblue_ecommerve_13-07-2025_-10_9df303cd-467d-4608-a86f-e4ba774aec1d.webp","image_heading_3":"","image_link_3":"shopify:\/\/products\/relax-sky-blue","image_text_color_3":"#ffffff","product":"","product_card_background":"","product_card_text_color":"","promo_content_layout":"collage","stretch_promo":false,"drawer_link_image":"hide"}}},"block_order":["mega_menu_ymtN8t"],"custom_css":[],"settings":{"enable_sticky":true,"hide_on_scroll":false,"logo":"shopify:\/\/shop_images\/CURVJEANS_BLACK.png","logo_max_width":135,"logo_mobile_max_width":100,"menu":"main-menu","sidebar_menu":"main-menu","secondary_menu":"","menu_open_trigger":"hover","opening_from":"bottom","layout":"logo_left_navigation_center","show_social_media":false,"show_locale_selector":true,"show_country_selector":true,"show_country_flag":true,"show_country_name":false,"transparent_header_text_color":"#ffffff","transparent_logo":"shopify:\/\/shop_images\/CURVJEANS-03.svg","reduce_padding":true,"background_opacity":100,"background_blur_radius":0}}},"order":["announcement-bar","header"]}
+{
+  "type": "header",
+  "name": "Header group",
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "blocks": {
+        "msg": {
+          "type": "message",
+          "settings": {
+            "text": "FREE SHIPPING OVER $80 · FREE EXCHANGES UNTIL IT FITS",
+            "url": ""
+          }
+        }
+      },
+      "block_order": [
+        "msg"
+      ],
+      "custom_css": [],
+      "settings": {
+        "enable_sticky": true,
+        "autoplay": true,
+        "cycle_speed": 6,
+        "text_size": "text-xs",
+        "navigation_mode": "arrows",
+        "scrolling_speed": 22,
+        "background": "#1C1C1C",
+        "background_gradient": "",
+        "text_color": "#F5F1ED"
+      }
+    },
+    "header": {
+      "type": "header",
+      "blocks": {
+        "mega_menu_ymtN8t": {
+          "type": "mega_menu",
+          "settings": {
+            "menu_item": "BESTSELLERS",
+            "layout": "horizontal",
+            "submenu_style": "bold_text",
+            "image_1": "shopify://shop_images/Relax-midrise-blue_ecommerve_13-07-2025_-81_93f0995c-c27c-4db1-a9b1-8653a16fc3df.webp",
+            "image_heading_1": "",
+            "image_link_1": "shopify://products/curve-hugging-wide-leg-ocean-blue",
+            "image_text_color_1": "#121212",
+            "image_2": "shopify://shop_images/curvjeans20-09-2025-2_0021_curvjeans20-09-2025-85.jpg",
+            "image_heading_2": "",
+            "image_link_2": "shopify://products/relax-sky-blue",
+            "image_text_color_2": "#ffffff",
+            "image_3": "shopify://shop_images/Relax-skyblue_ecommerve_13-07-2025_-10_9df303cd-467d-4608-a86f-e4ba774aec1d.webp",
+            "image_heading_3": "",
+            "image_link_3": "shopify://products/relax-sky-blue",
+            "image_text_color_3": "#ffffff",
+            "product": "",
+            "product_card_background": "",
+            "product_card_text_color": "",
+            "promo_content_layout": "collage",
+            "stretch_promo": false,
+            "drawer_link_image": "hide"
+          }
+        }
+      },
+      "block_order": [
+        "mega_menu_ymtN8t"
+      ],
+      "custom_css": [],
+      "settings": {
+        "enable_sticky": true,
+        "hide_on_scroll": false,
+        "logo": "shopify://shop_images/CURVJEANS_BLACK.png",
+        "logo_max_width": 135,
+        "logo_mobile_max_width": 100,
+        "menu": "main-menu",
+        "sidebar_menu": "main-menu",
+        "secondary_menu": "",
+        "menu_open_trigger": "hover",
+        "opening_from": "bottom",
+        "layout": "logo_left_navigation_center",
+        "show_social_media": false,
+        "show_locale_selector": true,
+        "show_country_selector": true,
+        "show_country_flag": true,
+        "show_country_name": false,
+        "transparent_header_text_color": "#ffffff",
+        "transparent_logo": "shopify://shop_images/CURVJEANS-03.svg",
+        "reduce_padding": true,
+        "background_opacity": 100,
+        "background_blur_radius": 0
+      }
+    }
+  },
+  "order": [
+    "announcement-bar",
+    "header"
+  ]
+}
