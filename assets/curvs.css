@@ -139,3 +139,7 @@
    Generic brand button (SHOP ALL etc. inherit charcoal)
    --------------------------------------------------------------------------- */
 .button--primary{ --button-background:var(--curvs-char); --button-text-color:var(--curvs-bone); }
+
+/* Hide the theme's native numeric product-rating on cards — we use curvs-rating (stars + count) */
+.product-card .rating-with-text .product-rating,
+.product-card .product-rating{ display:none !important; }

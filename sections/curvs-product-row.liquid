@@ -69,7 +69,7 @@
   {%- if coll and coll.products.size > 0 -%}
     <div class="pr__grid">
       {%- for product in coll.products limit: section.settings.products_count -%}
-        {%- render 'product-card', product: product, stacked: true, position: forloop.index, show_badges: true, show_rating: true -%}
+        {%- render 'product-card', product: product, stacked: true, position: forloop.index, show_badges: true -%}
       {%- endfor -%}
     </div>
     {%- if section.settings.button_text != blank -%}
