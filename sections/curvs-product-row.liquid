@@ -1,0 +1,89 @@
+{%- comment -%}
+  CURVS Product Row — Shapermint-style product carousel.
+  Renders the theme's REAL product-card snippet (real photos/prices/badges/ratings)
+  in a custom section wrapper: centered heading, horizontal scroll, "SHOP ALL" button.
+  Native + editable. Badge styling comes from curvs.css.
+{%- endcomment -%}
+
+{%- assign coll = collections[section.settings.collection] -%}
+
+<style>
+  #shopify-section-{{ section.id }} { --pr-char: {{ section.settings.text_color }}; --pr-bg: {{ section.settings.bg_color }}; }
+  #shopify-section-{{ section.id }} .pr { background: var(--pr-bg); padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px; }
+  #shopify-section-{{ section.id }} .pr__head { text-align: center; margin-bottom: 26px; padding: 0 24px; }
+  #shopify-section-{{ section.id }} .pr__title { font-weight: 800; letter-spacing: -.01em; font-size: clamp(1.4rem, 3vw, 1.9rem); color: var(--pr-char); margin: 0; }
+  #shopify-section-{{ section.id }} .pr__sub { color: var(--pr-char); opacity: .6; font-size: .95rem; margin-top: 6px; }
+  #shopify-section-{{ section.id }} .pr__grid {
+    max-width: 1280px; margin: 0 auto; padding: 0 24px;
+    display: grid; gap: 18px;
+    grid-template-columns: repeat({{ section.settings.per_row }}, 1fr);
+  }
+  #shopify-section-{{ section.id }} .pr__cta { display: flex; justify-content: center; margin-top: 28px; }
+  #shopify-section-{{ section.id }} .pr__cta a {
+    display: inline-flex; align-items: center; gap: .4rem;
+    background: {% if section.settings.button_style == 'fill' %}var(--pr-char); color: var(--pr-bg);{% else %}transparent; color: var(--pr-char); border: 1.5px solid var(--pr-char);{% endif %}
+    font-weight: 700; font-size: .92rem; letter-spacing: .04em; text-transform: uppercase;
+    padding: .9rem 2.4rem; border-radius: {{ section.settings.button_radius }}px; text-decoration: none; transition: opacity .15s;
+  }
+  #shopify-section-{{ section.id }} .pr__cta a:hover { opacity: .85; }
+  #shopify-section-{{ section.id }} .pr__empty { text-align: center; color: #A69E95; padding: 40px; }
+  @media (max-width: 900px) {
+    #shopify-section-{{ section.id }} .pr__grid {
+      grid-auto-flow: column; grid-template-columns: none;
+      grid-auto-columns: {{ section.settings.mobile_card_width }};
+      overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
+      padding-bottom: 8px;
+    }
+    #shopify-section-{{ section.id }} .pr__grid::-webkit-scrollbar { display: none; }
+    #shopify-section-{{ section.id }} .pr__grid > * { scroll-snap-align: start; }
+  }
+</style>
+
+<div class="pr">
+  <div class="pr__head">
+    {%- if section.settings.title != blank -%}<h2 class="pr__title">{{ section.settings.title }}</h2>{%- endif -%}
+    {%- if section.settings.subtitle != blank -%}<p class="pr__sub">{{ section.settings.subtitle }}</p>{%- endif -%}
+  </div>
+
+  {%- if coll and coll.products.size > 0 -%}
+    <div class="pr__grid">
+      {%- for product in coll.products limit: section.settings.products_count -%}
+        {%- render 'product-card', product: product, stacked: true, position: forloop.index, show_badges: true, show_rating: true -%}
+      {%- endfor -%}
+    </div>
+    {%- if section.settings.button_text != blank -%}
+      <div class="pr__cta">
+        <a href="{{ section.settings.button_link | default: coll.url }}">{{ section.settings.button_text }}</a>
+      </div>
+    {%- endif -%}
+  {%- else -%}
+    <div class="pr__empty">Select a collection with products in the theme editor.</div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "CURVS Product Row",
+  "tag": "section",
+  "class": "shopify-section--curvs-product-row",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Title", "default": "Our best sellers" },
+    { "type": "text", "id": "subtitle", "label": "Subtitle" },
+    { "type": "collection", "id": "collection", "label": "Collection" },
+    { "type": "range", "id": "products_count", "label": "Products to show", "min": 2, "max": 12, "step": 1, "default": 8 },
+    { "type": "range", "id": "per_row", "label": "Per row (desktop)", "min": 2, "max": 5, "step": 1, "default": 4 },
+    { "type": "text", "id": "mobile_card_width", "label": "Mobile card width", "default": "68vw", "info": "e.g. 68vw shows ~1.5 cards" },
+    { "type": "header", "content": "Shop all button" },
+    { "type": "text", "id": "button_text", "label": "Button text", "default": "Shop all" },
+    { "type": "url", "id": "button_link", "label": "Button link (defaults to collection)" },
+    { "type": "select", "id": "button_style", "label": "Button style", "options": [ {"value":"fill","label":"Fill"}, {"value":"outline","label":"Outline"} ], "default": "outline" },
+    { "type": "range", "id": "button_radius", "label": "Button radius", "min": 0, "max": 30, "step": 2, "unit": "px", "default": 6 },
+    { "type": "header", "content": "Color & spacing" },
+    { "type": "color", "id": "bg_color", "label": "Background", "default": "#FFFFFF" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#1C1C1C" },
+    { "type": "range", "id": "padding_top", "label": "Padding top", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 52 },
+    { "type": "range", "id": "padding_bottom", "label": "Padding bottom", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 52 }
+  ],
+  "presets": [ { "name": "CURVS Product Row" } ]
+}
+{% endschema %}

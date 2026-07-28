@@ -1,0 +1,121 @@
+{%- comment -%}
+  CURVS Hero — custom-coded, Shapermint-style offer hero.
+  Lifestyle image + offer block (kicker, badge, big % OFF, subcopy, CTA) + micro-trust.
+  Native section: fully editable in the theme editor. CURVS palette via settings.
+{%- endcomment -%}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --ch-bone: {{ section.settings.bg_color }};
+    --ch-char: {{ section.settings.text_color }};
+    --ch-accent: {{ section.settings.accent_color }};
+    --ch-sale: {{ section.settings.sale_color }};
+  }
+  #shopify-section-{{ section.id }} .ch-hero {
+    position: relative;
+    background: linear-gradient(115deg, var(--ch-bone) 0%, {{ section.settings.accent_color }} 145%);
+    overflow: hidden;
+  }
+  #shopify-section-{{ section.id }} .ch-hero__in {
+    max-width: 1280px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; align-items: center;
+    gap: 24px; min-height: 560px; padding: 0 24px;
+  }
+  #shopify-section-{{ section.id }} .ch-hero__media {
+    position: relative; height: 100%; min-height: 560px;
+    border-radius: {{ section.settings.image_radius }}px; overflow: hidden;
+  }
+  #shopify-section-{{ section.id }} .ch-hero__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: {{ section.settings.image_position }}; }
+  #shopify-section-{{ section.id }} .ch-hero__media.is-empty { background: var(--ch-bone); display: grid; place-items: center; }
+  #shopify-section-{{ section.id }} .ch-hero__offer { padding: 48px 0; color: var(--ch-char); {% if section.settings.text_align == 'center' %}text-align: center;{% endif %} }
+  #shopify-section-{{ section.id }} .ch-hero__kick { font-weight: 800; letter-spacing: .16em; text-transform: uppercase; font-size: .82rem; }
+  #shopify-section-{{ section.id }} .ch-hero__lc { display: inline-block; background: var(--ch-sale); color: #fff; font-weight: 800; font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; padding: .3rem .6rem; border-radius: 3px; margin: 10px 0; }
+  #shopify-section-{{ section.id }} .ch-hero__big { display: flex; align-items: baseline; gap: .5rem; line-height: .82; margin: .1rem 0 .4rem; {% if section.settings.text_align == 'center' %}justify-content: center;{% endif %} }
+  #shopify-section-{{ section.id }} .ch-hero__big .u { font-weight: 800; font-size: 1.5rem; }
+  #shopify-section-{{ section.id }} .ch-hero__big .n { font-weight: 900; font-size: clamp(4rem, 11vw, 7rem); letter-spacing: -.04em; }
+  #shopify-section-{{ section.id }} .ch-hero__big .o { font-weight: 800; font-size: 2rem; }
+  #shopify-section-{{ section.id }} .ch-hero__desc { max-width: 34ch; font-size: 1.04rem; opacity: .82; margin: .6rem 0 1.5rem; font-weight: 500; {% if section.settings.text_align == 'center' %}margin-left: auto; margin-right: auto;{% endif %} }
+  #shopify-section-{{ section.id }} .ch-hero__cta { display: inline-flex; align-items: center; gap: .5rem; background: var(--ch-char); color: var(--ch-bone); font-weight: 800; font-size: 1rem; letter-spacing: .01em; padding: 1.1rem 2.6rem; border-radius: {{ section.settings.button_radius }}px; box-shadow: 0 6px 20px rgba(0,0,0,.16); transition: transform .15s, box-shadow .15s; text-decoration: none; }
+  #shopify-section-{{ section.id }} .ch-hero__cta:hover { transform: translateY(-1px); box-shadow: 0 10px 26px rgba(0,0,0,.24); }
+  #shopify-section-{{ section.id }} .ch-hero__trust { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 18px; font-size: .84rem; font-weight: 600; opacity: .82; {% if section.settings.text_align == 'center' %}justify-content: center;{% endif %} }
+  #shopify-section-{{ section.id }} .ch-hero__trust span { display: inline-flex; align-items: center; gap: 6px; }
+  #shopify-section-{{ section.id }} .ch-hero__trust .icon { color: var(--ch-accent); }
+
+  @media (max-width: 820px) {
+    #shopify-section-{{ section.id }} .ch-hero__in { grid-template-columns: 1fr; min-height: auto; padding: 0; }
+    #shopify-section-{{ section.id }} .ch-hero__media { order: -1; min-height: 64vw; border-radius: 0; }
+    #shopify-section-{{ section.id }} .ch-hero__offer { padding: 28px 24px 34px; text-align: center; }
+    #shopify-section-{{ section.id }} .ch-hero__desc { margin-left: auto; margin-right: auto; }
+    #shopify-section-{{ section.id }} .ch-hero__big { justify-content: center; }
+    #shopify-section-{{ section.id }} .ch-hero__cta { width: 100%; justify-content: center; }
+    #shopify-section-{{ section.id }} .ch-hero__trust { justify-content: center; }
+  }
+</style>
+
+<div class="ch-hero">
+  <div class="ch-hero__in">
+    <div class="ch-hero__offer">
+      {%- if section.settings.kicker != blank -%}<div class="ch-hero__kick">{{ section.settings.kicker }}</div>{%- endif -%}
+      {%- if section.settings.badge != blank -%}<div class="ch-hero__lc">{{ section.settings.badge }}</div>{%- endif -%}
+      <div class="ch-hero__big">
+        {%- if section.settings.big_pre != blank -%}<span class="u">{{ section.settings.big_pre }}</span>{%- endif -%}
+        <span class="n">{{ section.settings.big_number }}</span>
+        {%- if section.settings.big_post != blank -%}<span class="o">{{ section.settings.big_post }}</span>{%- endif -%}
+      </div>
+      {%- if section.settings.description != blank -%}<p class="ch-hero__desc">{{ section.settings.description }}</p>{%- endif -%}
+      {%- if section.settings.button_text != blank -%}
+        <a class="ch-hero__cta" href="{{ section.settings.button_link | default: '#' }}">
+          {{ section.settings.button_text }}
+          {%- render 'icon' with 'chevron-right', width: 16, height: 16 -%}
+        </a>
+      {%- endif -%}
+      {%- if section.settings.trust_1 != blank or section.settings.trust_2 != blank -%}
+        <div class="ch-hero__trust">
+          {%- if section.settings.trust_1 != blank -%}<span>{%- render 'icon' with 'picto-star', width: 16, height: 16 -%}{{ section.settings.trust_1 }}</span>{%- endif -%}
+          {%- if section.settings.trust_2 != blank -%}<span>{%- render 'icon' with 'picto-validation', width: 16, height: 16 -%}{{ section.settings.trust_2 }}</span>{%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="ch-hero__media {% unless section.settings.image %}is-empty{% endunless %}">
+      {%- if section.settings.image -%}
+        {{- section.settings.image | image_url: width: 1400 | image_tag: loading: 'eager', sizes: '(max-width: 820px) 100vw, 50vw', widths: '400,600,800,1000,1200,1400,1600' -}}
+      {%- else -%}
+        <span class="text-subdued">Add a hero image</span>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "CURVS Hero",
+  "tag": "section",
+  "class": "shopify-section--curvs-hero",
+  "settings": [
+    { "type": "header", "content": "Content" },
+    { "type": "text", "id": "kicker", "label": "Kicker", "default": "Summer sale" },
+    { "type": "text", "id": "badge", "label": "Urgency badge", "default": "Last chance" },
+    { "type": "text", "id": "big_pre", "label": "Big text — before", "default": "Up to" },
+    { "type": "text", "id": "big_number", "label": "Big number", "default": "50" },
+    { "type": "text", "id": "big_post", "label": "Big text — after", "default": "% off" },
+    { "type": "textarea", "id": "description", "label": "Description", "default": "The no-gap fit curvy women reorder in every wash. Selling fast, and your size won't wait." },
+    { "type": "text", "id": "button_text", "label": "Button text", "default": "Shop the sale" },
+    { "type": "url", "id": "button_link", "label": "Button link" },
+    { "type": "text", "id": "trust_1", "label": "Trust 1", "default": "4.8 · 20,000+ reviews" },
+    { "type": "text", "id": "trust_2", "label": "Trust 2", "default": "No-gap guarantee" },
+    { "type": "header", "content": "Image" },
+    { "type": "image_picker", "id": "image", "label": "Hero image" },
+    { "type": "text", "id": "image_position", "label": "Image focal point (CSS object-position)", "default": "50% 20%" },
+    { "type": "range", "id": "image_radius", "label": "Image corner radius", "min": 0, "max": 24, "step": 2, "unit": "px", "default": 0 },
+    { "type": "header", "content": "Layout & color" },
+    { "type": "select", "id": "text_align", "label": "Text alignment", "options": [ {"value":"start","label":"Left"}, {"value":"center","label":"Center"} ], "default": "start" },
+    { "type": "range", "id": "button_radius", "label": "Button radius", "min": 0, "max": 30, "step": 2, "unit": "px", "default": 6 },
+    { "type": "color", "id": "bg_color", "label": "Background", "default": "#F5F1ED" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#1C1C1C" },
+    { "type": "color", "id": "accent_color", "label": "Accent (blush)", "default": "#E7C4C7" },
+    { "type": "color", "id": "sale_color", "label": "Sale badge", "default": "#B14A45" }
+  ],
+  "presets": [ { "name": "CURVS Hero" } ]
+}
+{% endschema %}

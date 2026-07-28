@@ -1,0 +1,76 @@
+{%- comment -%}
+  CURVS Reviews — Shapermint-style "Loved by X women" + rating + review cards.
+  Native + editable. Review cards are blocks (author, verified, measurements, quote).
+{%- endcomment -%}
+
+<style>
+  #shopify-section-{{ section.id }} { --rv-char: {{ section.settings.text_color }}; --rv-bg: {{ section.settings.bg_color }}; --rv-accent: {{ section.settings.accent_color }}; --rv-card: {{ section.settings.card_color }}; }
+  #shopify-section-{{ section.id }} .rv { background: var(--rv-bg); padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px; }
+  #shopify-section-{{ section.id }} .rv__in { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+  #shopify-section-{{ section.id }} .rv__rating { text-align: center; margin-bottom: 6px; }
+  #shopify-section-{{ section.id }} .rv__stars { color: var(--rv-accent); letter-spacing: 3px; }
+  #shopify-section-{{ section.id }} .rv__score { font-weight: 700; margin-left: 8px; color: var(--rv-char); }
+  #shopify-section-{{ section.id }} .rv__count { opacity: .6; font-size: .85rem; margin-left: 6px; color: var(--rv-char); }
+  #shopify-section-{{ section.id }} .rv__title { text-align: center; font-weight: 800; letter-spacing: -.01em; font-size: clamp(1.5rem, 3.2vw, 2.2rem); color: var(--rv-char); margin: 0 0 28px; }
+  #shopify-section-{{ section.id }} .rv__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  #shopify-section-{{ section.id }} .rv__card { background: var(--rv-card); border-radius: {{ section.settings.card_radius }}px; padding: 24px; display: flex; flex-direction: column; gap: 10px; }
+  #shopify-section-{{ section.id }} .rv__who { font-weight: 700; font-size: .9rem; color: var(--rv-char); display: flex; align-items: center; gap: 8px; }
+  #shopify-section-{{ section.id }} .rv__verified { color: var(--rv-accent); font-weight: 600; font-size: .74rem; display: inline-flex; align-items: center; gap: 3px; }
+  #shopify-section-{{ section.id }} .rv__cstars { color: var(--rv-accent); letter-spacing: 2px; font-size: .85rem; }
+  #shopify-section-{{ section.id }} .rv__quote { font-size: .98rem; line-height: 1.5; color: var(--rv-char); }
+  #shopify-section-{{ section.id }} .rv__meta { font-size: .78rem; color: var(--rv-char); opacity: .55; font-weight: 600; margin-top: auto; }
+  @media (max-width: 820px) { #shopify-section-{{ section.id }} .rv__grid { grid-template-columns: 1fr; } }
+</style>
+
+<div class="rv">
+  <div class="rv__in">
+    <div class="rv__rating">
+      <span class="rv__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      {%- if section.settings.score != blank -%}<span class="rv__score">{{ section.settings.score }}</span>{%- endif -%}
+      {%- if section.settings.count != blank -%}<span class="rv__count">{{ section.settings.count }}</span>{%- endif -%}
+    </div>
+    {%- if section.settings.title != blank -%}<h2 class="rv__title">{{ section.settings.title }}</h2>{%- endif -%}
+    <div class="rv__grid">
+      {%- for block in section.blocks -%}
+        <div class="rv__card" {{ block.shopify_attributes }}>
+          <div class="rv__who">{{ block.settings.author }}
+            {%- if block.settings.verified -%}<span class="rv__verified">{%- render 'icon' with 'picto-validation', width: 13, height: 13 -%}Verified</span>{%- endif -%}
+          </div>
+          <div class="rv__cstars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="rv__quote">{{ block.settings.quote }}</p>
+          {%- if block.settings.meta != blank -%}<div class="rv__meta">{{ block.settings.meta }}</div>{%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "CURVS Reviews",
+  "tag": "section",
+  "class": "shopify-section--curvs-reviews",
+  "settings": [
+    { "type": "text", "id": "score", "label": "Score", "default": "4.8/5" },
+    { "type": "text", "id": "count", "label": "Review count", "default": "20,000+ verified reviews" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Loved by over 20,000 curvy women" },
+    { "type": "color", "id": "bg_color", "label": "Background", "default": "#FFFFFF" },
+    { "type": "color", "id": "card_color", "label": "Card background", "default": "#F5F1ED" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#1C1C1C" },
+    { "type": "color", "id": "accent_color", "label": "Accent (stars)", "default": "#C0787E" },
+    { "type": "range", "id": "card_radius", "label": "Card radius", "min": 0, "max": 20, "step": 2, "unit": "px", "default": 8 },
+    { "type": "range", "id": "padding_top", "label": "Padding top", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 56 },
+    { "type": "range", "id": "padding_bottom", "label": "Padding bottom", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 56 }
+  ],
+  "blocks": [
+    { "type": "review", "name": "Review", "settings": [
+      { "type": "text", "id": "author", "label": "Author", "default": "Jessica R." },
+      { "type": "checkbox", "id": "verified", "label": "Verified buyer", "default": true },
+      { "type": "textarea", "id": "quote", "label": "Quote", "default": "Every other pair cuts me in half or gapes so bad I'm pulling my shirt down all day. I pulled these up and actually laughed." },
+      { "type": "text", "id": "meta", "label": "Size / body (meta line)", "default": "Size 14 · small waist, full thighs" }
+    ]}
+  ],
+  "max_blocks": 6,
+  "presets": [ { "name": "CURVS Reviews", "blocks": [ {"type":"review"}, {"type":"review"}, {"type":"review"} ] } ]
+}
+{% endschema %}

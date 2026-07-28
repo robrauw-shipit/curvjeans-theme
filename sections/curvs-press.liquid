@@ -1,0 +1,50 @@
+{%- comment -%}
+  CURVS Press Strip — "As seen in" logo row. Image logos (blocks) or text fallback.
+{%- endcomment -%}
+
+<style>
+  #shopify-section-{{ section.id }} { --ps-char: {{ section.settings.text_color }}; --ps-bg: {{ section.settings.bg_color }}; }
+  #shopify-section-{{ section.id }} .ps { background: var(--ps-bg); padding: {{ section.settings.padding_top }}px 24px {{ section.settings.padding_bottom }}px; border-top: 1px solid rgba(28,28,28,.08); border-bottom: 1px solid rgba(28,28,28,.08); }
+  #shopify-section-{{ section.id }} .ps__label { text-align: center; font-size: .72rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--ps-char); opacity: .5; margin-bottom: 18px; }
+  #shopify-section-{{ section.id }} .ps__row { max-width: 1000px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 40px; flex-wrap: wrap; }
+  #shopify-section-{{ section.id }} .ps__logo img { max-height: {{ section.settings.logo_height }}px; width: auto; opacity: .55; filter: grayscale(1); }
+  #shopify-section-{{ section.id }} .ps__text { font-weight: 700; color: var(--ps-char); opacity: .5; font-size: 1.1rem; letter-spacing: .02em; }
+  @media (max-width: 700px) { #shopify-section-{{ section.id }} .ps__row { gap: 22px; } }
+</style>
+
+<div class="ps">
+  {%- if section.settings.label != blank -%}<div class="ps__label">{{ section.settings.label }}</div>{%- endif -%}
+  <div class="ps__row">
+    {%- for block in section.blocks -%}
+      {%- if block.settings.logo -%}
+        <div class="ps__logo" {{ block.shopify_attributes }}>{{ block.settings.logo | image_url: height: 60 | image_tag: loading: 'lazy', height: 60 }}</div>
+      {%- elsif block.settings.name != blank -%}
+        <span class="ps__text" {{ block.shopify_attributes }}>{{ block.settings.name }}</span>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "CURVS Press Strip",
+  "tag": "section",
+  "class": "shopify-section--curvs-press",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Label", "default": "As seen in" },
+    { "type": "range", "id": "logo_height", "label": "Logo height", "min": 16, "max": 60, "step": 2, "unit": "px", "default": 28 },
+    { "type": "color", "id": "bg_color", "label": "Background", "default": "#F5F1ED" },
+    { "type": "color", "id": "text_color", "label": "Text", "default": "#1C1C1C" },
+    { "type": "range", "id": "padding_top", "label": "Padding top", "min": 0, "max": 80, "step": 4, "unit": "px", "default": 28 },
+    { "type": "range", "id": "padding_bottom", "label": "Padding bottom", "min": 0, "max": 80, "step": 4, "unit": "px", "default": 28 }
+  ],
+  "blocks": [
+    { "type": "logo", "name": "Press logo", "settings": [
+      { "type": "image_picker", "id": "logo", "label": "Logo image" },
+      { "type": "text", "id": "name", "label": "Or text name", "info": "Used if no image", "default": "Forbes" }
+    ]}
+  ],
+  "max_blocks": 8,
+  "presets": [ { "name": "CURVS Press Strip", "blocks": [ {"type":"logo"}, {"type":"logo"}, {"type":"logo"}, {"type":"logo"}, {"type":"logo"} ] } ]
+}
+{% endschema %}

@@ -1,0 +1,67 @@
+{%- comment -%}
+  CURVS Club/Perks Banner — Shapermint-style membership perks row.
+  Header bar + perks (icon + title + subtitle blocks). Native + editable.
+{%- endcomment -%}
+
+<style>
+  #shopify-section-{{ section.id }} { --cb-char: {{ section.settings.text_color }}; --cb-bg: {{ section.settings.bg_color }}; --cb-bar: {{ section.settings.bar_color }}; --cb-bar-text: {{ section.settings.bar_text_color }}; }
+  #shopify-section-{{ section.id }} .cb { padding: {{ section.settings.padding_top }}px 24px {{ section.settings.padding_bottom }}px; }
+  #shopify-section-{{ section.id }} .cb__wrap { max-width: 1180px; margin: 0 auto; border-radius: {{ section.settings.radius }}px; overflow: hidden; }
+  #shopify-section-{{ section.id }} .cb__bar { background: var(--cb-bar); color: var(--cb-bar-text); padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+  #shopify-section-{{ section.id }} .cb__bar b { font-weight: 800; font-size: 1.05rem; }
+  #shopify-section-{{ section.id }} .cb__bar span { font-weight: 700; }
+  #shopify-section-{{ section.id }} .cb__perks { background: var(--cb-bg); color: var(--cb-char); padding: 26px 24px; display: grid; grid-template-columns: repeat({{ section.blocks.size }}, 1fr); gap: 18px; text-align: center; }
+  #shopify-section-{{ section.id }} .cb__perk .icon { color: var(--cb-char); margin-bottom: 8px; }
+  #shopify-section-{{ section.id }} .cb__perk b { display: block; font-weight: 800; font-size: .92rem; }
+  #shopify-section-{{ section.id }} .cb__perk span { font-size: .8rem; opacity: .7; }
+  @media (max-width: 700px) { #shopify-section-{{ section.id }} .cb__perks { grid-template-columns: 1fr 1fr; } }
+</style>
+
+<div class="cb">
+  <div class="cb__wrap">
+    <div class="cb__bar">
+      <b>{{ section.settings.bar_title }}</b>
+      <span>{{ section.settings.bar_right }}</span>
+    </div>
+    <div class="cb__perks">
+      {%- for block in section.blocks -%}
+        <div class="cb__perk" {{ block.shopify_attributes }}>
+          {%- if block.settings.icon != 'none' -%}{%- render 'icon' with block.settings.icon, width: 30, height: 30 -%}{%- endif -%}
+          <b>{{ block.settings.title }}</b>
+          <span>{{ block.settings.subtitle }}</span>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "CURVS Club Banner",
+  "tag": "section",
+  "class": "shopify-section--curvs-club",
+  "settings": [
+    { "type": "text", "id": "bar_title", "label": "Bar title", "default": "Join the CURVS Fit Club" },
+    { "type": "text", "id": "bar_right", "label": "Bar right text", "default": "First access + member pricing" },
+    { "type": "color", "id": "bar_color", "label": "Bar background", "default": "#1C1C1C" },
+    { "type": "color", "id": "bar_text_color", "label": "Bar text", "default": "#F5F1ED" },
+    { "type": "color", "id": "bg_color", "label": "Perks background", "default": "#EDE7E0" },
+    { "type": "color", "id": "text_color", "label": "Perks text", "default": "#1C1C1C" },
+    { "type": "range", "id": "radius", "label": "Corner radius", "min": 0, "max": 20, "step": 2, "unit": "px", "default": 10 },
+    { "type": "range", "id": "padding_top", "label": "Padding top", "min": 0, "max": 80, "step": 4, "unit": "px", "default": 20 },
+    { "type": "range", "id": "padding_bottom", "label": "Padding bottom", "min": 0, "max": 80, "step": 4, "unit": "px", "default": 52 }
+  ],
+  "blocks": [
+    { "type": "perk", "name": "Perk", "settings": [
+      { "type": "select", "id": "icon", "label": "Icon", "options": [
+        {"value":"none","label":"None"}, {"value":"picto-truck","label":"Truck"}, {"value":"picto-return","label":"Return"},
+        {"value":"picto-customer-support","label":"Support"}, {"value":"picto-percent","label":"Percent"},
+        {"value":"picto-gift","label":"Gift"}, {"value":"picto-lock","label":"Lock"}, {"value":"picto-star","label":"Star"} ], "default": "picto-truck" },
+      { "type": "text", "id": "title", "label": "Title", "default": "Free shipping" },
+      { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "On orders over $80" }
+    ]}
+  ],
+  "max_blocks": 4,
+  "presets": [ { "name": "CURVS Club Banner", "blocks": [ {"type":"perk"}, {"type":"perk"}, {"type":"perk"}, {"type":"perk"} ] } ]
+}
+{% endschema %}
