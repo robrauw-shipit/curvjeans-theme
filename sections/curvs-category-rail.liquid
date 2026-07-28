@@ -6,24 +6,32 @@
 <style>
   #shopify-section-{{ section.id }} { --cr-char: {{ section.settings.text_color }}; --cr-bone: {{ section.settings.bg_color }}; }
   #shopify-section-{{ section.id }} .cr { background: var(--cr-bone); padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px; }
-  #shopify-section-{{ section.id }} .cr__head { text-align: center; margin-bottom: 28px; padding: 0 24px; }
-  #shopify-section-{{ section.id }} .cr__title { font-weight: 800; letter-spacing: -.01em; font-size: clamp(1.4rem, 3vw, 2rem); color: var(--cr-char); margin: 0; }
-  #shopify-section-{{ section.id }} .cr__sub { color: var(--cr-char); opacity: .6; font-size: .95rem; margin-top: 6px; }
+  #shopify-section-{{ section.id }} .cr__head { text-align: center; margin-bottom: 18px; padding: 0 16px; }
+  #shopify-section-{{ section.id }} .cr__title { font-weight: 800; letter-spacing: -.01em; font-size: 1.35rem; color: var(--cr-char); margin: 0; }
+  #shopify-section-{{ section.id }} .cr__sub { color: var(--cr-char); opacity: .6; font-size: .9rem; margin-top: 4px; }
+  /* MOBILE-FIRST: flex carousel, fixed-width tiles, reliable scroll */
   #shopify-section-{{ section.id }} .cr__track {
-    max-width: 1280px; margin: 0 auto; padding: 0 24px;
-    display: grid; grid-auto-flow: column; grid-auto-columns: minmax(150px, 1fr);
-    gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+    display: flex; gap: 12px;
+    overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; padding: 0 16px 6px; scroll-padding-left: 16px;
   }
   #shopify-section-{{ section.id }} .cr__track::-webkit-scrollbar { display: none; }
-  #shopify-section-{{ section.id }} .cr__item { scroll-snap-align: start; text-align: center; text-decoration: none; }
+  #shopify-section-{{ section.id }} .cr__item { flex: 0 0 38%; max-width: 38%; scroll-snap-align: start; text-align: center; text-decoration: none; }
   #shopify-section-{{ section.id }} .cr__thumb { aspect-ratio: {{ section.settings.tile_ratio }}; border-radius: {{ section.settings.tile_radius }}px; overflow: hidden; background: #EDE7E0; }
   #shopify-section-{{ section.id }} .cr__thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
   #shopify-section-{{ section.id }} .cr__item:hover .cr__thumb img { transform: scale(1.05); }
-  #shopify-section-{{ section.id }} .cr__label { font-size: .9rem; font-weight: 700; color: var(--cr-char); margin-top: 10px; letter-spacing: -.01em; }
-  #shopify-section-{{ section.id }} .cr__desc { font-size: .78rem; color: var(--cr-char); opacity: .6; margin-top: 2px; }
+  #shopify-section-{{ section.id }} .cr__label { font-size: .86rem; font-weight: 700; color: var(--cr-char); margin-top: 8px; letter-spacing: -.01em; }
+  #shopify-section-{{ section.id }} .cr__desc { font-size: .74rem; color: var(--cr-char); opacity: .6; margin-top: 2px; line-height: 1.25; }
   #shopify-section-{{ section.id }} .cr__ph { width: 100%; height: 100%; display: grid; place-items: center; color: #A69E95; font-size: .72rem; }
-  @media (min-width: 900px) {
-    #shopify-section-{{ section.id }} .cr__track { grid-auto-flow: row; grid-template-columns: repeat({{ section.blocks.size }}, 1fr); overflow: visible; }
+  /* DESKTOP: static row, no scroll */
+  @media (min-width: 750px) {
+    #shopify-section-{{ section.id }} .cr__head { margin-bottom: 28px; padding: 0 24px; }
+    #shopify-section-{{ section.id }} .cr__title { font-size: clamp(1.5rem, 3vw, 2rem); }
+    #shopify-section-{{ section.id }} .cr__sub { font-size: .95rem; }
+    #shopify-section-{{ section.id }} .cr__track { display: grid; grid-template-columns: repeat({{ section.blocks.size }}, 1fr); gap: 18px; overflow: visible; max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+    #shopify-section-{{ section.id }} .cr__item { flex: none; max-width: none; }
+    #shopify-section-{{ section.id }} .cr__label { font-size: .9rem; margin-top: 10px; }
+    #shopify-section-{{ section.id }} .cr__desc { font-size: .78rem; }
   }
 </style>
 

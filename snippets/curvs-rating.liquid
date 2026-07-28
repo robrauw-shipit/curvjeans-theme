@@ -13,13 +13,14 @@
   {%- assign has_half = false -%}
   {%- if frac >= 0.25 and frac < 0.75 -%}{%- assign has_half = true -%}{%- endif -%}
   {%- if frac >= 0.75 -%}{%- assign full = full | plus: 1 -%}{%- endif -%}
+  {%- assign half_pos = full | plus: 1 -%}
 
   <div class="curvs-rating" aria-label="Rated {{ avg }} out of 5 by {{ num }} reviews">
     <span class="curvs-rating__stars" role="img">
       {%- for i in (1..5) -%}
         {%- if i <= full -%}
           <svg class="curvs-star curvs-star--full" viewBox="0 0 20 20" width="14" height="14" aria-hidden="true"><path d="M10 1.5l2.47 5.01 5.53.8-4 3.9.94 5.5L10 14.9l-4.95 2.6.94-5.5-4-3.9 5.53-.8z"/></svg>
-        {%- elsif has_half and i == full | plus: 1 -%}
+        {%- elsif has_half and i == half_pos -%}
           <svg class="curvs-star curvs-star--half" viewBox="0 0 20 20" width="14" height="14" aria-hidden="true"><defs><linearGradient id="half-{{ product.id }}-{{ i }}"><stop offset="50%" stop-color="currentColor"/><stop offset="50%" stop-color="transparent"/></linearGradient></defs><path fill="url(#half-{{ product.id }}-{{ i }})" stroke="currentColor" stroke-width="1" d="M10 1.5l2.47 5.01 5.53.8-4 3.9.94 5.5L10 14.9l-4.95 2.6.94-5.5-4-3.9 5.53-.8z"/></svg>
         {%- else -%}
           <svg class="curvs-star curvs-star--empty" viewBox="0 0 20 20" width="14" height="14" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.2" d="M10 1.5l2.47 5.01 5.53.8-4 3.9.94 5.5L10 14.9l-4.95 2.6.94-5.5-4-3.9 5.53-.8z"/></svg>
