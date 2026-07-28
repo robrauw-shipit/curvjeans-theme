@@ -1,87 +1,324 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "hero": {
-      "type": "image-with-text-overlay",
-      "blocks": {
-        "sub": { "type": "subheading", "settings": { "text": "Summer sale · Last chance" } },
-        "h": { "type": "heading", "settings": { "text": "Up to 50% off the jeans that actually fit.", "heading_tag": "h1" } },
-        "p": { "type": "richtext", "settings": { "content": "<p>The no-gap fit curvy women reorder in every wash. Selling fast, and your size won't wait.</p>" } },
-        "b1": { "type": "button", "settings": { "style": "fill", "size": "xl", "text": "Shop the sale", "url": "/collections/all-products", "background": "#1C1C1C", "text_color": "#F5F1ED" } }
-      },
-      "block_order": ["sub", "h", "p", "b1"],
-      "settings": { "full_width": true, "allow_transparent_header": true, "image_size": "large", "mobile_text_position": "place-self-end text-center", "desktop_text_position": "place-self-center-start text-start", "text_color": "#FFFFFF", "overlay_color": "#1C1C1C", "overlay_opacity": 26 }
+      "type": "curvs-hero",
+      "settings": {
+        "kicker": "Summer sale",
+        "badge": "Last chance",
+        "big_pre": "Up to",
+        "big_number": "50",
+        "big_post": "% off",
+        "description": "The no-gap fit curvy women reorder in every wash. Selling fast, and your size won't wait.",
+        "button_text": "Shop the sale",
+        "button_link": "/collections/all-products",
+        "trust_1": "4.8 · 20,000+ reviews",
+        "trust_2": "No-gap guarantee",
+        "image_position": "50% 20%",
+        "image_radius": 0,
+        "text_align": "start",
+        "button_radius": 6,
+        "bg_color": "#F5F1ED",
+        "text_color": "#1C1C1C",
+        "accent_color": "#E7C4C7",
+        "sale_color": "#B14A45"
+      }
     },
-    "trust": {
-      "type": "text-with-icons",
+    "cats": {
+      "type": "curvs-category-rail",
       "blocks": {
-        "a": { "type": "item", "settings": { "icon": "picto-return", "title": "Free exchanges", "content": "<p>Swap sizes free until they fit.</p>", "icon_color": "#1C1C1C", "icon_background_type": "none", "icon_width": 32 } },
-        "b": { "type": "item", "settings": { "icon": "picto-customer-support", "title": "Real fit help", "content": "<p>Ask us. A real person answers.</p>", "icon_color": "#1C1C1C", "icon_background_type": "none", "icon_width": 32 } },
-        "c": { "type": "item", "settings": { "icon": "picto-lock", "title": "Secure checkout", "content": "<p>Pay safely, however you like.</p>", "icon_color": "#1C1C1C", "icon_background_type": "none", "icon_width": 32 } },
-        "d": { "type": "item", "settings": { "icon": "picto-plane", "title": "Fast delivery", "content": "<p>Free shipping over $80.</p>", "icon_color": "#1C1C1C", "icon_background_type": "none", "icon_width": 32 } }
+        "t1": {
+          "type": "tile",
+          "settings": {
+            "label": "All Jeans",
+            "desc": "Your waist should fit too",
+            "link": "/collections/all-jeans"
+          }
+        },
+        "t2": {
+          "type": "tile",
+          "settings": {
+            "label": "High Waist",
+            "desc": "No muffin top",
+            "link": "/collections/high-waist"
+          }
+        },
+        "t3": {
+          "type": "tile",
+          "settings": {
+            "label": "Mid Rise",
+            "desc": "Sits flat at the back",
+            "link": "/collections/mid-rise"
+          }
+        },
+        "t4": {
+          "type": "tile",
+          "settings": {
+            "label": "Wide Leg",
+            "desc": "Room where you need it",
+            "link": "/collections/wide-leg"
+          }
+        },
+        "t5": {
+          "type": "tile",
+          "settings": {
+            "label": "Shapewear",
+            "desc": "Smooth, don't squash",
+            "link": "/collections/shapewear"
+          }
+        }
       },
-      "block_order": ["a", "b", "c", "d"],
-      "settings": { "full_width": true, "stack_on_mobile": false, "title": "", "heading_tag": "h3", "text_alignment": "center", "background": "#EDE7E0", "text_color": "#1C1C1C" }
+      "block_order": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5"
+      ],
+      "settings": {
+        "title": "Shop by fit",
+        "subtitle": "Find the fit for the part that never fits.",
+        "tile_radius": 8,
+        "tile_ratio": "1/1",
+        "bg_color": "#FFFFFF",
+        "text_color": "#1C1C1C",
+        "padding_top": 48,
+        "padding_bottom": 40
+      }
     },
-    "categories": {
-      "type": "collection-list",
-      "blocks": {
-        "c1": { "type": "collection", "settings": { "collection": "all-jeans", "title": "All Jeans", "subheading": "Your waist should fit too", "url": "/collections/all-jeans", "heading_tag": "h3", "text_position": "place-self-end text-start", "text_color": "#FFFFFF", "overlay_color": "#1C1C1C", "overlay_opacity": 22 } },
-        "c2": { "type": "collection", "settings": { "collection": "high-waist", "title": "High Waist", "subheading": "No muffin top", "url": "/collections/high-waist", "heading_tag": "h3", "text_position": "place-self-end text-start", "text_color": "#FFFFFF", "overlay_color": "#1C1C1C", "overlay_opacity": 22 } },
-        "c3": { "type": "collection", "settings": { "collection": "mid-rise", "title": "Mid Rise", "subheading": "Sits flat at the back", "url": "/collections/mid-rise", "heading_tag": "h3", "text_position": "place-self-end text-start", "text_color": "#FFFFFF", "overlay_color": "#1C1C1C", "overlay_opacity": 22 } },
-        "c4": { "type": "collection", "settings": { "collection": "wide-leg", "title": "Wide Leg", "subheading": "Room where you need it", "url": "/collections/wide-leg", "heading_tag": "h3", "text_position": "place-self-end text-start", "text_color": "#FFFFFF", "overlay_color": "#1C1C1C", "overlay_opacity": 22 } },
-        "c5": { "type": "collection", "settings": { "collection": "shapewear", "title": "Shapewear", "subheading": "Smooth, don't squash", "url": "/collections/shapewear", "heading_tag": "h3", "text_position": "place-self-end text-start", "text_color": "#FFFFFF", "overlay_color": "#1C1C1C", "overlay_opacity": 22 } }
-      },
-      "block_order": ["c1", "c2", "c3", "c4", "c5"],
-      "settings": { "full_width": false, "collections_per_row_mobile": "2", "collections_per_row": 5, "subheading": "Shop by fit", "title": "Find the fit for the part that never fits.", "background": "#F5F1ED", "text_color": "#1C1C1C" }
-    },
-    "bestsellers": {
-      "type": "featured-collection",
-      "settings": { "collection": "bestsellers", "products_count": 8, "products_per_row_mobile": "2", "products_per_row_desktop": 4, "stack_products": true, "subheading": "", "title": "Our best sellers", "link_text": "Shop all", "link_url": "/collections/all-products", "background": "#FFFFFF", "text_color": "#1C1C1C" }
+    "best": {
+      "type": "curvs-product-row",
+      "settings": {
+        "title": "Our best sellers",
+        "subtitle": "",
+        "collection": "bestsellers",
+        "products_count": 8,
+        "per_row": 4,
+        "mobile_card_width": "68vw",
+        "button_text": "Shop all",
+        "button_link": "/collections/all-products",
+        "button_style": "outline",
+        "button_radius": 6,
+        "bg_color": "#FFFFFF",
+        "text_color": "#1C1C1C",
+        "padding_top": 52,
+        "padding_bottom": 52
+      }
     },
     "feature": {
-      "type": "image-link-blocks",
-      "blocks": { "i": { "type": "item", "settings": { "link_text": "Shop the no-gap fit", "link_url": "/collections/no-gap-jeans", "text_color": "#FFFFFF", "overlay_color": "#1C1C1C", "overlay_opacity": 28, "stretch_image": true } } },
-      "block_order": ["i"],
-      "settings": { "full_width": true, "block_size": "large", "subheading": "The fix", "title": "No more choosing which part gets to fit.", "background": "#F5F1ED", "text_color": "#1C1C1C" }
+      "type": "curvs-feature-banner",
+      "settings": {
+        "media_side": "right",
+        "eyebrow": "The fix",
+        "title": "No more choosing which part gets to fit.",
+        "text": "Room through the hip and thigh, snug at the waist. The pair that finally fits both.",
+        "button_text": "Shop the no-gap fit",
+        "button_link": "/collections/no-gap-jeans",
+        "button_radius": 6,
+        "bg_color": "#EDE7E0",
+        "text_color": "#1C1C1C"
+      }
     },
     "deals": {
-      "type": "featured-collection",
-      "settings": { "collection": "sale", "products_count": 4, "products_per_row_mobile": "2", "products_per_row_desktop": 4, "stack_products": true, "subheading": "", "title": "Great deals this week", "link_text": "Shop all", "link_url": "/collections/sale", "background": "#F5F1ED", "text_color": "#1C1C1C" }
-    },
-    "why": {
-      "type": "multi-column",
-      "blocks": {
-        "w1": { "type": "item", "settings": { "column_size": "3", "title": "No waist gap", "heading_tag": "h3", "content": "<p>We made the waist smaller. Not the thighs.</p>", "link_text": "Shop", "link_url": "/collections/all-jeans", "link_style": "link" } },
-        "w2": { "type": "item", "settings": { "column_size": "3", "title": "Room for curves", "heading_tag": "h3", "content": "<p>Built-in space through the hip, thigh and seat.</p>", "link_text": "Shop", "link_url": "/collections/wide-leg", "link_style": "link" } },
-        "w3": { "type": "item", "settings": { "column_size": "3", "title": "Stays put", "heading_tag": "h3", "content": "<p>Hugs your waist and holds all day, no belt.</p>", "link_text": "Shop", "link_url": "/collections/high-waist", "link_style": "link" } },
-        "w4": { "type": "item", "settings": { "column_size": "3", "title": "Smooth shaping", "heading_tag": "h3", "content": "<p>Smooths your stomach, leaves your curves alone.</p>", "link_text": "Shop", "link_url": "/collections/shapewear", "link_style": "link" } }
-      },
-      "block_order": ["w1", "w2", "w3", "w4"],
-      "settings": { "full_width": false, "stack_on_mobile": true, "gap": "medium", "text_alignment": "start", "subheading": "Why it fits better", "title": "We fixed the part that never fit.", "background": "#FFFFFF", "text_color": "#1C1C1C" }
+      "type": "curvs-product-row",
+      "settings": {
+        "title": "Great deals this week",
+        "subtitle": "",
+        "collection": "sale",
+        "products_count": 4,
+        "per_row": 4,
+        "mobile_card_width": "68vw",
+        "button_text": "Shop all",
+        "button_link": "/collections/sale",
+        "button_style": "outline",
+        "button_radius": 6,
+        "bg_color": "#F5F1ED",
+        "text_color": "#1C1C1C",
+        "padding_top": 52,
+        "padding_bottom": 52
+      }
     },
     "reviews": {
-      "type": "product-reviews-2",
+      "type": "curvs-reviews",
       "blocks": {
-        "r1": { "type": "item", "settings": { "stars_count": 5, "verified_text": "Verified", "title": "Fits both, finally", "text": "<p>Every other pair cuts me in half or gapes so bad I'm pulling my shirt down all day. I pulled these up and actually laughed.</p>", "author": "Jessica R. · Size 14", "time": "Verified buyer" } },
-        "r2": { "type": "item", "settings": { "stars_count": 5, "verified_text": "Verified", "title": "Stays put", "text": "<p>They hug my waist and stay PUT when I'm chasing my toddler. First jeans that fit my body after two kids.</p>", "author": "Amanda T. · Size 16", "time": "Verified buyer" } },
-        "r3": { "type": "item", "settings": { "stars_count": 5, "verified_text": "Verified", "title": "No belt needed", "text": "<p>I usually size up for my thighs and then the waist swims. These fit both. Didn't touch a belt once.</p>", "author": "Brianna K. · Size L", "time": "Verified buyer" } }
+        "r1": {
+          "type": "review",
+          "settings": {
+            "author": "Jessica R.",
+            "verified": true,
+            "quote": "Every other pair cuts me in half or gapes so bad I'm pulling my shirt down all day. I pulled these up and actually laughed.",
+            "meta": "Size 14 · small waist, full thighs"
+          }
+        },
+        "r2": {
+          "type": "review",
+          "settings": {
+            "author": "Amanda T.",
+            "verified": true,
+            "quote": "They hug my waist and stay PUT when I'm chasing my toddler. First jeans that fit my body after two kids.",
+            "meta": "Size 16 · wider hips postpartum"
+          }
+        },
+        "r3": {
+          "type": "review",
+          "settings": {
+            "author": "Brianna K.",
+            "verified": true,
+            "quote": "I usually size up for my thighs and then the waist swims. These fit both. Didn't touch a belt once.",
+            "meta": "Size L · 5ft6 · curvy"
+          }
+        }
       },
-      "block_order": ["r1", "r2", "r3"],
-      "settings": { "reviews_position": "below_buy", "use_metafield": false, "slider_view": 2, "slider_view_mobile": 1.2, "item_radius": 6, "item_shadow": false }
+      "block_order": [
+        "r1",
+        "r2",
+        "r3"
+      ],
+      "settings": {
+        "score": "4.8/5",
+        "count": "20,000+ verified reviews",
+        "title": "Loved by over 20,000 curvy women",
+        "bg_color": "#FFFFFF",
+        "card_color": "#F5F1ED",
+        "text_color": "#1C1C1C",
+        "accent_color": "#C0787E",
+        "card_radius": 8,
+        "padding_top": 56,
+        "padding_bottom": 56
+      }
     },
-    "email": {
-      "type": "newsletter",
-      "settings": { "full_width": true, "show_icon": false, "title": "Come join CURVS.", "content": "<p>First access to new drops, restocks, fit tips and the offers actually worth opening.</p>", "button_text": "Sign me up", "background": "#1C1C1C", "text_color": "#F5F1ED", "button_background": "#F5F1ED", "button_text_color": "#1C1C1C" }
+    "club": {
+      "type": "curvs-club",
+      "blocks": {
+        "p1": {
+          "type": "perk",
+          "settings": {
+            "icon": "picto-truck",
+            "title": "Free shipping",
+            "subtitle": "On orders over $80"
+          }
+        },
+        "p2": {
+          "type": "perk",
+          "settings": {
+            "icon": "picto-return",
+            "title": "Free exchanges",
+            "subtitle": "Until it fits"
+          }
+        },
+        "p3": {
+          "type": "perk",
+          "settings": {
+            "icon": "picto-customer-support",
+            "title": "Fit help",
+            "subtitle": "From real people"
+          }
+        },
+        "p4": {
+          "type": "perk",
+          "settings": {
+            "icon": "picto-percent",
+            "title": "Member deals",
+            "subtitle": "Up to 40% off"
+          }
+        }
+      },
+      "block_order": [
+        "p1",
+        "p2",
+        "p3",
+        "p4"
+      ],
+      "settings": {
+        "bar_title": "Join the CURVS Fit Club",
+        "bar_right": "First access + member pricing",
+        "bar_color": "#1C1C1C",
+        "bar_text_color": "#F5F1ED",
+        "bg_color": "#EDE7E0",
+        "text_color": "#1C1C1C",
+        "radius": 10,
+        "padding_top": 20,
+        "padding_bottom": 40
+      }
+    },
+    "press": {
+      "type": "curvs-press",
+      "blocks": {
+        "l1": {
+          "type": "logo",
+          "settings": {
+            "name": "Forbes"
+          }
+        },
+        "l2": {
+          "type": "logo",
+          "settings": {
+            "name": "GLAMOUR"
+          }
+        },
+        "l3": {
+          "type": "logo",
+          "settings": {
+            "name": "InStyle"
+          }
+        },
+        "l4": {
+          "type": "logo",
+          "settings": {
+            "name": "COSMOPOLITAN"
+          }
+        },
+        "l5": {
+          "type": "logo",
+          "settings": {
+            "name": "Women's Health"
+          }
+        }
+      },
+      "block_order": [
+        "l1",
+        "l2",
+        "l3",
+        "l4",
+        "l5"
+      ],
+      "settings": {
+        "label": "As seen in",
+        "logo_height": 26,
+        "bg_color": "#F5F1ED",
+        "text_color": "#1C1C1C",
+        "padding_top": 28,
+        "padding_bottom": 28
+      }
+    },
+    "more": {
+      "type": "curvs-product-row",
+      "settings": {
+        "title": "More to love",
+        "subtitle": "",
+        "collection": "all-products",
+        "products_count": 8,
+        "per_row": 4,
+        "mobile_card_width": "68vw",
+        "button_text": "Shop all",
+        "button_link": "/collections/all-products",
+        "button_style": "fill",
+        "button_radius": 6,
+        "bg_color": "#FFFFFF",
+        "text_color": "#1C1C1C",
+        "padding_top": 52,
+        "padding_bottom": 52
+      }
     }
   },
-  "order": ["hero", "trust", "categories", "bestsellers", "feature", "deals", "why", "reviews", "email"]
+  "order": [
+    "hero",
+    "cats",
+    "best",
+    "feature",
+    "deals",
+    "reviews",
+    "club",
+    "more",
+    "press"
+  ]
 }
