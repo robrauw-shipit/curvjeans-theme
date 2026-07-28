@@ -379,12 +379,11 @@
       "settings": {
         "reviews_position": "below_buy",
         "use_metafield": false,
-        "slider_view": 3,
+        "slider_view": 2,
         "slider_view_mobile": 1.2,
         "item_radius": 6,
         "item_shadow": false,
-        "background_color": "",
-        "stars_icon": "star"
+        "background_color": ""
       }
     },
     "press": {
